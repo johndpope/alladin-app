@@ -1,0 +1,67 @@
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+?>
+<?php
+    $aspect_ratio = Mage::getStoreConfig("hybrid/product_view/aspect_ratio", $code);
+    $ratio_width = 368;
+    $ratio_height = 368;
+    if(Mage::getStoreConfig("hybrid/product_view/ratio_width", $code))
+        $ratio_width = Mage::getStoreConfig("hybrid/product_view/ratio_width", $code);
+    if(!$aspect_ratio){
+        if(Mage::getStoreConfig("hybrid/product_view/ratio_height", $code))
+            $ratio_height = Mage::getStoreConfig("hybrid/product_view/ratio_height", $code);
+    }
+    $ratio = $ratio_height / $ratio_width;
+    $rnd_str = rtrim(base64_encode(md5(microtime())),"=");
+?>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<div id="product_images_<?php echo $rnd_str; ?>" class="owl-carousel owl-middle-narrow">
+<?php foreach ($this->getGalleryImages() as $_image): ?>
+    <div class="item">
+        <?php
+            if(!$aspect_ratio)
+                $image_src = $this->helper('catalog/image')->init($_product, 'thumbnail', $_image->getFile())->resize($ratio_width, $ratio_height);
+            else
+                $image_src = $this->helper('catalog/image')->init($_product, 'thumbnail', $_image->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);
+        ?>
+        <img src="<?php echo $image_src; ?>">
+    </div>
+<?php endforeach; ?>
+</div>
+<?php else: ?>
+<div id="product_images_<?php echo $rnd_str; ?>" class="owl-carousel owl-middle-narrow">
+    <div class="item">
+        <?php
+            if(!$aspect_ratio)
+                $image_src = $this->helper('catalog/image')->init($_product, 'image')->resize($ratio_width, $ratio_height);
+            else
+                $image_src = $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);
+        ?>
+        <img src="<?php echo $image_src; ?>">
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+    jQuery(function($){
+        setTimeout(function(){
+            $("#product_images_<?php echo $rnd_str; ?>").owlCarousel({
+                lazyLoad: true,
+                smartSpeed : 300,
+                dotsSpeed : 400,
+                items:1,
+                responsiveRefreshRate: 50,
+                dotsSpeed: 500,
+                autoplayHoverPause: true,
+                navRewind: true,
+                navSpeed: 600,
+				dots: false,
+                nav: true,
+                navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+            });
+        }, 300);
+    });
+</script>
+<div class="clear"></div>

@@ -1,0 +1,239 @@
+
+<style>
+    .order-cba-log-holder{
+        height:500px;
+        overflow-y:scroll;
+    }
+</style>
+
+<div class="columns">
+    <div class="side-col">
+        <h3>Click the order "view logs" button to view CBA MPESA payment logs for that specific order.</h3>
+    </div>
+    <?php $cbaCustomerLogs = $this->cbaCustomerLogs('admin'); ?>
+    <?php $erronousLogs = $this->getErronousLogs(); ?>
+    <div class="main-col" id="content">
+        <div class="main-col-inner">
+            <div id="messages"></div>
+            <!--configuration content heading-->
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3>Cba MPESA Payment Logs</h3>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <!--payments operations-->
+
+            <table width="100%" cellspacing="25">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="">
+<?php if ($erronousLogs->count() > 0): ?>
+                                    <button type="submit" class="alpesa-button" onclick="loadErronous(this)" >
+                                        View Erronous
+                                    </button>
+                        <?php endif; ?>
+                                <div class="entry-edit">
+                                    <div class="entry-edit-head"><h4>Payment Logs</h4></div>
+                                    <?php if (count($cbaCustomerLogs) > 0): ?>
+                                        <fieldset class="np">
+
+                                            <div class="grid np order-cba-log-holder">
+                                                <table cellspacing="0" style="border:0;">
+                                                    <thead>
+                                                        <tr class="headings">
+                                                            <th class="number">Order #</th>
+                                                            <th class="date">Date</th>
+                                                            <th class="total"><span class="nobr">Order Total</span></th>
+                                                            <th class="view">&nbsp;</th>
+                                                        </tr> 
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <?php foreach ($cbaCustomerLogs as $cbaCustomerLog):if ($cbaCustomerLog->paymentLogs == true): ?>
+                                                                <tr class="first odd">
+                                                                    <td class="number"><?php echo $cbaCustomerLog->order->getIncrementId(); ?></td>
+                                                                    <td class="date"><span class="nobr"><?php echo date('d-m-Y h:i:s', strtotime($cbaCustomerLog->order->getCreatedAt())); ?></span></td>
+                                                                    <td class="total"><span class="price"><?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency() . ' ' . Mage::helper('Boonagel_Cba')->formatNumber($cbaCustomerLog->order->getGrandTotal(), 2); ?></span></td>
+                                                                    <td class="ship">
+                                                                        <button type="submit" class="alpesa-button" onclick="loadCbaLogs(this)" logId="<?php echo $cbaCustomerLog->order->getIncrementId(); ?>">
+                                                                            View Logs
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            endif;
+                                                        endforeach;
+                                                        ?>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </fieldset>
+                                    <?php else: ?>
+                                        <h4 style="color:red;">0 payment logs</h4>
+                                    <?php endif; ?>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+
+
+
+
+                            <div class="entry-edit ">
+                                <div class="entry-edit-head"><h4>Log(s)</h4></div>
+                                <fieldset id="cba-log-holder">
+                                </fieldset>
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!--hold all the logs to display through js--->
+<?php foreach ($cbaCustomerLogs as $cbaCustomerLog):if ($cbaCustomerLog->paymentLogs == true): ?>
+        <div id="cba-log-num-<?php echo $cbaCustomerLog->order->getIncrementId() ?>" class="class-cba-logged" style="display:none;">
+            <h3><b>ORDER: #<?php echo $cbaCustomerLog->order->getIncrementId() ?> PAYMENT LOGS</b></h3>
+            <div class="grid np">
+                <table cellspacing="0" style="border:0;">
+                    <thead>
+                        <tr class="headings">
+                            <th class="number">Amount</th>
+                            <th class="date">Date</th>
+                            <th class="total">Name</th>
+                            <th class="total">Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $cbaTotal = 0;
+                        foreach ($cbaCustomerLog->logs as $paymentLog): $cbaTotal +=$paymentLog->getTransAmount(); ?>
+                            <tr class="first odd">
+                                <td class="number">
+            <?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency() . ' ' . Mage::helper('Boonagel_Cba')->formatNumber($paymentLog->getTransAmount(), 2); ?>
+                                </td>
+                                <td class="date">
+                                    <span class="nobr">
+            <?php echo date('d-m-Y h:i:s', strtotime($paymentLog->getTransTime())); ?>
+                                    </span>
+                                </td>
+                                <td class="total">
+                                    <span class="price">
+            <?php echo $paymentLog->getCustomerName(); ?>
+                                    </span>
+                                </td>
+                                <td class="total">
+                                    <span class="price">
+                                        +<?php echo $paymentLog->getPhoneNr(); ?>
+                                    </span>
+                                </td>
+                            </tr>
+        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <h3>Total Amount: <b><?php echo Mage::helper('Boonagel_Cba')->formatNumber($cbaTotal, 2); ?></b> ; Extra Amount:
+                    <b><?php $extraAmt = $cbaTotal - ($cbaCustomerLog->order->getGrandTotal());
+        echo Mage::helper('Boonagel_Cba')->formatNumber($extraAmt, 2); ?></b>
+                </h3>
+            </div>
+        </div>
+
+        <?php
+    endif;
+endforeach;
+?>
+
+<!--hold erronous logs-->
+
+<?php if ($erronousLogs->count() > 0): ?>
+<div id="erronous-logs" class="grid np" style="display:none;">
+    <h3>Erronous Logs</h3>
+        <table cellspacing="0" style="border:0;">
+            <thead>
+                <tr class="headings">
+                    <th class="number">Amount</th>
+                    <th class="date">Date</th>
+                    <th class="total">Name</th>
+                    <th class="total">Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                        <?php $cbaTotal = 0;
+                        foreach ($erronousLogs as $paymentLog): $cbaTotal +=$paymentLog->getTransAmount(); ?>
+                    <tr class="first odd">
+                        <td class="number">
+                                <?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency() . ' ' . Mage::helper('Boonagel_Cba')->formatNumber($paymentLog->getTransAmount(), 2); ?>
+                        </td>
+                        <td class="date">
+                            <span class="nobr">
+        <?php echo date('d-m-Y h:i:s', strtotime($paymentLog->getTransTime())); ?>
+                            </span>
+                        </td>
+                        <td class="total">
+                            <span class="price">
+        <?php echo $paymentLog->getCustomerName(); ?>
+                            </span>
+                        </td>
+                        <td class="total">
+                            <span class="price">
+                                +<?php echo $paymentLog->getPhoneNr(); ?>
+                            </span>
+                        </td>
+                    </tr>
+    <?php endforeach; ?>
+            </tbody>
+        </table>
+        <h3>Total Amount: <b><?php echo Mage::helper('Boonagel_Cba')->formatNumber($cbaTotal, 2); ?></b> 
+        </h3>
+    </div>
+<?php endif; ?>
+
+<script>
+    function loadCbaLogs(thisItem) {
+        var orderIncrementId = thisItem.getAttribute("logId");
+        var cbaLog = document.getElementById("cba-log-num-" + orderIncrementId);
+        var cbaLogClone = cbaLog.cloneNode(true);
+
+        //remove the id attribute from the div.
+        cbaLogClone.removeAttribute("id");
+        cbaLogClone.removeAttribute("style");
+
+        //function
+        document.getElementById("cba-log-holder").innerHTML = "";
+        document.getElementById("cba-log-holder").appendChild(cbaLogClone);
+
+    }
+    
+    function loadErronous(thisBtn){
+        
+        var cbaLog = document.getElementById("erronous-logs");
+        var cbaLogClone = cbaLog.cloneNode(true);
+
+        //remove the id attribute from the div.
+        cbaLogClone.removeAttribute("id");
+        cbaLogClone.removeAttribute("style");
+
+        //function
+        document.getElementById("cba-log-holder").innerHTML = "";
+        document.getElementById("cba-log-holder").appendChild(cbaLogClone);
+    }
+
+
+</script>

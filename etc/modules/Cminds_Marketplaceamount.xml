@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cminds_Marketplaceamount>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Cminds_Marketplace />
+            </depends>
+        </Cminds_Marketplaceamount>
+    </modules>
+</config>

@@ -1,0 +1,50 @@
+<?php
+$_product = $this->getProduct();
+$customerData = Mage::getSingleton('customer/session')->getCustomer();
+?>
+<?php if ($customerData->getId() != '' && $_product->getIsTradeable()) :?>
+    <div class="bargain-price-form" style="clear: both; float: right;">
+        <div id="price_suggest">
+            <input type="text" id="price" style="width: 150px;height:33px;"
+                   class="input-text" placeholder="Price suggest"/>
+
+            <input type="button" value="send" id="sendSuggest" class="button btn-cart " style="margin-left: 5px; margin-bottom:4px"/>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    var postUrlSuggest = '<?php echo $this->getUrl("suppliertrading/trade/send")?>';
+
+    function doAjaxSuggest() {
+        var price = $('price').getValue();
+        var qty = $('qty').getValue();
+        var dataSuggest = {price:price, customer_id: <?=$customerData->getId()?>, product_id:
+            <?=$_product->getId()?>, qty: qty};
+
+        if(price == '') {
+            alert('Suggest price is required.');
+        } else {
+            $('sendSuggest').hide();
+            new Ajax.Request(postUrlSuggest, {
+                method: 'post',
+                parameters: dataSuggest,
+                onSuccess: function () {
+                    alert('Trade was sent.');
+                    $('price').setValue('');
+                    $('sendSuggest').show();
+                }
+            })
+        }
+
+    }
+
+    new Event.observe('sendSuggest', 'click', function(e) {
+        doAjaxSuggest();
+    });
+
+    //]]>
+</script>
+<?php endif; ?>

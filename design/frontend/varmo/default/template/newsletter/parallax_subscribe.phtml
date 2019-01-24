@@ -1,0 +1,16 @@
+<div class="parallax-subscribe">
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="parallax-newsletter-validate-detail" onsubmit="setNewsletterCookie()">
+        <div class="input-group">
+            <input type="text" name="email" id="newsletter" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="form-control required-entry validate-email" placeholder="<?php echo $this->__('Email Address'); ?>" />
+            <span class="input-group-btn">
+            <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="btn btn-default"><i class="icon icon-Plaine"></i></button>
+            </span>
+        </div>
+		<div class="clearer"></div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var homeSidebarNewsletterValidateDetail = new VarienForm('parallax-newsletter-validate-detail');
+    //]]>
+    </script>
+</div>

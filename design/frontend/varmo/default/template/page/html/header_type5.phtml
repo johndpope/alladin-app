@@ -1,0 +1,157 @@
+<?php 
+/*
+ * header type 5
+ */?>
+ <?php 
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+$themehelper = Mage::helper('hybrid');
+?>
+<header class="header-section type-header-5">
+<div class="header-panel navbar navbar-default header-nav-type5">
+    <div class="container">
+        <div class="row">
+            <div class="header-panel-left hidden-sm col-md-4 a-left">
+				<ul class="tab-bar-left">
+					<?php if($this->getChildHtml('store_currency')){?>
+                    	<?php echo '<li>'.$this->getChildHtml('store_currency').'</li>'; }?>
+                    <?php if($this->getChildHtml('store_language')){?>
+                    	<?php echo '<li>'.$this->getChildHtml('store_language').'</li>';} ?>
+                    <?php if($this->getChildHtml('welcome')){?>
+                    	<?php echo '<li class="welcome-msg"><p>'.$this->getChildHtml('welcome').'</p></li>';} ?>
+                    <?php if($this->getAdditionalHtml()){?>
+                    	<?php echo '<li>'.$this->getAdditionalHtml().'</li>';} ?>
+            	</ul>
+            </div>
+
+            <div class="header-panel-right switches col-xs-12 col-md-8 a-right font12">
+                <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header header-type5">
+    <div class="container">
+		<div class="row">
+        <?php if(!$themehelper->getConf('header/staticheaderblock', $code)):?>
+             <div class="col-md-9">
+                    <div class="branding">
+                    <?php if ($this->getIsHomePage()):?>
+                    <h1 class="logo"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                    <?php else:?>
+                    <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+                    <?php endif?>
+                    </div>
+             </div>
+        <?php else:?>
+			<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter($themehelper->getConf('header/staticheaderblock', $code))?>
+        <?php endif; ?>
+       <div class="col-md-3 logobar-right-icons">
+               <ul class="icons-wrapper">
+                   <li class="minicart-column"><?php echo $this->getChildHtml('minicartdrop') ?></li>
+                   <?php if($this->getChildHtml('compare_link')):?>
+					<li class="compare-column"><?php echo $this->getChildHtml('compare_link') ?></li>
+                    <?php endif; ?>
+            	</ul>
+        	</div>
+        </div>
+    </div>
+</div>
+<?php if($themehelper->getConf('header/sticky',$code)):?>
+<div class="sticky-header">
+	<div class="sticky-container">
+			    
+<?php endif;?>
+
+<nav id="navigation-section" class="nav-type4">			
+    <!-- Navigation Menu Begins -->
+ 	<?php $menuhelper = Mage::helper('megamenu');?>
+	<?php $categories = $menuhelper->getCfg('general/categories'); ?>
+    <?php if ($categories != 'side'): ?>
+    <div id="sticky-section" class="sticky-navigation">   
+    <?php endif; ?>
+        
+        <?php if ($categories == 'side'): ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="side-main-menu">
+                            <div class="col-md-3">
+                                <div id="sidenavigation" class="no-padding navbar side-navbar">	
+                                    <!-- Side Menu Begins -->
+                                        <?php echo $this->getChildHtml('catalog.sidenav.menu') ?>
+                                    <!-- Side Menu Ends -->						
+                                </div>
+                            </div>
+                            <div id="navigation" class="col-md-9 no-padding navbar top-navbar">	
+                                <!-- Menu Begins -->
+                                    <?php echo $this->getChildHtml('zozo.catsearch') ?>
+                                    <?php //echo $this->getChildHtml('topMenu') ?>
+                                <!-- Menu Ends -->						
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+		<?php else: ?>
+            <div id="navigation" class="col-md-12 no-padding no-margin navbar top-navbar">	
+                <!-- Menu Begins -->
+                <?php echo $this->getChildHtml('topMenu') ?>
+                <!-- Menu Ends -->						
+            </div>
+		<?php endif; ?>
+       
+	<?php if ($categories != 'side'): ?>
+    </div>
+    <?php endif; ?>
+    <!-- Navigation Menu Ends -->
+</nav>
+<?php if($themehelper->getConf('header/sticky',$code)):?>
+               
+    </div>
+</div>
+
+<script type="text/javascript">
+(function($){
+	$(window).resize(function(){
+		if ($(window).width() > 991){
+			sticky();	
+			/* -------------------------------	
+					STICKY
+			/* ----------------------------- */
+			function sticky() {
+				if ($('.sticky-header').length) {
+					$(".sticky-header").sticky({
+						topSpacing:0
+					});
+				 }
+			}		
+		}	
+
+	});
+	
+    $(document).ready(function(){
+		
+	if ($(window).width() > 991){	
+		sticky();
+		/* -------------------------------	
+				STICKY
+		/* ----------------------------- */
+		function sticky() {
+			if ($('.sticky-header').length) {
+				$(".sticky-header").sticky({
+					topSpacing:0
+				});
+			 }
+		}	
+	}
+
+
+});})(jQuery);
+</script>
+<?php endif;?>
+
+</header>
+<?php echo $this->getChildHtml('topContainer') ?>

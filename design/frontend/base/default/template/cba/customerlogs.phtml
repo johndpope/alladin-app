@@ -1,0 +1,148 @@
+
+<style>
+    .cust-cba-log:hover{
+        cursor:pointer;
+    }
+    .order-cba-log-holder{
+        height:500px;
+        overflow-y:scroll;
+    }
+</style>
+<?php $cbaCustomerLogs = $this->cbaCustomerLogs(); ?>
+
+<?php if (count($cbaCustomerLogs) > 0): ?>
+
+    <div class="my-account">
+        <div class="page-title title-buttons">
+            <h1>Payment Logs</h1>
+        </div>
+
+        <div class="col2-set">
+
+            <div class="col-1">
+
+
+                <div class="order-cba-log-holder">
+                <table class="data-table orders" id="my-orders-table">
+                    <colgroup><col width="1">
+                        <col width="1">
+                        <col>
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                    </colgroup>
+                    <thead>
+                        <tr class="first last">
+                            <th class="number">Order #</th>
+                            <th class="date">Date</th>
+                            <th class="total"><span class="nobr">Order Total</span></th>
+                            <th class="view">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cbaCustomerLogs as $cbaCustomerLog):if ($cbaCustomerLog->paymentLogs == true): ?>
+                                <tr class="first odd">
+                                    <td class="number"><?php echo $cbaCustomerLog->order->getIncrementId(); ?></td>
+                                    <td class="date"><span class="nobr"><?php echo date('d-m-Y h:i:s', strtotime($cbaCustomerLog->order->getCreatedAt())); ?></span></td>
+                                    <td class="total"><span class="price"><?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency() . ' ' . Mage::helper('Boonagel_Cba')->formatNumber($cbaCustomerLog->order->getGrandTotal(), 2); ?></span></td>
+                                    <td class="ship">
+                                        <a onclick="loadCbaLogs(this)" logId="<?php echo $cbaCustomerLog->order->getIncrementId(); ?>" class="cust-cba-log">
+                                            Logs
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                            endif;
+                        endforeach;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
+            </div>
+
+            <!--hold all the logs to display through js--->
+            <?php foreach ($cbaCustomerLogs as $cbaCustomerLog):if ($cbaCustomerLog->paymentLogs == true): ?>
+                    <div id="cba-log-num-<?php echo $cbaCustomerLog->order->getIncrementId() ?>" class="class-cba-logged" style="display:none;">
+                        <h3><b>ORDER: #<?php echo $cbaCustomerLog->order->getIncrementId() ?> PAYMENT LOGS</b></h3>
+                        <table class="data-table orders">
+                            <colgroup><col width="1">
+                                <col width="1">
+                                <col>
+                                <col width="1">
+                                <col width="1">
+                                <col width="1">
+                            </colgroup>
+                            <thead>
+                                <tr class="first last">
+                                    <th class="number">Amount</th>
+                                    <th class="date">Date</th>
+                                    <th class="total">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $cbaTotal = 0;foreach ($cbaCustomerLog->logs as $paymentLog): $cbaTotal +=$paymentLog->getTransAmount();?>
+                                    <tr class="first odd">
+                                        <td class="number">
+                                            <?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency() . ' ' . Mage::helper('Boonagel_Cba')->formatNumber($paymentLog->getTransAmount(), 2); ?>
+                                        </td>
+                                        <td class="date">
+                                            <span class="nobr">
+                                                <?php echo date('d-m-Y h:i:s', strtotime($paymentLog->getTransTime())); ?>
+                                            </span>
+                                        </td>
+                                        <td class="total">
+                                            <span class="price">
+                                                <?php echo $paymentLog->getCustomerName(); ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                         <h3>Total Amount: <b><?php echo Mage::helper('Boonagel_Cba')->formatNumber($cbaTotal,2);?></b> ; Extra Amount:
+                <b><?php $extraAmt  = $cbaTotal-($cbaCustomerLog->order->getGrandTotal());echo Mage::helper('Boonagel_Cba')->formatNumber($extraAmt,2);?></b>
+            </h3>
+                    </div>
+
+                    <?php
+                endif;
+            endforeach;
+            ?>
+
+
+            <div class="col-2">
+
+                <div id="cba-log-holder">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<?php else: ?>
+    <h3>0 Payment Logs</h3>
+<?php endif; ?>
+
+
+<script>
+    function loadCbaLogs(thisItem) {
+        var orderIncrementId = thisItem.getAttribute("logId");
+        var cbaLog = document.getElementById("cba-log-num-" + orderIncrementId);
+        var cbaLogClone = cbaLog.cloneNode(true);
+
+        //remove the id attribute from the div.
+        cbaLogClone.removeAttribute("id");
+        cbaLogClone.removeAttribute("style");
+
+        //function
+        document.getElementById("cba-log-holder").innerHTML = "";
+        document.getElementById("cba-log-holder").appendChild(cbaLogClone);
+
+    }
+
+
+</script>

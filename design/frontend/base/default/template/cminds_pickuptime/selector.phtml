@@ -1,0 +1,254 @@
+<?php if (Mage::helper('cminds_pickuptime')->isEnabled()) : ?>
+    <script type="text/javascript">// <![CDATA[
+
+        var disabledDatesJson = JSON.parse('<?php echo $this->getInvalidDates(); ?>');
+        var excludedDates = JSON.parse('<?php echo $this->getExcludedDates(); ?>');
+        var availableTimes = JSON.parse('<?php echo $this->getAvailableTimes(); ?>');
+        var timeAhead = <?php echo $this->getHoursAhead(); ?>;
+
+        document.observe("dom:loaded", function() {
+            if (jQuery('.time-picker select').length > 0) {
+                hideTimeSelector();
+            }
+            if (jQuery('.date-picker select').length > 0) {
+                hideDateSelector();
+            }
+        });
+
+        function hideDateSelector() {
+            $$('.date-picker select').forEach(function(item){
+                item.observe('change', function(){
+                    item.setValue(null);
+                });
+            });
+            $$('.date-picker')[0].hide();
+            $$('.date-picker')[0].up(1).insert('<input id="datetimepicker" type="text" />');
+            jQuery('#datetimepicker').datetimepicker({
+                minDate: '<?php echo date("Y/m/d"); ?>',
+                onSelectDate: prepareSelector(),
+                onChangeDateTime: selectTime(),
+                onShow: prepareSelector(),
+                scrollMonth: false,
+                step: 15
+            });
+        }
+
+        function selectTime() {
+            var logic = function( currentDateTime ) {
+                if(currentDateTime == undefined) return;
+
+                var inputs = $$('.date-picker select');
+                inputs[2].setValue(currentDateTime.getFullYear());
+                inputs[0].setValue(currentDateTime.getMonth()+1);
+                inputs[1].setValue(currentDateTime.getDate());
+
+                var inputs = $$('.time-picker select');
+                inputs[0].setValue(currentDateTime.getHours() % 12 || 12);
+
+                if(currentDateTime.getMinutes() != 0) {
+                    inputs[1].setValue(currentDateTime.getMinutes());
+                } else {
+                    inputs[1].options[1].selected = true;
+                }
+
+                inputs[2].setValue(currentDateTime.getHours() > 12 ? 'pm' : 'am');
+            };
+
+            return logic;
+        }
+
+        Date.prototype.addHours= function(h){
+            this.setHours(this.getHours()+h);
+            return this;
+        };
+
+        function prepareSelector() {
+            var logic = function( currentDateTime ) {
+                if (disabledDatesJson.indexOf(currentDateTime.getDay()) != -1) {
+                    this.setOptions({
+                        timepicker: true
+                    });
+
+                } else {
+                    var disabledOptions = isDateExcluded(excludedDates, currentDateTime);
+
+                    if(disabledOptions) {
+                        if(disabledOptions.start_date == '00:00:00' && (disabledOptions.end_date == '23:59:00' || disabledOptions.end_date == '23:59:59')) {
+                            this.setOptions({
+                                timepicker: false
+                            });
+                            return;
+                        }
+                    }
+
+                    if(currentDateTime.getDay() != 0) {
+                        var currentTimeAvailability = availableTimes[currentDateTime.getDay() - 1];
+                    } else {
+                        var currentTimeAvailability = availableTimes[7];
+                    }
+
+                    if(currentTimeAvailability == undefined) {
+                        this.setOptions({
+                            timepicker: false
+                        });
+
+                        return;
+                    }
+
+                    var minTime = currentTimeAvailability[0];
+                    var maxTime = currentTimeAvailability[1];
+
+                    var currentTime = Date.parse('<?php echo date('m/d/Y'); ?> ' + minTime);
+                    var lastTime = Date.parse('<?php echo date('m/d/Y'); ?> ' + maxTime);
+                    var date = new Date(currentTime);
+                    var now = new Date();
+                    var timeAhead = <?php echo $this->getHoursAhead(); ?>;
+                    now.addHours(timeAhead);
+
+                    var showTimes = true;
+                    if(now > currentDateTime) {
+                        currentTime = now.getTime();
+                        date = now;
+                        minTime = now.getHours() + ':' + now.getMinutes() + ':00';
+
+                        var fixedDate = currentDateTime;
+                        var fixedAhead = now;
+
+                        fixedDate.setHours(0);
+                        fixedDate.setMinutes(0);
+                        fixedDate.setSeconds(0);
+                        fixedAhead.setHours(0);
+                        fixedAhead.setMinutes(0);
+                        fixedAhead.setSeconds(0);
+
+                        if(fixedAhead > fixedDate) {
+                            showTimes = false;
+                        }
+                    }
+
+                    if(disabledOptions) {
+                        var disabledTimeStart = Date.parse('<?php echo date('m/d/Y'); ?> ' + disabledOptions.start_date);
+                        var disabledTimeEnd = Date.parse('<?php echo date('m/d/Y'); ?> ' + disabledOptions.end_date);
+
+                        if(currentTime > disabledTimeStart) {
+                            var minTime = disabledOptions.start_date;
+                        }
+
+                        if(lastTime < disabledTimeEnd) {
+                            var maxTime = disabledOptions.end_date;
+                        }
+                    }
+                    var allowedTimesFirst = [];
+                    var allowedTimes = [];
+
+                    for(var i = 0; i <= 23; i++) {
+                        if(i >= parseInt(minTime.substring(0, 2)) && parseInt(maxTime.substring(0, 2)) >= i){
+                            for(var j=0; j < 4; j++) {
+                                var min = j*15;
+                                if(
+                                    i > parseInt(minTime.substring(0, 2)) ||
+                                    (i == parseInt(minTime.substring(0, 2)) && min >= parseInt(minTime.substring(3, 5)))
+                                ) {
+                                    if(
+                                        parseInt(maxTime.substring(0, 2)) > i
+                                    ) {
+                                        allowedTimesFirst.push(i + ':' + min);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(disabledOptions) {
+                        var minTime = disabledOptions.start_date;
+                        var maxTime = disabledOptions.end_date;
+                        for (var i = 0; i < allowedTimesFirst.length; i++) {
+                            var time = allowedTimesFirst[i];
+
+                            if(maxTime.substring(2) == ':00:00') {
+                                if (parseInt(time.substring(0, 2)) != parseInt(minTime.substring(0, 2))) {
+                                    allowedTimes.push(time);
+                                }
+                            } else {
+                                var minExcludedDate = new Date();
+                                minExcludedDate.setHours(minTime.substring(0,2));
+                                minExcludedDate.setMinutes(minTime.substring(3,5));
+                                var maxExcludedDate = new Date();
+                                maxExcludedDate.setHours(maxTime.substring(0,2));
+                                maxExcludedDate.setMinutes(maxTime.substring(3,5));
+                                var checkedDate = new Date();
+                                if(time.substring(1,2) == ':') {
+                                    checkedDate.setHours(parseInt(time.substring(0, 1)));
+                                    checkedDate.setMinutes(parseInt(time.substring(2,4)));
+                                } else {
+                                    checkedDate.setHours(parseInt(time.substring(0, 2)));
+                                    checkedDate.setMinutes(parseInt(time.substring(3,5)));
+                                }
+                                if(minExcludedDate <= checkedDate && maxExcludedDate >= checkedDate) {
+                                } else {
+                                    allowedTimes.push(time);
+                                }
+                            }
+                        }
+                    } else{
+                        allowedTimes = allowedTimesFirst;
+                    }
+
+                    if(date.getHours() > maxTime.substring(0, 2)) {
+                        this.setOptions({
+                            timepicker: false
+                        });
+                    } else {
+                        if(allowedTimes.length == 0 || !showTimes) {
+                            this.setOptions({
+                                timepicker: false
+                            });
+                        } else {
+                            this.setOptions({
+                                timepicker: true,
+                                allowTimes: allowedTimes
+                            });
+                        }
+                    }
+                }
+            };
+
+            return logic;
+        }
+
+        function hideTimeSelector() {
+            $$('.time-picker select').forEach(function(item){
+                item.observe('change', function(){
+                    item.setValue(null);
+                });
+            });
+            $$('.time-picker')[0].hide();
+        }
+
+        function isDateExcluded(excludedDates, date) {
+            for(i=0; i < excludedDates.length; i++) {
+                var excludedDate = excludedDates[i];
+                var fixMonth = date.getMonth() + 1;
+                if(fixMonth.length == 1) {
+                    fixMonth = '0' + fixMonth.toString();
+                }
+                var day = new String(date.getDate());
+                if(day.length == 1) {
+                    day = "0" + day;
+                }
+
+                if(date.getFullYear() +'-'+ pad(fixMonth, 2) +'-'+day == excludedDate.date) {
+                    return excludedDates[i];
+                }
+            }
+            return false;
+        }
+
+        function pad(n, width, z) {
+            z = z || '0';
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+        // ]]>
+    </script>
+<?php endif; ?>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+        <smsmenu translate="title" module="sms"> 
+              <title>Msg91 Country</title>
+			  <sort_order>60</sort_order>      
+				<children>
+					<configuration translate="title" module="sms">
+						<title>Configuration</title>
+						<action>adminhtml/system_config/edit/section/sms</action>
+						 <sort_order>11</sort_order>
+					</configuration>					
+				</children>
+        </smsmenu> 
+    </menu>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<smsmenu translate="title" module="sms"> 
+						  <title>SMS Country</title>
+						  <sort_order>60</sort_order>      
+							<children>
+								<configuration translate="title" module="sms">
+									<title>Configuration</title>
+									<sort_order>11</sort_order>
+								</configuration>					
+							</children>
+					</smsmenu> 
+					<system>
+						<children>
+							<config>
+								<children>
+									<sms translate="title" module="sms">
+										<title>Magecomp Country SMS</title>
+										<sort_order>10</sort_order>
+									</sms>
+									<usertemplate translate="title" module="sms">
+										<title>Magecomp Country SMS</title>
+										<sort_order>11</sort_order>
+									</usertemplate>
+									<admintemplate translate="title" module="sms">
+										<title>Magecomp Country SMS</title>
+										<sort_order>12</sort_order>
+									</admintemplate>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

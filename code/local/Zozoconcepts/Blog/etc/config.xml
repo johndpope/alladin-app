@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Zozoconcepts_Blog>
+            <version>1.1.2</version>
+        </Zozoconcepts_Blog>
+    </modules>
+    <global>
+        <resources>
+            <zozoconcepts_blog_setup>
+                <setup>
+                    <module>Zozoconcepts_Blog</module>
+                    <class>Zozoconcepts_Blog_Model_Resource_Setup</class>
+                </setup>
+            </zozoconcepts_blog_setup>
+        </resources>
+        <blocks>
+            <zozoconcepts_blog>
+                <class>Zozoconcepts_Blog_Block</class>
+            </zozoconcepts_blog>
+        </blocks>
+        <helpers>
+            <zozoconcepts_blog>
+                <class>Zozoconcepts_Blog_Helper</class>
+            </zozoconcepts_blog>
+        </helpers>
+        <models>
+            <zozoconcepts_blog>
+                <class>Zozoconcepts_Blog_Model</class>
+                <resourceModel>zozoconcepts_blog_resource</resourceModel>
+            </zozoconcepts_blog>
+            <zozoconcepts_blog_resource>
+                <class>Zozoconcepts_Blog_Model_Resource</class>
+                <entities>
+                    <blog>
+                        <table>zozoconcepts_blog_blog</table>
+                    </blog>
+                    <category>
+                        <table>zozoconcepts_blog_category</table>
+                    </category>
+                    <blog_store>
+                        <table>zozoconcepts_blog_blog_store</table>
+                    </blog_store>
+                    <category_store>
+                        <table>zozoconcepts_blog_category_store</table>
+                    </category_store>
+                    <blog_comment>
+                        <table>zozoconcepts_blog_blog_comment</table>
+                    </blog_comment>
+                    <blog_comment_store>
+                        <table>zozoconcepts_blog_blog_comment_store</table>
+                    </blog_comment_store>
+                </entities>
+            </zozoconcepts_blog_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <zozoconcepts_blog>
+                        <class>Zozoconcepts_Blog_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </zozoconcepts_blog>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <zozoconcepts_blog>
+                    <file>zozoconcepts_blog.xml</file>
+                </zozoconcepts_blog>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zozoconcepts_Blog>
+                    <files>
+                        <default>Zozoconcepts_Blog.csv</default>
+                    </files>
+                </Zozoconcepts_Blog>
+            </modules>
+        </translate>
+        <global_search>
+            <blog>
+                <class>zozoconcepts_blog/adminhtml_search_blog</class>
+                <acl>zozoconcepts_blog</acl>
+            </blog>
+            <category>
+                <class>zozoconcepts_blog/adminhtml_search_category</class>
+                <acl>zozoconcepts_blog</acl>
+            </category>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Zozoconcepts_Blog before="Mage_Adminhtml">Zozoconcepts_Blog_Adminhtml</Zozoconcepts_Blog>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <zozoconcepts_blog>
+                <use>standard</use>
+                <args>
+                    <module>Zozoconcepts_Blog</module>
+                    <frontName>blog</frontName>
+                </args>
+            </zozoconcepts_blog>
+        </routers>
+        <layout>
+            <updates>
+                <zozoconcepts_blog>
+                    <file>blog.xml</file>
+                </zozoconcepts_blog>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zozoconcepts_Blog>
+                    <files>
+                        <default>Zozoconcepts_Blog.csv</default>
+                    </files>
+                </Zozoconcepts_Blog>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <zozoconcepts_blog>
+            <blog>
+                <breadcrumbs>1</breadcrumbs>
+                <allow_comment>1</allow_comment>
+                <rss>1</rss>
+                <meta_title>Blogs</meta_title>
+            </blog>
+            <category>
+                <breadcrumbs>1</breadcrumbs>
+                <rss>1</rss>
+                <meta_title>Categories</meta_title>
+            </category>
+        </zozoconcepts_blog>
+    </default>
+</config>

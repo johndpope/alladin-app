@@ -1,0 +1,54 @@
+<?xml version="1.0"?> 
+<config>
+    <menu>
+		<zozoconcepts translate="title" module="hybrid">
+			<title>Zozoconcepts</title>
+			<sort_order>71</sort_order>               
+				<children>
+					<hybrid translate="title" module="hybrid">
+						<title>Hybrid</title>
+						<sort_order>0</sort_order>
+						<children>
+							<hybrid>
+								<title>Theme Configuration</title>
+								<sort_order>0</sort_order>
+								<action>adminhtml/system_config/edit/section/hybrid</action>
+							</hybrid>
+							<hybrid_design>
+								<title>Theme Design</title>
+								<sort_order>1</sort_order> 
+								<action>adminhtml/system_config/edit/section/hybrid_design</action>
+							</hybrid_design>
+						</children>
+					</hybrid>
+				</children>
+			</zozoconcepts>
+		</menu>
+	 	<acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+									<hybrid translate="title" module="hybrid">
+										<title>Theme Config</title>
+										<sort_order>1</sort_order> 
+                                    </hybrid>
+									<hybrid_design translate="title" module="hybrid">
+										<title>Theme Design</title>
+										<sort_order>1</sort_order> 
+                                    </hybrid_design>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>    

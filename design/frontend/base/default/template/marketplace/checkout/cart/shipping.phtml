@@ -1,0 +1,233 @@
+<?php $methods = Mage::getModel('marketplace/methods'); ?>
+<?php $shippingMethod = Mage::getModel('marketplace/shipping_carrier_marketplace_shipping'); ?>
+<?php $methodOptions = $methods->getCollection(); ?>
+<?php $selectedOptions = Mage::getSingleton('checkout/session')->getEstimateData(); ?>
+<?php $vendors = $this->getProductsByVendors(); ?>
+<?php /** @var $this Mage_Checkout_Block_Cart_Shipping */ ?>
+<div class="shipping">
+    <h2><?php echo $this->__('Estimate Shipping and Tax') ?></h2>
+    <div class="shipping-form">
+        <form action="<?php echo $this->getUrl('checkout/cart/estimatePost') ?>" method="post" id="shipping-zip-form">
+            <p class="shipping-desc"><?php echo $this->__('Enter your destination to get a shipping estimate.') ?></p>
+            <ul class="form-list">
+                <li class="shipping-country">
+                    <label for="country" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                    <div class="input-box">
+                        <?php echo Mage::getBlockSingleton('directory/data')->getCountryHtmlSelect($this->getEstimateCountryId()) ?>
+                    </div>
+                </li>
+                <?php // if($this->getStateActive()): ?>
+                <li class="shipping-region">
+                    <?php /* Removing the conditional check for whether the region is required, because it doesn't work
+                    <label for="region_id"<?php if ($this->isStateProvinceRequired()) echo ' class="required"' ?>><?php if ($this->isStateProvinceRequired()) echo '<em>*</em>' ?><?php echo $this->__('State/Province') ?></label>
+                    */ ?>
+                    <label for="region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+                    <div class="input-box">
+                        <select id="region_id" name="region_id" title="<?php echo $this->__('State/Province') ?>" style="display:none;"<?php echo ($this->isStateProvinceRequired() ? ' class="validate-select"' : '') ?>>
+                            <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                        </select>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            $('region_id').setAttribute('defaultValue',  "<?php echo $this->getEstimateRegionId() ?>");
+                            //]]>
+                        </script>
+                        <input type="text" id="region" name="region" value="<?php echo $this->escapeHtml($this->getEstimateRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                    </div>
+                </li>
+                <?php // endif; ?>
+                <?php if($this->getCityActive()): ?>
+                    <li class="shipping-region">
+                        <label for="city"<?php if ($this->isCityRequired()) echo ' class="required"' ?>><?php if ($this->isCityRequired()) echo '<em>*</em>' ?><?php echo $this->__('City') ?></label>
+                        <div class="input-box">
+                            <input class="input-text<?php if ($this->isCityRequired()):?> required-entry<?php endif;?>" id="city" type="text" name="estimate_city" value="<?php echo $this->escapeHtml($this->getEstimateCity()) ?>" />
+                        </div>
+                    </li>
+                <?php endif; ?>
+                <li class="shipping-postcode">
+                    <?php /* Removing the conditional check for whether the postal code is required, because it doesn't work
+                    <label for="postcode"<?php if ($this->isZipCodeRequired()) echo ' class="required"' ?>><?php if ($this->isZipCodeRequired()) echo '<em>*</em>' ?><?php echo $this->__('Zip/Postal Code') ?></label>
+                    */ ?>
+                    <label for="postcode" class="required"><em>*</em><?php echo $this->__('Zip') ?></label>
+                    <div class="input-box">
+                        <input class="input-text validate-postcode<?php if ($this->isZipCodeRequired()):?> required-entry<?php endif;?>" type="text" id="postcode" name="estimate_postcode" value="<?php echo $this->escapeHtml($this->getEstimatePostcode()) ?>" />
+                    </div>
+                </li>
+            </ul>
+            <div class="buttons-set">
+                <button type="button" title="<?php echo $this->__('Estimate') ?>" onclick="coShippingMethodForm.submit()" class="button2">
+                    <span><span><?php echo $this->__('Estimate') ?></span></span>
+                </button>
+            </div>
+        </form>
+        <script type="text/javascript">
+            //<![CDATA[
+            new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>);
+            //]]>
+        </script>
+
+        <?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
+            <?php $quoteItems = $this->getQuote()->getAllItems(); ?>
+            <form id="co-shipping-method-form" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>" method="post">
+                <dl class="sp-methods">
+                    <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+                        <?php if ($code == 'tablerate' && $this->helper('marketplace/shipping')->hideTableRate()) continue; ?>
+                        <?php if($code != 'marketplace_shipping'): ?>
+                            <dt><?php echo $this->escapeHtml($this->getCarrierName($code)) ?></dt>
+                        <?php endif; ?>
+                        <dd>
+                            <ul>
+                                <?php foreach ($_rates as $_rate): ?>
+                                    <?php if($code == 'marketplace_estimated_time'): ?>
+                                        <input name="estimated_address_id" value="<?php echo $this->getAddress()->getAddressId(); ?>" type="hidden" />
+                                        <?php foreach ($vendors as $key => $vendor): ?>
+                                            <?php $itemsIds = array(); ?>
+                                            <?php $nonSupplierItems = array(); ?>
+                                            <?php foreach ($vendor as $productId): ?>
+                                                <?php
+                                                foreach ($quoteItems as $quoteItem) {
+                                                    $hasParentItem = false;
+                                                    if($quoteItem->getProductId() == $productId) {
+                                                        if($quoteItem->getProductType() == 'simple') {
+                                                            $item = $quoteItem;
+                                                            $itemsIds[] = $quoteItem;
+                                                            if($quoteItem->getParentItemId()) {
+                                                                $hasParentItem = true;
+                                                                $parent = $item->getParentItem()->getProduct()->getId();
+                                                            }
+                                                            ?>
+                                                            <li>
+                                                                <div class="col2-set">
+                                                                    <div class="col-1">
+                                                                        <?php if($hasParentItem) :?>
+                                                                            <img src="<?php echo (string) Mage::helper('catalog/image')->init($item->getParentItem()->getProduct(), 'thumbnail')->resize(75); ?>" alt="">
+                                                                            <?php echo $item->getParentItem()->getName(); ?>
+                                                                        <?php else: ?>
+                                                                            <img src="<?php echo (string) Mage::helper('catalog/image')->init($item->getProduct(), 'thumbnail')->resize(75); ?>" alt="">
+                                                                            <?php echo $item->getName(); ?>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <?php
+                                                            if ($key == 'nonsupplier') {
+                                                                $nonSupplierItems[] = $quoteItem;
+                                                            }
+                                                            $methodOptions->clear()->getSelect()->reset('where');
+                                                            $itemMethods = $methodOptions->addItemFilter($item)->load();
+                                                        }
+                                                    }
+                                                }
+                                            endforeach;
+                                            ?>
+                                            <li>
+                                                <div class="">
+                                                    <ul>
+                                                        <?php if(isset($itemMethods) && $itemMethods->count()): ?>
+                                                            <?php foreach($itemMethods AS $option): ?>
+                                                                <?php if($option->getTableRateAvailable()): ?>
+                                                                    <?php $price = $shippingMethod->getSumTableRatePrice($itemsIds, $option); ?>
+                                                                <?php else: ?>
+                                                                    <?php $price = $shippingMethod->getPriceForMethod($item, $option); ?>
+                                                                <?php endif; ?>
+
+                                                                <?php $isSelected = isset($selectedOptions[$item->getId()]) && $price == $selectedOptions[$item->getId()]; ?>
+                                                                <li>
+                                                                    <input type="radio" class="estimatedPriceInput radio" name="estimatetime[<?php echo $item->getId(); ?>]" attr-price="<?php echo $price; ?>" value="<?php echo $price; ?>"<?php echo $isSelected ? ' checked="checked"' : '' ?> />
+                                                                    <label for="estimatetime[<?php echo $item->getId(); ?>]"><?php echo $option->getName(); ?> <span class="price"><?php echo Mage::helper('core')->currency($price, true, false); ?></span></label>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        <?php else : ?>
+                                                            <?php if ($this->helper('marketplace/shipping')->useStoreTableRate()): ?>
+                                                                <?php $result = $shippingMethod->getStoreTableRateResult($nonSupplierItems, $this->getQuote()->getShippingAddress()); ?>
+                                                                <?php $price = $result->getPrice(); ?>
+                                                                <?php $carrierTitle = $result->getCarrierTitle(); ?>
+                                                            <?php else: ?>
+                                                                <?php $price = $shippingMethod->getPriceForMethod($item, new Varien_Object()); ?>
+                                                                <?php $carrierTitle = $this->__("Store Shipping"); ?>
+                                                            <?php endif; ?>
+                                                            <?php $isSelected = isset($selectedOptions[$item->getId()]) && $price == $selectedOptions[$item->getId()]; ?>
+                                                            <li>
+                                                                <input type="radio" class="estimatedPriceInput radio" name="estimatetime[<?php echo $item->getId(); ?>]" attr-price="<?php echo $price; ?>" value="<?php echo $price; ?>"<?php echo $isSelected ? ' checked="checked"' : '' ?> />
+                                                                <label for="estimatetime[<?php echo $item->getId(); ?>]"><?php echo $carrierTitle; ?> <span class="price"><?php echo Mage::helper('core')->currency($price, true, false); ?></span></label>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <hr>
+                                        <?php endforeach; ?>
+                                    <?php endif ?>
+                                    <li<?php if ($_rate->getErrorMessage()) echo ' class="error-msg"';?>>
+                                        <?php if ($_rate->getErrorMessage()): ?>
+                                            <?php echo $this->escapeHtml($_rate->getErrorMessage()) ?>
+                                        <?php else: ?>
+                                            <?php if($_rate->getCode() != 'marketplace_shipping_marketplace_shipping'): ?>
+                                            <input name="estimate_method" type="radio" value="<?php echo $this->escapeHtml($_rate->getCode()) ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio" />
+                                            <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $this->escapeHtml($_rate->getMethodTitle()) ?>
+                                                <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                                                -
+                                                <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+                                                <?php echo $_excl; ?>
+                                                <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                    (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                                                <?php endif; ?>
+                                            </label>
+                                                <?php endif; ?>
+                                        <?php endif ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </dd>
+                    <?php endforeach; ?>
+                </dl>
+                <div class="buttons-set">
+                    <button type="submit" title="<?php echo $this->__('Update Total') ?>" class="button" name="do" value="<?php echo $this->__('Update Total') ?>">
+                        <span><span><?php echo $this->__('Update Total') ?></span></span>
+                    </button>
+                </div>
+            </form>
+        <?php endif; ?>
+        <script type="text/javascript">
+            //<![CDATA[
+            var coShippingMethodForm = new VarienForm('shipping-zip-form');
+            var countriesWithOptionalZip = <?php echo $this->helper('directory')->getCountriesWithOptionalZip(true) ?>;
+
+            coShippingMethodForm.submit = function () {
+                var country = $F('country');
+                var optionalZip = false;
+
+                for (i=0; i < countriesWithOptionalZip.length; i++) {
+                    if (countriesWithOptionalZip[i] == country) {
+                        optionalZip = true;
+                    }
+                }
+                if (optionalZip) {
+                    $('postcode').removeClassName('required-entry');
+                }
+                else {
+                    $('postcode').addClassName('required-entry');
+                }
+                return VarienForm.prototype.submit.bind(coShippingMethodForm)();
+            }
+
+
+
+            $$('.estimatedPriceInput').each(function(el){
+                Event.observe(el, 'click', function(){
+                    var radioButtons = $$('.estimatedPriceInput');
+                    totalPrice = 0.0;
+                    for(i = 0; i < radioButtons.length; i++) {
+                        if(radioButtons[i].checked) {
+                            var price = radioButtons[i].readAttribute('attr-price');
+                            totalPrice = parseFloat(totalPrice) + parseFloat(price);
+                        }
+                    }
+                    $('s_method_marketplace_estimated_time_marketplace_estimated_time').checked=true;
+                    $$('label[for="s_method_marketplace_estimated_time_marketplace_estimated_time"] span.price')[0].update('$' + totalPrice.toFixed(2));
+
+                });
+            });
+            //]]>
+        </script>
+    </div>
+</div>

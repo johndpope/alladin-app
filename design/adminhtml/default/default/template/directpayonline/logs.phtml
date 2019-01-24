@@ -1,0 +1,122 @@
+
+<style>
+    .order-direct-log-holder{
+        height:500px;
+        overflow-y:scroll;
+    }
+</style>
+
+<div class="columns">
+    <div class="side-col">
+        <h3>
+            Directpayonline is an online payment solution that allows payments of all forms from credit and debit cards to mobile money across the globe.
+        </h3>
+    </div>
+    <?php $directCustomerLogs = $this->directCustomerLogs('admin'); ?>
+    <div class="main-col" id="content">
+        <div class="main-col-inner">
+            <div id="messages"></div>
+            <!--configuration content heading-->
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3>DirectPayOnline Payment Logs</h3>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--payments operations-->
+
+            <table width="100%" cellspacing="25">
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <div class="entry-edit">
+                                <div class="entry-edit-head"><h4>Complete Payment Logs</h4></div>
+                                <?php if (count($directCustomerLogs) > 0): ?>
+                                    <fieldset class="np">
+
+                                        <div class="grid np order-direct-log-holder">
+                                            <table cellspacing="0" style="border:0;">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th>Order</th>
+                                                        <th>Status</th>
+                                                        <th>Date</th>
+                                                    </tr> 
+                                                </thead>
+                                                <tbody>
+
+                                                    <?php foreach ($directCustomerLogs as $directCustomerLog):if ($directCustomerLog->getStatus() == 'complete'): ?>
+                                                            <tr class="first odd">
+                                                                <td><?php echo $directCustomerLog->getOrderId(); ?></td>
+                                                                <td><?php echo $directCustomerLog->getStatus(); ?></td>
+                                                                <td><?php echo date('d-m-Y h:i:s', strtotime($directCustomerLog->getUpdatedAt())); ?></td>
+                                                            </tr>
+                                                        <?php endif;
+                                                    endforeach; ?>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </fieldset>
+                                <?php else: ?>
+                                    <h4 style="color:red;">0 complete payments</h4>
+<?php endif; ?>
+                            </div>
+
+                        </td>
+                        <td>
+
+                            <div class="entry-edit">
+                                <div class="entry-edit-head"><h4>Unverified Payment Logs</h4></div>
+<?php if (count($directCustomerLogs) > 0): ?>
+                                    <fieldset class="np">
+
+                                        <div class="grid np order-direct-log-holder">
+                                            <table cellspacing="0" style="border:0;">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th>Order</th>
+                                                        <th>Status</th>
+                                                        <th>Date</th>
+                                                    </tr> 
+                                                </thead>
+                                                <tbody>
+
+    <?php foreach ($directCustomerLogs as $directCustomerLog):if ($directCustomerLog->getStatus() != 'complete'): ?>
+                                                            <tr class="first odd">
+                                                                <td><?php echo $directCustomerLog->getOrderId(); ?></td>
+                                                                <td><?php echo $directCustomerLog->getStatus(); ?></td>
+                                                                <td><?php echo date('d-m-Y h:i:s', strtotime($directCustomerLog->getUpdatedAt())); ?></td>
+                                                            </tr>
+        <?php endif;
+    endforeach; ?>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </fieldset>
+                                <?php else: ?>
+                                    <h4 style="color:red;">0 unverified payments</h4>
+<?php endif; ?>
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<?php $_items = $this->getItems(); ?>
+<?php $status = $this->getRequest()->getParam('status', 0); ?>
+<div class="container-fluid main-container  vendor-container">
+    <h1><?php echo $this->__('List of Suggested Prices') ?></h1>
+    <div class="jumbotron">
+        <div class="row">
+            <form name="report_filter"
+                  id="report_filter"
+                  action="<?php echo Mage::getUrl('*/*/*') ?>"
+                  method="get"
+                  enctype="multipart/form-data">
+                <div class="col-sm-2">
+                    <select name="status" id="status">
+                        <option <?php if ($status == 0) echo 'selected' ?>
+                                value="0"><?php echo $this->__("Waiting for action"); ?></option>
+                        <option <?php if ($status == 1) echo 'selected' ?>
+                                value="1"><?php echo $this->__("Rejected"); ?></option>
+                        <option
+                            <?php if ($status == 2) echo 'selected' ?>value="2"><?php echo $this->__("Accepted"); ?></option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit"
+                           name="submit"
+                           class="btn btn-primary btn-small"
+                           value="<?php echo $this->__('Filter') ?>"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <th><?php echo $this->__('ID') ?></th>
+            <th><?php echo $this->__('Product') ?></th>
+            <th><?php echo $this->__('Customer Email') ?></th>
+            <th><?php echo $this->__('Price') ?></th>
+            <th><?php echo $this->__('Quantity') ?></th>
+            <th><?php echo $this->__('Status') ?></th>
+            <th><?php echo $this->__('Actions') ?></th>
+            </thead>
+            <tbody>
+            <?php if ($_items->getSize()) : ?>
+                <?php foreach ($_items as $_item) : ?>
+                    <tr class="item" style="text-align: left !important;">
+                        <td><?php echo $_item->getId(); ?></td>
+                        <td><?php echo $_item->getName(); ?></td>
+                        <td><?php echo $_item->getEmail(); ?></td>
+                        <td><?php echo $_item->getPrice(); ?></td>
+                        <td><?php echo $_item->getQty(); ?></td>
+                        <td>
+                            <?php
+                            if ($_item->getStatus() == 0) :
+                                echo $this->__('Waiting for action');
+                            elseif ($_item->getStatus() == 1) :
+                                echo $this->__('Rejected');
+                            else :
+                                echo $this->__('Accepted');
+                            endif;
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            if ($_item->getStatus() == 0) {
+                                echo '<a href="' . Mage::getUrl('suppliertrading/trade/accept?trade_id=' . $_item->getId()) . '" class="btn btn-primary">' . $this->__('Accept') . '</a>';
+                                echo '<a href="' . Mage::getUrl('suppliertrading/trade/reject?trade_id=' . $_item->getId()) . '" class="btn btn-primary" style="margin-left:10px;" >' . $this->__('Reject') . '</a>';
+                            }
+                            ?>
+
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <td colspan="7"><?php echo $this->__("No results"); ?></td>
+            <?php endif; ?>
+            </tbody>
+            <tfoot>
+            <th><?php echo $this->__('ID') ?></th>
+            <th><?php echo $this->__('Name') ?></th>
+            <th><?php echo $this->__('Customer Email') ?></th>
+            <th><?php echo $this->__('Price') ?></th>
+            <th><?php echo $this->__('Quantity') ?></th>
+            <th><?php echo $this->__('Status') ?></th>
+            <th><?php echo $this->__('Actions') ?></th>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

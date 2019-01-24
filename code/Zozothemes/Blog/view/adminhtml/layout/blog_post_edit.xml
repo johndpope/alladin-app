@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Blog
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Zozothemes\Blog\Block\Adminhtml\Post\Edit" name="blog.post.edit" />
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Zozothemes\Blog\Block\Adminhtml\Post\Edit\Tabs" name="blog.post.edit.tabs">
+                <block class="Zozothemes\Blog\Block\Adminhtml\Post\Edit\Tab\Main" name="blog.post.edit.tab.main"/>
+                <block class="Zozothemes\Blog\Block\Adminhtml\Post\Edit\Tab\Content" name="blog.post.edit.tab.content"/>
+                <block class="Zozothemes\Blog\Block\Adminhtml\Post\Edit\Tab\Meta" name="blog.post.edit.tab.meta"/>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">blog.post.edit.tab.main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">content_section</argument>
+                    <argument name="block" xsi:type="string">blog.post.edit.tab.content</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">meta_section</argument>
+                    <argument name="block" xsi:type="string">blog.post.edit.tab.meta</argument>
+                </action>
+
+            </block>
+        </referenceContainer>
+    </body>
+</page>

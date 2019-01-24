@@ -1,0 +1,68 @@
+<?php
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Brand product list template
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Brands
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php $themehelper = $this->helper('hybrid');?>
+<?php $toolbar = Mage::getBlockSingleton('catalog/product_list')->getToolbarBlock();?>
+<?php $products = $this->getProductCollection();?>
+<?php $toolbar->setCollection($products); ?>
+<?php $pager = $this->getLayout()->createBlock('page/html_pager');
+	  $toolbar->setChild('product_list_toolbar_pager', $pager);
+
+	  echo $toolbar->toHtml();
+?>
+<?php if ($products->count() > 0) :?>
+<h2 class="text-center"><?php echo Mage::helper('catalog')->__('Products');?></h2>
+<div class="box-collateral box-products box-up-sell row">
+    <?php foreach ($products as $product) : ?>
+        <div class="item brand-products col-xs-12 col-lg-4 col-md-6 col-sm-12 ">
+            <div class="thumbnail <?php if($themehelper->getConfDesign('effects/structural_elements_transition')):?>animated<?php endif; ?>" data-animation="fadeInUp" data-animation-delay="500">
+                <!-- Item Image -->
+                <div class="thumbnail-image">
+                    <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="product-image">
+                        <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(280); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
+                    </a>
+					<!-- Quick View -->
+					<?php if(Mage::getStoreConfig('hybrid/ajax/enabled_cbcat') && Mage::getStoreConfig('hybrid/ajax/enabled_wcbcat')): ?>    
+                    	<?php if(Mage::getStoreConfig('hybrid/ajax/enabled_quickview')):?>
+                        	<a href="<?php echo Mage::getBaseUrl().'quickview/index/view?pid='.$product->getId(); ?>" data-fancybox-type="iframe" class="quickview_icon" id="quickview_<?php echo $product->getId()?>"><span><i class="fa fa-eye"><span>Quick View</span></i></span></a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div><!-- Item Image Ends-->
+                <!-- Item Name price And Caption -->
+                <div class="caption">
+                    <h3 class="product-name"><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a></h3>
+                     <?php echo "<p>".nl2br($themehelper->cut_string($product->getShortDescription(),150))."</p>" ?>
+                </div><!-- Item Name price And Caption Ends-->
+        	</div><!-- Thumbnail -->
+		</div><!-- Item- Brands -->
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php endif;?>
+<style>
+.col-sm-4.view-mode-nav {
+    display: none;
+}
+</style>

@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © 2016 ZOZOTHEMES. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Zozothemes\Megamenu\Block\Topmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Zozothemes\Megamenu\Helper\Data');
+    $_config = $_helper->getConfig('zozo_megamenu');
+    if($_config['general']['enable'] && $_config['general']['nav_style'] ==='sidemenu') {
+
+        echo $this->getLayout()->createBlock("Zozothemes\Megamenu\Block\Topmenu")->setTemplate("Zozothemes_Megamenu::sidemenu.phtml")->toHtml();   
+    
+    }else{
+        
+        echo $this->getLayout()->createBlock("Zozothemes\Megamenu\Block\Topmenu")->setTemplate("Zozothemes_Megamenu::topmenu.phtml")->toHtml();   
+     
+    }
+?>

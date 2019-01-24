@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+   <modules>
+      <Boonagel_Cba>
+         <active>true</active>
+         <codePool>local</codePool>
+      </Boonagel_Cba>
+   </modules>
+</config>

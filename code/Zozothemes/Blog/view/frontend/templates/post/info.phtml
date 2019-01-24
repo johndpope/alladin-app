@@ -1,0 +1,27 @@
+<?php
+/**
+ * Author zozo@zozothemes.com
+ *  
+ *
+ *  
+ */
+?>
+<?php
+/**
+ * Blog post info template
+ *
+ * @var $block \Zozothemes\Blog\Block\Post\Info
+ */
+?>
+
+<?php $_post = $block->getPost() ?>
+    <span class="meta-details entry-date"><i class="varmo-icon-watch"></i><?php echo $block->getPostedOn('F d, Y') ?></span>
+    <?php if ($_categoriesCount = $_post->getCategoriesCount()) { ?>
+    <span class="meta-details meta-category">
+        <i class="varmo-icon-tag"></i>
+        <?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+            <a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>"><?php echo $block->escapeHtml($ct->getTitle()) ?></a>
+            <?php if ($n != $_categoriesCount) { ?>, <?php } ?>
+        <?php } ?>
+    </span>
+    <?php } ?>

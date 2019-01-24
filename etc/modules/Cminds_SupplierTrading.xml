@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cminds_SupplierTrading>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Cminds_Supplierfrontendproductuploader />
+            </depends>
+        </Cminds_SupplierTrading>
+    </modules>
+</config>

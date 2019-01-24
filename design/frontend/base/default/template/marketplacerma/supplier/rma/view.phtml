@@ -1,0 +1,57 @@
+<?php $_rma = $this->getRma(); ?>
+<?php $_order = $_rma->getOrder(); ?>
+<div class="container vendor-container">
+    <div class="hero-unit">
+        <h2 style="text-align: center;">
+            <?php echo $this->__('RMA'); ?> #<?php echo $_rma->getAutoincrementId(); ?>
+            <span class="label label-primary"><?php echo ucfirst($_rma->getStatusLabel()); ?></span>
+        </h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3><?php echo $this->__("RMA Information"); ?></h3>
+                    <p><strong><?php echo $this->__("Initialized Date"); ?> : </strong> <?php echo date("M d, Y g:i:s A", strtotime($_order->getCreatedAt())); ?></p>
+                    <p><strong><?php echo $this->__("Type"); ?> : </strong> <?php echo ucfirst($_rma->getTypeLabel()); ?></p>
+                    <p><strong><?php echo $this->__("Reason"); ?> : </strong> <?php echo ucfirst($_rma->getReasonType()); ?></p>
+                </div>
+                <div class="col-md-5">
+                    <h3><?php echo $this->__("Order Information"); ?></h3>
+                    <p><strong><?php echo $this->__("Order Date"); ?> : </strong> <?php echo date("M d, Y g:i:s A", strtotime($_order->getCreatedAt())); ?></p>
+                    <p><strong><?php echo $this->__("Order Status"); ?> : </strong>
+                        <?php if($_order->getStatus() == 'canceled') :?>
+                            <span class="text-danger"><?php echo ucfirst($_order->getStatus()); ?></span>
+                        <?php else : ?>
+                            <?php echo ucfirst($_order->getStatus()); ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+            <?php if($_rma->getAdditionalInformation() != ''): ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><strong><?php echo $this->__("Additional Information"); ?></strong></p>
+                    <p><?php echo $_rma->getAdditionalInformation(); ?></p>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#products" role="tab" data-toggle="tab"><?php echo $this->__("Products"); ?></a></li>
+            <li><a href="#comments" role="tab" data-toggle="tab"><?php echo $this->__("Comments"); ?></a></li>
+            <li><a href="#memo" role="tab" data-toggle="tab"><?php echo $this->__("Credit Memo"); ?></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="products">
+                <?php echo $this->getChild('rma_products')->setRma($_rma)->toHtml(); ?>
+            </div>
+            <div class="tab-pane" id="comments">
+                <?php echo $this->getChild('rma_history')->setRma($_rma)->toHtml(); ?>
+            </div>
+            <div class="tab-pane" id="memo">
+                <?php echo $this->getChild('rma_memo')->setRma($_rma)->toHtml(); ?>
+            </div>
+    </div>
+</div>

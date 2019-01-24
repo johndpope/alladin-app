@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <menu>
+
+        <alpesatab module="Boonagel_Alpesa" translate="title">
+
+            <title>Alpesa Wallet</title>
+            <sort_order>100</sort_order>
+
+            <children>
+
+                <index module="Boonagel_Alpesa" translate="title">
+                    <title>Users</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/alpesa/users</action>
+                </index>
+
+                <analysis module="Boonagel_Alpesa" translate="title">
+                    <title>Wallet Analysis</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/alpesa/analysis</action>
+                </analysis>
+         
+                <alpesapayments module="Boonagel_Alpesa" translate="title">
+                    <title>Wallet Payments</title>
+                    <sort_order>3</sort_order>
+                    <action>adminhtml/alpesa/payments</action>
+                </alpesapayments>
+         
+                <alpesavoucher module="Boonagel_Alpesa" translate="title">
+                    <title>Voucher Payments</title>
+                    <sort_order>4</sort_order>
+                    <action>adminhtml/alpesa/voucher</action>
+                </alpesavoucher>
+         
+                <alpesaoffline module="Boonagel_Alpesa" translate="title">
+                    <title>Offline Payments</title>
+                    <sort_order>5</sort_order>
+                    <action>adminhtml/alpesa/offline</action>
+                </alpesaoffline>
+
+                <alpesconfig module="Boonagel_Alpesa" translate="title">
+                    <title>Configuration</title>
+                    <sort_order>6</sort_order>
+                    <action>adminhtml/alpesa/configuration</action>
+                </alpesconfig>
+
+            </children>
+
+        </alpesatab>
+
+    </menu>
+
+    <acl>
+
+        <resources>
+
+            <admin>
+         
+                <children>
+                    <alpesa translate="title" module="Boonagel_Alpesa">
+                        <title>Alpesa Wallet</title>
+                        <sort_order>100</sort_order>
+                        <children>
+
+                            <index module="Boonagel_Alpesa" translate="title">
+                                <title>Users</title>
+                                <sort_order>1</sort_order>
+                            </index>
+
+                            <analysis module="Boonagel_Alpesa" translate="title">
+                                <title>Wallet Analysis</title>
+                                <sort_order>2</sort_order>
+                            </analysis>
+                            
+                            <alpesapayments module="Boonagel_Alpesa" translate="title">
+                                <title>Wallet Payments</title>
+                                <sort_order>3</sort_order>
+                            </alpesapayments>
+                            
+                            <alpesavoucher module="Boonagel_Alpesa" translate="title">
+                                <title>Voucher Payments</title>
+                                <sort_order>4</sort_order>
+                            </alpesavoucher>
+                            
+                            <alpesaoffline module="Boonagel_Alpesa" translate="title">
+                                <title>Offline Payments</title>
+                                <sort_order>5</sort_order>
+                            </alpesaoffline>
+
+                            <alpesconfig module="Boonagel_Alpesa" translate="title">
+                                <title>Configuration</title>
+                                <sort_order>6</sort_order>
+                            </alpesconfig>
+
+                        </children>
+                    </alpesa>
+                </children>
+
+            </admin>
+      
+        </resources>
+
+    </acl>
+
+</config>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Blog view widget template
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Blog
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php echo $_blog = $this->getCurrentBlog();?>
+<?php if ($_blog) :?>
+    <div class="blog-widget-view">
+        <h3><?php echo $_blog->getTitle()?></h3>
+        <div>
+            <div class="title-widget">
+                <?php echo Mage::helper('zozoconcepts_blog')->__('Title');?>:<?php echo $_blog->getTitle();?>
+            </div>
+            <div class="excerpt-widget">
+                <?php echo Mage::helper('zozoconcepts_blog')->__('Excerpt');?>:<?php echo $_blog->getExcerpt();?>
+            </div>
+            <div class="full_description-widget">
+                <?php echo Mage::helper('zozoconcepts_blog')->__('Full Description');?>:<?php echo $_blog->getFullDescription();?>
+            </div>
+            <div class="featured_image-widget">
+                <?php if ($_blog->getFeaturedImage()) :?>
+    <img src="<?php echo Mage::helper('zozoconcepts_blog/blog_image')->init($_blog, 'featured_image')->resize(75);?>" alt="<?php echo $this->htmlEscape($_blog->getTitle());?>" />
+<?php endif;?>
+            </div>
+            <div class="show_onslide-widget">
+                <?php echo Mage::helper('zozoconcepts_blog')->__("Show on Slider");?>:<?php echo ($_blog->getShowOnslide() == 1)?Mage::helper('zozoconcepts_blog')->__('Yes'):Mage::helper('zozoconcepts_blog')->__('No') ?>
+            </div>
+
+        </div>
+    </div>
+<?php endif;?>

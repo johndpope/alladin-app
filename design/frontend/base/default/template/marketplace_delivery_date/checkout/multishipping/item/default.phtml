@@ -1,0 +1,28 @@
+<h3 class="product-name"><a href="<?php echo $this->getProductUrl() ?>"><?php echo $this->escapeHtml($this->getProductName()) ?></a></h3>
+<?php if ($_options = $this->getOptionList()):?>
+<dl class="item-options">
+    <?php foreach ($_options as $_option) : ?>
+    <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
+    <dt><?php echo $this->escapeHtml($_option['label']) ?></dt>
+    <dd<?php if (isset($_formatedOptionValue['full_view'])): ?> class="truncated"<?php endif; ?>><?php echo $_formatedOptionValue['value'] ?>
+        <?php if (isset($_formatedOptionValue['full_view'])): ?>
+        <div class="truncated_full_value">
+            <dl class="item-options">
+                <dt><?php echo $this->escapeHtml($_option['label']) ?></dt>
+                <dd><?php echo $this->escapeHtml($_formatedOptionValue['full_view']) ?></dd>
+            </dl>
+        </div>
+        <?php endif; ?>
+    </dd>
+    <?php endforeach; ?>
+</dl>
+<?php endif; ?>
+<?php if ($addtInfoBlock = $this->getProductAdditionalInformationBlock()):?>
+    <?php echo $addtInfoBlock->setItem($this->getItem())->toHtml() ?>
+<?php endif;?>
+
+<?php $quoteAddressItem = Mage::getModel('sales/quote_address')->load($this->getItem()->getQuoteAddressId()); ?>
+<?php $deliveryDate = Mage::helper("marketplace_delivery_date")->findDate($this->getItem(), $quoteAddressItem->getCustomerAddressId()); ?>
+<?php if($deliveryDate) : ?>
+    <span><?php echo $this->__("Delivery Date - %s", $deliveryDate); ?></span>
+<?php endif; ?>

@@ -1,0 +1,59 @@
+
+<div class="columns">
+    <div class="side-col">
+        
+    </div>
+    <?php
+    $offlineAccessed = $this->offlineAccess();
+    $offlineAccess = $offlineAccessed[0];
+    ?>
+    <div class="main-col" id="content">
+        <div class="main-col-inner">
+            <div id="messages"></div>
+            <!--configuration content heading-->
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3>Alpesa offline payment section.</h3>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <?php if($offlineAccess != null && $offlineAccessed[1] != false):?>
+            <?php if($offlineAccessed[2]->getFirstItem()->getWallet() > 50):?>
+            <div class="">
+                <h3>
+                    <?php
+                    
+                    ?>
+                </h3>
+                <form action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/alpesa/offlinepay");?>" method="post">
+                    <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey();?>">
+                    <input name="email" type="hidden" value="<?php echo $offlineAccess->getFirstItem()->getEmail();?>">
+                    <label>Order Id</label><br>
+                    <input name="order_id" title="Order Id" type="number" class="input-text required-entry validate-number"/>
+                    <br><br><br>
+                    <label>Amount</label><br>
+                    <input name="amount" title="Amount" type="number" class="input-text required-entry validate-number"/>
+                    <br><br><br>
+                    <label>Password</label><br>
+                    <input name="password" title="Password" type="password" class="input-text required-entry"/>
+                    <br><br><br>
+                    <button type="submit" title="Pay" class="button" ><span><span>Pay</span></span></button>
+
+                </form>
+            </div>
+            <?php else:?>
+            <h5>Amount too little: <?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?> <?php echo Mage::helper('Boonagel_Alpesa')->formatNumber($offlineAccessed[2]->getFirstItem()->getWallet(), 2); ?></h5>
+            <?php endif;?>
+            <?php else: ?>
+            <h5>Not allowed</h5>
+            <?php endif; ?>
+            
+        </div>
+    </div>
+</div>

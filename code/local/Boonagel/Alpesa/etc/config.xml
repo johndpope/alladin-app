@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+   <modules>
+      <Boonagel_Alpesa>
+         <version>0.1.0</version>
+      </Boonagel_Alpesa>
+   </modules>
+
+   <global>
+
+      <events>
+
+         <customer_register_success>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>succesSignupEvent</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </customer_register_success>
+
+
+         <newsletter_subscriber_save_after>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>newsletterSubscribed</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </newsletter_subscriber_save_after>
+
+
+         <customer_login>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>logLoginEvent</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </customer_login>
+         
+
+         <checkout_type_onepage_save_order_after>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>orderSavedEvent</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </checkout_type_onepage_save_order_after>
+             
+
+         <sales_order_invoice_pay>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>orderComplete</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </sales_order_invoice_pay>
+         
+         <sales_order_invoice_save_before>
+            <observers>
+               <boonagel_alpesa_model_observer>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Observer</class>
+                  <method>invoiceSaved</method>
+               </boonagel_alpesa_model_observer>
+            </observers>
+         </sales_order_invoice_save_before>
+
+         <altarget_point>
+            <observers>
+               <boonagel_alpesa_model_alpesaobservered>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Alpesaobserve</class>
+                  <method>updateTarget</method>
+               </boonagel_alpesa_model_alpesaobservered>
+            </observers>
+         </altarget_point>
+
+         <actual_point_success>
+            <observers>
+               <boonagel_alpesa_actual_success>
+                  <type>singleton</type>
+                  <class>Boonagel_Alpesa_Model_Alpesaobserve</class>
+                  <method>updateActualWalletPoints</method>
+               </boonagel_alpesa_actual_success>
+            </observers>
+         </actual_point_success>
+
+      </events>
+
+      <models>
+
+         <alpesa>
+            <class>Boonagel_Alpesa_Model</class>
+            <resourceModel>alpesa_resource</resourceModel>
+         </alpesa>
+
+         <alpesa_resource>
+            <class>Boonagel_Alpesa_Model_Resource</class>
+            <entities>
+
+               <alpesaconfig>
+                  <table>alpesa_config</table>
+               </alpesaconfig>
+
+               <alpesacard>
+                  <table>alpesa_card</table>
+               </alpesacard>
+
+               <alpesacondition>
+                  <table>alpesa_condition</table>
+               </alpesacondition>
+
+               <alpesawallet>
+                  <table>alpesa_wallet</table>
+               </alpesawallet>
+
+               <alpesaredeem>
+                  <table>alpesa_redeem</table>
+               </alpesaredeem>
+
+               <alpesapoints>
+                  <table>alpesa_points</table>
+               </alpesapoints>
+
+               <alpesauser>
+                  <table>alpesa_user</table>
+               </alpesauser>
+
+               <alpesatarget>
+                  <table>alpesa_target_achieved_logs</table>
+               </alpesatarget>
+
+               <alpesadiscounted>
+                  <table>alpesa_prods_discounted_logs</table>
+               </alpesadiscounted>
+
+               <alpesavoucher>
+                  <table>alpesa_voucher_used_logs</table>
+               </alpesavoucher>
+
+               <alpesainvoice>
+                  <table>alpesa_used_amt_invoice</table>
+               </alpesainvoice>
+
+               <alpesarefcodes>
+                  <table>alpesa_referee_codes</table>
+               </alpesarefcodes>
+
+               <alpesarefpoints>
+                  <table>alpesa_referee_points</table>
+               </alpesarefpoints>
+
+               <alpesarefcustomer>
+                  <table>alpesa_referee_customer</table>
+               </alpesarefcustomer>
+
+
+
+            </entities>
+         </alpesa_resource>
+
+      </models>
+
+      <resources>
+
+         <alpesaconfig_setup>
+            <setup>
+               <module>Boonagel_Alpesa</module>
+               <class>Boonagel_Alpesa_Model_Resource_Setup</class>
+            </setup>
+         </alpesaconfig_setup>
+
+      </resources>
+
+      <blocks>
+         <alpesa>
+            <class>Boonagel_Alpesa_Block</class>
+         </alpesa>
+      </blocks>
+
+      <helpers>
+         <Boonagel_Alpesa>
+            <class>Boonagel_Alpesa_Helper</class>
+         </Boonagel_Alpesa>
+      </helpers>
+
+   </global>
+
+   <default>
+       <payment></payment>
+   </default>
+
+   <frontend>
+
+      <routers>
+         <alpesa>
+            <use>standard</use>
+            <args>
+               <module>Boonagel_Alpesa</module>
+               <frontName>alpesa</frontName>
+            </args>
+         </alpesa>
+      </routers>
+
+      <layout>
+         <updates>
+            <alpesa>
+               <file>alpesa.xml</file>
+            </alpesa>
+         </updates>
+      </layout>
+
+   </frontend>
+
+   <admin>
+
+      <routers>
+         <adminhtml>
+            <args>
+               <modules>
+                  <alpesadmin before="Mage_Adminhtml">Boonagel_Alpesa_Adminhtml</alpesadmin>
+               </modules>
+            </args>
+         </adminhtml>
+      </routers>
+
+   </admin>
+
+   <adminhtml>
+      
+      <layout>
+         
+         <updates>
+            <alpesa>
+               <file>alpesa.xml</file>
+            </alpesa>
+         </updates>
+
+      </layout>
+
+   </adminhtml>
+
+</config>

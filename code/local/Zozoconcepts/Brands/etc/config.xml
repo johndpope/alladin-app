@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Zozoconcepts_Brands>
+            <version>1.0.1</version>
+        </Zozoconcepts_Brands>
+    </modules>
+    <global>
+        <resources>
+            <zozoconcepts_brands_setup>
+                <setup>
+                    <module>Zozoconcepts_Brands</module>
+                    <class>Zozoconcepts_Brands_Model_Resource_Setup</class>
+                </setup>
+            </zozoconcepts_brands_setup>
+        </resources>
+        <blocks>
+            <zozoconcepts_brands>
+                <class>Zozoconcepts_Brands_Block</class>
+            </zozoconcepts_brands>
+        </blocks>
+        <helpers>
+            <zozoconcepts_brands>
+                <class>Zozoconcepts_Brands_Helper</class>
+            </zozoconcepts_brands>
+        </helpers>
+        <models>
+            <zozoconcepts_brands>
+                <class>Zozoconcepts_Brands_Model</class>
+                <resourceModel>zozoconcepts_brands_resource</resourceModel>
+            </zozoconcepts_brands>
+            <zozoconcepts_brands_resource>
+                <class>Zozoconcepts_Brands_Model_Resource</class>
+                <entities>
+                    <brand>
+                        <table>zozoconcepts_brands_brand</table>
+                    </brand>
+                    <brand_store>
+                        <table>zozoconcepts_brands_brand_store</table>
+                    </brand_store>
+                    <brand_product>
+                        <table>zozoconcepts_brands_brand_product</table>
+                    </brand_product>
+                </entities>
+            </zozoconcepts_brands_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <zozoconcepts_brands>
+                        <class>Zozoconcepts_Brands_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </zozoconcepts_brands>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <zozoconcepts_brands>
+                    <file>zozoconcepts_brands.xml</file>
+                </zozoconcepts_brands>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zozoconcepts_Brands>
+                    <files>
+                        <default>Zozoconcepts_Brands.csv</default>
+                    </files>
+                </Zozoconcepts_Brands>
+            </modules>
+        </translate>
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <zozoconcepts_brands_brand_product>
+                        <type>singleton</type>
+                        <class>zozoconcepts_brands/adminhtml_observer</class>
+                        <method>addProductBrandBlock</method>
+                    </zozoconcepts_brands_brand_product>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+            <catalog_product_save_after>
+                <observers>
+                    <zozoconcepts_brands_brand_product>
+                        <type>singleton</type>
+                        <class>zozoconcepts_brands/adminhtml_observer</class>
+                        <method>saveProductBrandData</method>
+                    </zozoconcepts_brands_brand_product>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+        <global_search>
+            <brand>
+                <class>zozoconcepts_brands/adminhtml_search_brand</class>
+                <acl>zozoconcepts_brands</acl>
+            </brand>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Zozoconcepts_Brands before="Mage_Adminhtml">Zozoconcepts_Brands_Adminhtml</Zozoconcepts_Brands>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <zozoconcepts_brands>
+                <use>standard</use>
+                <args>
+                    <module>Zozoconcepts_Brands</module>
+                    <frontName>brand</frontName>
+                </args>
+            </zozoconcepts_brands>
+        </routers>
+        <layout>
+            <updates>
+                <zozoconcepts_brands>
+                    <file>brands.xml</file>
+                </zozoconcepts_brands>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zozoconcepts_Brands>
+                    <files>
+                        <default>Zozoconcepts_Brands.csv</default>
+                    </files>
+                </Zozoconcepts_Brands>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <zozoconcepts_brands>
+            <brand>
+                <breadcrumbs>1</breadcrumbs>
+                <meta_title>Brands</meta_title>
+            </brand>
+        </zozoconcepts_brands>
+    </default>
+</config>

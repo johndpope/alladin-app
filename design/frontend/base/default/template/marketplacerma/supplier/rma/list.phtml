@@ -1,0 +1,53 @@
+<?php $_items = $this->getEntries(); ?>
+<div class="container-fluid main-container vendor-container">
+    <h1><?php echo $this->__('RMA') ?></h1>
+    <table class="table table-striped">
+        <thead>
+        <th><?php echo $this->__('RMA #') ?></th>
+        <th><?php echo $this->__('Order #') ?></th>
+        <th><?php echo $this->__('Initiated On') ?></th>
+        <th><?php echo $this->__('Customer Name') ?></th>
+        <th><?php echo $this->__('Customer Email') ?></th>
+        <th><?php echo $this->__('Status') ?></th>
+        <th><?php echo $this->__('Reason') ?></th>
+        <th><?php echo $this->__('Actions') ?></th>
+        </thead>
+        <tbody>
+<?php if($_items->count()): ?>
+            <?php foreach($_items AS $_item): ?>
+               <?php $item = Mage::getModel('sales/order')->load($_item->getOrderId()); ?>
+				 <?php if(!$this->isSupplierItemInOrder($item)) continue;?>
+                <tr class="item">
+                    <td>#<?php echo $_item->getAutoincrementId(); ?></td>
+                    <td>#<?php echo $item->getIncrementId(); ?></td>
+                    <td><?php echo $item->getCreatedAt(); ?></td>
+                    <td><?php echo $this->escapeHtml($item->getBillingAddress()->getFirstname()); ?> <?php echo $this->escapeHtml($item->getBillingAddress()->getLastname()); ?></td>
+                    <td><?php echo $item->getCustomerEmail(); ?></td>
+                    <td><span class="label <?php echo ($_item->isClosed()) ? 'label-warning' : 'label-default'; ?>"><?php echo ucfirst($_item->getStatusLabel()); ?></span></td>
+                    <td><?php echo ucfirst($_item->getReasonLabel()); ?></td>
+                    <td>
+                        <a href="<?php echo Mage::getUrl('marketplace/rma_supplier/view/', array('id' => $_item->getId())) ?>" class="btn btn-primary"><?php echo $this->__('View'); ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <td colspan="7"><?php echo $this->__("No results"); ?></td>
+        <?php endif; ?>
+        </tbody>
+        <tfoot>
+            <td><?php echo $this->__('RMA #') ?></td>
+            <td><?php echo $this->__('Order #') ?></td>
+            <td><?php echo $this->__('Initiated On') ?></td>
+            <td><?php echo $this->__('Customer Name') ?></td>
+            <td><?php echo $this->__('Customer Email') ?></td>
+            <td><?php echo $this->__('Status') ?></td>
+            <td><?php echo $this->__('Reason') ?></td>
+            <td><?php echo $this->__('Actions') ?></td>
+        </tfoot>
+    </table>
+    <?php
+    echo $this->getLayout()->createBlock('core/template')
+        ->setTemplate('marketplace/order/index/pagination.phtml')
+        ->setCollection($_items)
+        ->toHtml() ?>
+</div>

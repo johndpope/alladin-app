@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<widgets>
+    <brands_brand_view type="zozoconcepts_brands/brand_widget_view" translate="name description" module="zozoconcepts_brands">
+        <name>Brand view</name>
+        <description>Brand view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <brand_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Brand</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_brands/adminhtml_brand_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Brand</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </brand_id>
+        </parameters>
+    </brands_brand_view>
+    <brands_brand_link type="zozoconcepts_brands/brand_widget_link" translate="name description" module="zozoconcepts_brands">
+        <name>Brand link</name>
+        <description>Brand link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <brand_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Brand</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_brands/adminhtml_brand_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Brand</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </brand_id>
+        </parameters>
+    </brands_brand_link>
+</widgets>

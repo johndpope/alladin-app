@@ -1,0 +1,98 @@
+<div class="my-account"><div class="page-title">
+        <h1><?php echo $this->__("Request RMA") ?></h1>
+    </div>
+    <form action="<?php echo Mage::getUrl("*/*/formPost") ?>" method="post" id="form-validate" class="scaffold-form" enctype="multipart/form-data" _lpchecked="1">
+        <div class="fieldset">
+            <input name="form_key" type="hidden" value="Z4H82dMbHeYrcJMF">
+            <input type="hidden" name="success_url" value="">
+            <input type="hidden" name="error_url" value="">
+            <h2 class="legend"><?php echo $this->__("Information"); ?></h2>
+            <p class="required"><?php echo $this->__("* Required Fields"); ?></p>
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="order">
+                        <div class="field order">
+                            <label for="order_id"><?php echo $this->__("Order #")?> <em>*</em></label>
+                            <div class="input-box">
+                                <select id="order_id" name="order_id" title="Order #" class="validate-select required-entry" defaultvalue="0">
+                                    <option value=""><?php echo $this->__("Please select order"); ?></option>
+                                    <?php foreach($this->getOrderCollection() AS $order) : ?>
+                                        <option value="<?php echo $order->getId(); ?>" title="<?php echo "#".$order->getIncrementId().', '. $order->getGrandTotal() ?>"><?php echo "#".$order->getIncrementId().', '. $order->getGrandTotal() ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field product-list" id="product-list"></div>
+                    </div>
+                </li>
+                <li class="wide">
+                    <div class="col2-set">
+                        <div class="col-1">
+                            <label for="is_package_opened"><?php echo $this->__("Package Opened")?></label>
+                            <div class="input-box">
+                                <select id="is_package_opened" name="is_package_opened" title="Package Opened" class="validate-select required-entry" defaultvalue="0">
+                                    <option value=""><?php echo $this->__("Please select"); ?></option>
+                                    <?php foreach($this->getIsOpened() AS $var) : ?>
+                                        <option value="<?php echo $var['value']; ?>" title="<?php echo $var['label'] ?>"><?php echo $var['label'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <label for="type_id"><?php echo $this->__("Request Type")?></label>
+                            <div class="input-box">
+                                <div class="input-box">
+                                    <select id="type_id" name="type_id" title="Request Type" class="validate-select required-entry" defaultvalue="0">
+                                        <option value=""><?php echo $this->__("Please select type"); ?></option>
+                                        <?php foreach($this->getTypeCollection() AS $type) : ?>
+                                            <option value="<?php echo $type->getId(); ?>" title="<?php echo $type->getName() ?>"><?php echo $type->getName() ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="wide">
+                    <label for="additional_information"><?php echo $this->__("Additional Information")?></label>
+                    <div class="input-box">
+                        <textarea name="additional_information" id="additional_information" cols="30" rows="10"></textarea>
+                    </div>
+                </li>
+                <li class="wide">
+                    <div class="field order">
+                        <label for="reason_id"><?php echo $this->__("Choose Reason")?></label>
+                        <div class="input-box">
+                            <select id="reason_id" name="reason_id" title="Order #" class="validate-select required-entry" defaultvalue="0">
+                                <option value=""><?php echo $this->__("Please select reason"); ?></option>
+                                <?php foreach($this->getReasonCollection() AS $reason) : ?>
+                                    <option value="<?php echo $reason->getId(); ?>" title="<?php echo $reason->getName() ?>"><?php echo $reason->getName() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <p class="back-link"><a href="<?php echo Mage::getUrl("customer/account/"); ?>"><small>« </small><?php echo $this->__("Back") ?></a></p>
+            <button type="submit" title="<?php echo $this->__("Save RMA") ?>" class="button"><span><span><?php echo $this->__("Save RMA") ?></span></span></button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.observe('dom:loaded', function() {
+        Event.observe($("order_id"),'change', function(){
+            var select = this;
+            new Ajax.Request('<?php echo Mage::getUrl('cminds_rma/rma/getProductCollection');?>', {
+                method : 'get',
+                parameters: {order_id: select.getValue()},
+                onSuccess: function(obj){
+                    $("product-list").update(obj.responseText);
+                }
+            });
+        });
+        new VarienForm("form-validate");
+    });
+</script>

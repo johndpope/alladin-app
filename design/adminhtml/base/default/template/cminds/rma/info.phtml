@@ -1,0 +1,29 @@
+<?php $helper = $this->helper('cminds_rma') ?>
+<div class="cminds-banner">
+    <div class="cminds-text">
+        <p>
+            <?php
+            echo $helper->__(
+                'CreativeMinds Magento® extensions support both Magento-1 '
+                . 'and Magento-2. We design top quality professional eCommerce '
+                . 'extensions which are beautifully coded, easy to use, and '
+                . 'packed with features that will take your Magento® store '
+                . 'to the next level. Our Magento® modules help merchants '
+                . 'enhance their eCommerce platform and provide shoppers '
+                . 'with a better user experience. '
+                . '<a target="_blank" '
+                . 'href="https://www.cminds.com/ecommerce-extensions-store/">'
+                . 'Visit our Magento extensions store!</a>'
+            );
+            ?>
+        </p>
+        <p>
+            <?php
+                echo $helper->__(
+                    '<strong>Current version</strong> %s',
+                    $helper->getVersion()
+                );
+            ?>
+        </p>
+    </div>
+</div>

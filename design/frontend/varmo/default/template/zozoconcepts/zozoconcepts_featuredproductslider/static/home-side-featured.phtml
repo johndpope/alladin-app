@@ -1,0 +1,65 @@
+<?php 
+	$themehelper = $this->helper('hybrid');
+
+	$storeId = Mage::app()->getStore()->getId();
+
+	$_image_helper = $this->helper('catalog/image');
+	//$aspect_ratio = $themehelper->getConf('category_page/aspect_ratio',$storeId);
+	//$ratio_width = $themehelper->getConf('category_page/ratio_width',$storeId);
+	//$ratio_height = $themehelper->getConf('category_page/ratio_height',$storeId);
+	//if(!$ratio_width)
+		$ratio_width = 80;
+	//if(!$ratio_height)
+		$ratio_height = 102;
+	$_helper = $this->helper('catalog/output');
+
+	$_productCollection_model = $this->getFeatured(); 
+	?>
+	<?php if(!$_productCollection_model): ?>
+		<?php echo "No Featured Products!"; ?>
+    <?php else: ?>
+	
+	<div class="block product-block">
+        <div class="block-title">
+            <strong>
+                <span>
+                    <?php echo Mage::helper('hybrid')->__('Featured') ?>
+                </span>
+            </strong>
+        </div>
+		<div class="block-content">
+				<?php $i=0; foreach ($_productCollection_model as $_product): ?> 
+                    <div class="item features-item">
+                        <div class="thumbnail">
+                            <div class="thumbnail-image">
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class=""><img src="<?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-thumbnail" /></a>
+                        	</div>
+                            <div class="caption">
+                                <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
+                                <?php  if (Mage::helper('catalog')->isModuleEnabled('Mage_Review')):?>
+										<?php
+                                            $review_html = $this->getReviewsSummaryHtml($_product, 'short');
+                                            if($review_html){
+                                                echo $review_html;
+                                            }else{
+                                            ?>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:0"></div>
+                                            </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                <?php endif; ?>
+								<?php echo $this->getPriceHtml($_product, true) ?>
+                            </div>
+                    
+                        </div>
+                    </div>
+            <?php $total_items = ($this->getData('total_items'))?$this->getData('total_items'):'3' ?>
+			<?php if (++$i == $total_items) break; ?>
+                <?php endforeach; ?>
+            </div> 
+    	</div>
+	<?php endif; ?>

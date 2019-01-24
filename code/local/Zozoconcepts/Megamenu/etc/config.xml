@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Megamenu extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Megamenu
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Zozoconcepts_Megamenu>
+            <version>1.1.2</version>
+        </Zozoconcepts_Megamenu>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <megamenu module="megamenu">
+                    <file>megamenu.xml</file>
+                </megamenu>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <megamenu>
+                <class>Zozoconcepts_Megamenu_Block</class>
+            </megamenu>
+        </blocks>
+        <helpers>
+            <megamenu>
+                <class>Zozoconcepts_Megamenu_Helper</class>
+            </megamenu>
+        </helpers>
+        <models>
+            <megamenu>
+                <class>Zozoconcepts_Megamenu_Model</class>
+				<!--<resourceModel>megamenu_mysql4</resourceModel>-->
+            </megamenu>
+			<!--<megamenu_mysql4>
+				<class>Zozoconcepts_Megamenu_Model_Mysql4</class>
+			</megamenu_mysql4>-->
+        </models>
+		<resources>
+			<megamenu_setup>
+				<setup>
+					<module>Zozoconcepts_Megamenu</module>
+					<!--<class>Zozoconcepts_Megamenu_Model_Resource_Mysql4_Setup</class>-->
+					<class>Zozoconcepts_Megamenu_Model_Resource_Eav_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</megamenu_setup>
+			<megamenu_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</megamenu_write>
+			<megamenu_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</megamenu_read>
+		</resources>
+    </global>
+    <default>
+        <megamenu>
+			<general>
+				<enable>1</enable>
+				<mode>0</mode>
+				<categories>only-static</categories>
+			</general>
+			<mainmenu>
+				<home>1</home>
+				<home_img>0</home_img>
+				<home_link_icon>0</home_link_icon>
+				<spill>1</spill>
+				<custom_block_floating>1</custom_block_floating>
+				<custom_block_1><![CDATA[
+			<li class="nav-item level0 nav-3 level-top last nav-item--parent classic nav-item--only-subcategories parent pull-right">
+			<a class="level-top" title="pages" href="#"><span>About Us</span></a>
+			</li>
+]]></custom_block_1>
+			</mainmenu>
+			<mobilemenu>
+				<threshold>960</threshold>
+				<collapsed>1</collapsed>
+				<show_blocks>0</show_blocks>
+				<hide_blocks_below>1</hide_blocks_below>
+			</mobilemenu>
+            <sidemenu>
+				<enable_category_left>1</enable_category_left>
+				<enable_category_right></enable_category_right>
+				<enable_home_left></enable_home_left>
+				<enable_home_right></enable_home_right>
+				<enable_cms_left></enable_cms_left>
+				<enable_cms_right></enable_cms_right>
+				<enable_product_left></enable_product_left>
+				<enable_product_right></enable_product_right>
+				<block_name>Categories</block_name>
+				<parent>current</parent>
+				<depth>2</depth>
+				<fallback>1</fallback>
+				<block_name_fallback></block_name_fallback>
+				<num_of_products>0</num_of_products>
+				<hide_on_mobile>1</hide_on_mobile>
+				<hide_laynav_categories>1</hide_laynav_categories>
+            </sidemenu>
+			<category_labels>
+				<label1>New</label1>
+				<label2>Hot!</label2>
+			</category_labels>
+        </megamenu>
+    </default>
+</config>

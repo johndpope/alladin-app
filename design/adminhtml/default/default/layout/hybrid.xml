@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<adminhtml_system_config_edit>
+		<update handle="editor"/>
+		<reference name="head">
+			<!--<action method="addJs"><script>hybrid/jscolor/jscolor.js</script></action>-->
+			<action method="addLinkRel"><rel>stylesheet</rel><href>//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css</href></action>
+			<action method="addItem"><type>skin_css</type><name>css/zozo/common.css</name><params/></action>
+			<action method="setCanLoadTinyMce"><load>1</load></action>
+		</reference>
+	</adminhtml_system_config_edit>
+</layout>

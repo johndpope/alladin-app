@@ -1,0 +1,30 @@
+<div id="alpesa-customer-navigation">
+    
+
+    <?php $cardAttr = $this->getCardTypeAttr(); ?>
+
+    <?php if (count($cardAttr) > 0): ?>
+    <div>
+        <h6>alpesa card type</h6>
+    </div>
+    
+        <div class="actual-alpesa-image-nav">
+          <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa_concepts_banner.png'); ?>" alt="missing"/>-->
+<!--            <img src="<?php echo $this->getSkinUrl('alpesa/images/wallet.png'); ?>" alt="<?php echo $cardAttr['cardName']; ?>"
+                 style="background:#<?php echo $cardAttr['cardColor']; ?>;"/>-->
+            <div class="row  card-color" style="text-align:center;">
+                <i class="fa fa-credit-card" style="font-size:150px;color:#<?php echo $cardAttr['cardColor']; ?>;"></i>
+                <p style="font-style:italic;font-size:15px;"><?php echo $cardAttr['cardName']; ?></p>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div>
+        <ul>
+           <!--<li><a href="<?php //echo Mage::getUrl('alpesa/customer/summary'); ?>">Summary</a></li>-->
+           <!--<li><a href="<?php //echo Mage::getUrl('alpesa/customer/wallet'); ?>">Wallet</a></li>-->
+           <!--<li><a href="<?php //echo Mage::getUrl('alpesa/customer/reedem'); ?>">Reedem</a></li>-->
+                   <!--<li><a href="<?php //echo Mage::getUrl('alpesa/customer/feedback'); ?>">Feedback</a></li>-->
+        </ul>
+    </div>
+</div>

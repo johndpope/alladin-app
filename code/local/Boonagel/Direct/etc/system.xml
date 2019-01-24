@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <directpayonline translate="label comment" module="adminhtml">
+                    <label>DirectPayOnline Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>2</sort_order>
+                        </title>
+                        <company_token translate="label">
+                            <label>Company Token</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>3</sort_order>
+                        </company_token>
+                        <gateway_url translate="label">
+                            <label>DirectPayOnline Url</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>4</sort_order>
+                        </gateway_url>
+                        <ptl_type translate="label">
+                            <label>PTL Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>direct/system_config_source_dropdown_ptl</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ptl_type>
+                        <ptl translate="label">
+                            <label>PTL</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>6</sort_order>
+                        </ptl>
+                        <service_type translate="label">
+                            <label>Service Type</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>7</sort_order>
+                        </service_type>
+                         <aramex_url translate="label">
+                            <label>Aramex Url</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>8</sort_order>
+                        </aramex_url>
+                         <aramex_secret translate="label">
+                            <label>Aramex Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>8</sort_order>
+                        </aramex_secret>
+                        
+                        
+                    </fields>
+                </directpayonline>
+            </groups>
+        </payment>
+    </sections>
+</config>

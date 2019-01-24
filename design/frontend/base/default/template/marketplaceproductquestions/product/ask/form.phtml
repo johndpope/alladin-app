@@ -1,0 +1,79 @@
+<?php
+$productId = $this->getProduct()->getId();
+$helper = Mage::helper('marketplaceproductquestions');
+$popupEnabled = $helper->popupEnabled();
+if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $notLoggedIn = 1;
+} else {
+    $notLoggedIn = 0;
+} ?>
+<?php if($popupEnabled): ?>
+    <div class="button" id="question-popup-button" onclick="showQuestionsForm('question-popup', <?php echo $notLoggedIn; ?>)">
+        <?php echo $helper->__('Ask a Question'); ?>
+    </div>
+<?php endif; ?>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div class="productquestions-form" <?php echo $popupEnabled ? 'style="display: none" id="question-popup"' : ''; ?>>
+    <form name="product_ask_form" id="product_ask_form" action="<?php echo $this->getUrl("supplier/questions/addquestion")?>" method="post">
+        <div class="fieldset">
+            <h3><?php echo $this->__('Ask your Question'); ?></h3>
+            <ul class="form-list">
+                <?php if($notLoggedIn): ?>
+                    <li>
+                        <label for="author_name">Name: </label>
+                        <div class="input-box">
+                            <input type="text" class="input-text required-entry" id="author_name" name="author_name"/>
+                        </div>
+                    </li>
+                <?php endif; ?>
+                <li>
+                    <label for="question_body"><?php echo $this->__('Your Question') ;?>:</label>
+                    <div class="input-box" >
+                        <textarea rows="3" cols="50" name="question_body" class="input-text required-entry" id="question_body"></textarea>
+                        <input type="hidden" name="product_id" value="<?php echo $productId ;?>" />
+                    </div>
+                </li>
+                <div class="g-recaptcha" data-sitekey="<?php echo $helper->getRecaptchaSiteKey()?>" <?php  if(!$notLoggedIn || !$helper->isRecaptchaEnabled()) echo "style=display:none";?>></div>
+                <div id="result" style="color: red"></div>
+                <br>
+                <li>
+                    <input id="question-button" type="submit" class="button" value="<?php echo $this->__('Ask a Question'); ?>" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var formId = 'product_ask_form';
+    var productAskForm = new VarienForm(formId, false);
+    var postUrl = '<?php echo $this->getUrl("supplier/questions/addquestion")?>';
+
+    function doAjax() {
+        if(<?php echo $helper->isRecaptchaEnabled() ? 'true' : 'false'; ?> && grecaptcha.getResponse() == "" && <?php echo $notLoggedIn; ?> == 1) {
+            $('result').innerHTML = 'Prove that you are not bot';
+            productAskForm.validator.validate();
+        }
+        else {
+            if (productAskForm.validator.validate()) {
+                $('question-button').value = "Sending...";
+                $('question-button').disable();
+                new Ajax.Request(postUrl, {
+                    method: 'post',
+                    parameters: $(formId).serialize(true),
+                    onSuccess: function () {
+                        window.location.reload();
+                    }
+                })
+            }
+        }
+    }
+
+    new Event.observe(formId, 'submit', function(e) {
+        e.stop();
+        doAjax();
+    });
+
+    //]]>
+</script>

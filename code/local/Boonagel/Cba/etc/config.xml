@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Boonagel_Cba>
+            <version>0.1.0</version>
+        </Boonagel_Cba>
+    </modules>
+
+    <global>
+
+<events>
+           
+            <sales_order_place_after>
+                <observers>
+                    <boonagel_cba_model_observer>
+                        <class>Boonagel_Cba_Model_Observer</class>
+                        <method>orderPlaced</method>
+                    </boonagel_cba_model_observer>
+                </observers>
+            </sales_order_place_after>
+           
+        </events>
+
+        <models>
+
+            <cba>
+                <class>Boonagel_Cba_Model</class>
+                <resourceModel>cba_resource</resourceModel>
+            </cba>
+
+            <cba_resource>
+                <class>Boonagel_Cba_Model_Resource</class>
+                <entities>
+
+                    <cbaconfig>
+                        <table>cba_config</table>
+                    </cbaconfig>
+
+                    <cbalog>
+                        <table>cba_log</table>
+                    </cbalog>
+
+                    <cbasecret>
+                        <table>cba_secret</table>
+                    </cbasecret>
+
+                </entities>
+            </cba_resource>
+
+        </models>
+
+        <resources>
+
+            <cbaconfig_setup>
+                <setup>
+                    <module>Boonagel_Cba</module>
+                    <class>Boonagel_Cba_Model_Resource_Setup</class>
+                </setup>
+            </cbaconfig_setup>
+
+        </resources>
+
+        <blocks>
+            <cba>
+                <class>Boonagel_Cba_Block</class>
+            </cba>
+        </blocks>
+
+        <helpers>
+            <Boonagel_Cba>
+                <class>Boonagel_Cba_Helper</class>
+            </Boonagel_Cba>
+        </helpers>
+        
+        <template>
+            <email>
+                <cba_mpesa_instructions module="Boonagel_Cba">
+                    <label>CBA MPESA PAYMENT INSTRUCTIONS</label>
+                    <file>cba_mpesa_intructions.html</file>
+                    <type>html</type>
+                </cba_mpesa_instructions>
+                <cba_mpesa_payment_info module="Boonagel_Cba">
+                    <label>CBA MPESA PAYMENT STATUSES</label>
+                    <file>cba_mpesa_payment_info.html</file>
+                    <type>html</type>
+                </cba_mpesa_payment_info>
+            </email>
+        </template>
+        
+    </global>
+    
+    <default>
+        <payment>
+            <cba>
+                <model>cba/standard</model>
+                <active>1</active>
+                <order_status>pending</order_status>
+                <title>Lipa na Mpesa</title>
+                <payment_action>sale</payment_action>
+                <allowspecific>0</allowspecific>
+                <sort_order>1</sort_order>
+            </cba>
+        </payment>
+    </default>
+
+
+    <frontend>
+
+        <routers>
+            <cba>
+                <use>standard</use>
+                <args>
+                    <module>Boonagel_Cba</module>
+                    <frontName>cba</frontName>
+                </args>
+            </cba>
+        </routers>
+
+        <layout>
+            <updates>
+                <cba>
+                    <file>cba.xml</file>
+                </cba>
+            </updates>
+        </layout>
+
+    </frontend>
+
+    <admin>
+
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <cbadmin before="Mage_Adminhtml">Boonagel_Cba_Adminhtml</cbadmin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+
+    </admin>
+
+    <adminhtml>
+       
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <boonagel_cba_core_block_abstract_to_html_after>
+                        <class>Boonagel_Cba_Model_Observer</class>
+                        <method>cbaAdminLogs</method>
+                    </boonagel_cba_core_block_abstract_to_html_after>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+      
+        <layout>
+         
+            <updates>
+                <cba>
+                    <file>cba.xml</file>
+                </cba>
+            </updates>
+
+        </layout>
+
+    </adminhtml>
+
+</config>

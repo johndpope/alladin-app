@@ -1,0 +1,15 @@
+<?php $productId = $this->getProduct()->getId(); ?>
+<hr>
+<div class="product-questions-header">
+    <h3><?php echo $this->__('QUESTIONS & ANSWERS'); ?></h3>
+</div>
+<?php foreach ($this->getQuestions($productId) as $question): ?>
+    <?php $questionId = $question->getData('id'); ?>
+    <?php if($question->isApprovedByAdmin()): ?>
+        <?php $this->getChild('marketplaceproductquestions_questions')->setData('questionId', $questionId) ?>
+        <?php echo $this->getChildHtml('marketplaceproductquestions_questions', false); ?>
+
+        <?php $this->getChild('marketplaceproductquestions_answers')->setData('questionId', $questionId) ?>
+        <?php echo $this->getChildHtml('marketplaceproductquestions_answers', false); ?>
+    <?php endif; ?>
+<?php endforeach; ?>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category    Zozoconcepts
+ * @package		Zozoconcepts_QuickView
+ * @author		Zozoconcepts
+ * @copyright	Copyright 2013 Zozoconcepts
+ */
+ -->
+<config>
+    <modules>
+        <Zozoconcepts_QuickView>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Zozoconcepts_QuickView>
+    </modules>
+</config> 

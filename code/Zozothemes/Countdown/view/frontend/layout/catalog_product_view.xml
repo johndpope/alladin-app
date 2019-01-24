@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Countdown
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zozothemes_Countdown::css/jquery.countdownTimer.css"/>
+    </head>
+    <referenceContainer name="product.info.main">
+        <block class="Zozothemes\Countdown\Block\Product\View" name="product.info.timer" as="productInfoCountdown" template="Zozothemes_Countdown::countdown.phtml" after="alert.urls"/>        
+    </referenceContainer>
+</page>

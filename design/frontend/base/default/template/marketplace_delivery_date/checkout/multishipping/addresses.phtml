@@ -1,0 +1,112 @@
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php $deliveryDate = Mage::helper("marketplace_delivery_date")->getDeliveryDateConfig(); ?>
+<?php
+$customerData = Mage::getSingleton('customer/session')->getCustomer();
+$customerId = $customerData->getId();
+?>
+<form id="checkout_multishipping_form" action="<?php echo $this->getPostActionUrl() ?>" method="post">
+    <div class="multiple-checkout">
+        <div class="page-title title-buttons">
+            <h1><?php echo $this->__('Ship to Multiple Addresses') ?></h1>
+            <button data-action="add-new-customer-address" type="button"
+                    title="<?php echo Mage::helper('core')->quoteEscape($this->__('Enter a New Address')) ?>"
+                    class="button"
+                    onclick="$('add_new_address_flag').value=1; $('checkout_multishipping_form').submit();">
+                <span><span><?php echo $this->__('Enter a New Address') ?></span></span></button>
+        </div>
+        <input type="hidden" name="continue" value="0" id="can_continue_flag" />
+        <input type="hidden" name="new_address" value="0" id="add_new_address_flag" />
+        <h2><?php echo $this->__('Please select shipping address for applicable items') ?></h2>
+        <table class="data-table" id="multiship-addresses-table">
+            <col />
+            <col width="1" />
+            <col width="1" />
+            <col width="1" />
+            <thead>
+                <tr>
+                    <th><?php echo $this->__('Product') ?></th>
+                    <?php if($deliveryDate == 1): ?>
+                        <th class="a-center"><?php echo $this->__('Delivery date') ?></th>
+                    <?php endif; ?>
+                    <th class="a-center"><?php echo $this->__('Qty') ?></th>
+                    <th><?php echo $this->__('Send To') ?></th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="100" class="a-right"><button type="submit"
+                          data-multiship-item-update
+                          title="<?php echo Mage::helper('core')->quoteEscape($this->__('Update Qty &amp; Addresses')) ?>"
+                          class="button" onclick="$('can_continue_flag').value=0">
+                            <span><span><?php echo $this->__('Update Qty &amp; Addresses') ?></span></span>
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+            <?php foreach ($this->getItems() as $_index => $_item): ?>
+                <?php if ($_item->getQuoteItem()) :?>
+
+                <tr>
+                    <td><?php echo $this->getItemHtml($_item->getQuoteItem())?></td>
+                    <?php if($deliveryDate == 1): ?>
+                        <?php
+                            $uniq = $_item->getCustomerAddressId().'_'.$_item->getProduct()->getId().'_'.uniqid();
+                        ?>
+                        <td>
+                            <input type="text" placeholder="Delivery date" style="width: 200px;"
+                                   class="input-text datepicker" name="delivery_date[<?php echo $uniq ?>]"
+                                   id="delivery_date_<?php echo $uniq; ?>"
+                                   value="<?php echo Mage::helper("marketplace_delivery_date")->findDate($_item, $_item->getCustomerAddressId()); ?>"
+                            />
+                        </td>
+                        <script type="text/javascript">
+                            // <![CDATA[
+                            Calendar.setup({
+                                inputField : 'delivery_date_<?php echo ($uniq); ?>',
+                                ifFormat : '%Y-%m-%d',
+                                showsTime: false,
+                                button : 'date_select_trig',
+                                singleClick : true
+                            });
+                            // ]]>
+                        </script>
+                    <?php endif; ?>
+                    <td><input type="text" data-multiship-item-id="<?php echo $this->jsQuoteEscape($_item->getSku()) ?>" name="ship[<?php echo $_index ?>][<?php echo $_item->getQuoteItemId() ?>][qty]" value="<?php echo $this->escapeHtml($_item->getQty()) ?>" size="2" class="input-text qty" /></td>
+                    <td class="address-select"><?php if ($_item->getProduct()->getIsVirtual()): echo $this->__('Shipping selection is not applicable.'); else: echo $this->getAddressesHtmlSelect($_item, $_index); endif; ?></td>
+                    <td class="a-center"><a href="<?php echo $this->getItemDeleteUrl($_item) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Remove Item')) ?>" class="btn-remove2"><?php echo $this->__('Remove Item') ?></a></td>
+                </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <script type="text/javascript">decorateTable('multiship-addresses-table')</script>
+        <div class="buttons-set">
+            <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Shopping Cart') ?></a></p>
+            <button type="submit" data-action="checkout-continue-shipping" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue to Shipping Information')) ?>" class="button<?php if ($this->isContinueDisabled()):?> disabled<?php endif; ?>" onclick="$('can_continue_flag').value=1"<?php if ($this->isContinueDisabled()):?> disabled="disabled"<?php endif; ?>><span><span><?php echo $this->__('Continue to Shipping Information') ?></span></span></button>
+        </div>
+    </div>
+</form>
+<?php Mage::helper("marketplace_delivery_date")->flushDateCache(); ?>
+<?= $this->getChildHtml('calendar'); ?>
+
+<script type="text/javascript">
+    document.observe("dom:loaded", function() {
+        $$('.address-select select').forEach(function(el){
+            Event.observe($(el),'change', changeDeliveryInputId);
+        });
+    });
+
+    function changeDeliveryInputId(event) {
+        var item = event.target;
+        var deliveryInput = $(item).up(0).previous('td', 1).down("input");
+        var name = $(deliveryInput).readAttribute("name");
+        var split = name.split("[");
+        var nameSplitted = split[1].split("_");
+        nameSplitted[0] = $(item).getValue();
+        split[1] = nameSplitted.join("_");
+        name = split.join("[");
+        deliveryInput.writeAttribute("name", name);
+    }
+</script>

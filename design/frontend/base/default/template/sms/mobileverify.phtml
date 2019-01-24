@@ -1,0 +1,171 @@
+<?php
+if(Mage::getSingleton('customer/session')->getId())
+{
+	$customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+	$telephone = $customer->getPrimaryBillingAddress()->getTelephone();
+	$telephone = "********".substr($telephone, -3);
+}
+$isuserVerified = Mage::helper('sms/Data')->isUserVerified(Mage::getSingleton('customer/session')->getId());
+if($isuserVerified == 'false'): ?>
+<div id="myModal"  class="modal ajax-is-otp-require" style="display:block">
+	<div class="verify_mobile mobile_number sms-modal-content">
+        <p class='error'></p>
+		<?php if($telephone): ?>
+            <input type="hidden" id="mobile" name="mobile" value="logged" class="verify" />	
+	        <span class="infosms">
+	        	<?php echo $this->__("You Will get OTP on ").$telephone; ?>
+			</span>
+            <style>.flag-container {display: none;}</style>
+        <?php else :?>
+            <label class="verify">
+                <?php echo $this->__("Verify Your Mobile Number"); ?>
+            </label>
+        	<input type="text" id="mobile" name="mobile" class="verify" />	
+        <?php endif ;?>
+        <input type="hidden" class="input-text" name="country_code" id="country_code"  style="width:60px" />
+        <input type="button"  id="send_otp" value="<?php echo $this->__("Send OTP"); ?>" class="button verify" />
+        <div class='process-container'>
+           <img src='<?php echo $this->getSkinUrl('countryflag/ajax-loader.gif');;?>'  alt='process'/>
+        </div>
+	</div>
+    
+    <div class="verify_mobile verify_number sms-modal-content">
+        <p class='error'></p>
+        <label class="verify">
+            <?php echo $this->__("Enter OTP"); ?>
+        </label>
+        <input type="text" id="code" name="code" class="verify" />
+        <span class="infosms">
+	        <?php echo $this->__("you will get OTP in your Mobile Number"); ?>
+		</span>
+        <input type="button"  id="verify_mobile" value="<?php echo $this->__("Verify OTP"); ?>" class="button verify" />
+        <?php if(Mage::helper('sms/Data')->canResendOTP()){ ?>
+            <a href="#" id="resend_mobile_code" class="verify resendcode">Resend Code</a>
+        <?php } ?>
+        <div class='process-container'>
+           <img src='<?php echo $this->getSkinUrl('countryflag/ajax-loader.gif');;?>'  alt='process'/>
+        </div>
+	</div>
+    
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function(e) {
+		jQuery(".verify_model").css("display","block");
+		jQuery(".verify_mobile.verify_number").css('display','none');
+		jQuery('#send_otp').click(function(e) {
+			
+			var mobile = jQuery("#mobile").val();
+			<?php if(!($telephone)): ?>
+				var countrycode = jQuery("#country_code").val();
+		     	var mobnumber = jQuery("#mobile").val();
+		     	var mobile = countrycode.concat(mobnumber);
+			<?php endif; ?> 
+			
+			if(mobile !== ""){
+				showMessage('', "success");
+				jQuery("#send_otp").css('display','none');
+				jQuery(".process-container").css('display','block');
+				
+				jQuery.ajax({
+					method:"POST",
+					url:'<?php echo Mage::getBaseUrl().'sms/index/sendOtp' ?>',
+					data:{mobile:mobile}, 
+					success: function(data) {
+						if(data !== "false"){
+							jQuery(".verify_mobile.mobile_number").css('display','none');
+							jQuery(".verify_mobile.verify_number").css('display','block');
+                        }
+						else
+						{
+						  showMessage('Please Enter Valid Code!', "error");	
+						}
+						jQuery("#send_otp").css('display','block');
+				        jQuery(".process-container").css('display','none');
+					},
+					error: function() {
+						alert('Error occured');
+					}
+				});
+			}
+			else
+			{
+				showMessage('Please Enter Mobile Number', "success");
+			}
+        });
+		 
+		jQuery('#verify_mobile').click(function(e) {
+            var code = jQuery("#code").val();
+			if(code !== ""){
+				showMessage('', "success");
+				jQuery("#verify_mobile").css('display','none');
+				jQuery(".process-container").css('display','block');
+				jQuery.ajax({
+					method:"POST",
+					url:'<?php echo Mage::getBaseUrl().'sms/index/checkMobileVerificationCode' ?>',
+					data:{code:code}, 
+					success: function(data) 
+					{
+						if(data == "true")
+						{
+							jQuery(".modal").css('display','none');
+							showMessage('Thanks for Verification', "success");
+						}
+						else
+						{
+							showMessage('Please Enter Valid Code!', "error");	
+						}
+						jQuery("#verify_mobile").css('display','block');
+				        jQuery(".process-container").css('display','none');
+					},
+					error: function() {
+						alert('Error occured');
+						jQuery("#verify_mobile").css('display','block');
+				        jQuery(".process-container").css('display','none');
+					}
+				});
+			}
+			else
+			{
+				showMessage('Please Enter Code!', "error");	
+			}
+        }); 
+		
+		jQuery('#resend_mobile_code').click(function(e) {
+			
+			var mobile = jQuery("#mobile").val();
+			<?php if(!($telephone)): ?>
+				var countrycode = jQuery("#country_code").val();
+		     	var mobnumber = jQuery("#mobile").val();
+		     	var mobile = countrycode.concat(mobnumber);
+			<?php endif; ?> 
+            
+			jQuery.ajax({
+				method:"POST",
+				url:'<?php echo Mage::getBaseUrl().'sms/index/sendOtp' ?>',
+				data:{mobile:mobile},
+				success: function(data) {
+					showMessage(data, "success");
+				},
+				error: function() {
+					showMessage('Something went wrong', "error");
+				}
+			});
+        }); 
+		
+		function showMessage(txt, type) {
+			var html = '<span>' + txt + '</span>';
+			jQuery('.error').html(html);
+		}
+});
+
+</script>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true );?>skin/frontend/base/default/countryflag/js/intlTelInput.js"></script>
+<script>
+jQuery("#mobile").intlTelInput({
+  initialCountry: "<?php echo Mage::getStoreConfig('sms/general/countrycode');?>",
+  utilsScript: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true );?>skin/frontend/base/default/countryflag/js/utils.js"
+});
+</script>

@@ -1,0 +1,137 @@
+<?php
+
+$costomerdata = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+$billingaddress = Mage::getModel('customer/address')->load($costomerdata->default_billing);
+$addressdata = $billingaddress ->getData();
+?>
+<ul class="messages customerromsg" style="display:none"><li class="error-msg"><ul><li><span>Please Enter New Number</span></li></ul></li></ul>
+<div class="mobile_update_account">
+	<h1><?php  echo $this->__("Mobile Number Update"); ?></h1>
+    
+    <div class="mobileupdateform">
+    	<div class="mobileform">
+            <div class="lable">
+                <?php   echo $this->__("Mobile Number Follow by Country Code (Eg. 91xxxxxxxxx)"); ?></div>
+            <div class="input">
+            	
+               <input type="text" class="input-text required-entry mobfield" id="mobfield" value="<?php echo $billingaddress->getTelephone(); ?>" />
+                <input type="hidden"  id="mobfieldhide" class="mobfieldhide" value="<?php echo $billingaddress->getTelephone(); ?>" />
+                <input type="hidden"  id="customerid" class="customeridhide" value="<?php echo
+				 Mage::getSingleton('customer/session')->getId(); ?>" />
+               
+               
+            </div>
+             <div class="mobexisterror error" style="display:none">
+            	<span><?php echo $this->__("*Mobile Number Already Exist");?></span>
+            </div>
+            <div class="changemobbtn">
+                <input type="button" value="Update Mobile" class="button MobileNumberbtn" />
+            </div>
+            <div class="updateloadimage">
+            
+            <img src="<?php echo $this->getSkinUrl('images/sms/ajax-loader.gif') ?>" alt="Loading plese wait..."/>
+            </div>
+        </div>
+        <div class="otp" style="display:none">
+        	<div class="lable">
+				<?php  echo $this->__("Enter Otp Code"); ?>
+            </div>
+	        <div class="input">
+    	    	<input type="text" class="input-text required-entry mobfield otpnum" id="otp" value="" />
+                
+            
+        	</div>
+            <div class="errormsg" style="display:none">
+            	<span><?php echo $this->__("*Please Enter Valid Otp");?></span>
+            </div>
+            <div class="changemobbtn">
+
+	        	<input type="button" value="Verify OTP" class="button updatedverifyotp" />
+				<input type="button" value="Change Number" class="button changenum" />                            
+                
+       		</div>
+            <div class="changemobloadimage">
+            
+            <img src="<?php echo $this->getSkinUrl('images/sms/ajax-loader.gif') ?>" alt="Loading plese wait..."/>
+            </div>
+         </div>   
+    	
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(e) {
+	jQuery(".changenum").click(function(e) {
+        jQuery(".otp").css('display','none');
+		jQuery(".mobileform").css('display','block');
+    });
+    jQuery(".MobileNumberbtn").click(function(e) {
+        var hiddenmob =  jQuery(".mobfieldhide").val();
+        var customId =  jQuery(".customeridhide").val();		
+		var newmob =  jQuery(".mobfield").val();	
+		
+		jQuery(".otp").css('display','none');
+		jQuery(".mobileform").css('display','block');
+		jQuery(".customerromsg").css('display','none');
+		jQuery(".updateloadimage").css('display','block');
+		jQuery(".MobileNumberbtn").css('display','none');		
+		
+		if(hiddenmob != newmob){
+			jQuery.ajax({
+			   url: '<?php echo $this->getUrl("sms/index/updateMob"); ?>',
+			   type: 'GET',
+			   data:{ newmobile: newmob,oldmobile:hiddenmob,customid:customId },
+			   success: function(data) {
+			jQuery(".updateloadimage").css('display','none');	
+			jQuery(".MobileNumberbtn").css('display','block');						   
+					if(data == "true"){
+						jQuery(".otp").css('display','block');
+						jQuery(".mobileform").css('display','none');						
+					}
+					else{
+						jQuery(".mobexisterror").css('display','block');	
+					}
+				},
+			});
+		}
+		else{
+			jQuery(".MobileNumberbtn").css('display','block');						   			
+			jQuery(".updateloadimage").css('display','none');		
+			jQuery(".customerromsg").css('display','block');
+		}
+    });
+	
+	jQuery(".updatedverifyotp").click(function(e) {
+        var hiddenmob =  jQuery(".mobfieldhide").val();
+        var customId =  jQuery(".customeridhide").val();		
+		var newmob =  jQuery(".mobfield").val();
+		var otp =  jQuery("#otp").val();	
+		jQuery(".errormsg").css('display','none');
+		if(hiddenmob != newmob){
+			
+			jQuery(".changemobloadimage").css('display','block');
+			jQuery(".updatedverifyotp").css('display','none');	
+			jQuery(".changenum").css('display','none');				
+			
+			jQuery.ajax({
+			   url: '<?php echo $this->getUrl("sms/index/checkupdateotp"); ?>',
+			   type: 'GET',
+			   data:{ newmobile: newmob,oldmobile:hiddenmob,customid:customId, otp:otp },
+			   success: function(data) {
+				   jQuery(".changemobloadimage").css('display','none');
+					jQuery(".updatedverifyotp").css('display','block');	
+					jQuery(".changenum").css('display','block');	
+					if(data == "true"){
+						location.reload();						
+					}
+					else{
+						jQuery(".errormsg").css('display','block');						
+					}
+			   },
+			});
+		}
+		jQuery(".changemobloadimage").css('display','none');
+		jQuery(".updatedverifyotp").css('display','block');	
+		
+    });
+});
+</script>

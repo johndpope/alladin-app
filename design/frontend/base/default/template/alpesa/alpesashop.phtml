@@ -1,0 +1,294 @@
+<div class="alpesa-main-front">
+    <div class="row">
+        <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-front.png'); ?>" alt="alpesa design" class="img-responsive alpesa-front-image"/>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-12 alpesa-front-desc">
+            <div class="alpesa-shop-left-row">
+
+                <div class="row alpesa-info">
+                    <div class="col-md-6">
+                        <h3>what is alpesa</h3>
+                        <p>
+                            Alpesa is a loyalty program that guarantees a customer 
+                            to acquire and accumulate points on successful purchase 
+                            of garments from this online shop.
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3>why alpesa</h3>
+                        <p>
+                            Alpesa aims at ensuring customers save money and get
+                            rewarded for purchasing our products.
+                        </p>
+                    </div>
+
+                    <!--            <div class="col-md-4">
+                                    <h3>when is alpesa</h3>
+                                     <p>
+                                         Alpesa’s lifetime is infinite and a customer instantly accumultes 
+                                         points on interacting with the online store.   
+                                     </p>
+                                </div>-->
+
+                </div>
+
+                <div class="row">
+                    <h3>alpesa benefits</h3>
+
+                    <ul class="alpesa-brief-desc-ul alpesa-desc-ul">
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-discounts.png'); ?>" alt="alpesa discounts" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+                                    <h4>Discounts</h4>
+                                    <p>Earn discounts on selected products.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-gift-vouchers.png'); ?>" alt="alpesa-gift-vouchers"  class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+                                    <h4>Free Vouchers</h4>
+                                    <p>Free shopping vouchers awarded either daily,weekly,monthly or annualy.</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <ul class="alpesa-brief-desc-ul alpesa-desc-ul">
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-reedem-points.png'); ?>" alt="alpesa reedem points" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+                                    <h4>Redeem points</h4>
+                                    <p>The points are reedemable.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-pay-orders.png'); ?>" alt="alpesa pay orders" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+                                    <h4>Pay orders </h4>
+                                    <p>Redeem points to pay for order(s).</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="row">
+                    <h3>how to earn points</h3>
+                    <?php $alPoints = $this->alpesaShop(); ?>
+                    <ul class="alpesa-desc-ul">
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-every-spending.png'); ?>" alt="missing" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+                                    <?php if (count($alPoints) > 0): ?><h4><?php echo $alPoints['point']; ?> POINT(S)</h4><?php endif; ?>
+                                    <p>EVERY <?php
+                                        if (count($alPoints) > 0) {
+                                            echo $alPoints['currency'] . $alPoints['amount'];
+                                        }
+                                        ?> SPENT</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-register.png'); ?>" alt="missing" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+<?php if (count($alPoints) > 0): ?><h4><?php echo $alPoints['signup']; ?> POINT(S)</h4><?php endif; ?>
+                                    <p>CREATE ACCOUNT</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="alpesa-desc-ul">
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-login.png'); ?>" alt="missing" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+<?php if (count($alPoints) > 0): ?><h4><?php echo $alPoints['login']; ?> POINT(S)</h4><?php endif; ?>
+                                    <p>EVERY LOGIN</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-newsletter.png'); ?>" alt="missing" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+<?php if (count($alPoints) > 0): ?><h4><?php echo $alPoints['newsletter']; ?> POINT(S)</h4><?php endif; ?>
+                                    <p>SIGNUP FOR NEWSLETTER</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <ul class="alpesa-desc-ul">
+                        <li class="alpesa-desc-li">
+                            <ul>
+                                <li class="alpesa-desc-lid">
+                                    <img src="<?php echo $this->getSkinUrl('alpesa/images/icons/alpesa-referral.png'); ?>" alt="missing" class="img-responsive"/>
+                                </li>
+                                <li class="alpesa-desc-lid">
+<?php if (count($alPoints) > 0): ?><h4><?php echo $alPoints['referral']; ?> POINT(S)</h4><?php endif; ?>
+                                    <p>REFER FRIENDS TO WEBSITE</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="row">
+
+                    <?php $cardTypes = $this->getAllCardTypes();
+                    $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+                    ?>
+                    <?php if (count($cardTypes) > 0): ?>
+                        <h3>Alpesa Card Types</h3>
+
+    <?php foreach ($cardTypes as $cardType): ?>
+                            <div class="col-md-2">
+                                <div class="row alpesa-card-type-details">
+                                    <div class="row  card-color">
+                                        <i class="fa fa-credit-card" style="color:#<?php echo $cardType->cardColor; ?>"></i>
+                                        <p><?php echo $cardType->cardName; ?></p>
+                                    </div>
+                                    <div class="row">
+                                        <span><?php echo $cardType->minPoints; ?> </span>min points
+                                    </div>
+                                    <div class="row">
+                                        <span><?php echo $cardType->maxPoints; ?> </span>max points
+                                    </div>
+                                    <div class="row">
+                                        <span><?php echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($cardType->cardVoucherAmt, 2); ?> </span>voucher
+                                    </div>
+                                    <div class="row">
+                                        <span><?php echo $cardType->cardDiscount; ?>% </span>discount
+                                    </div>
+                                    <div class="row">
+                                        gift date <span><?php echo Mage::helper('Boonagel_Alpesa')->calculateDateObjectStringNotation($cardType->cardGiftDate)[1]; ?> </span>
+                                    </div>
+                                </div>
+                            </div>
+    <?php endforeach; ?>
+
+<?php endif; ?>
+
+                </div>
+
+
+                <div class="row">
+
+<?php $alpesaConditions = $this->getConditions(); ?>
+<?php if ($alpesaConditions->count() > 0): ?>
+                        <h3>Alpesa Point Bonuses</h3>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table  class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Bonus Points Reward</th>
+                                            <th>Points Target</th>
+                                            <th>Visits</th>
+                                            <th>Per Visit Spending</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+    <?php foreach ($alpesaConditions as $alpesaCondition): ?>
+                                            <tr>
+                                                <td><?php echo $alpesaCondition->getPointsReward(); ?></td>
+                                                <td><?php echo $alpesaCondition->getPointsTarget(); ?></td>
+                                                <td>
+                                                    <?php
+                                                    $conditionScope = $alpesaCondition->getConditionScope();
+                                                    $visits =  $alpesaCondition->getVisits();
+                                                    if($conditionScope == 'eq'){
+                                                        echo "visits equal to ".$visits;
+                                                    }
+                                                    if($conditionScope == 'lt'){
+                                                        echo "visits less than ".$visits;
+                                                    }
+                                                    if($conditionScope == 'gt'){
+                                                        echo "visits greater than ".$visits;
+                                                    }
+                                                    if($conditionScope == 'leq'){
+                                                        echo "visits less than or equal to ".$visits;
+                                                    }
+                                                    if($conditionScope == 'geq'){
+                                                        echo "visits greater than or equal to ".$visits;
+                                                    }
+                                                    ?>
+                                                    
+                                                </td>
+                                                <td><?php echo Mage::app()->getStore()->getCurrentCurrencyCode().' '.Mage::helper('Boonagel_Alpesa')->formatNumber($alpesaCondition->getPerVisitSpending(), 2); ?></td>
+                                            </tr>
+
+
+
+    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+<?php endif; ?>
+
+                </div>
+
+
+
+                <div class="row signup-alpesa">
+                    <ul>
+                        <li><a href="<?php echo Mage::getUrl('customer/account/create'); ?>"><button class="alpesa-button">Sign up & Shop to earn points</button></a></li>
+                        <li class="or-alpesa">--or--</li>
+                        <li><a href="<?php echo Mage::getUrl('customer/account/login'); ?>"><button class="alpesa-button">login & Shop to earn points</button></a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--        <div class="col-md-3 alpesa-front-q-a">
+                    <div class="row alpesa-row-faqs">
+                        <h3>Alpesa FAQ'S</h3>
+                        <ul>
+                            <li><h4>Why Should i sign up to earn points</h4></li>
+                            <li><p>Because your future depends on it.</p></li>
+                        </ul>
+                        <ul>
+                            <li><h4>how long are my points viable before they expire</h4></li>
+                            <li><p>your points never expire they are infinite and stay alive forever.</p></li>
+                        </ul>
+                    </div>
+                </div>-->
+
+    </div>
+</div>

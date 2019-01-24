@@ -1,0 +1,59 @@
+<?php $plans = $this->getPlans(); ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Plan information') ?></h4>
+    </div>
+    <div class="fieldset">
+        <div class="hor-scroll">
+            <table class="form-list" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Current Plan') ?></label></td>
+                    <td class="value">
+                        <select id="current_plan" name="current_plan" class="select">
+                            <option value="">--Please Select--</option>
+                            <?php foreach ($plans as $plan): ?>
+                                <option value="<?php echo $plan['id']; ?>" <?php echo $this->getSelectedPlan($plan['id']); ?>><?php echo $plan['name']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Supplier Plan from date') ?></label></td>
+                    <td class="value">
+                        <input type="text" name="plan_from_date" id="plan_from_date" value="<?php echo $this->getPlanFromDateToHtml(); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Supplier Plan to date') ?> <span class="required">*</span></label></td>
+                    <td class="value">
+                        <input type="text" name="plan_to_date" id="plan_to_date" value="<?php echo $this->getPlanToDateToHtml(); ?>" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">// <![CDATA[
+    Calendar.setup({
+        inputField : 'plan_from_date',
+        ifFormat : '%M/%e/%Y',
+        button : 'date_from_trig',
+        align : 'Bl',
+        singleClick : true
+    });
+
+    Calendar.setup({
+        inputField : 'plan_to_date',
+        ifFormat : '%m/%e/%Y',
+        button : 'date_to_trig',
+        align : 'Bl',
+        singleClick : true
+    });
+    // ]]>
+</script>
+
+

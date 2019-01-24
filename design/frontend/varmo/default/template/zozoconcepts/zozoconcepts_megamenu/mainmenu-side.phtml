@@ -1,0 +1,312 @@
+<?php
+/**
+ * Main menu
+ *app/design/frontend/varmo/default/template/zozoconcepts/zozoconcepts_megamenu/mainmenu-side.phtml
+ */
+?>
+<?php
+	$helper = Mage::helper('megamenu');
+?>
+<?php if ($helper->getCfg('general/enable')): ?>
+
+	<?php
+		$mode = $helper->getCfg('general/mode');
+		//-1    = mobile menu only
+		// 0    = both
+		// 1    = regular dropdown menu only
+		
+		$categories = $helper->getCfg('general/categories');
+		//$linksHtml = $this->getChildHtml('block_nav_links');$this->getUrl('') == $this->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true))
+		$homeLinkActiveClass ='';
+		if ($helper->getCfg('general/side_menu') && Mage::getBlockSingleton('page/html_header')->getIsHomePage())
+			{
+				$homeLinkActiveClass .= ' active';
+			}
+			else
+			{
+				$homeLinkActiveClass .= ' disabled';
+			}
+	?>
+	<?php //Mobile menu trigger %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ?>
+
+	
+	<?php //Menu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ?>
+	<span class="open_nav"><i class="fa fa-bars"></i><?php echo $this->__('Categories'); ?></span>
+	<ul id="nav" class="<?php echo $homeLinkActiveClass?$homeLinkActiveClass:'' ?> nav-regular opt-fx-fade-inout <?php echo $helper->getBlocksVisibilityClassOnMobile(); ?> col-md-12 no-padding">
+		<?php //Categories ?>
+		<?php if ($categories == 'side'): ?>
+			<?php echo $this->renderCategoriesMenuHtml(FALSE, 0, 'level-top'); ?>
+		<?php endif; ?>
+	</ul>
+
+<?php endif; //end: if 'general/enable' ?>
+<style type="text/css">
+.disabled{
+	display:none;
+}
+</style>
+<script type="text/javascript">
+	//<![CDATA[
+	
+		(function($){
+			$(document).ready(function() {
+			// open side nav only if set to yes and on home page
+			$('.active').show();
+			// close side nav on other pages
+			$('.disabled').hide();
+			$(window).load(function(e) {
+                var windowSize = $(window).width();
+				if (windowSize <= 767) {
+					// close side nav on mobile
+					$('#sidenavigation .active').hide();
+					//$('.disabled').show();
+				}
+            });
+			
+			$('.open_nav').click(function(){
+				//$('#nav').removeClass('no-display');
+				$('#nav').slideToggle();
+			}); 
+		});
+		
+		$(document).on("click", function(event){
+        var $trigger = $("#sidenavigation");
+        if($trigger !== event.target && !$trigger.has(event.target).length){
+            $("#nav").hide( "slow" );
+        }            
+    	});
+		
+		})(jQuery);
+		
+		
+		
+		var MegaMenu = {
+
+			mobileMenuThreshold: <?php echo intval($helper->getCfg('mobilemenu/threshold')); ?>
+			, bar: jQuery('#nav')
+			, panels: null
+			, mobnavTriggerWrapper: null
+			, itemSelector: 'li'
+			, panelSelector: '.nav-panel'
+			, openerSelector: '.opener'
+			, isTouchDevice: ('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)
+			, ddDelayIn: 0
+			, ddDelayOut: 0
+			, ddAnimationDurationIn: 0
+			, ddAnimationDurationOut: 0
+
+			, init : function()
+			{
+				MegaMenu.panels = MegaMenu.bar.find(MegaMenu.panelSelector);
+				MegaMenu.mobnavTriggerWrapper = jQuery('.mobnav-trigger-wrapper');
+			}
+
+			, initDualMode : function()
+			{
+				MegaMenu.init();
+				MegaMenu.bar.accordion(MegaMenu.panelSelector, MegaMenu.openerSelector, MegaMenu.itemSelector);
+				if (jQuery(window).width() >= MegaMenu.mobileMenuThreshold)
+				{
+					MegaMenu.cleanUpAfterMobileMenu(); //Required for IE8
+				}
+
+				enquire
+					.register('screen and (max-width: ' + (MegaMenu.mobileMenuThreshold - 1) + 'px)', {
+						match: MegaMenu.activateMobileMenu,
+						unmatch: MegaMenu.cleanUpAfterMobileMenu
+					})
+					.register('screen and (min-width: ' + MegaMenu.mobileMenuThreshold + 'px)', {
+						deferSetup: true,
+						setup: MegaMenu.cleanUpAfterMobileMenu,
+						match: MegaMenu.activateRegularMenu,
+						unmatch: MegaMenu.prepareMobileMenu
+					});
+			}
+
+			, initMobileMode : function()
+			{
+				MegaMenu.init();
+				MegaMenu.bar.accordion(MegaMenu.panelSelector, MegaMenu.openerSelector, MegaMenu.itemSelector);
+				MegaMenu.activateMobileMenu();
+			}
+
+			, activateMobileMenu : function()
+			{
+				MegaMenu.mobnavTriggerWrapper.show();
+				MegaMenu.bar.addClass('nav-mobile acco').removeClass('nav-regular');
+				//adding activate class for body tag
+				jQuery('body').addClass('activate-mobile-header');
+			}
+
+			, activateRegularMenu : function() //Default state
+			{
+				MegaMenu.bar.addClass('nav-regular').removeClass('nav-mobile acco');
+				MegaMenu.mobnavTriggerWrapper.hide();
+				//adding d'activate class for body tag
+				jQuery('body').removeClass('activate-mobile-header');
+			}
+
+			, cleanUpAfterMobileMenu : function()
+			{
+				<?php //Remove "display" modifications from all panels ?>
+				MegaMenu.panels.css('display', '');
+			}
+
+			, prepareMobileMenu : function()
+			{
+				<?php //Hide all panels ?>
+				MegaMenu.panels.hide();
+
+				<?php //Show panels of items with active class ?>
+				MegaMenu.bar.find('.item-active').each( function() {
+					jQuery(this).children('.nav-panel').show();
+				});
+			}
+
+		}; //end: MegaMenu
+
+
+
+	<?php //Mode: mobile or both ------------------------------------------------- ?>
+	<?php if ($mode <= 0): ?>
+
+		<?php if ($mode == 0): //Mode: both ?>
+			MegaMenu.initDualMode();
+		<?php else: //Mode: mobile ($mode < 0) ?>
+			MegaMenu.initMobileMode();
+		<?php endif; ?>
+
+		//Toggle mobile menu
+		jQuery('a.mobnav-trigger').on('click', function(e) {
+			e.preventDefault();
+			if (jQuery(this).hasClass('active'))
+			{
+				MegaMenu.bar.removeClass('show');
+				jQuery(this).removeClass('active');
+			}
+			else
+			{
+				MegaMenu.bar.addClass('show');
+				jQuery(this).addClass('active');					
+			}
+		})<?php if (!$helper->getCfg('mobilemenu/collapsed')): ?>.click()<?php endif; //Menu initially collapsed/opened ?>;
+
+	<?php endif; //end: mode mobile or both  ?>
+
+
+
+	<?php //Mode: regular or both ------------------------------------------------- ?>
+	<?php if ($mode >= 0): ?>
+
+		jQuery(function($) {
+
+			var menubar = MegaMenu.bar;
+
+			<?php //Non-clickable links ?>
+			menubar.on('click', '.no-click', function(e) {
+				e.preventDefault();
+			});
+
+			<?php //Menu top-level dropdowns ?>
+			menubar.on('mouseenter', 'li.parent.level0', function() {
+				
+				if (false === menubar.hasClass('nav-mobile'))
+				{
+					var item = $(this);
+					var dd = item.children('.nav-panel');
+
+					var itemPos = item.position();
+					var ddPos = { left: itemPos.left, top: itemPos.top }; // item.height() removed for sidenavigations
+					if (dd.hasClass('full-width')) { ddPos.left = 0; }
+
+					<?php ///////////////////////////////////////////////////////////////////// ?>
+					<?php //Prevent dropdowns from spilling out of the viewport ?>
+					dd.removeClass('tmp-full-width');
+
+				<?php if ($helper->getCfg('mainmenu/spill')): //Align dropdown with menu bar ?>
+					var ddConOffset = 0;
+					var outermostCon = menubar;
+				<?php else: //Align dropdown with viewport ?>
+					var ddConOffset = menubar.offset().left;
+					var outermostCon = $(window);
+				<?php endif; ?>
+
+					var outermostContainerWidth = outermostCon.width();
+					var ddOffset = ddConOffset + ddPos.left;
+					var ddWidth = dd.outerWidth();
+
+					<?php //If the dropdown will stick out of the outermostContainer (menu bar) ?>
+					if ((ddOffset + ddWidth) > outermostContainerWidth)
+					{
+						<?php //Calculate width of the dropdown part that will stick out of the viewport and calculate the new corrected position of the dropdown ?>
+						var diff = (ddOffset + ddWidth) - outermostContainerWidth;
+						var ddPosLeft_NEW = ddPos.left - diff;
+
+						<?php //Calculate new offset of the dropdown using the new corrected position of the dropdown ?>
+						var ddOffset_NEW = ddOffset - diff;
+
+						<?php //Check, if the dropdown will stick out of the viewport at the other side too ?>
+						if (ddOffset_NEW < 0)
+						{
+							<?php //If yes, apply special class and set position of the dropdown to zero ?>
+							dd.addClass('tmp-full-width');
+							ddPos.left = 0;
+						}
+						else
+						{
+							<?php //If no, apply the new corrected position of the dropdown ?>
+							ddPos.left = ddPosLeft_NEW;
+						}
+					}
+					<?php ///////////////////////////////////////////////////////////////////// ?>
+
+					dd
+						.css({
+							'left' : '100%', //ddPos.left + removed for sidenavigation
+							'top'  : ddPos.top + 'px'
+						})
+						.stop(true, true).delay(MegaMenu.ddDelayIn).fadeIn(MegaMenu.ddAnimationDurationIn, "easeOutCubic");
+				}
+
+			}).on('mouseleave', 'li.parent.level0', function() {
+				
+				if (false === menubar.hasClass('nav-mobile'))
+				{
+					$(this).children(".nav-panel")
+					.stop(true, true).delay(MegaMenu.ddDelayOut).fadeOut(MegaMenu.ddAnimationDurationOut, "easeInCubic");
+				}
+
+			}); //end: menu top-level dropdowns
+
+		}); //end: on document ready
+
+		jQuery(window).on("load", function() {
+
+			var menubar = MegaMenu.bar;
+
+			if (MegaMenu.isTouchDevice)
+			{
+				menubar.on('click', 'a', function(e) {
+
+					link = jQuery(this);
+					if (!menubar.hasClass('nav-mobile') && link.parent().hasClass('nav-item--parent'))
+					{
+						if (!link.hasClass('ready'))
+						{
+							e.preventDefault();
+							menubar.find('.ready').removeClass('ready');
+							link.parents('li').children('a').addClass('ready');
+						}
+					}
+
+				}); //end: on click
+			} //end: if isTouchDevice
+
+		}); //end: on load
+
+	<?php endif; //end: regular or both ?>
+
+
+
+	//]]>
+	</script>

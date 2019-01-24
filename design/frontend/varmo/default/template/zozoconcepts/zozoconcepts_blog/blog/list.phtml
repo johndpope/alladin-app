@@ -1,0 +1,104 @@
+<?php 
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Blog list template
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Blog
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php $themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_blog/blog');
+$_width = 855;
+$_height = 499;
+echo $this->getMessagesBlock()->getGroupedHtml(); 
+$_blogs = $this->getBlogs(); ?>
+<div class="page-title blog-title">
+    <?php if(Mage::helper('zozoconcepts_blog/blog')->isRssEnabled()) : ?>
+        <a href="<?php echo Mage::helper('zozoconcepts_blog/blog')->getRssUrl();?>" class="link-rss"><?php echo Mage::helper('zozoconcepts_blog')->__('Subscribe to RSS Feed')?></a>
+    <?php endif;?>
+    <h1><?php echo Mage::helper('zozoconcepts_blog')->__('Our Latest Posts') ?></h1>
+</div>
+<?php if ($_blogs->getSize() > 0) :?>
+	<div class="blog-pager">
+	    <?php echo $this->getPagerHtml(); ?>
+    </div>
+    <div class="blog-list-container">
+    <?php foreach ($_blogs as $_blog) : ?>
+        <article class="blog blog-item blog-list-item">
+        	<div class="entry-image-wrap">
+            	<div class="featured-image">
+                    <a href="<?php echo $_blog->getBlogUrl()?>">
+	<img src="<?php echo Mage::helper('zozoconcepts_blog/blog_image')->init($_blog, 'featured_image')->resize($_width,$_height);?>" alt="<?php echo $_blog->getTitle();?>" class="img-responsive" width="<?php echo $_width?>" height="<?php echo $_height?>">
+                    </a>
+                </div>
+            </div>
+            <div class="entry-detail-wrap">
+                <div class="entry-blog"> 
+                    <div class="entry-header">  
+                         <span class="meta-details meta-category">
+                            <?php $Category_Model = Mage::getModel('zozoconcepts_blog/category')->load($_blog->getCategoryId());?>
+                            <?php if($Category_Model->getCatName()):?>
+                            <a href="<?php echo $Category_Model->getCategoryUrl() ;?>"><i class="icon icon-Tag"></i><?php echo $Category_Model->getCatName();?></a><?php endif;?>
+                        </span>
+                        <span class="meta-details entry-date"><i class="icon icon-Watch"></i><?php echo $date = date('F j, Y', strtotime($_blog->getCreatedAt())); ?></span>
+                        <h3 class="entry-title"><a href="<?php echo $_blog->getBlogUrl()?>"><?php echo $_blog->getTitle();?></a></h3>
+                    </div>
+                    <div class="entry-content">
+                        <?php $post_desc =  $this->stripTags($_blog->getExcerpt())?>
+                        <?php if(!$helper->getExcerptLimit()){?>
+                        <?php echo "<p>".$post_desc."</p>" ?>
+                        <?php } else {?>
+                        <?php echo "<p>".$this->cut_string($post_desc,$helper->getExcerptLimit())."</p>" ?>
+                        <?php }?>
+                            
+                    </div>
+                </div>
+                <div class="post-footer clearfix">
+                    <div class="blog-left pull-left ">
+                        <span class="meta-readmore">
+                            <a class="btn-link" href="<?php echo $_blog->getBlogUrl()?>"><?php echo Mage::helper('zozoconcepts_blog')->__('Continue Reading') ?></a>
+                        </span>
+                    </div>
+                    <div class="blog-right pull-right">
+                        <div class="blog-share-button">
+                            <ul class="social-icons social-icons-bg social-icons-circle">
+                                <li>
+                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $_blog->getBlogUrl()?>" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo $_blog->getBlogUrl()?>','Facebook','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="http://twitter.com/share?url=<?php echo $_blog->getBlogUrl()?>&amp;text=<?php echo $_blog->getTitle();?>" onclick="window.open('http://twitter.com/share?url=<?php echo $_blog->getBlogUrl()?>&amp;text=<?php echo $_blog->getTitle();?>','Twitter share','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="twitter"><i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://plus.google.com/share?url=<?php echo $_blog->getBlogUrl()?>" onclick="window.open('https://plus.google.com/share?url=<?php echo $_blog->getBlogUrl()?>','Google plus','width=585,height=666,left='+(screen.availWidth/2-292)+',top='+(screen.availHeight/2-333)+''); return false;" class="g-puls"><i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             </div> 
+        </article>
+    <?php endforeach;?>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+	<div class="clearfix"></div>
+    <p class="notice notice-msg"><?php echo Mage::helper('zozoconcepts_blog')->__('There are no posts at this moment');?></p>
+<?php endif;?>

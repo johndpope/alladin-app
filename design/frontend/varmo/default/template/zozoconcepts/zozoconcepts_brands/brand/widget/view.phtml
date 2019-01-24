@@ -1,0 +1,59 @@
+<?php
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Brand view widget template
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Brands
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php $_brand = $this->getCurrentBrand();?>
+<?php if ($_brand) :?>
+    <div class="brand-widget-view">
+        <h3><?php echo $_brand->getTitle()?></h3>
+        <div>
+            <div class="title-widget">
+                <?php echo Mage::helper('zozoconcepts_brands')->__('Title');?>:<?php echo $_brand->getTitle();?>
+            </div>
+            <div class="brand_icon-widget">
+                <?php if ($_brand->getBrandIcon()) :?>
+    <img src="<?php echo Mage::helper('zozoconcepts_brands/brand_image')->init($_brand, 'brand_icon')->resize(75);?>" alt="<?php echo $this->htmlEscape($_brand->getTitle());?>" />
+<?php endif;?>
+            </div>
+            <div class="brand_image-widget">
+                <?php if ($_brand->getBrandImage()) :?>
+    <img src="<?php echo Mage::helper('zozoconcepts_brands/brand_image')->init($_brand, 'brand_image')->resize(75);?>" alt="<?php echo $this->htmlEscape($_brand->getTitle());?>" />
+<?php endif;?>
+            </div>
+            <div class="brand_descriptions-widget">
+                <?php echo Mage::helper('zozoconcepts_brands')->__('Brand Descriptions');?>:<?php echo $_brand->getBrandDescriptions();?>
+            </div>
+            <div class="verified_ownerships-widget">
+                    <?php if ($_brand->getVerifiedOwnerships()) :?>
+        <a href="<?php echo Mage::helper('zozoconcepts_brands/brand')->getFileBaseUrl().$_brand->getVerifiedOwnerships();?>">
+            <span><?php echo basename($_brand->getVerifiedOwnerships())?></span>
+        </a>
+    <?php endif;?>
+            </div>
+            <div class="featured_brands-widget">
+                <?php echo Mage::helper('zozoconcepts_brands')->__("Featured Brands");?>:<?php echo ($_brand->getFeaturedBrands() == 1)?Mage::helper('brands')->__('Yes'):Mage::helper('brands')->__('No') ?>
+            </div>
+
+        </div>
+    </div>
+<?php endif;?>

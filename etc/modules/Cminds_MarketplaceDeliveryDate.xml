@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cminds_MarketplaceDeliveryDate>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Cminds_Supplierfrontendproductuploader />
+                <Cminds_Marketplace />
+            </depends>
+        </Cminds_MarketplaceDeliveryDate>
+    </modules>
+</config>

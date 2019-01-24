@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_brands_brand_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_brands/brand</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_brands/adminhtml_brand" name="brand" />
+
+        </reference>
+    </adminhtml_brands_brand_index>
+    <adminhtml_brands_brand_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_brands/adminhtml_brand_grid" name="brand_grid"/>
+        </block>
+    </adminhtml_brands_brand_grid>
+    <!-- Brand add/edit action -->
+    <adminhtml_brands_brand_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_brands/brand</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_brands/adminhtml_brand_edit" name="brand_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="zozoconcepts_brands/adminhtml_brand_edit_tabs" name="brand_tabs"></block>
+        </reference>
+    </adminhtml_brands_brand_edit>
+
+    <adminhtml_brands_brand_catalog_product_brands>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_brands/adminhtml_catalog_product_edit_tab_brand" name="product.edit.tab.brand"/>
+            <block type="adminhtml/widget_grid_serializer" name="brand_grid_serializer">
+                <reference name="brand_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>product.edit.tab.brand</grid_block_name>
+                        <data_callback>getSelectedBrands</data_callback>
+                        <hidden_input_name>brands</hidden_input_name>
+                        <reload_param_name>product_brands</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_brands_brand_catalog_product_brands>
+    <adminhtml_brands_brand_catalog_product_brandsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_brands/adminhtml_catalog_product_edit_tab_brand" name="product.edit.tab.brand"/>
+        </block>
+    </adminhtml_brands_brand_catalog_product_brandsgrid>
+    <adminhtml_brands_brand_products>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_brands/adminhtml_brand_edit_tab_product" name="brand.edit.tab.product"/>
+            <block type="adminhtml/widget_grid_serializer" name="product_grid_serializer">
+                <reference name="product_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>brand.edit.tab.product</grid_block_name>
+                            <data_callback>getSelectedProducts</data_callback>
+                            <hidden_input_name>products</hidden_input_name>
+                            <reload_param_name>brand_products</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_brands_brand_products>
+    <adminhtml_brands_brand_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_brands/adminhtml_brand_edit_tab_product" name="brand.edit.tab.product"/>
+        </block>
+    </adminhtml_brands_brand_productsgrid>
+</layout>

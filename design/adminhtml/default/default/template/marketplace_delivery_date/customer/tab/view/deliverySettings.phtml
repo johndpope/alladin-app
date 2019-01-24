@@ -1,0 +1,173 @@
+<?php
+$helper = Mage::helper('marketplace_delivery_date');
+$customerId = $this->getRequest()->getParam('id');
+$customer = Mage::getModel('customer/customer')->load($customerId);
+$allowedWeekDays = json_decode($customer->getAllowedWeekDays(), true);
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $helper->__('Delivery Settings') ?></h4>
+    </div>
+    <fieldset>
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><label for="cutoff_time_finish">
+                        <?php echo $helper->__('Order cut-off time finish'); ?> <br/>
+                        <?php echo $helper->__('(format HH:MM)'); ?>
+                    </label></td>
+                <td class="value">
+                    <input
+                        class="input-text" name="cutoff_time_finish" id="cutoff_time_finish"
+                        value="<?php echo $customer->getData('cutoff_time_finish'); ?>"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="order_lead_time">
+                        <?php echo $helper->__('Order lead time (number of days)'); ?>
+                    </label></td>
+                <td class="value">
+                    <input
+                            class="input-text" name="order_lead_time" id="order_lead_time"
+                            value="<?php echo $customer->getData('order_lead_time'); ?>"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="weekdays">
+                        <?php echo $helper->__('Allowed week days'); ?></label></td>
+                <td class="value">
+                    <select multiple="multiple" name="weekdays[]" style="height: 130px;">
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(0, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="0"><?php echo $helper->__('Sunday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(1, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="1"><?php echo $helper->__('Monday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(2, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="2"><?php echo $helper->__('Tuesday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(3, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="3"><?php echo $helper->__('Wednesday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(4, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="4"><?php echo $helper->__('Thursday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(5, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="5"><?php echo $helper->__('Friday') ?></option>
+                        <option
+                            <?php
+                            if (isset($allowedWeekDays) &&
+                                is_array($allowedWeekDays) &&
+                                in_array(6, $allowedWeekDays)) {
+                                echo ' selected ';
+                            }
+                            ?>
+                                value="6"><?php echo $helper->__('Saturday') ?></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="order_lead_time">
+                        <?php echo $helper->__('Excluded days'); ?>
+                    </label></td>
+                <td class="value">
+                    <input
+                            class="input-text excluded-days date" name="excluded_days[]" id="excluded_days"
+                            value="" style="margin-bottom: 10px;"
+                    />
+                    <div id="cloned">
+
+                    </div>
+                    <button type="button" class="scalable add" onclick="cloneExcludedDays();" >
+                        <span><span><span><?php echo $helper->__('Add next day') ?></span></span></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $helper->__('Excluded Dates') ?></h4>
+    </div>
+    <fieldset>
+        <?php
+            echo $this->getLayout()->createBlock(
+                'marketplace_delivery_date/adminhtml_customer_edit_tab_grid_excludedDates',
+                'customer_edit_tab_grid_excludedDates'
+            )->toHtml();
+        ?>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+
+    function cloneExcludedDays() {
+        var copy = Element.clone($$('.excluded-days')[0], true);
+        var length = $$('.excluded-days').length;
+        copy.id='excluded_days-'+length;
+        copy.value=null;
+        $('cloned').appendChild(copy);
+
+        Calendar.setup({
+            inputField: 'excluded_days-'+length,
+            ifFormat: "%d.%m.%Y",
+            showsTime: false,
+            button: "special_from_date_trig",
+            align: "Bl",
+            singleClick : true
+        });
+    }
+
+    //<![CDATA[
+    Calendar.setup({
+        inputField: "excluded_days",
+        ifFormat: "%d.%m.%Y",
+        showsTime: false,
+        button: "special_from_date_trig",
+        align: "Bl",
+        singleClick : true
+    });
+    //]]>
+
+</script>
+

@@ -1,0 +1,114 @@
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_blog/blog');
+$_width = 435;
+$_height = 254;
+	$store = Mage::app()->getStore();
+$code  = $store->getCode();
+?>
+<div class="row">
+	<div class="col-md-12">
+	<?php $_blogs = $this->getBlogs(); ?>
+        <?php if ($_blogs->getSize() > 0) :?>
+            <div id="blog-slider-version-2" class="owl-carousel block-content nav-dark owlnav-top-right">
+                <?php $i=0; foreach ($_blogs as $_blog) : ?>
+                <?php $post_desc =  $this->stripTags($_blog->getExcerpt())?>
+                <article class="blog blog-item blog-list-item">
+                <div class="entry-image-wrap">
+                    <div class="featured-image">
+                        <a href="<?php echo $_blog->getBlogUrl()?>">
+        <img src="<?php echo Mage::helper('zozoconcepts_blog/blog_image')->init($_blog, 'featured_image')->resize($_width,$_height);?>" alt="<?php echo $_blog->getTitle();?>" width="<?php echo $_width?>" height="<?php echo $_height?>" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+                <div class="entry-detail-wrap">
+                    <div class="entry-blog"> 
+                        <div class="entry-header">  
+                             <span class="meta-details meta-category">
+                                <?php $Category_Model = Mage::getModel('zozoconcepts_blog/category')->load($_blog->getCategoryId());?>
+                                <?php if($Category_Model->getCatName()):?>
+                                <a href="<?php echo $Category_Model->getCategoryUrl() ;?>"><i class="icon icon-Tag"></i><?php echo $Category_Model->getCatName();?></a><?php endif;?>
+                            </span>
+                            <span class="meta-details entry-date"><i class="icon icon-Watch"></i><?php echo $date = date('F j, Y', strtotime($_blog->getCreatedAt())); ?></span>
+                            <h3 class="entry-title"><a href="<?php echo $_blog->getBlogUrl()?>"><?php echo $_blog->getTitle();?></a></h3>
+                        </div>
+                        <div class="entry-content">
+                            <?php $post_desc =  $this->stripTags($_blog->getExcerpt())?>
+                            <?php if(!$helper->getExcerptLimit()){?>
+                            <?php echo "<p>".$post_desc."</p>" ?>
+                            <?php } else {?>
+                            <?php echo "<p>".$this->cut_string($post_desc,$helper->getExcerptLimit())."</p>" ?>
+                            <?php }?>
+                                
+                        </div>
+                    </div>
+                    <div class="post-footer clearfix">
+                        <div class="blog-left pull-left ">
+                            <span class="meta-readmore">
+                                <a class="btn-link" href="<?php echo $_blog->getBlogUrl()?>"><?php echo Mage::helper('zozoconcepts_blog')->__('Continue Reading') ?></a>
+                            </span>
+                        </div>
+                        <div class="blog-right pull-right">
+                            <div class="blog-share-button">
+                                <ul class="social-icons social-icons-bg social-icons-circle">
+                                    <li>
+                                        <a href="http://www.facebook.com/sharer.php?u=<?php echo $_blog->getBlogUrl()?>" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo $_blog->getBlogUrl()?>','Facebook','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://twitter.com/share?url=<?php echo $_blog->getBlogUrl()?>&amp;text=<?php echo $_blog->getTitle();?>" onclick="window.open('http://twitter.com/share?url=<?php echo $_blog->getBlogUrl()?>&amp;text=<?php echo $_blog->getTitle();?>','Twitter share','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="twitter"><i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://plus.google.com/share?url=<?php echo $_blog->getBlogUrl()?>" onclick="window.open('https://plus.google.com/share?url=<?php echo $_blog->getBlogUrl()?>','Google plus','width=585,height=666,left='+(screen.availWidth/2-292)+',top='+(screen.availHeight/2-333)+''); return false;" class="g-puls"><i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                 </div> 
+            </article>
+            <?php $total_items = ($this->getData('total_items'))?$this->getData('total_items'):'8' ?>
+            <?php if (++$i == $total_items) break; ?>
+            <?php endforeach;?>
+        </div>
+        <?php else : ?>
+            <?php echo Mage::helper('zozoconcepts_blog')->__('There are no posts at this moment');?>
+        <?php endif;?>
+	</div>
+</div>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function() {
+		$('#blog-slider-version-2').owlCarousel({
+			items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'1' ?>,
+			 margin:30,
+			 responsive:{
+				0:{
+					items:1
+				},
+				480:{
+					items:2
+				},
+				767:{
+					
+					items:2
+				},
+				991:{
+					items:2
+				},
+				1024:{
+					items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'2' ?>
+				}
+			},
+			nav: true,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			navRewind: true,
+			loop: true,
+		});
+	});})(jQuery);
+</script>

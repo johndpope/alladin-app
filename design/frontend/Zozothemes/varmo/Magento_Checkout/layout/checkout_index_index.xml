@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="custom_block" remove="true"/>
+        <referenceContainer name="page.wrapper" htmlClass="page-wrapper page">
+            <block class="Zozothemes\Varmo\Block\Template" name="varmo_header" template="html/header.phtml" before="main.content">
+                <block class="Magento\Store\Block\Switcher" name="header.store_switcher" template="switch/stores.phtml"/>
+                <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">header links</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml" />
+                <block class="Zozothemes\Varmo\Block\Template" name="custom_block" template="html/header_custom_block.phtml" ifconfig="varmo_settings/header/static_block" after="-"/>
+            </block>
+        </referenceContainer>
+        <move element="logo" destination="varmo_header"/>
+    </body>
+</page>

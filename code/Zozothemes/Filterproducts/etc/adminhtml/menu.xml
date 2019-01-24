@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Zozothemes_Filterproducts::filter" title="Filter Products" module="Zozothemes_Filterproducts" sortOrder="510" parent="Zozothemes_Hybrid::zozothemes" resource="Zozothemes_Hybrid::zozothemes"/>
+        <add id="Zozothemes_Filterproducts::configration" title="Configuration" module="Zozothemes_Filterproducts" sortOrder="10" parent="Zozothemes_Filterproducts::filter" action="adminhtml/system_config/edit/section/filterproducts" resource="Zozothemes_Filterproducts::filter"/>
+    </menu>
+</config>

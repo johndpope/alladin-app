@@ -1,0 +1,58 @@
+<?php $_historyLog = $this->getRma()->getAllStatusHistory(); ?>
+<?php if(!$this->getRma()->isClosed()): ?>
+    <div class="col-md-6 form-col">
+        <h3><?php echo $this->__("Add New Comment"); ?></h3>
+        <div class="form-container">
+            <form name="comment_form" id="comment_form" action="<?php echo Mage::getUrl('marketplace/rma_supplier/saveComment') ?>" method="post">
+                <input type="hidden" name="rma_id" value="<?php echo $this->getRma()->getId(); ?>"/>
+                <div class="">
+                    <div class="cont">
+                        <div class="col-md-9 input-container">
+                            <textarea id="comment_body" name="comment_body" class="input-text required-entry form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="cont">
+                        <div class="col-md-9 input-container">
+                            <select name="status_id" id="status_id">
+                                <?php foreach(Mage::getModel('cminds_rma/rma_status')->getCollection() AS $status):?>
+                                    <?php $selected = ($status->getId() == $this->getRma()->getStatusId()) ? ' selected' : '' ?>
+                                    <option value="<?php echo $status->getId(); ?>"<?php echo $selected ?>><?php echo $status->getName(); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cont">
+                        <div class="col-md-9 input-container">
+                            <div class="radio">
+                                <input type="checkbox" name="is_customer_notified" value="1"> <?php echo $this->__('Notify customer by email'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save Comment') ?>" />
+                </div>
+            </form>
+        </div>
+    </div>
+<?php endif;?>
+<div class="clearfix"></div>
+    <div class="col-md-12">
+        <?php foreach($_historyLog AS $log): ?>
+        <hr>
+        <p><?php echo $log->getCommentBody(); ?></p>
+        <div>
+            <span style="font-style: italic;"><?php echo date("m/d/Y H:i", strtotime($log->getCreatedAt())); ?></span>
+            <?php if($log->getIsCustomerNotified()) :?>
+                <span class="badge badge-success"><?php echo $this->__("Customer Notified"); ?></span>
+            <?php else : ?>
+                <span class="badge badge-warning"><?php echo $this->__("Customer Not Notified"); ?></span>
+            <?php endif ; ?>
+        </div>
+        <?php endforeach;?>
+    </div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('comment_form');
+    //]]>
+</script>

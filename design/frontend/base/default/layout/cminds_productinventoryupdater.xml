@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_marketplace_productupdater_settingsview>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="productinventoryupdater/settings" name="productinventoryupdater_settings"
+                   template="cminds/productinventoryupdater/settings.phtml"/>
+        </reference>
+    </cminds_marketplace_productupdater_settingsview>
+    <cminds_inventoryupdater_product_list>
+        <block type="core/temaplte" name="items" template="cminds/productinventoryupdater/email/items/default.phtml" />
+    </cminds_inventoryupdater_product_list>
+</layout>

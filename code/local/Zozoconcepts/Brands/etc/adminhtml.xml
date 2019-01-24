@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <zozoconcepts_brands translate="title" module="zozoconcepts_brands">
+                                        <title>Brands</title>
+                                    </zozoconcepts_brands>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <zozoconcepts translate="title" module="zozoconcepts_brands">
+                        <title>Zozoconcepts</title>
+                        <children>
+                            <brand translate="title" module="zozoconcepts_brands">
+                                <title>Brand</title>
+                                <sort_order>0</sort_order>
+                            </brand>
+                        </children>
+                    </zozoconcepts>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+		<zozoconcepts translate="title" module="zozoconcepts_brands">
+            <title>Zozoconcepts</title>
+            <sort_order>71</sort_order>
+            <children>
+                <brand translate="title" module="zozoconcepts_brands">
+                    <title>Brand</title>
+                    <sort_order>101</sort_order>
+						<children>
+							<new translate="title" module="zozoconcepts_brands">
+								<title>Add Brand</title>
+								<action>adminhtml/brands_brand/new</action>
+								<sort_order>0</sort_order>
+							</new>
+							<manage translate="title" module="zozoconcepts_brands">
+								<title>Brands</title>
+								<action>adminhtml/brands_brand/index</action>
+								<sort_order>10</sort_order>
+							</manage>
+							<config translate="title" module="zozoconcepts_brands">
+								<title>Settings</title>
+								<action>adminhtml/system_config/edit/section/zozoconcepts_brands</action>
+								<sort_order>20</sort_order>
+							</config>
+						</children>
+                </brand>
+            </children>
+        </zozoconcepts>
+    </menu>
+</config>

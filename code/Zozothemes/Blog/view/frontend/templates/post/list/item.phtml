@@ -1,0 +1,66 @@
+<?php
+/**
+ * Author zozo@zozothemes.com
+ *  
+ *
+ *  
+ */
+?>
+<?php
+/**
+ * Blog post list item template
+ *
+ * @var $block \Zozothemes\Blog\Block\Post\AbstractPost
+ */
+?>
+<?php
+    $_post = $this->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+?>
+<article class="blog blog-item blog-list-item post-holder-<?php echo $_post->getId() ?>">
+    <div class="entry-image-wrap">
+        <div class="featured-image">
+            <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                    <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+                </a>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="entry-detail-wrap">
+                <div class="entry-blog"> 
+                    <div class="entry-header">  
+                        <?php echo $this->getInfoHtml() ?>
+                        <h2 class="post-title"><a class="post-item-link" href="<?php echo $_postUrl ?>"><?php echo $_postName; ?></a></h2>
+                    </div>
+                    <div class="entry-content">
+                        <?php echo $block->getShorContent() ?>      
+                    </div>
+                </div>
+                <div class="post-footer clearfix">
+                    <div class="blog-left pull-left ">
+                        <span class="meta-readmore">
+                            <a class="btn-link" href="<?php echo $_postUrl?>"><?php echo __('Continue Reading') ?></a>
+                        </span>
+                    </div>
+                    <div class="blog-right pull-right">
+                        <div class="blog-share-button">
+                            <ul class="social-icons social-icons-bg social-icons-circle">
+                                <li>
+                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $_postUrl?>" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo $_postUrl?>','Facebook','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="facebook"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="http://twitter.com/share?url=<?php echo $_postUrl?>&amp;text=<?php echo $_postName;?>" onclick="window.open('http://twitter.com/share?url=<?php echo $_postUrl ?>&amp;text=<?php echo $_postName;?>','Twitter share','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" class="twitter"><i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://plus.google.com/share?url=<?php echo $_postUrl?>" onclick="window.open('https://plus.google.com/share?url=<?php echo $_postUrl?>','Google plus','width=585,height=666,left='+(screen.availWidth/2-292)+',top='+(screen.availHeight/2-333)+''); return false;" class="g-puls"><i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</article>

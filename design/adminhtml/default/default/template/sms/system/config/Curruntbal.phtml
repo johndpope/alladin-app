@@ -1,0 +1,11 @@
+
+ 
+<?php
+
+		$autykey = Mage::helper('sms/Data')->getAuthkey();
+		$type = Mage::helper('sms/Data')->getRouttype();
+		
+		
+		echo 'Currunt SMS Balance is : <b>'.Mage::helper('sms/Data')->getCurruntBal($autykey,$type).'</b>';
+		
+ 

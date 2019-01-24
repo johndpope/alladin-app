@@ -1,0 +1,38 @@
+<?php $collection = $this->getEntries(); ?>
+<div class="my-account">
+    <div class="page-title">
+        <h1><?php echo Mage::helper('cminds_rma')->__('My RMA Requests'); ?></h1>
+		<a href="<?php echo MAge::getUrl("*/*/create"); ?>" class="link-print"><?php echo $this-> __("Create New RMA"); ?></a>
+
+	</div>
+    <div class="box-account box-recent">
+		<?php if(count($collection) > 0) : ?>
+		<table class="data-table rma" id="my-rma-list">
+	    <thead>
+	        <tr class="first last">
+	            <th><?php echo $this->__('RMA #'); ?></th>
+	            <th><?php echo $this->__('Date'); ?></th>
+	            <th><?php echo $this->__('Status'); ?></th>
+	            <th></th>
+	        </tr>
+	        </thead>
+	        <tbody>
+				<?php foreach($collection AS $entry): ?>
+	            	<tr class="">
+	        	        <td class="number"><?php echo $entry->getAutoincrementId(); ?></td>
+	        	        <td class="date"><span class="nobr"><?php echo $entry->getFormattedCreatedAt() ?></span></td>
+	        	        <td class="status"><em><?php echo $entry->getStatusLabel() ?></em></td>
+	        	        <td class="a-center view last">
+							<span class="nobr">
+								<a href="<?php echo Mage::getUrl('*/*/view/', array('rma_id' => $entry->getId())) ?>"><?php echo $this->__("View"); ?></a>
+							</span>
+						</td>
+	       	    	</tr>
+            	<?php endforeach; ?>
+	        </tbody>
+	    </table>
+		<?php else : ?>
+			<?php echo Mage::helper('cminds_rma')->__("No rma created"); ?>
+		<?php endif; ?>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <block type="cminds_rma/customer_link" as="cminds_rma_customer_link" name="cminds_rma_customer_link">
+                <action method="addLinkToParentBlock" />
+            </block>
+        </reference>
+    </customer_account>
+    <cminds_rma_rma_create>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="cminds_rma/rma_create" name="cminds_rma_create" />
+        </reference>
+    </cminds_rma_rma_create>
+    <cminds_rma_rma_list>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="cminds_rma/rma_list" name="cminds_rma_list" />
+        </reference>
+    </cminds_rma_rma_list>
+    <cminds_rma_rma_view>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="cminds_rma/rma_view" name="cminds_rma_view" />
+        </reference>
+    </cminds_rma_rma_view>
+    <cminds_rma_email_rma_items>
+        <block type="sales/order_email_items" name="items" template="cminds_rma/email/order/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_email_items_order_default</block><template>email/order/items/order/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>email/order/items/order/default.phtml</template></action>
+        </block>
+    </cminds_rma_email_rma_items>
+</layout>

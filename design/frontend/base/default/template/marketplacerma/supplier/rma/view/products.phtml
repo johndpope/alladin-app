@@ -1,0 +1,30 @@
+<?php $rma = $this->getRma(); ?>
+<div class="container">
+    <h2 class="sub-header"><?php echo $this->__('Ordered Items'); ?></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?php echo $this->__('Product'); ?></th>
+                <th><?php echo $this->__('SKU'); ?></th>
+                <th><?php echo $this->__('Price'); ?></th>
+                <th><?php echo $this->__('Qty'); ?></th>
+                <th><?php echo $this->__('Subtotal'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($rma->getAllItems() AS $_item) : ?>
+                <?php $item = $_item->getOrderItem(); ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($item->getName()); ?></td>
+                    <td><?php echo $item->getSku(); ?></td>
+                    <td><?php echo Mage::helper('core')->currency($item->getPrice(), true, false); ?></td>
+                    <td><span class="nobr"><?php echo $this->__("Ordered"); ?>: <strong><?php echo number_format($item->getQtyOrdered()); ?></strong><br></span>
+                        <span class="nobr"><?php echo $this->__("Refunding"); ?>: <strong><?php echo number_format($_item->getQty()); ?></strong><br></span></td>
+                    <td><?php echo Mage::helper('core')->currency($item->getRowTotal(), true, false); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

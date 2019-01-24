@@ -1,0 +1,63 @@
+<?php
+/**
+ * Blog sidebar recent posts template
+ *
+ * @var $block \Zozothemes\Blog\Block\Sidebar\Recent
+ */
+?>
+
+<?php
+	$_postCollection = $block->getPostCollection();
+	
+?>
+<?php if ($_postCollection->count()) { ?>
+<div class="block">
+    <div class="block-title"><strong><span><?php echo __('Recent Posts') ?></span></strong></div>
+    <div id="side-bar-blog-slider" class="owlnav-top-right owl-carousel block-content">
+        <?php foreach ($_postCollection as $_post) { ?>
+            <div class="blog-item">
+                <img src="<?php echo $block->escapeHtml($_post->getFeaturedImage()) ?>" alt="" class="img-responsive"/>
+                <div class='post-details'>
+                    <div class="post-date"><p><i class="varmo-icon-watch"></i><?php echo date('F j, Y', strtotime($_post->getPublishTime())); ?></p></div>
+                    <div class="post-meta">
+                        <h3 class="blog-title"><a href="<?php echo $_post->getPostUrl() ?>"><?php echo $block->escapeHtml($_post->getTitle()) ?></a></h3>
+                        <p class='blog-description'><?php echo $_post->getContent() ?></p>
+                        <a class="read-more" href="<?php echo $_post->getPostUrl() ?>">Read More</a>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<script type="text/javascript">
+    require([ 'jquery', 'owlcarousel'], function(){
+            jQuery(document).ready(function () {
+            jQuery('#side-bar-blog-slider').owlCarousel({
+                responsive:{
+                   0:{
+                       items:1
+                   },
+                   480:{
+                       items:1
+                   },
+                   767:{
+                       items:1
+                   },
+                   991:{
+                       items:1
+                   },
+                   1024:{
+                       items:1
+                   }
+               },
+                nav: true,
+                navText: ["<i class='varmo-icon-thin-left-open icons'></i>","<i class='varmo-icon-thin-right-open icons'></i>"],
+                autoplay: true,
+                autoplayHoverPause: true,
+                dots: false,
+                loop: true,
+            });
+        });
+    });
+</script>
+<?php } ?>

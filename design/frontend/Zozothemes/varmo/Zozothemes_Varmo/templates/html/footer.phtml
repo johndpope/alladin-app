@@ -1,0 +1,186 @@
+<?php
+    $footer = $this->getConfig('varmo_settings/footer');
+    $helper = $this->helper;
+?>
+<div class="footer">
+<?php
+    if( $footer['footer_top'] ){
+?>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <?php
+                    $area = 'footer_top_block';
+                    $type = $footer[$area];
+                    if( $type == 'custom' && $footer['footer_top_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer['footer_top_custom']);
+                        }
+                        if($block){
+                            echo '<div class="custom-block">'.$block->toHtml().'</div>';
+                        }
+                    }
+
+                ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_middle'] ){
+?>
+    <div class="footer-middle footer footer-dark">
+        <div class="container">
+            <div class="row">
+            <?php
+                for( $i = 1; $i <= 4; $i++ ){
+                    $area = 'footer_middle_column_'.$i;
+                    $type = $footer[$area];
+                    if( $type ){
+                        echo '<div class="col-sm-'.$footer[$area.'_size'].'">';
+                    }
+                    if( $type == 'custom' && $footer[$area.'_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer[$area.'_custom']);
+                        }
+                        if($block){
+                            echo $block->toHtml();
+                        }
+                    }
+                    if( $type == 'twitter' ){
+                        echo $this->getChildHtml('twitter-feeds');
+                    }
+                    if( $type ){
+                        echo '</div>';
+                    }
+                }
+            ?>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_middle_2'] ){
+?>
+    <div class="footer-middle footer-middle-2">
+        <div class="container">
+            <div class="row">
+            <?php
+                for( $i = 1; $i <= 4; $i++ ){
+                    $area = 'footer_middle_2_column_'.$i;
+                    $type = $footer[$area];
+                    if( $type ){
+                        echo '<div class="col-sm-'.$footer[$area.'_size'].'">';
+                    }
+                    if( $type == 'custom' && $footer[$area.'_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer[$area.'_custom']);
+                        }
+                        if($block){
+                            echo $block->toHtml();
+                        }
+                    }
+                    if( $type == 'twitter' ){
+                        echo $this->getChildHtml('twitter-feeds');
+                    }
+                    if( $type ){
+                        echo '</div>';
+                    }
+                }
+            ?>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_bottom'] ){
+?>
+    <div class="footer-bottom copyright copyright-dark">
+        <div class="container">
+            <div class="row">
+                <?php
+                    if($footer['footer_bottom_custom']){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer['footer_bottom_custom']);
+                        }
+                        if($block){
+                            echo $block->toHtml();
+                        }
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+?>
+</div>
+<?php echo $this->getChildHtml('zozo.popup'); ?>
+<a href="#" id="totop" style="display: block;"><i class="fa fa-angle-up"></i></a>
+<script type="text/javascript">
+        require(['jquery'], function(){   
+        // input focus
+        jQuery( "input" ).focus(function() {
+		jQuery( this ).next( "span.input-group-btn" ).addClass( "form-focus" );
+	});
+	jQuery( "input" ).focusout(function() {
+		jQuery( this ).next( "span.input-group-btn" ).removeClass( "form-focus" );
+	});
+        // to top 
+         var windowScroll_t;
+        jQuery(window).scroll(function(){
+            clearTimeout(windowScroll_t);
+            windowScroll_t = setTimeout(function(){
+                if(jQuery(this).scrollTop() > 100){
+                    jQuery('#totop').fadeIn();
+                }else{
+                    jQuery('#totop').fadeOut();
+                }
+            }, 500);
+        });
+        jQuery('#totop').click(function(){
+            jQuery('html, body').animate({scrollTop: 0}, 600);
+            return false;
+        });
+         });
+         require(['jquery'], function(){    
+    jQuery(function($){
+    $(".search-toggle-icon").click(function(e){
+        if($(this).parent().children(".block-search").hasClass("show")) {
+            $(this).parent().children(".block-search").removeClass("show");
+        } else {
+            $(this).parent().children(".block-search").addClass("show");
+        }
+        e.stopPropagation();
+    });
+    $(".search-toggle-icon").parent().click(function(e){
+        e.stopPropagation();
+    });
+    $("html,body").click(function(){
+        $(".search-toggle-icon").parent().children(".block-search").removeClass("show");
+    });
+    
+    /********************* Qty Holder **************************/
+    $(".qty-inc").unbind('click').click(function(){
+        if($(this).parent().parent().children(".control").children("input.input-text.qty").is(':enabled')){
+            $(this).parent().parent().children(".control").children("input.input-text.qty").val((+$(this).parent().parent().children(".control").children("input.input-text.qty").val() + 1) || 0);
+            $(this).parent().parent().children(".control").children("input.input-text.qty").trigger('change');
+            $(this).focus();
+        }
+    });
+    $(".qty-dec").unbind('click').click(function(){
+        if($(this).parent().parent().children(".control").children("input.input-text.qty").is(':enabled')){
+            $(this).parent().parent().children(".control").children("input.input-text.qty").val(($(this).parent().parent().children(".control").children("input.input-text.qty").val() - 1 > 0) ? ($(this).parent().parent().children(".control").children("input.input-text.qty").val() - 1) : 0);
+            $(this).parent().parent().children(".control").children("input.input-text.qty").trigger('change');
+            $(this).focus();
+        }
+    });
+    });
+});
+</script>

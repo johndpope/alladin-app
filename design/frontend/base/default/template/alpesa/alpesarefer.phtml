@@ -1,0 +1,81 @@
+<div class="alpesa-holder alpesa-reedem-holder">
+    <h2 class="alpesa-section-title">
+        <ul>
+            <li>
+                <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-icon-4.png'); ?>" alt=""/>-->
+                <?php echo $this->getChildHtml('alpesatopnav');?>
+            </li>
+            <li>
+                <span>Alpesa Referral section</span>
+            </li>
+        </ul>
+
+    </h2>
+    <?php $refData = $this->referral();?>
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <h4>Referral Url</h4>
+            <h6>
+                <button class="alpesa-button" onclick="alpesaGetCode(this)">Generate New Url</button>
+                <i id="refer-spinner" class="fa fa-cog fa-spin fa-3x fa-fw" style="color:#009E92;display:none;"></i>
+            </h6>
+            <h5>Current url(<i>copy and paste the below url to the location you want to refer from.</i>)</h5>
+            <h6  id="currentUrlHolderAlpesa" style="text-transform:lowercase;background-color:yellow;word-wrap:break-word;">
+                <?php if($refData['latestUrl'] != null){echo $refData['latestUrl'];}?>
+            </h6>
+        </div>
+
+        <div class="col-md-4">
+
+            <h4>Actual Referral Points</h4>
+            <h5><?php echo $refData['actualRef']; ?> Point(s)</h5>
+        </div>
+
+        <div class="col-md-4">
+
+            <h4>Available Referral Points</h4>
+            <h5><?php echo $refData['availableRef']; ?> Point(s)</h5>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    function alpesaGetCode(currBtn) {
+        
+        /**disable btn and enable loader**/
+        var referLoader = document.getElementById("refer-spinner");
+        currBtn.disabled = true;
+        referLoader.style.display = "block";
+        
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status === 200) {
+                    console.log(this.response);
+                    var data = JSON.parse(this.response);
+                    var url = data.message;
+                    //console.log(url);
+                    
+                    var urlHolder = document.getElementById("currentUrlHolderAlpesa").innerHTML = url;
+                    
+                    /**enable btn hide loader**/
+                    referLoader.style.display = "none";
+                    currBtn.disabled = false;
+                    
+                } else {
+                   console.log('Error: ' + this.status);
+                    /**enable btn hide loader**/
+                    referLoader.style.display = "none";
+                    currBtn.disabled = false;
+                }
+            }
+        };
+        xhttp.open("GET", "<?php echo Mage::getBaseUrl();?>alpesa/refer/generate", true);
+        xhttp.send();
+    }
+</script>

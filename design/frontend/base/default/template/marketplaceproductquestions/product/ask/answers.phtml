@@ -1,0 +1,6 @@
+<?php $questionId = $this->getData('questionId') ; ?>
+<?php $answer = $this->getAnswer($questionId);?>
+
+<div class="answers">
+<?php echo $answer->getData('answer_body'); ?>
+</div>

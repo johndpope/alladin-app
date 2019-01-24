@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+        <form class="form subscribe"
+            novalidate
+            action="<?php echo $block->getFormActionUrl() ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="input-group">
+                <!--<label class="label" for="footer_newsletter"><span><?php echo __('Sign Up for Our Newsletter:') ?></span></label>-->
+                <input name="email" placeholder="<?php echo __('Email Address'); ?>" type="email" id="footer_newsletter"
+                               class="form-control input-text" data-validate="{required:true, 'validate-email':true}"/>
+                <span class="input-group-btn">
+                    <button class="action subscribe primary" type="submit" title="<?php echo __('Go!') ?>">
+                        <span><span><i class="icon varmo-icon-line-plane"></i></span></span>
+                    </button>
+                </span>
+                
+            </div>
+        </form>

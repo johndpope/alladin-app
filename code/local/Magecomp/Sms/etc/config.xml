@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Magecomp_Sms>
+			<version>2.0.2</version>
+		</Magecomp_Sms>
+	</modules>
+	 <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <sms after="Mage_Adminhtml">Magecomp_Sms_Adminhtml</sms>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>	
+	 <adminhtml>
+		<layout>
+            <updates>
+                <sms>
+                    <file>sms.xml</file> 
+                </sms>
+            </updates>
+        </layout>        
+    </adminhtml>
+	<global>
+		<blocks>
+			<sms>
+				<class>Magecomp_Sms_Block</class>
+			</sms>
+		</blocks>
+		<helpers>
+			<sms>
+				<class>Magecomp_Sms_Helper</class>
+				<rewrite>
+					<data>Magecomp_Sms_Helper_Data</data>
+				</rewrite>
+			</sms>
+		</helpers>
+		<models>
+			<sms>
+				<class>Magecomp_Sms_Model</class>
+				<resourceModel>sms_mysql4</resourceModel>
+			</sms>
+			<sms_mysql4>
+				<class>Magecomp_Sms_Model_Mysql4</class>
+				<entities>
+					<smsregisterotp>
+						<table>smsnotify_register_otp</table>
+					</smsregisterotp>
+				</entities>
+				<entities>
+					<smsreport>
+						<table>smsnotify_report</table>
+					</smsreport>
+				</entities>
+			</sms_mysql4>
+		</models>
+		<resources>
+			<sms_setup>
+				<setup>
+					<module>Magecomp_Sms</module>
+					<class>Mage_Eav_Model_Entity_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</sms_setup>
+			<articles_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</articles_write>
+			<articles_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</articles_read>
+		</resources>
+		<events>
+			<customer_register_success>
+				<observers>
+					<Magecomp_Sms_Register>
+						<class>sms/observer</class>
+						<method>customerRegisterSuccess</method>
+					</Magecomp_Sms_Register>
+				</observers>
+			</customer_register_success>
+			<checkout_onepage_controller_success_action>
+				<observers>
+					<Magecomp_Sms_NewOrder>
+						<class>sms/observer</class>
+						<method>salesOrderPlace</method>
+					</Magecomp_Sms_NewOrder>
+				</observers>
+			</checkout_onepage_controller_success_action>
+			
+			
+			
+			<sales_order_shipment_save_after>
+				<observers>
+					<Magecomp_Sms_shipment>
+						<class>sms/observer</class>
+						<method>updateOrderTrackingNumber</method>
+					</Magecomp_Sms_shipment>
+				</observers>
+			</sales_order_shipment_save_after>
+			<sales_order_invoice_save_after>
+				<observers>
+					<Magecomp_Sms_shipment>
+						<class>sms/observer</class>
+						<method>invoceRegister</method>
+					</Magecomp_Sms_shipment>
+				</observers>
+			</sales_order_invoice_save_after>
+			<order_cancel_after>
+				<observers>
+					<Magecomp_Sms_shipment>
+						<class>sms/observer</class>
+						<method>cancelOrder</method>
+					</Magecomp_Sms_shipment>
+				</observers>
+			</order_cancel_after>
+			<!--<sales_order_payment_pay>
+				<observers>
+					<Magecomp_Sms_shipment>
+						<class>sms/observer</class>
+						<method>completeOrder</method>
+					</Magecomp_Sms_shipment>
+				</observers>
+			</sales_order_payment_pay>-->
+			<sales_order_creditmemo_refund>
+				<observers>
+					<Magecomp_Sms_shipment>
+						<class>sms/observer</class>
+						<method>creditMemoRefund</method>
+					</Magecomp_Sms_shipment>
+				</observers>
+			</sales_order_creditmemo_refund>
+		</events>
+	</global>
+	<frontend>
+		<events>
+			<controller_action_postdispatch_contacts_index_post>
+				<observers>
+					<Magecomp_Sms_Contactform>
+						<class>sms/observer</class>
+						<method>contactForm</method>
+					</Magecomp_Sms_Contactform>
+				</observers>
+			</controller_action_postdispatch_contacts_index_post>
+		</events>
+		<routers>
+			<sms>
+				<use>standard</use>
+				<args>
+					<module>Magecomp_Sms</module>
+					<frontName>sms</frontName>
+				</args>
+			</sms>
+		</routers>
+		 <layout>
+            <updates>
+                <customoptions>
+                    <file>sms.xml</file> 
+                </customoptions>
+            </updates>
+        </layout>    
+	</frontend>
+	<default>
+		<sms>
+			<general>
+				<otp>8</otp>
+			</general>
+			<general>
+				<apiurl>http://api.smscountry.com/SMSCwebservice_bulk.aspx</apiurl>
+			</general>
+			<updatemobsms>
+				<message>Hello, We have received your request For Mobile number updae , your Otp is {{random_code}}. Thanks alot
+				</message>
+			</updatemobsms>
+			<contactus>
+				<enable>0</enable>
+				<message>Hello {{name}}. We have received your request. Thanks alot</message>
+			</contactus>
+			<customer>
+				<enable>0</enable>
+				<message>Hello {{name}}. We have received your order. Thanks alot</message>
+			</customer>
+			<orderplace>
+				<enable>0</enable>
+				<message>Hello {{firstname}}. We have received your order. Order id is {{order_id}}. Thanks alot </message>
+			</orderplace>
+			<ordertracking>
+				<enable>0</enable>
+				<message>Hello {{firstname}}. Your order is now on shipment. You will get it soon. Thank you for buying from us.</message>
+			</ordertracking>
+			<registeredcustomer>
+				<message>
+					This {{day_month_week}}, {{customer_count}} customers get registered with your {{shop_name}}.
+				</message>
+			</registeredcustomer>
+			<resendsms>
+				<message>
+					Your OTP (one time password) for registering with {{shop_name}}' is '{{randm_code}}
+				</message>
+			</resendsms>
+		</sms>
+		<usertemplate>
+			<customer>
+				<message>
+					Thank you {{first_name}} {{last_name}} for registering with {{shop_name}} at {{shop_url}}
+
+				</message>
+			</customer>
+			<orderplace>
+				<message>
+					Dear {{first_name}} {{last_name}}, thank you for placing order at {{shop_name}}. You order details are given below: 
+Order Number: {{order_id}}
+Shipping Address: {{street}},{{fax}},{{postal}},{{city}}
+
+				</message>
+			</orderplace>
+			<invoicegerate>
+				<message>
+				Invoice for your order {{order_id}} dated {{order_created_date}} is generated, you can directly print or download it from your registered Email ID
+
+				</message>
+			</invoicegerate>
+			<cancelorder>
+				<message>Dear {{first_name}} {{last_name}}, we are sorry to see you Cancel. Your order {{order_id}} created on }},{{order_created_date}} has been cancelled successfully.
+</message>
+			</cancelorder>
+			<ordertracking>
+				<message>Dear {{first_name}} {{last_name}}, your order {{order_id}} has been shipped today. It will be soon arrive at your doorstep.</message>
+
+			</ordertracking>
+			<returnorder>
+				<message>
+					Dear {{first_name}} {{last_name}}, your refund request for order {{order_id}} has been accepted and under process.
+
+				</message>
+			</returnorder>
+		</usertemplate>
+		<admintemplate>
+			<contactus>
+				<message>Hi admin, you have got an inquiry from customer with following details:
+Name: {{name}}
+Email ID: {{email}}
+Contact No.:{{mobilenumber}}
+Store: {{shop_name}}
+Store URL: {{shop_url}}
+</message>
+			</contactus>
+			<customer>
+				<message>
+					Hi admin, a customer has registered to {{shop_name}} from {{shop_url}} with following details:
+First Name: {{first_name}}
+Last Name: {{last_name}}
+Email ID: {{email}}
+Contact No.:{{mobilenumber}}
+
+				</message>
+			</customer>
+			<orderplace>
+				<message>
+					Hi admin, an order is placed at {{shop_name}} with following details: 
+Customer: {{first_name}} {{last_name}}
+Email ID: {{email}}
+Order ID: {{order_id}}
+
+				</message>
+			</orderplace>
+			<returnorder>
+				<message>Hi admin, you have got a refund request for an order with following details:
+Order ID: {{order_id}}
+Order date: {{order_created_date}}
+Quantity: {{product_count}}
+Customer: {{first_name}} {{last_name}}
+Order Amount: {{order_total}}</message>
+			</returnorder>
+		</admintemplate>
+	</default>
+	 <crontab>
+        <jobs>   
+			<sms_registeredcustomer>
+				<schedule><cron_expr>*/1 * * * *</cron_expr></schedule>
+	            <run><model>sms/observer::sendReportToAdmin</model></run>
+            </sms_registeredcustomer>
+        </jobs>
+    </crontab>
+</config>

@@ -1,0 +1,26 @@
+<?php
+$fbenable = Mage::getStoreConfig('socialsettings/facebook/facebookenable');
+$fbId = Mage::getStoreConfig('socialsettings/facebook/facebookid');
+$fbwidth = Mage::getStoreConfig('socialsettings/facebook/iframewidth');
+$fbheight = Mage::getStoreConfig('socialsettings/facebook/iframeheight');
+$hidecover = Mage::getStoreConfig('socialsettings/facebook/hidecover');
+$facepile = Mage::getStoreConfig('socialsettings/facebook/facepile');
+$showpost = Mage::getStoreConfig('socialsettings/facebook/showpost');
+$hidecta = Mage::getStoreConfig('socialsettings/facebook/hidecta');
+$smallheader = Mage::getStoreConfig('socialsettings/facebook/smallheader');
+$adaptcontainer = Mage::getStoreConfig('socialsettings/facebook/adaptcontainer');
+
+if ($fbenable) {
+    ?>
+    <div class="block-content col-lg-6">
+        <div class="fb-page" data-href="<?php echo $fbId; ?>" data-height="<?php echo $fbheight ? $fbheight : 250 ; ?> " data-width="<?php echo $fbwidth ? $fbwidth : 200; ?>" data-small-header="<?php echo $smallheader ? 'ture' : 'flase'; ?>" data-adapt-container-width="<?php echo $adaptcontainer ? 'true' : 'false'; ?>" data-hide-cover="<?php echo $hidecover ? 'true' : 'false'; ?>" data-show-facepile="<?php echo $facepile ? 'true' : 'false'; ?>" data-show-posts="<?php echo $showpost ? 'true' : 'false'; ?>" data-hide-cta="<?php echo $hidecta ? 'true' : 'false'; ?>">
+            <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="<?php echo $fbId; ?>">
+                    <a href="<?php echo $fbId; ?>"><?php echo $fbId; ?></a>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+?>

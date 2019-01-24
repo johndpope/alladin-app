@@ -1,0 +1,330 @@
+<root>
+   <blocks>
+      <cms_block>
+         <title>Contact Us</title>
+         <identifier>block_contact</identifier>
+         <content><![CDATA[<div class="block"><div class="block-title"><strong><span>Get in touch</strong></span>
+</div>
+<div class="block-content">
+	<ul class="contact-content"> <li class="address-block"> <div class="contact-content-inner"><div class="icon-block"><i class="icon icon-Pointer"></i></div><div class="contact-content-meta"><label>Address :</label> <span>Zozotheme Inc. <br>Australia - 2000.</span></div></div></li><li class="phone-block"> <div class="contact-content-inner"> <div class="icon icon-block"> <i class="icon-Phone2"></i> </div><div class="contact-content-meta"> <label>Phone :</label> <span>+1 (008) 775 77 33</span></div></div></li><li class="mail-block"> <div class="contact-content-inner"> <div class="icon icon-block"> <i class="icon-Mail"></i> </div><div class="contact-content-meta"> <label>Email :</label> <span>info@domain.com</span> </div></div></li><li class="office-hours-block"> <div class="contact-content-inner"> <div class="icon icon-block"> <i class="icon icon-Time"></i> </div><div class="contact-content-meta"> <label>Working Days/Hours:</label> <span>Mon - Sun / 9:00Am - 6:00pm</span> </div></div></li></ul>
+</div></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer Links</title>
+         <identifier>block_footer_links</identifier>
+         <content><![CDATA[<div class="block-title">
+<strong><span>Customer Service</strong></span>
+</div>
+<div class="block-content">
+<ul class="links">
+<li><a title="Site Map" href="catalog/seo_sitemap/category/">Site Map</a></li>
+<li><a title="Search Terms" href="catalogsearch/term/popular/">Search Terms</a></li>
+<li><a title="Advanced Search" href="catalogsearch/advanced/">Advanced Search</a></li>
+<li><a title="Orders and Returns" href="sales/guest/form/">Orders and Returns</a></li>
+<li><a title="Contact Us" href="contacts/">Contact Us</a></li>
+</ul>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Popup</title>
+         <identifier>block_static_popup</identifier>
+         <content><![CDATA[<p>This Site uses Cookies</p>
+<p>A <strong>cookie</strong>, also known as an <strong>HTTP cookie</strong>, <strong>web cookie</strong>, <strong>Internet cookie</strong>, or <strong>browser cookie</strong>, is a small piece of data sent from a website and stored in a user's <a title="Web browser" href="http://en.wikipedia.org/wiki/Web_browser">web browser</a> while the user is browsing that website. Every time the user loads the website, the browser sends the cookie back to the server to notify the website of the user's previous activity.<sup id="cite_ref-1" class="reference"><a href="http://en.wikipedia.org/wiki/HTTP_cookie#cite_note-1"><span>[</span>1<span>]</span></a></sup> Cookies were designed to be a reliable mechanism for websites to remember <a class="mw-redirect" title="Program state" href="http://en.wikipedia.org/wiki/Program_state">stateful</a> information (such as items in a shopping cart) or to record the user's browsing activity (including clicking particular buttons, <a title="Authentication" href="http://en.wikipedia.org/wiki/Authentication">logging in</a>, or recording which pages were visited by the user as far back as months or years ago).</p>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Block Left one</title>
+         <identifier>block_static_left1</identifier>
+         <content><![CDATA[<div id="static-block-slider" class="owl-carousel block-slider block dots-light"><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-14.jpg"}}"> </div><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-15.jpg"}}"> </div></div><div class="block block-widget"><div class="block-content typo-light"> <div class="feature-box icon-circle hover-shadow-icon feature-box-bg bg-light-green store-featured-one radius-4"><div class="feature-icon"><i class="icon icon-Scisors"></i></div><div class="feature-content"><h4 class="heading">Free Coupons</h4><p>$5 off when you spend $40 or more </p></div></div><div class="feature-box  icon-circle hover-shadow-icon feature-box-bg mt-30 bg-yellow store-featured-two radius-4"> <div class="feature-icon"> <i class="icon icon-Timer"></i> </div><div class="feature-content"> <h4 class="heading">Daily Deals</h4> <p>10% off on all items valid through 12th June</p></div></div><div class="feature-box icon-circle hover-shadow-icon feature-box-bg mt-30 bg-light-blue store-featured-three radius-4"> <div class="feature-icon"> <i class="icon icon-Megaphone"></i> </div><div class="feature-content"> <h4 class="heading">Price Alerts</h4> <p>Get SMS alerts when your stock moves up or down</p></div></div><div class="feature-box icon-circle hover-shadow-icon feature-box-bg mt-30 bg-pink store-featured-four radius-4"> <div class="feature-icon"> <i class="icon icon-BigTruck"></i> </div><div class="feature-content"> <h4 class="heading">Replace and returns</h4> <p>Item(s) replace and returns available</p></div></div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#static-block-slider').owlCarousel({items:1,autoplay: true,autoplayTimeout: 5000,autoplayHoverPause: true,dots: true,nav: false,animateIn: 'fadeIn',animateOut: 'fadeOut',loop: true,});var pageSection=$(".image-bg");pageSection.each(function(indx){if ($(this).attr("data-background")){$(this).css("background-image", "url(" + $(this).data("background") + ")");}});});})(jQuery);</script>
+	]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Static Block Left one rtl</title>
+         <identifier>block_static_left1_rtl</identifier>
+         <content><![CDATA[<div id="static-block-slider" class="owl-carousel block-slider block dots-light"><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-14.jpg"}}"> </div><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-15.jpg"}}"> </div></div><div class="block block-widget"><div class="block-content typo-light"> <div class="feature-box icon-circle hover-shadow-icon feature-box-bg bg-light-green store-featured-one radius-4"><div class="feature-icon"><i class="icon icon-Scisors"></i></div><div class="feature-content"><h4 class="heading">Free Coupons</h4><p>$5 off when you spend $40 or more </p></div></div><div class="feature-box  icon-circle hover-shadow-icon feature-box-bg mt-30 bg-yellow store-featured-two radius-4"> <div class="feature-icon"> <i class="icon icon-Timer"></i> </div><div class="feature-content"> <h4 class="heading">Daily Deals</h4> <p>10% off on all items valid through 12th June</p></div></div><div class="feature-box icon-circle hover-shadow-icon feature-box-bg mt-30 bg-light-blue store-featured-three radius-4"> <div class="feature-icon"> <i class="icon icon-Megaphone"></i> </div><div class="feature-content"> <h4 class="heading">Price Alerts</h4> <p>Get SMS alerts when your stock moves up or down</p></div></div><div class="feature-box icon-circle hover-shadow-icon feature-box-bg mt-30 bg-pink store-featured-four radius-4"> <div class="feature-icon"> <i class="icon icon-BigTruck"></i> </div><div class="feature-content"> <h4 class="heading">Replace and returns</h4> <p>Item(s) replace and returns available</p></div></div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#static-block-slider').owlCarousel({items:1,rtl:true,autoplay: true,autoplayTimeout: 5000,autoplayHoverPause: true,dots: true,nav: false,animateIn: 'fadeIn',animateOut: 'fadeOut',loop: true,});var pageSection=$(".image-bg");pageSection.each(function(indx){if ($(this).attr("data-background")){$(this).css("background-image", "url(" + $(this).data("background") + ")");}});});})(jQuery);</script>
+	]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Static Block Left two</title>
+         <identifier>block_static_left2</identifier>
+         <content><![CDATA[<div class="block block-static-image"><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/sideblock-01.jpg"}}" name="sideblock-01" alt="" /></a><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/sideblock-02.jpg"}}" name="sideblock-02" alt="" /></a><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/hotline.jpg"}}" name="sideblock-02" alt=""/></a></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Static Block Left two Rtl</title>
+         <identifier>block_static_left2_rtl</identifier>
+         <content><![CDATA[{{block type="zozoconcepts_blog/blog_list" name="zozo.brand" rtl="true" template="zozoconcepts/zozoconcepts_blog/blog/home-side-blog-slide.phtml"}}<div class="block block-static-image"><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/sideblock-01.jpg"}}" name="sideblock-01" alt="" /></a><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/sideblock-02.jpg"}}" name="sideblock-02" alt="" /></a><a class="overlay medium" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/hotline.jpg"}}" name="sideblock-02" alt=""/></a></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Block Left Three</title>
+         <identifier>block_static_left3</identifier>
+         <content><![CDATA[<div class="block block-static-image"><a class="overlay medium radius-4" href="#"> <span class="overlay-inner"></span> <img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-04.jpg"}}" name="sideblock-01" alt=""/> </a> <a class="overlay medium radius-4" href="#"> <span class="overlay-inner"></span> <img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-05.jpg"}}" name="sideblock-02" alt=""/></a><a class="overlay medium radius-4" href="#"><span class="overlay-inner"></span><img class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/hotline.jpg"}}" name="sideblock-02" alt=""/></a></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	   <cms_block>
+         <title>Static Block Left Four</title>
+         <identifier>block_static_left4</identifier>
+         <content><![CDATA[<div id="static-block-slider" class="owl-carousel block-slider block dots-light"><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-62.jpg"}}"> </div><div class="block-item"> <img alt="Generic placeholder image" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-63.jpg"}}"> </div></div><div class="block block-widget"> <div class="block-content"> <div class="feature-box feature-box-bg"> <div class="feature-icon"> <i class="icon icon-Scisors"></i> </div><div class="feature-content"> <h4 class="heading">Free Coupons</h4> <p>$5 off when you spend $40 or more </p></div></div><div class="feature-box feature-box-bg mt-30"> <div class="feature-icon"> <i class="icon icon-Timer"></i> </div><div class="feature-content"> <h4 class="heading">Daily Deals</h4> <p>10% off on all items valid through 12th June</p></div></div><div class="feature-box feature-box-bg mt-30"> 
+<div class="feature-icon"> <i class="icon icon-Megaphone"></i> </div><div class="feature-content"> <h4 class="heading">Price Alerts</h4> <p>Get SMS alerts when your stock moves up or down</p></div></div><div class="feature-box feature-box-bg mt-30"> <div class="feature-icon"> <i class="icon icon-BigTruck"></i> </div><div class="feature-content"> <h4 class="heading">Replace and returns</h4> <p>Item(s) replace and returns available</p></div></div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#static-block-slider').owlCarousel({items:1,autoplay: true,autoplayTimeout: 5000,autoplayHoverPause: true,dots: true,nav: false,animateIn: 'fadeIn',animateOut: 'fadeOut',loop: true,});var pageSection=$(".image-bg");pageSection.each(function(indx){if ($(this).attr("data-background")){$(this).css("background-image", "url(" + $(this).data("background") + ")");}});});})(jQuery);</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Block Right One</title>
+         <identifier>block_static_right1</identifier>
+         <content><![CDATA[<div class="block note-msg"><p>put your static content or image here.</p></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Block Right Two</title>
+         <identifier>block_static_right2</identifier>
+         <content><![CDATA[<div class="block note-msg"><p>put your static content or image here.</p></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>About Company</title>
+         <identifier>block_about_company</identifier>
+         <content><![CDATA[<div class="block"><div class="block-title"><strong><span>About Us</strong></span></div>
+<div class="block-content">
+<p>We design and develop themes for customers of all sizes, specializing in creating stylish, modern websites, web portfolios and e-commerce stores. We create a website that stands out.</p>
+</div></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Static Footer section</title>
+         <identifier>block_footer_top</identifier>
+         <content><![CDATA[<div class="footer-top border-primary-color">
+<div class="row">
+<div class="col-md-4">
+<div class="footer-content-box shipping-icon">
+<h3 class="text-uppercase">free Shipping</h3>
+<p>Sunt ratione dui atque rutrum id felis nisl tempora</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="footer-content-box gift-icon">
+<h3 class="text-uppercase">special gift cards</h3>
+<p>Sunt ratione dui atque rutrum id felis nisl tempora</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="footer-content-box moneyBack-icon">
+<h3 class="text-uppercase">Money back guarantee</h3>
+<p>Sunt ratione dui atque rutrum id felis nisl tempora</p>
+</div>
+</div>
+</div>
+</div>
+
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer payment</title>
+         <identifier>block_footer_payment</identifier>
+         <content><![CDATA[<div class="block-title">
+<strong><span>We Accept</strong></span>
+</div>
+<div class="block-content">
+<ul class="list-h-items">
+<li><em class="fa fa-cc-paypal">&nbsp;</em></li>
+<li><em class="fa fa-cc-mastercard">&nbsp;</em></li>
+<li><em class="fa fa-cc-discover">&nbsp;</em></li>
+<li><em class="fa fa-cc-visa">&nbsp;</em></li>
+</ul>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Features</title>
+         <identifier>block_header_nav_dropdown</identifier>
+         <content><![CDATA[<div class="row grid-container-spaced">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="support-block">
+					<div class="icon-block">
+						<i class="icon icon-Headset"></i>
+					</div>
+					<div class="content-block">
+						<p class="secondary-text">Call us 24/7</p>
+						<h4 class="support-title">(044) 044-8588</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="support-block">
+					<div class="icon-block">
+						<i class="icon icon-Microphone2"></i>
+					</div>
+					<div class="content-block">
+						<p class="secondary-text">Mail us 24/7</p>
+						<h4 class="support-title">Support@varmo.com</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="support-block">
+					<div class="icon-block">
+						<i class="icon icon-House"></i>
+					</div>
+					<div class="content-block">
+						<p class="secondary-text">Visit us at</p>
+						<h4 class="support-title">www.varmo.com</h4>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="col-md-4">
+		<div class="feature-box icon-transparent icon-title-inline icon-size-md">
+			<div class="feature-icon">
+				<i class="icon icon-BatteryLow"></i>
+			</div>
+			<div class="feature-content">	
+				<h4 class="heading">One Click Demo Importer</h4>
+				<p>Easily import any of our professionally designed demos with a click of a button. No xml files, it’s a beautiful thing.</p>
+				<a class="btn-link" href="#">Learn more</a>
+			</div>	
+		</div>	
+	</div>
+	<div class="col-md-4">
+		<div class="feature-box icon-transparent icon-title-inline icon-size-md">
+			<div class="feature-icon">
+				<i class="icon icon-Corkscrew"></i>
+			</div>	
+			<div class="feature-content">
+				<h4 class="heading">Theme Options</h4>
+				<p>Plethora of options neatly organized into sections that allow you to build websites without any coding knowledge.</p>
+				<a class="btn-link" href="#">Learn more</a>
+			</div>
+		</div>	
+	</div>
+	<div class="col-md-4">
+		<div class="feature-box icon-transparent icon-title-inline icon-size-md">
+			<div class="feature-icon">
+				<i class="icon icon-DesktopMonitor"></i>
+			</div>
+			<div class="feature-content">
+				<h4 class="heading">Responsive Framework</h4>
+				<p>Varmo is fully responsive and adapts to every screen size. We obsessively test it all so your content looks beautiful.</p>
+				<a class="btn-link" href="#">Learn more</a>
+			</div>
+		</div>	
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Customer Services</title>
+         <identifier>block_customer_services</identifier>
+         <content><![CDATA[<div class="block-title">
+<strong><span>Customer Services</strong></span>
+</div>
+<div class="block-content">
+<ul class="list">
+<li><a href="{{store direct_url='customer-service/#answer1'}}">Shipping &amp; Delivery</a></li>
+<li><a href="{{store direct_url='customer-service/#answer2'}}">Privacy &amp; Security</a></li>
+<li><a href="{{store direct_url='customer-service/#answer3'}}">Returns &amp; Replacements</a></li>
+<li><a href="{{store direct_url='customer-service/#answer4'}}">Ordering</a></li>
+<li><a href="{{store direct_url='customer-service/#answer5'}}">Payment, Pricing &amp; Promotions</a></li>
+<li><a href="{{store direct_url='customer-service/#answer6'}}">Viewing Orders</a></li>
+<li><a href="{{store direct_url='customer-service/#answer7'}}">Updating Account Information</a></li></ul>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Breadcrumb Message</title>
+         <identifier>block_static_breadcrumb</identifier>
+         <content><![CDATA[<p>&nbsp; Monday - Friday 8.00 - 20.00</p>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Home Side Newsletter block</title>
+         <identifier>block_home_side_newsletter</identifier>
+         <content><![CDATA[<p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Copyright section</title>
+         <identifier>block_copyright</identifier>
+         <content><![CDATA[<p>&copy;Copyright 2016. Theme Made by <a href="http://zozothemes.com" target="_blank">ZozoThemes</a></p>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Bottom footer payment cards</title>
+         <identifier>block_paymentscards</identifier>
+         <content><![CDATA[<img class="payment-methods pull-right" src="{{skin url='images/payment.png'}}"/>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Static Block - Contact</title>
+         <identifier>block_contact_static</identifier>
+         <content><![CDATA[<div class="calltoaction">
+ <h2 class="calltoaction-title">Building a unique and beautiful website ever been easier.</h2>
+    <a href="#" class="btn btn-white calltoaction-btn">Buy now</a>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Static Block - Header Static version 5</title>
+         <identifier>block_header5_static</identifier>
+         <content><![CDATA[<div class="row"><div class="col-md-6"><div class="branding"><h1 class="logo"><a href="{{store url=''}}" title="Magento Commerce" class="logo"><img class="pull-left" src="{{skin url='images/logo.gif'}}"/></a></h1></div></div><div class="col-md-3"><ul class="contact-content"><li class="phone-block"><div class="contact-content-inner"><div class="icon icon-block"><i class="icon-Phone2"></i></div><div class="contact-content-meta"> <label>Call Us </label><a href="tel:{{config path="general/store_information/phone"}}"><span>{{config path="general/store_information/phone"}}</span></a></div></div></li></ul></div><div class="col-md-3"><ul class="contact-content"><li class="mail-block"><div class="contact-content-inner"><div class="icon icon-block"><i class="icon-Mail"></i></div><div class="contact-content-meta"><label>Email Us</label><a href="mailto:{{config path={{config path="trans_email/ident_general/email"}}"><span>{{config path="trans_email/ident_general/email"}}</span></a></div></div></li></ul></div></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Testimonial Block - Home Static version 1</title>
+         <identifier>block_testimonial_static_v1</identifier>
+         <content><![CDATA[<div class="block block-testimonial"><div class="block-title"><strong><span>Testimonials</span></strong></div><div id="side-bar-testimonials-slider" class="owl-carousel block-content text-center"> <div class="testimonial-item"><blockquote><p>Varmo is a great product. I'd recommend this theme to those, who looking to start an online shopping. This theme is straightforward and best of all. They have a great support team.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-01.jpg"}}" alt="John Doe"/> <h5 class="author-name">Steeve Smith</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div><div class="testimonial-item"><blockquote><p>I purchased Varmo. The customer support provided was really good. The quality of this theme was just as I imagined”. Thanks to Varmo.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-02.jpg"}}" alt="John Doe"/> <h5 class="author-name">John Doe</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div><div class="testimonial-item"><blockquote><p>I purchased Varmo. It is not only a good theme in terms of design and utility but also came with an attractive price tag. Thanks to Varmo.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-03.jpg"}}" alt="John Doe"/> <h5 class="author-name">John McKensey</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#side-bar-testimonials-slider').owlCarousel({items:1, margin:30, responsive:{0:{items:1},480:{items:1},767:{items:1},991:{items:1},1024:{items:1}},nav: true,navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],autoplay: true,autoplayHoverPause: true,dots: false,navRewind: true,loop: true,});});})(jQuery);</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Testimonial Block - Home Static version 1 (rtl)</title>
+         <identifier>block_testimonial_static_v1_rtl</identifier>
+         <content><![CDATA[<div class="block block-testimonial"><div class="block-title"><strong><span>Testimonials</span></strong></div><div id="side-bar-testimonials-slider" class="owl-carousel block-content text-center"> <div class="testimonial-item"><blockquote><p>Varmo is a great product. I'd recommend this theme to those, who looking to start an online shopping. This theme is straightforward and best of all. They have a great support team.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-01.jpg"}}" alt="John Doe"/> <h5 class="author-name">Steeve Smith</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div><div class="testimonial-item"><blockquote><p>I purchased Varmo. The customer support provided was really good. The quality of this theme was just as I imagined”. Thanks to Varmo.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-02.jpg"}}" alt="John Doe"/> <h5 class="author-name">John Doe</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div><div class="testimonial-item"><blockquote><p>I purchased Varmo. It is not only a good theme in terms of design and utility but also came with an attractive price tag. Thanks to Varmo.</p></blockquote> <img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-03.jpg"}}" alt="John Doe"/> <h5 class="author-name">John McKensey</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#side-bar-testimonials-slider').owlCarousel({items:1,rtl:true, margin:30, responsive:{0:{items:1},480:{items:1},767:{items:1},991:{items:1},1024:{items:1}},nav: true,navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],autoplay: true,autoplayHoverPause: true,dots: false,navRewind: true,loop: true,});});})(jQuery);</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	  <cms_block>
+         <title>Testimonial Block - Home Static version 4</title>
+         <identifier>block_testimonial_static_v4</identifier>
+         <content><![CDATA[<div class="block"><div id="side-bar-testimonials-slider" class="owl-carousel block-content text-center"><div class="testimonial-item"><img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-01.jpg"}}" alt="John Doe"/><blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p></blockquote><h5 class="author-name">Steeve Smith</h5><span class="author-position">CEO & Founder - Digital Creative</span></div><div class="testimonial-item"><img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-02.jpg"}}" alt="John Doe"/> <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p></blockquote><h5 class="author-name">John Doe</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div><div class="testimonial-item"><img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-03.jpg"}}" alt="John Doe"/> <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p></blockquote><h5 class="author-name">John McKensey</h5> <span class="author-position">CEO & Founder - Digital Creative</span> </div></div></div><script type="text/javascript">(function($){$(document).ready(function(){$('#side-bar-testimonials-slider').owlCarousel({items:1, margin:30, responsive:{0:{items:1},480:{items:1},767:{items:1},991:{items:1},1024:{items:1}},nav: true,navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],autoplay: true,autoplayHoverPause: true,dots: false,navRewind: true,loop: true,});});})(jQuery);</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+	   <cms_block>
+         <title>Banner Block - Home Static version 12</title>
+         <identifier>block_static_banner</identifier>
+         <content><![CDATA[<div class="banner-block"> <div class="container"> <div class="row"> <div class="featurette"> <div class="col-md-9 col-md-offset-3 ptb-30"> <div class="home-slider hero-slider owl-carousel owl-middle-narrow nav-dark"> <div class="slide-item"> <a href="#" class="banner-image"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-22.jpg"}}" /></a> </div><div class="slide-item"> <a href="#" class="banner-image"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-23.jpg"}}" /></a> </div><div class="slide-item"> <a href="#" class="banner-image"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-23-1.jpg"}}" /></a> </div></div></div></div></div></div></div><section class="store-featured-section ptb-none"><div class="container"><div class="row"> <div class="col-md-4"> <div class="feature-box icon-circle feature-box-bg"> <div class="feature-icon"> <i class="icon icon-Scisors"></i> </div><div class="feature-content"> <h4 class="heading">Free Coupons</h4> <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet <a href="#">[...]</a> </p></div></div></div><div class="col-md-4 mt-30-991"> <div class="feature-box icon-circle feature-box-bg"> <div class="feature-icon"> <i class="icon icon-Timer"></i> </div><div class="feature-content"> <h4 class="heading">Daily Deals</h4> <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet <a href="#">[...]</a> </p></div></div></div><div class="col-md-4 mt-30-991"> <div class="feature-box icon-circle feature-box-bg"> <div class="feature-icon"> <i class="icon icon-Megaphone"></i> </div><div class="feature-content"> <h4 class="heading">Price Alerts</h4> <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet <a href="#">[...]</a> </p></div></div></div></div></div></section><script type="text/javascript">(function($){$(document).ready(function(){$('.hero-slider').owlCarousel({items:1,autoplay: true,autoplayTimeout: 5000,autoplayHoverPause: true,dots: true,nav: false,navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],animateIn: 'fadeIn',animateOut: 'fadeOut',loop: true,});var pageSection=$(".image-bg");pageSection.each(function(indx){if ($(this).attr("data-background")){$(this).css("background-image", "url(" + $(this).data("background") + ")");}});});})(jQuery);</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+</blocks>
+</root>

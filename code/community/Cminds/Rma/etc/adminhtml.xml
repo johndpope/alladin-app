@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <rma translate="title" module="cminds_rma">
+            <title>RMA</title>
+            <sort_order>60</sort_order>
+            <children>
+                <list>
+                    <title>List</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/rma</action>
+                </list>
+                <settings>
+                    <title>Settings</title>
+                    <sort_order>20</sort_order>
+                    <children>
+                        <rma_statuses translate="title" module="cminds_rma">
+                            <title>Manage Statuses</title>
+                            <action>adminhtml/rma_status</action>
+                        </rma_statuses>
+                        <rma_types translate="title" module="cminds_rma">
+                            <title>Manage Types</title>
+                            <action>adminhtml/rma_type</action>
+                        </rma_types>
+                        <rma_reasons translate="title" module="cminds_rma">
+                            <title>Manage Reasons</title>
+                            <action>adminhtml/rma_reason</action>
+                        </rma_reasons>
+                    </children>
+                </settings>
+            </children>
+        </rma>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <rma>
+                        <children>
+                            <list>
+                                <title>CMinds RMA Extension - RMA List</title>
+                            </list>
+                            <settings>
+                                <children>
+                                    <rma_statuses>
+                                        <title>CMinds RMA Extension - RMA Statuses</title>
+                                    </rma_statuses>
+                                    <rma_types>
+                                        <title>CMinds RMA Extension - RMA Types</title>
+                                    </rma_types>
+                                    <rma_reasons>
+                                        <title>CMinds RMA Extension - RMA Reasons</title>
+                                    </rma_reasons>
+                                </children>
+                            </settings>
+                        </children>
+                    </rma>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <cminds_rma translate="title" module="cminds_rma">
+                                        <title>CMinds RMA Extension - General Configuration</title>
+                                        <sort_order>10</sort_order>
+                                    </cminds_rma>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

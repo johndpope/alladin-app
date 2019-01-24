@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <suppliers>
+            <children>
+                <trades_grid translate="title" module="marketplace">
+                    <title>Manage Trades</title>
+                    <action>adminhtml/trades</action>
+                    <sort_order>50</sort_order>
+                </trades_grid>
+            </children>
+        </suppliers>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <suppliertrading translate="title" module="suppliertrading">
+                                        <title>Supplier Trading</title>
+                                    </suppliertrading>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <suppliers>
+                        <children>
+                            <trades_grid translate="title" module="suppliertrading">
+                                <title>Trades Grid</title>
+                                <sort_order>10</sort_order>
+                            </trades_grid>
+                        </children>
+                    </suppliers>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+     

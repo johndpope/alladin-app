@@ -1,0 +1,75 @@
+<?php
+/* 
+ * Zozothemes.
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Zozothemes.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.zozothemes.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category   Zozothemes
+ * @package    Zozothemes_Varmo
+ * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+ * @license    http://www.zozothemes.com/LICENSE-1.0.html
+ */
+
+$tweets = $this->getTweets();
+$helper = $this->helper;
+$title = $helper->getTwitterTitle()?$helper->getTwitterTitle():'Recent Tweets';
+$username = $helper->getTwitterUsername();
+error_reporting(0);  // Enable this on bootstrap as $tweets->objects become undefined property during api callback
+?>
+
+<div id="static-tweet" class="block block-twitter">
+        <div class="block-title">
+            <strong>
+                <span>
+                <?php echo __($title) ?>
+		</span>
+            </strong>
+        </div>
+        
+            <div class="block-content">
+             <?php 
+                if($helper->getTwitterConfig() === 'tw_widget'):
+                    echo $this->getWidgets();
+                else:
+            ?>   
+            <?php //var_dump($tweets); exit;?>
+            <?php $tweeterror = $tweets->errors ;?>
+            <?php if($tweeterror):?>
+            <p class="alert alert-danger"><?php echo $tweeterror[0]->message ?></p>
+            <?php else:?>
+            <?php foreach($tweets as $tweet): ?>
+           
+                <div class="list-item">
+                    <div class="tweet_user">
+                        <span class="icon-twitter"><i class="varmo-icon-twitter"></i></span>
+                        <span class="username">
+                            <a href="http://twitter.com/<?php echo $username ?>"><?php echo '@'.$username ?></a>
+                        </span>
+                    </div>
+                    <?php if($tweet->text):?>
+                    <div class="tweet_text">
+                        <?php echo (string) trim($tweet->text); ?>
+                    </div>
+                    <?php endif;?>
+                    <?php if($helper->getTwitterTime() && $tweet->created_at): ?>
+                    <div class="tweet_time">                       
+                        <?php echo (string) trim($this->getTime($tweet->created_at)); ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php endif;?>
+            <?php endif;?>
+        </div>  
+        
+</div>
+	

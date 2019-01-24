@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Socio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Socio
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Zozoconcepts_Socio>
+            <version>1.0.0</version>
+        </Zozoconcepts_Socio>
+    </modules>
+	<global>
+		<blocks>
+            <zozoconcepts_socio>
+                <class>Zozoconcepts_Socio_Block</class>
+            </zozoconcepts_socio>
+        </blocks>
+		<helpers>
+            <zozoconcepts_socio>
+                <class>Zozoconcepts_Socio_Helper</class>
+            </zozoconcepts_socio>
+        </helpers>
+		<models>
+            <zozoconcepts_socio>
+                <class>Zozoconcepts_Socio_Model</class>
+            </zozoconcepts_socio>
+        </models>
+	</global>
+	<frontend>
+		<layout>
+            <updates>
+                <zozoconcepts_socio>
+                    <file>social.xml</file>
+                </zozoconcepts_socio>
+            </updates>
+        </layout>
+	</frontend>
+</config>

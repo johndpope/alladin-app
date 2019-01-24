@@ -1,0 +1,101 @@
+<?php 
+/*
+ * header type 1
+ */?>
+<?php 
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+$themehelper = Mage::helper('hybrid');
+?>
+<header class="header-section type-header-1">
+<div class="header-panel navbar navbar-default header-nav-type1">
+    <div class="container">
+        <div class="row">
+            <div class="welcome-msg hidden-sm col-md-4 a-left">
+                <?php echo $this->getChildHtml('welcome') ?>
+                <?php echo $this->getAdditionalHtml() ?>
+            </div>
+
+            <div class="switches col-xs-12 col-md-8 a-right font12">
+                <?php echo $this->getChildHtml('switches') ?>
+                <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header header-type1">
+    <div class="container">
+    	<div class="row">
+			<?php if(!$themehelper->getConf('header/staticheaderblock',$code)):?>
+            	<div class="col-md-8">
+                	<div class="row">
+                        <div class="searchbox col-md-6">
+                        <?php echo $this->getChildHtml('topSearchType') ?>
+                        </div>
+                        
+                        <div class="branding col-md-6">
+                        <?php if ($this->getIsHomePage()):?>
+                        <h1 class="text-center no-margin no-padding"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="text-center img-responsive"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                        <?php else:?>
+                        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="text-center no-margin no-padding img-responsive"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+                        <?php endif?>
+                        </div>
+					</div>
+                </div>   
+            <?php else:?>
+                <?php echo $themehelper->getConf('header/staticheaderblock',$code)?>
+            <?php endif; ?>
+            	
+            <?php if(Mage::getStoreConfig("hybrid/header/cart_type", $code) === 'drop'):?>
+            <div class="col-md-4"><?php echo $this->getChildHtml('minicartdrop') ?></div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<nav id="navigation-section" class="nav-type1">			
+    <!-- Navigation Menu Begins -->
+ 	<?php $menuhelper = Mage::helper('megamenu');?>
+	<?php $categories = $menuhelper->getCfg('general/categories'); ?>
+    <?php if ($categories != 'side'): ?>
+    <div id="sticky-section" class="sticky-navigation">   
+    <?php endif; ?>
+        <div class="container">
+         <div class="row">
+        
+        <?php if ($categories == 'side'): ?>
+        <div class="side-main-menu">
+			<div id="sidenavigation" class="col-md-3 no-padding navbar side-navbar">	
+                <!-- Side Menu Begins -->
+                	<?php echo $this->getChildHtml('catalog.sidenav.menu') ?>
+                <!-- Side Menu Ends -->						
+            </div>
+            
+			<div id="navigation" class="col-md-9 no-padding navbar top-navbar">	
+				<!-- Menu Begins -->
+					<?php echo $this->getChildHtml('topMenu') ?>
+				<!-- Menu Ends -->						
+			</div>
+		</div>
+		<?php elseif($categories === 'only-static'): ?>
+            <div id="navigation" class="col-md-12 no-padding no-margin navbar top-navbar">	
+            	<a href="javascript:void(0)" data-canvas=".wrapper" data-target=".nav-panel" data-recalc="false" data-toggle="offcanvas" class="static-nav hidden-lg"><?php echo $menuhelper->__('Navigation')?></a>
+                <!-- Static Menu Begins -->
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_nav_staticlinks')->toHtml() ?>
+                <!-- Static Menu Ends -->						
+            </div>
+		<?php else: ?>
+            <div id="navigation" class="col-md-12 no-padding no-margin navbar top-navbar">	
+                <!-- Menu Begins -->
+                <?php echo $this->getChildHtml('topMenu') ?>
+                <!-- Menu Ends -->						
+            </div>
+		<?php endif; ?>
+         </div>
+        </div>
+	<?php if ($categories != 'side'): ?>
+    </div>
+    <?php endif; ?>
+    <!-- Navigation Menu Ends -->
+</nav>
+</header>
+<?php echo $this->getChildHtml('topContainer') ?>

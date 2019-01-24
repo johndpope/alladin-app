@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <!-- Here, we reference the XML node path of our route -->
+    <adminhtml_smsgrid_index>
+        <reference name="content">
+            <!-- We also reference our block by namespacename_modulename/adminhtml_controllername, and name it uniquely -->
+            <block type="sms/adminhtml_smsgrid" name="sms_smsgrid" />
+        </reference>
+    </adminhtml_smsgrid_index>
+	 
+</layout>

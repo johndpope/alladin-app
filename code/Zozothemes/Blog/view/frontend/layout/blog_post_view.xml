@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Blog
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="blog_default"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Zozothemes\Blog\Block\Post\View" name="blog.post" template="post/view.phtml">
+            	<block class="Zozothemes\Blog\Block\Post\Info" name="blog.post.info" template="post/info.phtml" />
+                <action method="setPostInfoBlockName">
+                    <argument name="name" xsi:type="string">blog.post.info</argument>
+                </action>
+                <block class="\Magento\Framework\View\Element\Text\ListText" name="blog.post.bottom" template="sidebar.phtml">
+                    <block class="Zozothemes\Blog\Block\Post\View\RelatedPosts" name="blog.post.relatedposts" as="relatedposts"  template="Zozothemes_Blog::post/view/relatedposts.phtml" />
+                    <block class="Zozothemes\Blog\Block\Post\View\RelatedProducts" name="blog.post.relatedproducts" as="relatedproducts"  template="Zozothemes_Blog::post/view/relatedproducts.phtml" />
+                    <block class="Zozothemes\Blog\Block\Post\View\Comments" name="blog.post.comments" template="post/view/comments.phtml" />
+                    <block class="Magento\Framework\View\Element\Template" name="blog.post.js" as="js"  template="Zozothemes_Blog::post/view/js.phtml" />
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

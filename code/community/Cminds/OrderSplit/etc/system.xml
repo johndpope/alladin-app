@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <marketplace_order_split_configuration>
+            <label>Order Splitting</label>
+            <tab>marketplace</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>60</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <groups>
+                <general translate="label" module="ordersplit">
+                    <label>General</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label" module="ordersplit">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Split order per vendor]]>
+                            </comment>
+                        </enabled>
+                    </fields>
+                </general>
+            </groups>
+        </marketplace_order_split_configuration>
+    </sections>
+</config>

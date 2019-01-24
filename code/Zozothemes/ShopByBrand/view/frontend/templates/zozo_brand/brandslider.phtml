@@ -1,0 +1,18 @@
+<?php 
+$brands = $this->getBrands();
+$featured = $this->getFeaturedBrands();
+$media = $this->getImageMediaPath();
+?>
+<?php foreach($featured as $_fbrand):?>	
+    <div class="item">
+		<a href="<?php echo $this->getUrl('brand/view/',array('id'=>$_fbrand->getId()));?>">
+			<?php if($_fbrand->getLogo()):?>
+				<img class="f-barnd-img" src="<?php echo $media.$_fbrand->getLogo() ?>" title="<?php echo $_fbrand->getName();?>" alt="<?php echo $_fbrand->getName();?>"/>
+			<?php else:?>
+			<span class="brand-title">
+				<?php echo $_fbrand->getName();?>
+			</span>
+			<?php endif;?>
+		</a>
+    </div>
+<?php endforeach;?>

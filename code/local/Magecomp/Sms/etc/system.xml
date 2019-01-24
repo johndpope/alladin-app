@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<tabs>
+        <magecomp translate="label">
+            <label><![CDATA[<img src="http://www.magecomp.com/media/images/magecomp--extension.png" alt="MAGECOMP" height="25" style="vertical-align:middle;"/>]]></label>
+            <sort_order>50</sort_order>
+        </magecomp>
+    </tabs>
+	<sections>
+		<sms translate="label" module="sms">
+			<label>Msg91 Configuration</label>
+			<tab>magecomp</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>101</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label" module="sms">
+					<label>API Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable>
+						<!--<curruntbalance translate="label">
+                            <label>Currunt Balance</label>
+                            <frontend_type>text</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_curruntbalance</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							
+                        </curruntbalance>-->
+						<username translate="label">
+                            <label>Msg91 Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment><![CDATA[The user is free to choose username while registering account with SMS Country. The maximum limit for username is 17 characters and can only contain alphabets and numbers with no blank spaces or special characters. You can create account at  <a href="https://msg91.com/">https://msg91.com/</a>]]></comment>
+                        </username>
+				    	<password translate="label">
+                            <label>Msg91 Password</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>The user is free to choose password while registering account with SMS Country. The maximum limit for password is 20 characters and can only contain alphabets and numbers with no blank spaces or special characters.</comment>
+                        </password>
+						<authkey translate="label">
+                            <label>Authentiketion key</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>The Sender ID refers to the Alphanumeric Identity of the Sender. For Indian sender IDs, 6 alpha characters are accepted for transactional messages. International senders can have alphanumeric IDs with maximum 11 characters.</comment>
+                        </authkey>
+						<routtype translate="label">
+                            <label>Message Type</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>promotinal message = 1 and transactional mesage = 4.</comment>
+                        </routtype>
+						<msg91sendername translate="label">
+                            <label>Sender ID/Sender Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>The Sender ID refers to the Alphanumeric Identity of the Sender. For Indian sender IDs, 6 alpha characters are accepted for transactional messages. International senders can have alphanumeric IDs with maximum 11 characters.</comment>
+                        </msg91sendername>
+						<apiurl translate="label,comment" module="sms">
+							<label>API Url</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Api Url :- https://control.msg91.com/api/</comment>
+						</apiurl>
+						<apiurlcallback translate="label,comment" module="sms">
+							<label>Callback URL</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_callbackurl</frontend_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Provide this URL to SMS Country for getting current SMS status.</comment>
+						</apiurlcallback>
+						<adminmobile translate="label,comment" module="sms">
+							<label>Admin Mobile Number</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enter admin mobile number followed by country code, you will get notifications on this number. 
+							</comment>
+						</adminmobile>
+						<otp translate="label,comment" module="sms">
+							<label>OTP String Length</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Specify character length for OTP string.</comment>
+						</otp>
+						<verifyrequired translate="label,comment" module="sms">
+							<label>Mobile Verification Mandatory?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</verifyrequired>
+						<smstextchar translate="label,comment" module="sms">
+							<label>SMS Length(In Characters)</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>
+							Specify character length per SMS,
+							for English: 1 SMS = 160 characters, Other languages: 1 SMS = 70 characters</comment>
+						</smstextchar>
+						<smslanguage translate="label,comment" module="sms">
+							<label>SMS Language</label>
+							<frontend_type>select</frontend_type>
+							<source_model>sms/language</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select language to send SMS, you will be charged per SMS based on language you have selected</comment>
+						</smslanguage>
+						<countrycode translate="label,comment">
+							<label>Default Country</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</countrycode>
+					</fields>
+				</general>
+				<registeredcustomer translate="label" module="sms">
+					<label>Admin Notification Settings for Registered Customer Count</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						<comment>Enabling will send notification to admin for registered customer count based on frequency set</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{customer_count}},{{day_month_week}},{{shop_name}},{{shop_url}}variables in your SMS notification text</comment>
+					   </message>
+					   <smssendreporttoadmin translate="label,comment" module="sms">
+							<label>SMS Frequency </label>
+							<frontend_type>select</frontend_type>
+							<source_model>sms/timelySendReportToAdmin</source_model>
+							<backend_model>sms/timelySendReportToAdmin</backend_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select frequency at which you want to receive registered customer count through notification. To use this facility, you need to setup cron in Cpanel with file name smsCron.php. E.g : /home/public_user/magento/smsCron.php
+							</comment>
+						</smssendreporttoadmin>
+				    </fields>
+				</registeredcustomer>
+				<testapi translate="label" module="sms">
+					<label>Test API Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<testmobile translate="label">
+							<label>Test Mobile Number</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment> Enter mobile number followed by country code for testing. </comment>
+						</testmobile>
+						<message translate="label">
+                            <label>Test Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>Enter message for testing</comment>
+						</message>
+						<previewsms translate="label">
+						   <frontend_type>button</frontend_type>
+						   <frontend_model>sms/adminhtml_system_config_form_preview_button</frontend_model>
+						   <sort_order>3</sort_order>
+						   <show_in_default>1</show_in_default>
+						   <show_in_website>1</show_in_website>
+						   <show_in_store>1</show_in_store>
+						</previewsms>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_button</frontend_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						
+				    </fields>
+				</testapi>
+				<resendsms translate="label" module="sms">
+					<label>Resend OTP Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						<comment>Enabling will resend OTP to users while they click "Resend OTP".</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>Enter message to send along with OTP. You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{randm_code}} variables in your SMS notification text</comment>
+						</message>
+				    </fields>
+				</resendsms>
+				<updatemobsms translate="label" module="sms">
+					<label>Update Mobile Sms</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						
+						<message translate="label">
+                            <label>Message Template</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							
+							<comment> {{shop_name}},{{shop_url}},{{random_code}}</comment>
+						</message>
+				    </fields>
+				</updatemobsms>
+			</groups>
+		</sms>
+	
+	</sections>	
+	<sections>
+		<usertemplate translate="label" module="sms">
+			<label>User Templates</label>
+			<tab>magecomp</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>102</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<customer translate="label" module="sms">
+					<label>Sign Up Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Set yes to enable user notification for signup</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{name}},{{first_name}},{{last_name}},{{random_code}},{{shop_name}},{{shop_url}} variables in your SMS notification text</comment>
+						</message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing signup notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userCustReg</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							  <frontend_type>button</frontend_type>
+							  <frontend_model>sms/adminhtml_system_config_form_preview_userCustReg</frontend_model>
+							  <sort_order>5</sort_order>
+							  <show_in_default>1</show_in_default>
+							  <show_in_website>1</show_in_website>
+							  <show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</customer>
+				<orderplace translate="label" module="sms">
+					<label>Order Placement Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	Set yes to enable user notification for order placement </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}}.{{street}},{{fax}},{{postal}},{{city}},{{email}},{{order_id}} variables in your SMS notification text</comment>
+						</message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing order placement notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userOrderPlace</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_userOrderPlace</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</orderplace>
+				<invoicegerate translate="label" module="sms">
+					<label>Invoice Generation Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Set yes to enable user notification for invoice generation </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}} variables in your SMS notification text</comment>
+						</message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Enter mobile number followed by country code for testing invoice generation notification.</comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userInvoice</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_userInvoice</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</invoicegerate>
+				<cancelorder translate="label" module="sms">
+					<label>Order Cancellation Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	Set yes to enable user notification for order cancellation </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}} variables in your SMS notification text</comment>
+						</message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing order cancellation notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userCancel</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_userCancel</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</cancelorder>
+				<!--<completeorder translate="label" module="sms">
+					<label>Send SMS, When Payment Pay Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	{{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}}</comment>
+						</enable>
+						<message translate="label">
+                            <label>Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>The message can contain a maximum of 160 characters,including spaces.</comment>
+                        </message>
+				    </fields>
+				</completeorder>-->
+				<ordertracking translate="label" module="sms">
+					<label>
+Order Shipment Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Set yes to enable user notification for order shipment </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}} variables in your SMS notification text.</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing order shipment notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userShipment</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_userShipment</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</ordertracking>
+				<returnorder translate="label" module="sms">
+					<label>Credit Memo Generation Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>6</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	Set yes to enable user notification for credit memo generation </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}} variables in your SMS notification text</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing credit memo generation notification. </comment>
+						</testmobile>
+						
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_userReturnOrder</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_userReturnOrder</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</returnorder>
+			</groups>
+		</usertemplate>	
+	</sections>
+	<sections>
+		<admintemplate translate="label" module="sms">
+			<label>Admin Templates</label>
+			<tab>magecomp</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>103</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<contactus translate="label" module="sms">
+				   <label>Contact Inquiry Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						<comment>Set yes to enable admin notification for contact inquiry by customer</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{name}},{{email}},{{mobilenumber}},{{shop_name}},{{shop_url}} variables in your SMS notification text</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing credit memo generation notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_adminContact</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_adminContact</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</contactus>
+				<customer translate="label" module="sms">
+					<label>Customer Registration Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>  Customer Registration Notification Settings </comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{name}},{{first_name}},{{last_name}},{{random_code}},{{shop_name}},{{shop_url}} variables in your SMS notification text.</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing customer registration notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_adminCusReg</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_adminCusReg</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</customer>
+				<orderplace translate="label" module="sms">
+					<label>
+Order Placement Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	Set yes to enable admin notification for order placement by customers</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}}.{{street}},{{fax}},{{postal}},{{city}},{{email}},{{order_id}} variables in your SMS notification text.</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing order placement notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_adminOrderPlace</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_adminOrderPlace</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</orderplace>
+				<returnorder translate="label" module="sms">
+					<label>Credit Memo Generation Notification Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label,comment" module="sms">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>	Set yes to enable admin notification for credit memo generation</comment>
+						</enable>
+						<message translate="label">
+                            <label>SMS Notification Text</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<depends><enable>1</enable></depends>
+							<comment>You can make use of {{shop_name}},{{shop_url}},{{first_name}},{{last_name}},{{street}},{{fax}},{{postal}},{{city}},{{country_name}},{{email}},{{order_id}},{{order_total}},{{product_count}},{{old_order_status}},{{new_order_status}},{{order_created_date}} variables in your SMS notification text.</comment>
+                        </message>
+						<testmobile translate="label">
+								<label>Test Mobile Number</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>3</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment> Enter mobile number followed by country code for testing credit memo generation notification. </comment>
+						</testmobile>
+						<testsmsbutton translate="label">
+							<frontend_type>button</frontend_type>
+							<frontend_model>sms/adminhtml_system_config_form_adminReturnOrder</frontend_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</testsmsbutton>
+						<previewsms translate="label">
+							<frontend_type>button</frontend_type>
+						    <frontend_model>sms/adminhtml_system_config_form_preview_adminReturnOrder</frontend_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</previewsms>
+				    </fields>
+				</returnorder>
+			</groups>
+		</admintemplate>	
+	</sections>
+</config>

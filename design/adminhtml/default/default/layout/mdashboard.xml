@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <mdashboard_adminhtml_mdashboard_index>
+	<reference name="content">
+	  <block type="mdashboard/adminhtml_grid" name="mdashboard" />
+	</reference>
+  </mdashboard_adminhtml_mdashboard_index>
+</layout>

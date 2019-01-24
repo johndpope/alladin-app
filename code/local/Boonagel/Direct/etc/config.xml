@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Boonagel_Direct>
+            <version>0.1.0</version>
+        </Boonagel_Direct>
+    </modules>
+
+    <global>
+
+        <models>
+
+            <direct>
+                <class>Boonagel_Direct_Model</class>
+                <resourceModel>direct_resource</resourceModel>
+            </direct>
+
+            <direct_resource>
+                <class>Boonagel_Direct_Model_Resource</class>
+                <entities>
+                    <directlog>
+                        <table>directpayonline_log</table>
+                    </directlog>
+                </entities>
+            </direct_resource>
+
+        </models>
+
+        <resources>
+
+            <directlog_setup>
+                <setup>
+                    <module>Boonagel_Direct</module>
+                    <class>Boonagel_Direct_Model_Resource_Setup</class>
+                </setup>
+            </directlog_setup>
+
+        </resources>
+
+        <blocks>
+            <direct>
+                <class>Boonagel_Direct_Block</class>
+            </direct>
+        </blocks>
+
+        <helpers>
+            <Boonagel_Direct>
+                <class>Boonagel_Direct_Helper</class>
+            </Boonagel_Direct>
+        </helpers>
+        
+        <template>
+            <email>
+                <direct_payment_info_status module="Boonagel_Direct">
+                    <label>DIRECT PAY ONLINE STATUSES</label>
+                    <file>direct_payment_info_status.html</file>
+                    <type>html</type>
+                </direct_payment_info_status>
+            </email>
+        </template>
+        
+    </global>
+    
+    <default>
+        <payment>
+            <direct>
+                <model>direct/standard</model>
+                <active>1</active>
+                <order_status>pending</order_status>
+                <title>DirectPayOnline (Credit Cards,Mobile Money,Paypal,Digital Currency)</title>
+                <payment_action>sale</payment_action>
+                <allowspecific>0</allowspecific>
+                <sort_order>1</sort_order>
+            </direct>
+        </payment>
+    </default>
+
+
+    <frontend>
+
+        <routers>
+            <direct>
+                <use>standard</use>
+                <args>
+                    <module>Boonagel_Direct</module>
+                    <frontName>directpayonline</frontName>
+                </args>
+            </direct>
+        </routers>
+
+        <layout>
+            <updates>
+                <direct>
+                    <file>directpayonline.xml</file>
+                </direct>
+            </updates>
+        </layout>
+
+    </frontend>
+
+    <admin>
+
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <directdmin before="Mage_Adminhtml">Boonagel_Direct_Adminhtml</directdmin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+
+    </admin>
+
+    <adminhtml>
+       
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <boonagel_direct_core_block_abstract_to_html_after>
+                        <class>Boonagel_Direct_Model_Observer</class>
+                        <method>directAdminLogs</method>
+                    </boonagel_direct_core_block_abstract_to_html_after>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+      
+        <layout>
+         
+            <updates>
+                <direct>
+                    <file>directpayonline.xml</file>
+                </direct>
+            </updates>
+
+        </layout>
+
+    </adminhtml>
+
+</config>

@@ -1,0 +1,85 @@
+<?php 
+/*
+ * header type 10
+ */
+ ?>
+ <?php
+ $store = Mage::app()->getStore();
+ $code  = $store->getCode();
+ $themehelper = Mage::helper('hybrid');
+ ?>
+ <header class="header-section type-header-10">
+<div class="header-panel navbar navbar-default header-nav-type10">
+    <div class="container">
+        <div class="row">
+            <div class="welcome-msg hidden-sm col-md-4 a-left">
+                <?php echo $this->getChildHtml('welcome') ?>
+                <?php echo $this->getAdditionalHtml() ?>
+            </div>
+
+            <div class="switches col-xs-12 col-md-8 a-right font12">
+                <?php echo $this->getChildHtml('switches') ?>
+                <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header header-type10">
+    <div class="container">
+        <?php if(!$themehelper->getConf('header/staticheaderblock', $code)):?>
+            <div class="branding">
+            <?php if ($this->getIsHomePage()):?>
+            <h1 class="logo"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+            <?php endif?>
+            </div>
+            <?php echo $this->getChildHtml('topSearchType') ?>
+        <?php else:?>
+			<?php echo $themehelper->getConf('header/staticheaderblock', $code)?>
+        <?php endif; ?>
+        <?php if(Mage::getStoreConfig("hybrid/header/cart_type", $code) === 'drop'):?>
+		<?php echo $this->getChildHtml('minicartdrop') ?>
+        <?php endif; ?>
+    </div>
+</div>
+<nav id="navigation-section" class="nav-type10">			
+    <!-- Navigation Menu Begins -->
+ 	<?php $menuhelper = Mage::helper('megamenu');?>
+	<?php $categories = $menuhelper->getCfg('general/categories'); ?>
+    <?php if ($categories != 'side'): ?>
+    <div id="sticky-section" class="sticky-navigation">   
+    <?php endif; ?>
+        <div class="container">
+         <div class="row">
+        
+        <?php if ($categories == 'side'): ?>
+        <div class="side-main-menu">
+			<div id="sidenavigation" class="col-md-3 no-padding navbar side-navbar">	
+                <!-- Side Menu Begins -->
+                	<?php echo $this->getChildHtml('catalog.sidenav.menu') ?>
+                <!-- Side Menu Ends -->						
+            </div>
+            
+                    <div id="navigation" class="col-md-9 no-padding navbar top-navbar">	
+                        <!-- Menu Begins -->
+                            <?php echo $this->getChildHtml('topMenu') ?>
+                        <!-- Menu Ends -->						
+                    </div>
+		</div>
+		<?php else: ?>
+            <div id="navigation" class="col-md-12 no-padding no-margin navbar top-navbar">	
+                <!-- Menu Begins -->
+                <?php echo $this->getChildHtml('topMenu') ?>
+                <!-- Menu Ends -->						
+            </div>
+		<?php endif; ?>
+         </div>
+        </div>
+	<?php if ($categories != 'side'): ?>
+    </div>
+    <?php endif; ?>
+    <!-- Navigation Menu Ends -->
+</nav>
+</header>
+<?php echo $this->getChildHtml('topContainer') ?>

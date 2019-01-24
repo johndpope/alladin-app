@@ -1,0 +1,158 @@
+<div class="alpesa-holder container-fluid">
+    <h2 class="alpesa-section-title">
+        <ul>
+            <li>
+                <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-icon-4.png'); ?>" alt=""/>-->
+                <?php echo $this->getChildHtml('alpesatopnav');?>
+            </li>
+            <li>
+                <span>wallet section</span>
+            </li>
+        </ul>
+    </h2>
+    <!--alpesa wallet amount-->
+    <?php
+    $currentData = $this->walletData();
+    $walletData = $currentData[0]->getFirstItem();
+    $usedAmtData = $currentData[1];
+    $cardData = $currentData[2];
+    $availablePointsData = $currentData[3];
+    $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+    ?>
+    <div class="row">
+        <div class=" col-md-6 alpesa-wallet-amount">
+            <div class="alpesa-wallet-amount-div">
+                <p>
+                    Current total Amount
+                </p>
+                <p>
+                    <img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-current-total.png'); ?>" alt=""/>
+                </p>
+                <p>
+                    <?php echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber((count($walletData) == 1 ? $walletData->wallet : 0), 2); ?>
+                </p>
+            </div>
+            <?php if (Mage::helper('Boonagel_Alpesa')->allowPayments() && count($walletData) == 1 && $walletData->wallet > 0): ?>
+                <form method="POST" action="<?php echo Mage::getUrl('alpesa/customer/invoice'); ?>">
+                    <input type="hidden" value="points" name="alpesapaymenttype">
+                    <button type="submit" class="alpesa-button">pay for goods</button>
+                </form>
+            <?php endif; ?>
+        </div>
+        <div class=" col-md-6 alpesa-wallet-amount">
+            <div class="alpesa-wallet-amount-div">
+                <p>
+                    Total Used Amount
+                </p>
+                <p>
+                    <img src="<?php echo $this->getSkinUrl('alpesa/images/used-amount-final.png'); ?>" alt=""/>
+                </p>
+                <p>
+                    <?php
+                    $totalUsedAmt = 0;
+                    if ($usedAmtData->count() > 0) {
+                        foreach ($usedAmtData as $usedAmtDt) {
+                            $totalUsedAmt += $usedAmtDt->used_amount;
+                        }
+                    }
+                    ?>
+                    <?php echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($totalUsedAmt, 2); ?>
+                </p>
+            </div>
+
+            <?php if ($usedAmtData->count() > 0): ?>
+                <a href="<?php echo Mage::getUrl('alpesa/customer/history'); ?>"><button type="button" class="alpesa-button">View Logs</button></a>
+            <?php endif; ?>
+
+        </div>
+    </div>
+    <!--alpesa wallet points-->
+    <div class="row">
+        <div class="row alpesa-pointer-relative">
+            <div class="alpesa-pointer">
+                <span></span>
+            </div>
+        </div>
+        <div class=" row alpesa-wallet-points">
+            <div class="col-md-6">
+                <div class="alpesa-wallet-points-div">
+                    <?php $myActualPoints = Mage::helper('Boonagel_Alpesa')->formatNumber((count($walletData) == 1 ? $walletData->actual_points : 0)); ?>
+                    <p>
+                        <img src="
+                        <?php
+                        if ($myActualPoints > 5000) {
+                            echo $this->getSkinUrl('alpesa/images/actual-points-many.png');
+                        } else {
+                            echo $this->getSkinUrl('alpesa/images/actual-points-little.png');
+                        }
+                        ?>
+                             " alt=""/>
+                    </p>
+                </div>
+                <p>
+                    <b>Actual Points</b><br>
+                    <?php echo $myActualPoints; ?>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="alpesa-wallet-points-div">
+                    <p>
+                        <img src="<?php echo $this->getSkinUrl('alpesa/images/available-points.png'); ?>" alt=""/>
+                    </p>
+                </div>
+                <p>
+                    <b>Available Points</b><br>
+                    <?php
+                    $availablePoints = 0;
+                    if (count($availablePointsData) > 0) {
+                        foreach ($availablePointsData as $availPointData) {
+                            $availablePoints += $availPointData->points;
+                        }
+                    }
+                    ?>
+                    <?php echo Mage::helper('Boonagel_Alpesa')->formatNumber($availablePoints); ?>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <?php if (count($cardData) > 0): $actualPoints = count($walletData) == 1 ? $walletData->actual_points : 0; ?>
+        <?php foreach ($cardData as $cardDatad): ?>
+            <?php $arrayedCard = explode(",", $cardDatad->card_min_max_points);
+            if ($actualPoints > $arrayedCard[0] && $actualPoints < $arrayedCard[1]):
+                ?>
+                <!--alpesa wallet card-->
+                <div class="row alpesa-wallet-card">
+                    <div class="alpesa-wallet-card-card col-md-3">
+                        <div class="row  card-color"  style="text-align:center;">
+                            <i class="fa fa-credit-card" style="font-size:100px;color:#<?php echo $cardDatad->card_color; ?>;"></i>
+                            <p style="font-style:italic;font-size:15px;"><?php echo $cardDatad->card_name; ?></p>
+                        </div>
+<!--                        <p class="card-holder-bg" style="background:#<?php echo $cardDatad->card_color; ?>;">&nbsp;</p>
+                        <p class="card-name"><?php echo $cardDatad->card_name; ?></p>-->
+                    </div>
+                    <div class="alpesa-wallet-card-info col-md-9">
+                        <h3>priveledges</h3>
+                        <p>Voucher amount of <?php echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($cardDatad->card_voucher_amount, 2); ?> <br><br>
+
+            <?php if (Mage::helper('Boonagel_Alpesa')->giftFlag($cardDatad->id)[0] && Mage::helper('Boonagel_Alpesa')->allowPayments()): ?>
+                            <form method="POST" action="<?php echo Mage::getUrl('alpesa/customer/invoice'); ?>">
+                                <input type="hidden" value="voucher" name="alpesapaymenttype">
+                                <input type="hidden" value="<?php echo $cardDatad->id; ?>" name="alpesacardid">
+                                <button type='submit' class="alpesa-button">Pay For goods using voucher</button>
+                            </form>
+            <?php endif; ?>
+
+                        </p>
+                        <p>Discounts on products of upto <?php echo $cardDatad->card_discount; ?>%</p>
+                        <h3>Gift date</h3>
+                        <p class="alpesa-date"><?php echo Mage::helper('Boonagel_Alpesa')->calculateDateObjectStringNotation($cardDatad->card_gift_date)[1]; ?></p>
+                        <p class="alpesa-date"><?php echo Mage::helper('Boonagel_Alpesa')->calculateDateObjectStringNotation($cardDatad->card_gift_date)[0]; ?></p>
+
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+<?php endif; ?>
+
+</div>

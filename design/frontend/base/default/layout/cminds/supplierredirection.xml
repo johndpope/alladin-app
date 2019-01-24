@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout>
+    <cminds_supplierfrontendproductuploader_domain_settings>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="cminds_supplierredirection/domain" name="supplier_domain_settings"
+                   template="cminds/supplierredirection/supplier/domain/settings.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_domain_settings>
+</layout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <menu>
+
+        <directtab module="Boonagel_Direct" translate="title">
+
+            <title>DirectPayOnline</title>
+            <sort_order>100</sort_order>
+
+            <children>
+
+                <index module="Boonagel_Direct" translate="title">
+                    <title>DirectPayOnline Config</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/system_config/edit/section/payment</action>
+                </index>
+
+                <directlogs module="Boonagel_Direct" translate="title">
+                    <title>DirectPayOnline Logs</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/direct/logs</action>
+                </directlogs>
+
+                <directadvancedlogs module="Boonagel_Direct" translate="title">
+                    <title>Advanced Logs</title>
+                    <sort_order>3</sort_order>
+                    <action>adminhtml/direct/advanced</action>
+                </directadvancedlogs>
+
+            </children>
+
+        </directtab>
+
+    </menu>
+
+    <acl>
+
+        <resources>
+
+            <admin>
+         
+                <children>
+                    <direct translate="title" module="Boonagel_Direct">
+                        <title>Direct</title>
+                        <sort_order>100</sort_order>
+                        <children>
+
+                            <index module="Boonagel_Direct" translate="title">
+                                <title>DirectPayOnline Config</title>
+                                <sort_order>1</sort_order>
+                            </index>
+
+                            <directlogs module="Boonagel_Direct" translate="title">
+                                <title>DirectPayOnline Logs</title>
+                                <sort_order>2</sort_order>
+                            </directlogs>
+                            
+                            <directadvancedlogs module="Boonagel_Direct" translate="title">
+                                <title>Advanced Logs</title>
+                                <sort_order>3</sort_order>
+                            </directadvancedlogs>
+
+                        </children>
+                    </direct>
+                </children>
+
+            </admin>
+      
+        </resources>
+
+    </acl>
+
+</config>

@@ -1,0 +1,105 @@
+
+<div class="columns">
+    <div class="side-col" style="word-wrap: break-word;">
+       <h3>Url for CBA to post the payment push notifications</h3>
+      <h6><?php echo $this->getUrl("cba/payments/alcba"); ?></h6>
+   </div>
+   <?php $configMainData = $this->configData(); 
+ 
+   ?>
+   <div class="main-col" id="content">
+      <div class="main-col-inner">
+         <div id="messages"></div>
+         <!--configuration content heading-->
+         <div class="content-header">
+            <table cellspacing="0">
+               <tbody>
+                  <tr>
+                     <td>
+                        <h3>Cba Global Settings</h3>
+                     </td>
+                     <td class="form-buttons">
+                        <button id="cba-config-button-save" tile="Save Config" type="button" class="scalable save" onClick="cbaConfigFormDec.submit()">
+                        <span><span><span>Save Config</span></span></span>
+                        </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <!--configuration form input-->
+         <form action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/cba/save");?>" method="post" id="cbaConfigForm" enctype="multipart/form-data">
+            <!--hidden form field key-->
+            <div>
+               <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey();?>">
+               <input name="config_id" type="hidden" value="<?php echo $configMainData != null ? $configMainData->getId() :1; ?>">
+            </div>
+            <!--the actual form with data-->
+            <div class="entry-edit">
+
+             <!--#########################################################-->
+
+               <div class="section-config">
+                  <div class="entry-edit-head collapseable">
+                     <a id="cba_static_rules-head" href="#" onclick="Fieldset.toggleCollapse('cba_static_rules',
+                        '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/state");?>');return false;">
+                     Static Rules
+                     </a>
+                  </div>
+                  <input type="hidden" id="cba_static_rules-state" name="config_state[cba_static_rules]" value="1">
+                  <fieldset class="config collapseable" id="cba_static_rules">
+                     <legend>CBA Config</legend>
+                     <table cellspacing="0" class="form-list">
+                        <tbody>
+                           <tr>
+                              <td class="label">Username</td>
+                              <td class="value" colspan="3">
+                                 <input id="username" name="username" title="Username" value="<?php echo $configMainData != null ? $configMainData->getUsername() :""; ?>"  class="input-text required-entry"/> 
+                              </td>
+                           </tr>
+                           
+                           <tr>
+                              <td class="label">Password</td>
+                              <td class="value" colspan="3">
+                                 <input id="password" name="password" title="Password" value="<?php echo $configMainData != null ? $configMainData->getPassword() :""; ?>"  class="input-text required-entry"/> 
+                              </td>
+                           </tr>
+                           
+                           <tr>
+                              <td class="label">Secret</td>
+                              <td class="value" colspan="3">
+                                 <input id="secret" name="secret" title="Secret" value="<?php echo $configMainData != null ? $configMainData->getSecret() : ""; ?>"  class="input-text required-entry"/> 
+                              </td>
+                           </tr>
+                           
+                           <tr>
+                              <td class="label">Response Gateway Url</td>
+                              <td class="value" colspan="3">
+                                 <input id="response_gateway" name="response_gateway" title="Response Gateway" value="<?php echo $configMainData != null ? $configMainData->getResponseGateway() : ""; ?>"  class="input-text"/> 
+                              </td>
+                           </tr>
+                           
+                        </tbody>
+                     </table>
+                  </fieldset>
+                  <script type="text/javascript">//<![CDATA[
+                     Fieldset.applyCollapse('cba_static_rules');
+                     //]]>
+                  </script>
+               </div>
+
+         </form>
+      </div>
+
+
+      <script>
+      	  //<![CDATA[
+         
+            var cbaConfigFormDec = new varienForm('cbaConfigForm');
+         //]]>
+         //var validator = new Validation('cbaConfigForm', {immediate : true});
+         //validator.validate()
+      </script>
+
+       	   </div>
+</div>

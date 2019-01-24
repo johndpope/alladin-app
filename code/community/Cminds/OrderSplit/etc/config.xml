@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Cminds_OrderSplit>
+            <version>1.0.1</version>
+        </Cminds_OrderSplit>
+    </modules>
+    <global>
+        <helpers>
+            <ordersplit>
+                <class>Cminds_OrderSplit_Helper</class>
+            </ordersplit>
+        </helpers>
+        <models>
+            <ordersplit>
+                <class>Cminds_OrderSplit_Model</class>
+            </ordersplit>
+            <checkout>
+                <rewrite>
+                    <type_onepage>Cminds_OrderSplit_Model_Checkout_Type_Onepage</type_onepage>
+                </rewrite>
+            </checkout>
+            <cataloginventory>
+                <rewrite>
+                    <observer>Cminds_OrderSplit_Model_CatalogInventory_Observer</observer>
+                </rewrite>
+            </cataloginventory>
+        </models>
+    </global>
+</config>

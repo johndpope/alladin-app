@@ -1,0 +1,276 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@legend-border-bottom: 1px solid @color-gray-light6;
+@form-field__vertical-indent__desktop: 29px;
+@form-calendar-icon__color: @primary__color;
+@input-height: 48px;
+@input-group-btn-width: 56px;
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+.fieldset {
+    .lib-form-fieldset();
+    &:last-child {
+        margin-bottom: 0;
+    }
+    > .field,
+    > .fields > .field {
+        .lib-form-field();
+        &.no-label {
+            > .label {
+                .lib-visually-hidden();
+            }
+        }
+        &.choice {
+            .label {
+                font-weight: normal;
+                margin: 0;
+                display: inline;
+            }
+        }
+        .label {
+            .column:not(.main) & {
+                font-weight: normal;
+            }
+        }
+        .field.choice {
+            margin-bottom: @indent__s;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+.legend + .fieldset,
+.legend + div {
+    clear: both;
+}
+.legend {
+    span {
+        margin-right: @indent__xs;
+    }
+}
+fieldset.field {
+    border: 0;
+    padding: 0;
+}
+.field.date {
+    .time-picker {
+        white-space: nowrap;
+        margin-top: @indent__s;
+        display: inline-block;
+    }
+}
+
+.select-styling() {
+    .lib-css(appearance, none, 1);
+    appearance: none;
+    border: 1px solid @border-color;
+    height: @input-height;
+    background: @select__background url('../images/select-bg.svg') no-repeat 100% 48%;
+    background-size: 30px 60px;
+    padding-right: 25px;
+    text-indent: .01em;
+    text-overflow: '';
+    &::-ms-expand{
+        display:none;
+    }
+    .lt-ie10 & {
+        background-image: none;
+        padding-right: 4px;
+    }
+}
+
+select {
+    .select-styling();
+}
+
+div.mage-error[generated] {
+    margin-top: 7px;
+}
+
+// TEMP
+
+.field .tooltip {
+    .lib-tooltip(right);
+    .tooltip-content {
+        min-width: 200px;
+        white-space: normal;
+    }
+}
+
+input:focus ~ .tooltip .tooltip-content,
+select:focus ~ .tooltip .tooltip-content {
+    display: block;
+}
+
+.hasDatepicker {
+    + .ui-datepicker-trigger {
+        .lib-button-reset();
+        .lib-icon-font(
+        @_icon-font-content: @icon-calendar,
+        @_icon-font-color: @primary__color__lighter,
+        @_icon-font-size: @icon-calendar__font-size,
+        @_icon-font-line-height: @icon-calendar__font-size,
+        @_icon-font-display: block,
+        @_icon-font-text-hide: true
+        );
+        display: inline-block;
+        vertical-align: middle;
+        &:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+}
+
+//
+//    Sidebar forms
+//--------------------------------------
+.sidebar {
+    .fieldset {
+        margin: 0;
+        > .field:not(.choice) >,
+        .fields > .field {
+            &:not(:last-child) {
+                margin: 0 0 @form-field__vertical-indent;
+            }
+            .label {
+                margin: 0 0 4px;
+                padding: 0 0 @indent__xs;
+                text-align: left;
+                width: 100%;
+            }
+            .control {
+                width: 100%;
+            }
+        }
+    }
+}
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .legend {
+        .lib-css(border-bottom, @legend-border-bottom);
+    }
+}
+//
+//      Form 
+//--------------------
+input, .form-control{
+    box-shadow: none;
+    &:focus{
+        box-shadow: none;
+        .border-color();
+    }
+}
+input{
+    &[type="text"], &[type="password"], &[type="url"], &[type="search"], &[type="email"], &[type="number"], &[type="tel"]{
+        height: @input-height;
+        &:focus{
+            .box-shadow(none);
+            border-color: @theme-color;
+        }
+    }
+}
+
+
+//
+//    Subscribe Widget 
+//--------------------------------------
+.input-group-btn{
+    border-radius: 0;
+    button{
+        border-radius: 0;
+        height: @input-height;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.form.subscribe {
+    .input-group{
+        > div{
+            bottom: -20px;
+            position: absolute;
+            z-index: 9;
+        }
+    }
+}
+form{
+    .password-strength-meter{
+        margin-top: 10px;
+    }
+}
+
+//
+// Contact Page Form
+//__________________
+
+#contact-form{
+    &.form.contact{
+        width: 100%;
+    }
+}
+    
+//
+//   Typo Light form 
+//--------------------
+.typo-light{
+    input, .form-control{
+        background: transparent;
+        border-color: @color-white;
+        color: #fff;
+        &[type="text"], &[type="password"], 
+        &[type="url"], &[type="search"], 
+        &[type="email"], &[type="number"], 
+        &[type="tel"]{
+            &:focus{
+                background: @color-white;
+                color: @color-theme-dark;
+            }
+        }
+    
+    }
+    .input-group-btn{
+        button{
+            background: @color-white;
+            color: @color-theme-dark;
+            border: 1px solid @color-white;
+            span{
+                color: inherit;
+            }
+            &:hover, &:focus{
+                background: @color-white;
+                border-color: @theme-color;
+                color: @theme-color;
+            }
+        }
+    }
+}
+.typo-light{
+    &.bg-color{
+        input, .form-control{
+            color: #fff;
+            &[type="text"], &[type="password"], 
+            &[type="url"], &[type="search"], 
+            &[type="email"], &[type="number"], 
+            &[type="tel"]{
+                &:focus{
+                    color: @color-theme-dark;
+                    border-color: @color-white;
+                }
+            }
+        }
+    }
+}

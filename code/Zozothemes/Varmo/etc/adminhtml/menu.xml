@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Zozothemes_Varmo::varmo_theme" title="Zozoconcepts" module="Zozothemes_Varmo" sortOrder="10" parent="Zozothemes_Hybrid::zozothemes" resource="Zozothemes_Hybrid::zozothemes"/>
+        <add id="Zozothemes_Varmo::theme_settings" title="Theme Config" module="Zozothemes_Varmo" sortOrder="20" parent="Zozothemes_Varmo::varmo_theme" action="adminhtml/system_config/edit/section/varmo_settings" resource="Zozothemes_Varmo::theme_settings"/>
+        <add id="Zozothemes_Varmo::theme_design" title="Design Config" module="Zozothemes_Varmo" sortOrder="30" parent="Zozothemes_Varmo::varmo_theme" action="adminhtml/system_config/edit/section/varmo_design" resource="Zozothemes_Varmo::theme_design"/>
+    </menu>
+</config>

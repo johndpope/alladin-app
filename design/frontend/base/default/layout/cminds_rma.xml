@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="cminds_rma">
+                <name>cminds_rma_list</name>
+                <path>cminds_rma/rma/list</path>
+                <label>RMA</label>
+            </action>
+        </reference>
+    </customer_account>
+    <cminds_rma_rma_create>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="page/html_wrapper" name="my.account.wrapper" translate="label">
+                <label>My Account Wrapper</label>
+                <action method="setElementClass"><value>my-account</value></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="sales"><name>orders</name><path>sales/order/history/</path><label>My Orders</label></action>
+                <action method="addLink" translate="label"><name>billing_agreements</name><path>sales/billing_agreement/</path><label>Billing Agreements</label></action>
+                <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>Recurring Profiles</label></action>
+                <action method="addLink" translate="label" module="review"><name>reviews</name><path>review/customer</path><label>My Product Reviews</label></action>
+                <action method="addLink" translate="label" module="wishlist" ifconfig="wishlist/general/active"><name>wishlist</name><path>wishlist/</path><label>My Wishlist</label></action>
+                <action method="addLink" translate="label" module="oauth"><name>OAuth Customer Tokens</name><path>oauth/customer_token</path><label>My Applications</label></action>
+                <action method="addLink" translate="label" module="newsletter"><name>newsletter</name><path>newsletter/manage/</path><label>Newsletter Subscriptions</label></action>
+                <action method="addLink" translate="label" module="downloadable"><name>downloadable_products</name><path>downloadable/customer/products</path><label>My Downloadable Products</label></action>
+
+                <action method="addLink" translate="label" module="cminds_rma">
+                    <name>cminds_rma_list</name>
+                    <path>cminds_rma/rma/list</path>
+                    <label>RMA</label>
+                </action>
+            </block>
+            <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+            </block>
+            <block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+            <remove name="tags_popular"/>
+        </reference>
+        <reference name="content">
+            <block type="cminds_rma/rma_create" name="cminds_rma_create" />
+        </reference>
+    </cminds_rma_rma_create>
+    <cminds_rma_rma_list>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="page/html_wrapper" name="my.account.wrapper" translate="label">
+                <label>My Account Wrapper</label>
+                <action method="setElementClass"><value>my-account</value></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="sales"><name>orders</name><path>sales/order/history/</path><label>My Orders</label></action>
+                <action method="addLink" translate="label"><name>billing_agreements</name><path>sales/billing_agreement/</path><label>Billing Agreements</label></action>
+                <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>Recurring Profiles</label></action>
+                <action method="addLink" translate="label" module="review"><name>reviews</name><path>review/customer</path><label>My Product Reviews</label></action>
+                <action method="addLink" translate="label" module="wishlist" ifconfig="wishlist/general/active"><name>wishlist</name><path>wishlist/</path><label>My Wishlist</label></action>
+                <action method="addLink" translate="label" module="oauth"><name>OAuth Customer Tokens</name><path>oauth/customer_token</path><label>My Applications</label></action>
+                <action method="addLink" translate="label" module="newsletter"><name>newsletter</name><path>newsletter/manage/</path><label>Newsletter Subscriptions</label></action>
+                <action method="addLink" translate="label" module="downloadable"><name>downloadable_products</name><path>downloadable/customer/products</path><label>My Downloadable Products</label></action>
+
+                <action method="addLink" translate="label" module="cminds_rma">
+                    <name>cminds_rma_list</name>
+                    <path>cminds_rma/rma/list</path>
+                    <label>RMA</label>
+                </action>
+            </block>
+            <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+            </block>
+            <block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+            <remove name="tags_popular"/>
+        </reference>
+        <reference name="content">
+            <block type="cminds_rma/rma_list" name="cminds_rma_list" />
+        </reference>
+    </cminds_rma_rma_list>
+    <cminds_rma_rma_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-left.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="page/html_wrapper" name="my.account.wrapper" translate="label">
+                <label>My Account Wrapper</label>
+                <action method="setElementClass"><value>my-account</value></action>
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+                <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Account Dashboard</label></action>
+                <action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account Information</label></action>
+                <action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Address Book</label></action>
+                <action method="addLink" translate="label" module="sales"><name>orders</name><path>sales/order/history/</path><label>My Orders</label></action>
+                <action method="addLink" translate="label"><name>billing_agreements</name><path>sales/billing_agreement/</path><label>Billing Agreements</label></action>
+                <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>Recurring Profiles</label></action>
+                <action method="addLink" translate="label" module="review"><name>reviews</name><path>review/customer</path><label>My Product Reviews</label></action>
+                <action method="addLink" translate="label" module="wishlist" ifconfig="wishlist/general/active"><name>wishlist</name><path>wishlist/</path><label>My Wishlist</label></action>
+                <action method="addLink" translate="label" module="oauth"><name>OAuth Customer Tokens</name><path>oauth/customer_token</path><label>My Applications</label></action>
+                <action method="addLink" translate="label" module="newsletter"><name>newsletter</name><path>newsletter/manage/</path><label>Newsletter Subscriptions</label></action>
+                <action method="addLink" translate="label" module="downloadable"><name>downloadable_products</name><path>downloadable/customer/products</path><label>My Downloadable Products</label></action>
+                <action method="addLink" translate="label" module="supplierfrontendproductuploader"><name>supplierfrontendproductuploader</name><path>supplierfrontendproductuploader/</path><label>My Supplier Frontend Product Uploader Panel</label></action>
+                <action method="addLink" translate="label" module="marketplace"><name>marketplace_supplier_rates</name><path>cminds_rma/supplier/rates</path><label>My Rates</label></action>
+                <action method="addLink" translate="label" module="marketplace"><name>marketplace_supplier_rate</name><path>cminds_rma/supplier/ratelist</path><label>Rate Supplier</label></action>
+            </block>
+            <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+            </block>
+            <block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+            <remove name="tags_popular"/>
+        </reference>
+        <reference name="content">
+            <block type="cminds_rma/rma_view" name="cminds_rma_view" />
+        </reference>
+    </cminds_rma_rma_view>
+</layout>

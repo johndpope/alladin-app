@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Zozoconcepts_Extensia>
+            <version>1.0.2</version>
+        </Zozoconcepts_Extensia>
+    </modules>
+    <admin>
+        <routers>
+			<adminhtml>
+				<use>admin</use>
+				<args>
+					<zozoconcepts_extensia before="Mage_Adminhtml">Zozoconcepts_Extensia_Adminhtml</zozoconcepts_extensia>
+				</args>
+			</adminhtml>
+        </routers>
+    </admin>
+	<global>
+		<helpers>
+            <extensia>
+                <class>Zozoconcepts_Extensia_Helper</class>
+            </extensia>
+        </helpers>
+		 <resources>
+            <zozoconcepts_extensia>
+                <setup>
+                    <module>Zozoconcepts_Extensia</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </zozoconcepts_extensia>
+        </resources>
+	</global>
+</config>

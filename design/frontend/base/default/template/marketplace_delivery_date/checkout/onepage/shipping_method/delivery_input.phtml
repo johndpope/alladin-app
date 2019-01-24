@@ -1,0 +1,101 @@
+<?php echo $this->getChildHtml('calendar'); ?>
+<?php $deliveryDate = Mage::helper('marketplace_delivery_date')->getDeliveryDateConfig(); ?>
+<?php $orderLeadTimeEnabled = Mage::helper('marketplace_delivery_date')->getOrderLeadTimeConfig(); ?>
+<?php $supplierId = $this->getSupplierId(); ?>
+<?php $supplier = $this->getSupplierById($supplierId); ?>
+<?php $possibleDeliveryDate = Mage::helper('marketplace_delivery_date')->calculatePossibleDeliveryDate($supplier); ?>
+<?php $possibleDayWeeks = Mage::helper('marketplace_delivery_date')->getPossibleDaysWeek($supplier); ?>
+<?php $excludedDatesJson = $this->getExcludedDatesForSupplier($supplierId);?>
+<?php if ($deliveryDate == 1) : ?>
+    <li>
+        <input type="text" placeholder="Delivery date" style="width: 250px;"
+               class="input-text datepicker" name="delivery_date[<?php echo $supplierId; ?>]"
+               id="delivery_date_<?php echo $supplierId; ?>" />
+    </li>
+
+    <script type="text/javascript">
+        <?php if ($orderLeadTimeEnabled === true and $supplierId !== 'nonsupplier') : ?>
+            function addDays(date, days) {
+                var result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
+            }
+
+            function checkWeekDays(date) {
+                var currentDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                var n = currentDate.getDay();
+                var arr = <?php echo $possibleDayWeeks; ?>;
+                if (arr.indexOf(n.toString()) != -1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function disabledDate(date) {
+               if (checkDate(date))  {
+                    return true;
+               }
+
+                if (checkWeekDays(date))  {
+                    return true;
+                }
+                var days = <?php echo $possibleDeliveryDate; ?>;
+                var today = new Date();
+
+                if(days > 0) {
+                    var dateNew = addDays(today, days);
+                } else {
+                    var dateNew = today;
+                }
+
+                return date < dateNew ;
+            }
+
+            function checkDate(date) {
+                var excludedDays = <?php echo $excludedDatesJson; ?>;
+                var block = false;
+                var currentDate = new Date(date.getYear(),date.getMonth(),date.getDate());
+                jQuery.each(excludedDays, function(key,value) {
+                    var excludedDate = new Date(value.date);
+                    var excludedDateFinal = new Date(
+                        excludedDate.getYear(),
+                        excludedDate.getMonth(),
+                        excludedDate.getDate()
+                    );
+                    if (currentDate.getTime() == excludedDateFinal.getTime()) {
+                        block = true;
+                    }
+                });
+
+                if(block === true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            // <![CDATA[
+            var cal = Calendar.setupCminds({
+                inputField : 'delivery_date_<?php echo $supplierId; ?>',
+                ifFormat : '%Y-%m-%d',
+                showsTime : false,
+                button : 'date_select_trig',
+                singleClick : true,
+                dateStatusFunc : disabledDate
+            });
+            // ]]>
+        <?php else : ?>
+            // <![CDATA[
+            Calendar.setup({
+                inputField : 'delivery_date_<?php echo $supplierId; ?>',
+                ifFormat : '%Y-%m-%d',
+                showsTime : false,
+                button : 'date_select_trig',
+                singleClick : true
+            });
+            // ]]>
+        <?php endif; ?>
+
+    </script>
+<?php endif; ?>

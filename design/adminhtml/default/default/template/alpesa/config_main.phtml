@@ -1,0 +1,789 @@
+
+<div class="columns">
+   <div class="side-col">
+      <?php echo $this->getChildHtml('alpesaconfigurationleft'); ?>
+   </div>
+   <?php $configMainData = $this->configData();
+   $staticRulesCollection = $configMainData['configuration'];
+   $conditionsCollection = $configMainData['conditions'];
+   $cardsCollection = $configMainData['cards'];
+   ?>
+   <div class="main-col" id="content">
+      <div class="main-col-inner">
+         <div id="messages"></div>
+         <!--configuration content heading-->
+         <div class="content-header">
+            <table cellspacing="0">
+               <tbody>
+                  <tr>
+                     <td>
+                        <h3>Alpesa Global Settings</h3>
+                     </td>
+                     <td class="form-buttons">
+                        <button id="alpesa-config-button-save" tile="Save Config" type="button" class="scalable save" onClick="alpesaConfigFormDec.submit()">
+                        <span><span><span>Save Config</span></span></span>
+                        </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <!--configuration form input-->
+         <form action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/alpesa/save");?>" method="post" id="alpesaConfigForm" enctype="multipart/form-data">
+            <!--hidden form field key-->
+            <div>
+               <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey();?>">
+            </div>
+            <!--the actual form with data-->
+            <div class="entry-edit">
+
+             <!--#########################################################-->
+               <!--static rules-->
+               <?php
+               $staticCollection = '';
+               if(count($staticRulesCollection)>0){
+               foreach($staticRulesCollection as $staticRulesCollect){
+               	if($staticRulesCollect->config_priority == 1){
+               		$staticCollection = $staticRulesCollect;
+               	}
+               }
+               }
+               ?>
+               <div class="section-config">
+                  <div class="entry-edit-head collapseable">
+                     <a id="alpesa_static_rules-head" href="#" onclick="Fieldset.toggleCollapse('alpesa_static_rules',
+                        '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/state");?>');return false;">
+                     Static Rules
+                     </a>
+                  </div>
+                  <input type="hidden" id="alpesa_static_rules-state" name="config_state[alpesa_static_rules]" value="1">
+                  <fieldset class="config collapseable" id="alpesa_static_rules">
+                     <legend>Static Rules</legend>
+                     <table cellspacing="0" class="form-list">
+                        <tbody>
+                           <!--currency to points-->
+                           <tr>
+                              <td colspan="2">
+                              <div class="input-box custStaticRulesClass">
+                              <?php
+                               $currency_point = is_object($staticCollection) && strlen($staticCollection->currency_point)>0 ? trim($staticCollection->currency_point) : '' ;
+
+                              $flagVal = flagVal($currency_point);
+                              $curr_to_points_curr = count($flagVal)>0 ? $flagVal[0] : '';
+                              $curr_to_points_pnts = count($flagVal)>1 ? $flagVal[1] : '';
+                              ?>
+
+                              	<label>Currency</label>
+                                 <input id="curr_to_points_curr" name="curr_to_points_curr" type="number" title="Currency" value="<?php echo strlen($curr_to_points_curr)>0 ? $curr_to_points_curr : 25; ?>" class="input-text required-entry validate-number"/>
+
+                                 <label>To 	Point(s)</label>
+                                    <input name="curr_to_points_pnts" id="curr_to_points_pnts" title="Points" type="number" value="<?php echo strlen($curr_to_points_pnts)>0 ? $curr_to_points_pnts : 1; ?>" class="input-text required-entry validate-number" type="number" />
+
+                                 </div>
+                              </td>
+
+                              <td colspan="2">
+
+                                 <div class="input-box custStaticRulesClass">
+
+                                   <?php
+                               $point_currency = is_object($staticCollection) && strlen($staticCollection->point_currency)>0 ? trim($staticCollection->point_currency) : '' ;
+
+                              $flagVal = flagVal($point_currency);
+                              $pnts_to_curr_points = count($flagVal)>0 ? $flagVal[0] : '';
+                              $pnts_to_curr_curr = count($flagVal)>1 ? $flagVal[1] : '';
+
+
+                              ?>
+
+                                 <label>Point(s)</label>
+                                 <input id="pnts_to_curr_points" name="pnts_to_curr_points" title="Points" type="number" value="<?php echo strlen($pnts_to_curr_points)>0 ? $pnts_to_curr_points : 1; ?>"  class="input-text required-entry validate-number"/>
+
+                                 <label>To Currency</label>
+                                 <input name="pnts_to_curr_curr" id="pnts_to_curr_curr" title="Currency" type="number" value="<?php echo strlen($pnts_to_curr_curr)>0 ? $pnts_to_curr_curr : 1.25; ?>" class="input-text required-entry validate-number" type="number" />
+                                 </div>
+
+                              </td>
+
+                           </tr>
+                           <!--points to currency-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <!---->
+
+                                <?php
+                                $percentage_reedemable = is_object($staticCollection) && strlen($staticCollection->percentage_reedemable)>0 ? trim($staticCollection->percentage_reedemable) : '' ;
+
+                                 /*****======****/
+                              $signup = is_object($staticCollection) && strlen($staticCollection->signup_points)>0 ? trim($staticCollection->signup_points) : '' ;
+
+ 							  $flagVal = flagVal($signup);
+                              $sign_up_flag = count($flagVal)>0 ? $flagVal[0] : '';
+                              $sign_up_points = count($flagVal)>1 ? $flagVal[1] : '';
+                              /*****======****/
+
+                              /*****======****/
+                              $login = is_object($staticCollection) && strlen($staticCollection->login_points)>0 ? trim($staticCollection->login_points) : '' ;
+
+ 							  $flagVal = flagVal($login);
+                              $login_flag = count($flagVal)>0 ? $flagVal[0] : '';
+                              $login_points = count($flagVal)>1 ? $flagVal[1] : '';
+                              /*****======****/
+
+                              /*****======****/
+                              $loginInteval = is_object($staticCollection) && strlen($staticCollection->login_interval)>0 ? trim($staticCollection->login_interval) : '' ;
+
+ 							  $flagVal = flagVal($loginInteval);
+                              $login_interval = count($flagVal)>0 ? $flagVal[0] : '';
+                              $login_interval_flag = count($flagVal)>1 ? $flagVal[1] : '';
+                              /*****======****/
+
+                              /*****======****/
+                              $newsletter = is_object($staticCollection) && strlen($staticCollection->newsletter_points)>0 ? trim($staticCollection->newsletter_points) : '' ;
+
+ 							  $flagVal = flagVal($newsletter);
+                              $newsletter_sign_up_flag = count($flagVal)>0 ? $flagVal[0] : '';
+                              $newsletter_sign_up = count($flagVal)>1 ? $flagVal[1] : '';
+                              /*****======****/
+
+                              /*****======****/
+                              $referral = is_object($staticCollection) && strlen($staticCollection->referral_points)>0 ? trim($staticCollection->referral_points) : '' ;
+
+ 							  $flagVal = flagVal($referral);
+                              $referral_flag = count($flagVal)>0 ? $flagVal[0] : '';
+                              $referral = count($flagVal)>1 ? $flagVal[1] : '';
+                              /*****======****/
+
+                                $minimum_points = is_object($staticCollection) && strlen($staticCollection->minimum_points)>0 ? trim($staticCollection->minimum_points) : '' ;
+
+                                function flagVal($string){
+                                	$arrayDt = array();
+
+                                	 if(strlen($string)>0){
+                              	$dtArr = explode(",",$string);
+                              	if(count($dtArr)>1){
+                              		$arrayDt[0] = $dtArr[0];
+                              		$arrayDt[1] = $dtArr[1];
+                              	}else{
+                              		$arrayDt[0] = $dtArr[0];
+                              	}
+                              }
+
+                                	return $arrayDt;
+                                }
+
+                              ?>
+
+                           <!---->
+                           <!--percentage reedeemable-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label">Percentage of points reedemable</td>
+                              <td class="value">
+                                 <input id="percentage_reedemable" name="percentage_reedemable" title="Points" type="number" value="<?php echo strlen($percentage_reedemable)>0 ? $percentage_reedemable : 50; ?>"  class="input-text required-entry validate-number"/> 
+                              </td>
+                              <td colspan="2">%</td>
+                           </tr>
+                           <!---->
+                           <!--divider-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td colspan="4">
+                                 <hr>
+                              </td>
+                           </tr>
+                           <!---->
+                           <!--first sign up-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label">Points on first sign up</td>
+                              <td class="value">
+                                 <select id="sign_up_flag" name="sign_up_flag" class="select validation-passed">
+                                    <option value="yes" <?php echo strlen($sign_up_flag)>0 && $sign_up_flag == 'yes' || strlen($sign_up_flag) < 1 ? "selected='selected'" : ''; ?> >Yes</option>
+                                    <option value="no" <?php echo strlen($sign_up_flag)>0 && $sign_up_flag == 'no' ? "selected='selected'" : ''; ?> >No</option>
+                                 </select>
+                              </td>
+                              <td class="value">
+                                 <div class="input-box">
+                                    <input name="sign_up_points" id="sign_up_points" title="Sign up Points" type="number" value="<?php echo strlen($sign_up_points)>0 ? $sign_up_points : 2500; ?>" class="input-text required-entry validate-number" type="number" />
+                                 </div>
+                              </td>
+                              <td>Point(s)</td>
+                           </tr>
+                           <!---->
+                           <!--login points-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label">Points on login</td>
+                              <td class="value">
+                                 <select id="login_flag" name="login_flag" class="select validation-passed"  onchange="loginPntsToggle(this)">
+                                    <option value="yes"  <?php echo strlen($login_flag)>0 && $login_flag == 'yes' || strlen($login_flag) < 1 ? "selected='selected'" : ''; ?> >Yes</option>
+                                    <option value="no" <?php echo strlen($login_flag)>0 && $login_flag == 'no' ? "selected='selected'" : ''; ?> >No</option>
+                                 </select>
+                              </td>
+                              <td class="value">
+                                 <div class="input-box">
+                                    <input name="login_points" id="login_points" title="Login Points" type="number" value="<?php echo strlen($login_points)>0 ? $login_points : 50; ?>" class="input-text required-entry validate-number" type="number" style="display:<?php echo $login_flag == 'no'?'none':'block';?>;"/>
+                                 </div>
+                              </td>
+                              <td><labeled id="label-login-points"  style="display:<?php echo $login_flag == 'no'?'none':'block';?>;">Point(s)</labeled></td>
+                           </tr>
+                           <!---->
+                           <!--login interval-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label" id="label-login-interval"  style="display:<?php echo $login_flag == 'no'?'none':'block';?>;">Login interval to award point(s)</td>
+                              <td class="value">
+                                 <div class="input-box">
+                                    <input name="login_interval" id="login_interval" title="Login Interval" type="number" value="<?php echo strlen($login_interval)>0 ? $login_interval : 24; ?>" class="input-text required-entry validate-number" type="number"  style="display:<?php echo $login_flag == 'no'?'none':'block';?>;"/>
+                                 </div>
+                              </td>
+                              <td class="value">
+                                 <select id="login_interval_flag" name="login_interval_flag" class="select validation-passed"  style="display:<?php echo $login_flag == 'no'?'none':'block';?>;">
+                                    <option value="h" <?php echo strlen($login_interval_flag)>0 && $login_interval_flag == 'h' || strlen($login_interval_flag) < 1 ? "selected='selected'" : ''; ?>>Hour(s)</option>
+                                    <option value="i" <?php echo strlen($login_interval_flag)>0 && $login_interval_flag == 'i' ? "selected='selected'" : ''; ?> >Minute(s)</option>
+                                    <option value="s" <?php echo strlen($login_interval_flag)>0 && $login_interval_flag == 's' ? "selected='selected'" : ''; ?> >Second(s)</option>
+                                 </select>
+                              </td>
+                              <td>&nbsp;</td>
+                           </tr>
+                           <!---->
+                           <!--newsletter sign up-->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label">Points on newsletter sign up</td>
+                              <td class="value">
+                                 <select id="newsletter_sign_up_flag" name="newsletter_sign_up_flag" class="select validation-passed">
+                                    <option value="yes" <?php echo strlen($newsletter_sign_up_flag)>0 && $newsletter_sign_up_flag == 'yes' || strlen($newsletter_sign_up_flag) < 1 ? "selected='selected'" : ''; ?> >Yes</option>
+                                    <option value="no" <?php echo strlen($newsletter_sign_up_flag)>0 && $newsletter_sign_up_flag == 'no' ? "selected='selected'" : ''; ?> >No</option>
+                                 </select>
+                              </td>
+                              <td class="value">
+                                 <div class="input-box">
+                                    <input name="newsletter_sign_up" id="newsletter_sign_up" title="Newsletter Sign up Points" type="number" value="<?php echo strlen($newsletter_sign_up)>0 ? $newsletter_sign_up : 500; ?>" class="input-text required-entry validate-number" type="number" />
+                                 </div>
+                              </td>
+                              <td>Point(s)</td>
+                           </tr>
+                           <!---->
+                           <!--refferal points -->
+                           <tr>
+                              <td colspan="4">&nbsp;
+                           </tr>
+                           <tr>
+                              <td class="label">Points on referral account</td>
+                              <td class="value">
+                                 <select id="referral_flag" name="referral_flag" class="select validation-passed">
+                                    <option value="yes" <?php echo strlen($referral_flag)>0 && $referral_flag == 'yes' || strlen($referral_flag) < 1 ? "selected='selected'" : ''; ?> >Yes</option>
+                                    <option value="no" <?php echo strlen($referral_flag)>0 && $referral_flag == 'no' ? "selected='selected'" : ''; ?> >No</option>
+                                 </select>
+                              </td>
+                              <td class="value">
+                                 <div class="input-box">
+                                    <input name="referral" id="referral" title="Referral Points" type="number" value="<?php echo strlen($referral)>0 ? $referral : 500; ?>" class="input-text required-entry validate-number" type="number" />
+                                 </div>
+                              </td>
+                              <td>Point(s)</td>
+                           </tr>
+                           <!---->
+                        
+                           <!---->
+                           <!--divider-->
+                           <tr>
+                               <td colspan="4">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td colspan="4">
+                                 <hr>
+                              </td>
+                           </tr>
+                           <!---->
+                           <!--percentage reedeemable-->
+                           <tr>
+                               <td colspan="4">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td class="label">Minimum points allowed</td>
+                              <td class="value">
+                                 <input id="minimum_points" name="minimum_points" title="Minimum Points" type="number" value="<?php echo strlen($minimum_points)>0 ? $minimum_points : 0; ?>"  class="input-text required-entry validate-number"/> 
+                              </td>
+                              <td colspan="2">&nbsp;</td>
+                           </tr>
+                           <!---->
+                           
+                              <!--divider-->
+                           <tr>
+                               <td colspan="4">&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td colspan="4">
+                                 <hr>
+                              </td>
+                           </tr>
+                           <!---->
+                           <!--Allowed Points-->
+                           <tr>
+                               <td colspan="4">&nbsp;</td>
+                           </tr>
+                           <tr>
+                                <?php
+                               $allowedPayments = is_object($staticCollection) && strlen($staticCollection->allow_payment)>0 ? trim($staticCollection->allow_payment) : 0 ;
+                               ?>
+                              <td class="label">Allow Payments</td>
+                              <td class="value">
+                                  <select id="referral_flag" name="allow_payment" class="select validation-passed">
+                                    <option value="1" <?php echo $allowedPayments == 1 ? "selected='selected'" : ''; ?> >Yes</option>
+                                    <option value="0" <?php echo $allowedPayments == 0 ? "selected='selected'" : ''; ?> >No</option>
+                                 </select>
+                              </td>
+                              <td colspan="2">&nbsp;</td>
+                           </tr>
+                           <!---->
+                           
+                           
+                        </tbody>
+                     </table>
+                  </fieldset>
+                  <script type="text/javascript">//<![CDATA[
+                     Fieldset.applyCollapse('alpesa_static_rules');
+                     //]]>
+                  </script>
+               </div>
+
+                <!--#########################################################-->
+               <!--dynamic rules-->
+               
+               <div class="section-config">
+                  <div class="entry-edit-head collapseable">
+                     <a id="alpesa_dynamic_rules-head" href="#" onclick="Fieldset.toggleCollapse('alpesa_dynamic_rules',
+                        '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/state");?>');return false;">
+                     Dynamic Conditional Rules Reward
+                     </a>
+                  </div>
+                  <input type="hidden" id="alpesa_dynamic_rules-state" name="config_state[alpesa_dynamic_rules]" value="0">
+                  <fieldset class="config collapseable" id="alpesa_dynamic_rules">
+                     <legend>Dynamic Conditional Rules Reward</legend>
+                     <table cellspacing="0" class="form-list">
+                        <tbody  id="dynamic-rules-table">
+						<?php
+                        //array to hold the group keys.
+                        $arrayGroupKeys = array();
+                        //array to hold group keys with the number of items they contain.
+                        //$arrayGroupKeysNum = array();
+
+                        //array to hold group with its own data set.
+                        $arrayGroupDataset = array();
+
+                        //array containing all ids in the condition
+                        $arrayConditionalArrayIds = array();
+						?>
+						
+						
+                        <?php if($conditionsCollection->count()>0):?>
+
+                        <?php
+
+                        foreach($conditionsCollection as $conditionCollect){
+                        	if(array_key_exists($conditionCollect->config_id, $arrayGroupKeys)){
+                        		//increment by 1
+                        		//$arrayGroupKeysNum[$conditionCollect->config_id] += 1;
+                        		//add the data set
+                        		$arrayGroupDataset[$conditionCollect->config_id][] = $conditionCollect;
+
+                        	}else{
+                        		//add the data set
+                        		$arrayGroupDataset[$conditionCollect->config_id][] = $conditionCollect;
+
+                        		//add to the keys array
+                        		$arrayGroupKeys[$conditionCollect->config_id] = $conditionCollect->config_id;
+
+                        		//add 1
+                        		//$arrayGroupKeysNum[$conditionCollect->config_id] = 1;
+                        	}
+                        }
+
+                        //loop the arrayGroupKeys
+                        //get the incremented value from arrayGroupKeysNum
+
+                        ?>
+
+                        <?php if(count($arrayGroupKeys)>0):?>
+                        	<?php foreach($arrayGroupKeys as $arrGroupKey):?>
+                        		<?php if(array_key_exists($arrGroupKey, $arrayGroupDataset)):?>
+                        			<?php $dataCount = 0;  $singleKeyDataset = $arrayGroupDataset[$arrGroupKey];?>
+                        			<?php $firstDataset = $singleKeyDataset[0]; ?>
+
+                           <tr class="class-rules-dynamic-alpesa" id="<?php echo $arrGroupKey; ?>" ruleitemid="<?php echo $arrGroupKey; ?>">
+                              <td >
+                                 <label>Target</label>
+                                 <input setiddynamically="true" id="points_target_<?php echo $arrGroupKey; ?>" name="points_target_<?php echo $arrGroupKey; ?>" type="number"  class="input-text required-entry validate-number" value="<?php echo strlen($firstDataset->points_target)>0? $firstDataset->points_target : '' ; ?>"/>
+                              </td>
+                              <td>
+
+                               <?php foreach($singleKeyDataset as $singleCondition):?>
+                               	<?php
+                               	//generate a random number
+                               	$randomInt = mt_rand(5,15);
+                               	//confirm that it does not exist the conditional array ids
+                               	while(array_key_exists($randomInt, $arrayConditionalArrayIds)){
+                               		$randomInt = mt_rand(1,1000000);
+                               	}
+
+                               	//assign the random value to the conditional ids
+                               	$arrayConditionalArrayIds[$randomInt] =  $randomInt;
+
+                               	?>
+                               	<?php //ensure its not null;
+                               	if($singleCondition->visits != 0):
+                               	?>
+                                 <div class="dynamic-conditions-holder" conditionitemid="<?php echo $randomInt; ?>" id="<?php echo $randomInt; ?>">
+                                    <label>Visit(s)</label>
+                                    <select id="condition_scope_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" name="condition_scope_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" class="select validation-passed"  setconditiondynamicaly="true">
+                                       <option value="eq" <?php echo strlen($singleCondition->condition_scope)>0 && $singleCondition->condition_scope == 'eq' || strlen($singleCondition->condition_scope) < 1 ? "selected='selected'" : ''; ?> >Equal</option>
+                                       <option value="lt" <?php echo strlen($singleCondition->condition_scope)>0 && $singleCondition->condition_scope == 'lt' ? "selected='selected'" : ''; ?> >Less Than</option>
+                                       <option value="gt" <?php echo strlen($singleCondition->condition_scope)>0 && $singleCondition->condition_scope == 'gt' ? "selected='selected'" : ''; ?> >Greater Than</option>
+                                       <option value="leq" <?php echo strlen($singleCondition->condition_scope)>0 && $singleCondition->condition_scope == 'leq' ? "selected='selected'" : ''; ?> >Less Than Or Equal</option>
+                                       <option value="geq" <?php echo strlen($singleCondition->condition_scope)>0 && $singleCondition->condition_scope == 'geq' ? "selected='selected'" : ''; ?> >Greater Than Or Equal</option>
+                                    </select>
+                                    <input id="condition_visits_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" name="condition_visits_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" type="number"  setconditiondynamicaly="true"  class="input-text required-entry validate-number" value="<?php echo strlen($singleCondition->visits)>0? $singleCondition->visits : '' ; ?>" />
+                                    <div class="radio-group-al">
+                                       <input  setconditiondynamicaly="true" type="radio" name="condition_operator_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" value="and"  <?php echo strlen($singleCondition->condition_operator)>0 && $singleCondition->condition_operator == 'and' || strlen($singleCondition->condition_operator) < 1 ? "checked" : ''; ?> > AND
+                                       <input  setconditiondynamicaly="true" type="radio" name="condition_operator_<?php echo $arrGroupKey; ?>_<?php echo $randomInt; ?>" value="or" <?php echo strlen($singleCondition->condition_operator)>0 && $singleCondition->condition_operator == 'or' ? "checked" : ''; ?> > OR	
+                                       <br><button type="button" title="Remove rule condition" class="button" onclick="removeConditionalDynamicAlRule(this)"><span>X</span></button>
+                                    </div>
+                                 </div>
+                             <?php endif;?>
+                             <?php endforeach; ?>
+
+                                 <button type="button" onclick="addAlConditionOp(this)" title="Add Condition" class="button add-condition-dyno-btn"><span><span>Add Condition</span></span></button>
+
+                              </td>
+                                   
+                              <td>
+                                 <label>Per Visit Spending</label>
+                                 <input setiddynamically="true" id="per_visit_spending_<?php echo $arrGroupKey; ?>" name="per_visit_spending_<?php echo $arrGroupKey; ?>" type="number"  class="input-text required-entry validate-number" value="<?php echo strlen($firstDataset->per_visit_spending)>0? $firstDataset->per_visit_spending : '' ; ?>"/>
+                              </td>
+                              <td >
+                                 <label>Points Reward</label>
+                                 <input setiddynamically="true" id="dyno_point_reward_<?php echo $arrGroupKey; ?>" name="dyno_point_reward_<?php echo $arrGroupKey; ?>" type="number" class="input-text required-entry validate-number" value="<?php echo strlen($firstDataset->points_reward)>0? $firstDataset->points_reward : 0 ; ?>"/>
+                              </td>
+                              <td>
+                                 <button type="button" title="Remove rule" class="button" onclick="removeDynamicAlRule(this)"><span><span>Remove</span></span></button>
+                              </td>
+
+                		      
+                           </tr>
+                       <?php endif; ?>
+                       <?php endforeach;?>
+                       <?php endif; ?>
+
+                       <?php endif;?>
+
+                        </tbody>
+                     </table>
+                     <button type="button" title="Add Rule" class="button add-rule-cust-btn" onclick="addDynamicAlpesaRule()"><span><span>Add Rule</span></span></button>
+                  </fieldset>
+                  <script type="text/javascript">//<![CDATA[
+                     Fieldset.applyCollapse('alpesa_dynamic_rules');
+                     //]]>
+                  </script>
+               </div>
+
+
+               <!--#########################################################-->
+               <!--card rules-->
+               <?php $cardIdsArray = array();?>
+               <div class="section-config">
+                  <div class="entry-edit-head collapseable">
+                     <a id="alpesa_card_rules-head" href="#" onclick="Fieldset.toggleCollapse('alpesa_card_rules',
+                        '<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/system_config/state");?>');return false;">
+                     Card Class Rules
+                     </a>
+                  </div>
+                  <input type="hidden" id="alpesa_card_rules-state" name="config_state[alpesa_card_rules]" value="0">
+                  <fieldset class="config collapseable" id="alpesa_card_rules">
+                     <legend>Card Class Rules</legend>
+                     <table cellspacing="0" class="form-list">
+                        <tbody id="card-rules-table-holder">
+                        <?php if($cardsCollection->count()>0):foreach($cardsCollection as $singleCardItem):?>
+                        	<?php $cardIdsArray[] = $singleCardItem->id;?>
+                           <!--card rule 1 -->
+                           <tr  cardruleid="<?php echo $singleCardItem->id; ?>" id="<?php echo $singleCardItem->id; ?>">
+                              <td>
+                                 <label> Card Name</label>
+                                    <input setcarddynamicaly="true" name="card_name_<?php echo $singleCardItem->id; ?>" id="card_name_<?php echo $singleCardItem->id; ?>" title="Card Name" type="text" value="<?php echo strlen($singleCardItem->card_name)>0? $singleCardItem->card_name : '' ; ?>" class="input-text required-entry"/>
+                              </td>
+                              <td>
+                                 <label> Card Color</label>
+                                    <input setcarddynamicaly="true" name="card_color_<?php echo $singleCardItem->id; ?>" id="card_color_<?php echo $singleCardItem->id; ?>" title="Card Color" type="text" value="<?php echo strlen($singleCardItem->card_color)>0? $singleCardItem->card_color : '' ; ?>" class="input-text required-entry jscolor"/>
+                              </td>
+                              <td>
+                              <?php
+                               $cMin = 0;$cMax=0;
+                               $minMaxPnts = $singleCardItem->card_min_max_points;
+                               if(strlen(trim($minMaxPnts))>0){
+                               	$maxMinArr = explode(",",$minMaxPnts);
+                               	if(count($maxMinArr)>1){
+                               		$cMin = $maxMinArr[0];$cMax= $maxMinArr[1];
+                               	}else{
+                               		$cMin = $maxMinArr[0];
+                               	}
+                               }
+                               ?>
+                                 <label> Minimum Points</label>
+                                    <input setcarddynamicaly="true" name="card_min_points_<?php echo $singleCardItem->id; ?>" id="card_min_points_<?php echo $singleCardItem->id; ?>" title="Minimum Points" type="number" value="<?php echo strlen($cMin)>0? $cMin : '' ; ?>" class="input-text required-entry validate-number"/>
+                                    &nbsp;
+                                 <label> Maximum Points</label>
+                                    <input setcarddynamicaly="true" name="card_max_points_<?php echo $singleCardItem->id; ?>" id="card_max_points_<?php echo $singleCardItem->id; ?>" title="Maximum Points" type="number" value="<?php echo strlen($cMax)>0? $cMax : '' ; ?>" class="input-text required-entry validate-number"/>
+                              </td>
+                              <td>
+                                 <label>Card Voucher Amount</label>
+                                    <input setcarddynamicaly="true" name="card_voucher_amount_<?php echo $singleCardItem->id; ?>" id="card_voucher_amount_<?php echo $singleCardItem->id; ?>" title="Card Voucher Amount" type="number" value="<?php echo strlen($singleCardItem->card_voucher_amount)>0? $singleCardItem->card_voucher_amount : '' ; ?>" class="input-text required-entry validate-number"/>
+                              </td>
+                              <td>
+                                 <label>Discount on products(%)</label>
+                                    <input setcarddynamicaly="true" name="card_prod_discount_<?php echo $singleCardItem->id; ?>" id="card_prod_discount_<?php echo $singleCardItem->id; ?>" title="Discount on products" type="number" value="<?php echo strlen($singleCardItem->card_discount)>0? $singleCardItem->card_discount : '' ; ?>" class="input-text required-entry validate-number"/> 
+                              </td>
+                              <td>
+                              <?php
+                              $periodCount = 0;
+                              $periodArr = array();
+                              if(strlen(trim($singleCardItem->card_gift_date))>0){
+                              	$periodArr = explode(",",trim($singleCardItem->card_gift_date));
+                              	$periodCount = count($periodArr);
+                              }
+                              $periodVal = '';
+                              $monthlyVal = '';
+                              $weeklyVal = '';
+                              $dailyVal = '';
+                              //4-annualy-display all
+                              if($periodCount == 4){
+                              	  $periodVal = $periodArr[0];
+	                              $monthlyVal = $periodArr[1];
+	                              $weeklyVal = $periodArr[2];
+	                              $dailyVal = $periodArr[3];
+                              }
+                              //3-monthly - hide month select
+                              if($periodCount == 3){
+                              	  $periodVal = $periodArr[0];
+	                              $weeklyVal = $periodArr[1];
+	                              $dailyVal = $periodArr[2];
+                              }
+                              //2-weekly - hide month/weekly select
+                              if($periodCount == 2){
+                              	  $periodVal = $periodArr[0];
+	                              $dailyVal = $periodArr[1];
+                              }
+                              ?>
+                                 <label>Gift Period</label>
+                                 <select id="period_flag_<?php echo $singleCardItem->id; ?>" name="period_flag_<?php echo $singleCardItem->id; ?>" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="weekly" <?php echo strlen($periodVal)>0 && $periodVal == 'weekly' ? "selected='selected'" : ''; ?> >Weekly</option>
+                                    <option value="monthly" <?php echo strlen($periodVal)>0 && $periodVal == 'monthly' ? "selected='selected'" : ''; ?> >Monthly</option>
+                                    <option value="annualy"  <?php echo strlen($periodVal)>0 && $periodVal == 'annualy' ||strlen($periodVal) < 1 ? "selected='selected'" : ''; ?> >Annualy</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="month_flag_<?php echo $singleCardItem->id; ?>" name="month_flag_<?php echo $singleCardItem->id; ?>" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true" style="<?php echo $periodCount == 2 || $periodCount == 3 ?'display:none;':'';?>">
+                                    <option value="1"  <?php echo strlen($monthlyVal)>0 && $monthlyVal == '1' ||strlen($monthlyVal) < 1 ? "selected='selected'" : ''; ?> >1st month</option>
+                                    <option value="2" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '2' ? "selected='selected'" : ''; ?> >2nd month</option>
+                                    <option value="3" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '3' ? "selected='selected'" : ''; ?> >3rd month</option>
+                                    <option value="4" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '4' ? "selected='selected'" : ''; ?> >4th month</option>
+                                    <option value="5" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '5' ? "selected='selected'" : ''; ?> >5th month</option>
+                                    <option value="6" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '6' ? "selected='selected'" : ''; ?> >6th month</option>
+                                    <option value="7" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '7' ? "selected='selected'" : ''; ?> >7th month</option>
+                                    <option value="8" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '8' ? "selected='selected'" : ''; ?> >8th month</option>
+                                    <option value="9" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '9' ? "selected='selected'" : ''; ?> >9th month</option>
+                                    <option value="10" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '10' ? "selected='selected'" : ''; ?> >10th month</option>
+                                    <option value="11" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '11' ? "selected='selected'" : ''; ?> >11th month</option>
+                                    <option value="12" <?php echo strlen($monthlyVal)>0 && $monthlyVal == '12' ? "selected='selected'" : ''; ?> >12th month</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="week_flag_<?php echo $singleCardItem->id; ?>" name="week_flag_<?php echo $singleCardItem->id; ?>" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true" style="<?php echo $periodCount==2?'display:none;':'';?>">
+                                    <option value="1"  <?php echo strlen($weeklyVal)>0 && $weeklyVal == '1' ||strlen($weeklyVal) < 1 ? "selected='selected'" : ''; ?> >1st week</option>
+                                    <option value="2" <?php echo strlen($weeklyVal)>0 && $weeklyVal == '2' ? "selected='selected'" : ''; ?> >2nd week</option>
+                                    <option value="3" <?php echo strlen($weeklyVal)>0 && $weeklyVal == '3' ? "selected='selected'" : ''; ?> >3rd week</option>
+                                    <option value="4" <?php echo strlen($weeklyVal)>0 && $weeklyVal == '4' ? "selected='selected'" : ''; ?> >4th week</option>
+                                    <option value="5" <?php echo strlen($weeklyVal)>0 && $weeklyVal == '5' ? "selected='selected'" : ''; ?> >5th week</option>
+                                    <option value="6" <?php echo strlen($weeklyVal)>0 && $weeklyVal == '6' ? "selected='selected'" : ''; ?> >6th week</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="day_flag_<?php echo $singleCardItem->id; ?>" name="day_flag_<?php echo $singleCardItem->id; ?>" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="1"  <?php echo strlen($dailyVal)>0 && $dailyVal == '1' ||strlen($dailyVal) < 1 ? "selected='selected'" : ''; ?> >1st day</option>
+                                    <option value="2" <?php echo strlen($dailyVal)>0 && $dailyVal == '2' ? "selected='selected'" : ''; ?> >2nd day</option>
+                                    <option value="3" <?php echo strlen($dailyVal)>0 && $dailyVal == '3' ? "selected='selected'" : ''; ?> >3rd day</option>
+                                     <option value="4" <?php echo strlen($dailyVal)>0 && $dailyVal == '4' ? "selected='selected'" : ''; ?> >4th day</option>
+                                    <option value="5" <?php echo strlen($dailyVal)>0 && $dailyVal == '5' ? "selected='selected'" : ''; ?> >5th day</option>
+                                    <option value="6" <?php echo strlen($dailyVal)>0 && $dailyVal == '6' ? "selected='selected'" : ''; ?> >6th day</option>
+                                    <option value="7" <?php echo strlen($dailyVal)>0 && $dailyVal == '7' ? "selected='selected'" : ''; ?> >7th day</option>
+                                 </select>
+                              </td>
+                              <td>
+                                 <button type="button" title="Add Card" class="button" onclick="removeCardType(this)"><span><span>Remove</span></span></button>
+                              </td>
+                           </tr>
+                       <?php endforeach;endif; ?>
+                           <!---->
+                        </tbody>
+                     </table>
+                     <button type="button" title="Add Card" class="button add-card-btn" onclick="addCardType(this)"><span><span>Add Card</span></span></button>
+                  </fieldset>
+                  <script type="text/javascript">//<![CDATA[
+                     Fieldset.applyCollapse('alpesa_card_rules');
+                     //]]>
+                  </script>
+               </div>
+            </div>
+
+            <!--###########################hidden input elements###############################-->
+            <?php $rulesId = implode(",",$arrayGroupKeys); $conditionsId= implode(",",$arrayConditionalArrayIds); $cardRulesId = implode(",",$cardIdsArray); ?>
+            <!--input containing the ids of dynamic rules-->
+               <input name="dynamicRulesIdInput" type="hidden" value="<?php echo $rulesId; ?>" />
+               <!--input containing the ids of conditional rules-->
+               <input name="conditionalRulesIdInput" type="hidden" value="<?php echo $conditionsId; ?>" />
+               <!--input containing the ids of card-->
+               <input name="cardRulesIdInput" type="hidden" value="<?php echo $cardRulesId; ?>" />
+            <!--##########################################################-->
+
+         </form>
+      </div>
+
+
+      	 <!--###########################hidden elements to be added to the main page###############################-->
+      <div style="display:none;">
+         <!--dynamic condition rules reward tr-->
+         <table>
+
+         <!-------->
+            <tr  class="class-rules-dynamic-alpesa"  id="dynamic-rules-tr-holder">
+               <td>
+                  <label>Target</label>
+                  <input setiddynamically="true" id="points_target_1" name="points_target_1" type="number"  class="input-text required-entry validate-number"/>
+               </td>
+               <td >
+                  <button type="button" onclick="addAlConditionOp(this)" title="Add Condition" class="button add-condition-dyno-btn"><span><span>Add Condition</span></span></button>
+               </td>
+               <td>
+                  <label>Per Visit Spending</label>
+                  <input setiddynamically="true" id="per_visit_spending" name="per_visit_spending" type="number"  class="input-text required-entry validate-number"/>
+               </td>
+               <td >
+                  <label>Points Reward</label>
+                  <input setiddynamically="true" id="dyno_point_reward" name="dyno_point_reward" type="number" value="10000" class="input-text required-entry validate-number"/>
+               </td>
+               <td>
+                  <button type="button" title="Remove rule" class="button" onclick="removeDynamicAlRule(this)"><span><span>Remove</span></span></button>
+               </td>
+            </tr>
+
+            <!------------>
+            <tr id="dynamic-card-rules-tr-holder">
+                              <td>
+                                 <label> Card Name</label>
+                                    <input setcarddynamicaly="true" name="card_name" id="card_name" title="Card Name" type="text"  class="input-text required-entry"/>
+                              </td>
+                              <td>
+                                 <label> Card Color</label>
+                                    <input setcarddynamicaly="true" name="card_color" id="card_color" title="Card Color" value="#eb6625" class="input-text required-entry jscolor"/>
+                              </td>
+                              <td>
+                                 <label> Minimum Points</label>
+                                    <input setcarddynamicaly="true" name="card_min_points" id="card_min_points" title="Minimum Points" type="number" class="input-text required-entry validate-number"/>
+                                    &nbsp;
+                                 <label> Maximum Points</label>
+                                    <input setcarddynamicaly="true" name="card_max_points" id="card_max_points" title="Maximum Points" type="number" class="input-text required-entry validate-number"/>
+                              </td>
+                              <td>
+                                 <label>Card Voucher Amount</label>
+                                    <input setcarddynamicaly="true" name="card_voucher_amount" id="card_voucher_amount" title="Card Voucher Amount" type="number" class="input-text required-entry validate-number"/>
+                              </td>
+                              <td>
+                                 <label>Discount on products(%)</label>
+                                    <input  setcarddynamicaly="true" name="card_prod_discount" id="card_prod_discount" title="Discount on products" type="number" class="input-text required-entry validate-number"/> 
+                              </td>
+                              <td>
+                                   <label>Gift Period</label>
+                                 <select id="period_flag" name="period_flag" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="annualy"  selected="selected">Annualy</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="month_flag" name="month_flag" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="1" selected="selected">1st month</option>
+                                    <option value="2">2nd month</option>
+                                    <option value="3">3rd month</option>
+                                    <option value="4">4th month</option>
+                                    <option value="5">5th month</option>
+                                    <option value="6">6th month</option>
+                                    <option value="7">7th month</option>
+                                    <option value="8">8th month</option>
+                                    <option value="9">9th month</option>
+                                    <option value="10">10th month</option>
+                                    <option value="11">11th month</option>
+                                    <option value="12">12th month</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="week_flag" name="week_flag" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="1" selected="selected">1st week</option>
+                                    <option value="2">2nd week</option>
+                                    <option value="3">3rd week</option>
+                                    <option value="4">4th week</option>
+                                 </select>
+                                 &nbsp;
+                                 <select id="day_flag" name="day_flag" onchange="alPeriodChange(this)" class="select validation-passed" setcarddynamicaly="true">
+                                    <option value="1" selected="selected">1st day</option>
+                                    <option value="2">2nd day</option>
+                                    <option value="3">3rd day</option>
+                                     <option value="4">4th day</option>
+                                    <option value="5">5th day</option>
+                                    <option value="6">6th day</option>
+                                    <option value="7">7th day</option>
+                                 </select>
+                              </td>
+                              <td>
+                                 <button type="button" title="Add Card" class="button" onclick="removeCardType(this)"><span><span>Remove</span></span></button>
+                              </td>
+                           </tr>
+
+         </table>
+         <!--condition holder-->
+         <div id="dynamic-rules-condition-holder" class="dynamic-conditions-holder">
+            <label>Visit(s)</label>
+            <select id="condition_scope" name="condition_scope" class="select validation-passed" setconditiondynamicaly="true">
+               <option value="eq" selected="selected">Equal</option>
+               <option value="lt">Less Than</option>
+               <option value="gt">Greater Than</option>
+               <option value="leq">Less Than Or Equal</option>
+               <option value="geq">Greater Than Or Equal</option>
+            </select>
+            <input id="condition_visits" name="condition_visits" type="number"  setconditiondynamicaly="true"  class="input-text required-entry validate-number"/>
+            <div class="radio-group-al">
+               <input  setconditiondynamicaly="true" type="radio" name="condition_operator" value="and" checked> AND
+               <input  setconditiondynamicaly="true" type="radio" name="condition_operator" value="or"> OR	
+                <br><button type="button" title="Remove rule condition" class="button" onclick="removeConditionalDynamicAlRule(this)"><span>X</span></button>
+            </div>
+         </div>
+      </div>
+      <script>
+      	  //<![CDATA[
+         
+            var alpesaConfigFormDec = new varienForm('alpesaConfigForm');
+         //]]>
+         //var validator = new Validation('alpesaConfigForm', {immediate : true});
+         //validator.validate()
+      </script>
+
+       	   </div>
+</div>

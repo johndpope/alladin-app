@@ -1,0 +1,3 @@
+"Inventory Updater Configuration","Inventory Updater Configuration"
+"Inventory Updater allows to configure automatic remote update of inventory for existing products in the catalog.","Inventory Updater allows to configure automatic remote update of inventory for existing products in the catalog."
+"The CSV file will be pulled on a daily basis and update the qty, stock status or price of the products that are available in the a store.","The CSV file will be pulled on a daily basis and update the qty, stock status or price of the products that are available in the a store."

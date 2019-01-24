@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout> 
+    <adminhtml_sales_order_view>
+        <reference name="left">
+            <block type="adminhtml/sales_order_view_tabs" name="sales_order_tabs">
+                <block type="adminhtml/sales_order_view_tab_info" name="order_tab_info" template="sales/order/view/tab/info.phtml">
+                    <block type="adminhtml/sales_order_view_items" name="order_items" template="supplierfrontendproductuploader/admin/columnname.phtml">
+                        <action method="addItemRender"><type>default</type><block>adminhtml/sales_order_view_items_renderer_default</block><template>supplierfrontendproductuploader/admin/items/renderer/suppliername.phtml</template></action>
+                    </block>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

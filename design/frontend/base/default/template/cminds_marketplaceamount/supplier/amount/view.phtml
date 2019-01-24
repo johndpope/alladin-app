@@ -1,0 +1,67 @@
+<?php
+$loggedUser = Mage::getSingleton( 'customer/session', array('name' => 'frontend') );
+$customer = Mage::getModel('customer/customer')->load($loggedUser->getCustomer()->getEntityId());
+$this->setCustomer($customer);
+$options = Mage::getModel('marketplaceamount/source_minimumAmount')->toOptionArray();
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-left"><?php echo $this->__('Order Restrictions'); ?></h1>
+    <div class="row">
+        <div class="container form-container">
+            <form name="settings_shipping_methods" id="settings_shipping_methods" action="<?php echo Mage::getUrl('*/*/save') ?>" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="supplier_cc_emails">
+                                    <?php echo $this->__('Minimum Order Amount'); ?>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <input type="text" id="supplier_min_order_amount" name="supplier_min_order_amount"
+                                       value="<?php echo round($this->escapeHtml($customer->getData('supplier_min_order_amount')),2); ?>"
+                                       class="input-text form-control"/>
+                                <div class="info-message">
+                                    <?php echo $this->__('0 or empty mean no restriction'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="supplier_min_order_qty">
+                                    <?php echo $this->__('Minimum Order Product Qty'); ?>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <input type="text" id="supplier_min_order_qty" name="supplier_min_order_qty"
+                                       value="<?php echo round($this->escapeHtml($customer->getData('supplier_min_order_qty'))); ?>"
+                                       class="input-text form-control"/>
+                                <div class="info-message">
+                                    <?php echo $this->__('0 or empty mean no restriction'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 label-container">
+                                <label for="supplier_min_order_amount_per">
+                                    <?php echo $this->__('Restrictions per'); ?>:
+                                </label>
+                            </div>
+                            <div class="col-md-12 input-container">
+                                <select class="input-text" name="supplier_min_order_amount_per" id="supplier_min_order_amount_per">
+                                    <?php foreach($options as $option): ?>
+                                        <option  <?php echo $this->isSelected($option['value']) ? 'selected' : ''; ?>
+                                                value="<?php echo $this->escapeHtml($option['value']); ?>"><?php echo $this->escapeHtml($option['label']); ?> </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 save-button">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save Settings') ?>" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

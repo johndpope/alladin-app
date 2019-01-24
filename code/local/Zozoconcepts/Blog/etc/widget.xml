@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<widgets>
+    <blog_blog_view type="zozoconcepts_blog/blog_widget_view" translate="name description" module="zozoconcepts_blog">
+        <name>Blog view</name>
+        <description>Blog view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <blog_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Blog</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_blog/adminhtml_blog_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Blog</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </blog_id>
+        </parameters>
+    </blog_blog_view>
+    <blog_blog_link type="zozoconcepts_blog/blog_widget_link" translate="name description" module="zozoconcepts_blog">
+        <name>Blog link</name>
+        <description>Blog link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <blog_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Blog</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_blog/adminhtml_blog_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Blog</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </blog_id>
+        </parameters>
+    </blog_blog_link>
+    <blog_category_view type="zozoconcepts_blog/category_widget_view" translate="name description" module="zozoconcepts_blog">
+        <name>Category view</name>
+        <description>Category view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <category_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Category</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_blog/adminhtml_category_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Category</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </category_id>
+        </parameters>
+    </blog_category_view>
+    <blog_category_link type="zozoconcepts_blog/category_widget_link" translate="name description" module="zozoconcepts_blog">
+        <name>Category link</name>
+        <description>Category link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <category_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Category</label>
+                <type>label</type>
+                <helper_block>
+                    <type>zozoconcepts_blog/adminhtml_category_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Category</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </category_id>
+        </parameters>
+    </blog_category_link>
+</widgets>

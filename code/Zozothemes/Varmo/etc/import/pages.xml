@@ -1,0 +1,415 @@
+<root>
+   <pages>
+      <cms_item>
+         <title>Varmo - Homepage 1</title>
+         <identifier>varmo_home_1</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_1</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 2</title>
+         <identifier>varmo_home_2</identifier>
+          <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>
+		  ]]></content>         
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_2</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 3</title>
+         <identifier>varmo_home_3</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_3</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 4</title>
+         <identifier>varmo_home_4</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_4</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 5</title>
+         <identifier>varmo_home_5</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_5</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 6</title>
+         <identifier>varmo_home_6</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_6</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 7</title>
+         <identifier>varmo_home_7</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_7</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 8</title>
+         <identifier>varmo_home_8</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}
+</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_8</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 9</title>
+         <identifier>varmo_home_9</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_9</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 10</title>
+         <identifier>varmo_home_10</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_10</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage 11</title>
+         <identifier>varmo_home_11</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_11</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+	   <cms_item>
+         <title>Varmo - Homepage 12</title>
+         <identifier>varmo_home_12</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_12</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - About Us</title>
+         <identifier>about-us-varmo</identifier>
+         <content><![CDATA[<div class="aboutus-content">
+	<!-- Features section -->
+    <section class="section features-section">
+		<div class="container">
+        	<div class="row">
+                <div class="col-md-3">
+                	<div class="section-title">
+                    	<h2 class="title">Some About Us</h2>
+                    </div>
+                </div>
+            </div>
+        
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="varmo-icon-up-direction"></i>
+						</div>	
+						<h4 class="heading">One Click Demo Importer</h4>
+						<p>Easily import any of our professionally designed demos with a click of a button. No xml files, it’s a beautiful thing.</p>
+						<a class="btn-link" href="#">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="varmo-icon-srew"></i>
+						</div>	
+						<h4 class="heading">Theme Options</h4>
+						<p>Plethora of options neatly organized into sections that allow you to build websites without any coding knowledge.</p>
+						<a class="btn-link" href="#">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="varmo-icon-desktop"></i>
+						</div>	
+						<h4 class="heading">Responsive Framework</h4>
+						<p>Varmo is fully responsive and adapts to every screen size. We obsessively test it all so your content looks beautiful.</p>
+						<a class="btn-link" href="#">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="varmo-icon-layout"></i>
+						</div>	
+						<h4 class="heading">Page Layouts</h4>
+						<p>Varmo offers numerous page layouts and options to fit every situation, making it easy to complete your design.</p>
+						<a class="btn-link" href="#">Learn more</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section><!-- Features section -->
+    
+    <section class="section services-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/zozothemes/varmo/aboutus/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+				<!-- Column -->
+            	<div class="col-sm-6">
+                	<div class="lookbook-wrap">
+                    	<div class="look-content">
+                            <blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div><!-- Column -->
+				
+            </div>
+        </div>
+    </section>
+    
+    <section class="section brand-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/zozothemes/varmo/aboutus/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/zozothemes/varmo/homepage/03/slider/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section calltoaction-section bg-color">
+    	<div class="calltoaction">
+		 	<h2 class="calltoaction-title">Building a unique and beautiful website ever been easier.</h2>
+		    <a href="#" class="btn btn-white calltoaction-btn btn-lg">Buy now</a>
+		</div>
+    </section>
+</div>
+
+<script type="text/javascript">
+require([ 'jquery', 'owlcarousel'], function(){
+						   jQuery(document).ready(function () {
+							  jQuery("#brandslider").owlCarousel({
+                 items:5,
+                 responsive:{
+                    0:{
+                        items:2
+                    },
+                    480:{
+                        items:3
+                    },
+                    767:{
+                        items:3
+                    },
+                    991:{
+                        items:4
+                    },
+                    1024:{
+                        items:5
+                    }
+                },
+                margin:30,
+                nav: false,
+                navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                dots: false,
+                animateIn: 'fadeIn',
+                animateOut: 'fadeOut',
+                loop: true,
+				});
+					
+					
+		var pageSection = jQuery(".image-bg");
+		pageSection.each(function(indx){
+		if (jQuery(this).attr("data-background")){
+			jQuery(this).css("background-image", "url(" + jQuery(this).data("background") + ")");
+		}
+		});
+								});
+								
+							});</script><style>.page-main, .columns .column.main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+.breadcrumbs{display:none;}
+</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>Varmo - Homepage Rtl</title>
+         <identifier>varmo_home_13_rtl</identifier>
+         <content><![CDATA[<style type="text/css">.page-main {
+    padding-top: 0;
+    padding-bottom: 0;
+}.columns .column.main{padding-bottom: 0px; min-height: 0px;}</style>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[<referenceContainer name="page.top">
+    <block class="Magento\Cms\Block\Block" name="home_slider">
+        <arguments>
+            <argument name="block_id" xsi:type="string">varmo_homeslider_13</argument>
+        </arguments>
+    </block>
+</referenceContainer>]]></layout_update_xml>
+      </cms_item>
+      <cms_item>
+         <title>404 Not Found 2</title>
+         <identifier>no-route-2</identifier>
+         <content><![CDATA[<h1 style="text-align:center;margin: 20px 0; font-size: 70px;margin-top:70px"><span style="display: inline-block;vertical-align:middle;">404</span><i class="varmo-icon-doc" style="display: inline-block;vertical-align:middle;"></i></h1>
+<p style="text-align:center; font-size: 15px;">You might want to check that URL again or head over to our <a href="{{config path="web/unsecure/base_url"}}">homepage.</a></p>]]></content>
+         <is_active>1</is_active>
+         <page_layout>1column</page_layout>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_item>
+   </pages>
+</root>

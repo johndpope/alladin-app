@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var Mage_Core_Helper_Data $coreHelper
+ */
+?>
+<?php $_items = $this->getItems() ?>
+<?php $coreHelper = Mage::helper('core'); ?>
+<?php foreach ($_items as $item) : ?>
+<table cellspacing="0" cellpadding="0" border="0" width="100%"
+       style="border:1px solid #bebcb7; background:#f8f7f5;">
+    <thead>
+    <tr>
+        <th class="a-left" bgcolor="#d9e5ee" style="padding:3px 9px">Item</th>
+        <th class="a-center" bgcolor="#d9e5ee" style="padding:3px 9px">Sku</th>
+        <th class="a-center" bgcolor="#d9e5ee" style="padding:3px 9px">
+            Old Price
+        </th>
+        <th class="a-center" bgcolor="#d9e5ee" style="padding:3px 9px">
+            New Price
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <?php $_item = Mage::getModel("catalog/product")->load($item['id']); ?>
+    <tr>
+        <td align="left" valign="top"
+            style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;">
+            <strong
+                style="font-size:11px;"><?php echo $this->escapeHtml($_item->getName()) ?></strong>
+        </td>
+        <td align="left" valign="top"
+            style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;"><?php echo $this->escapeHtml($_item->getSku()) ?></td>
+        <td align="center" valign="top"
+            style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;"><?php echo $coreHelper->currency($item['old_value'],
+                true, false) ?></td>
+        <td align="center" valign="top"
+            style="font-size:11px; padding:3px 9px; border-bottom:1px dotted #CCCCCC;"><?php echo $coreHelper->currency($item['value'],
+                true, false) ?></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+

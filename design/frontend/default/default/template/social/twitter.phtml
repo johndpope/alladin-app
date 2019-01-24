@@ -1,0 +1,49 @@
+<?php
+$twitterenable = Mage::getStoreConfig('socialsettings/twitter/twitterenable');
+$twitteruser = Mage::getStoreConfig('socialsettings/twitter/twitter_account');
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    var Theme = {};
+    Theme.url = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, Mage::app()->getFrontController()->getRequest()->isSecure()) ?>';
+    Theme.store = '<?php echo Mage::app()->getStore()->getCode(); ?>';
+    //]]>
+</script>
+<div class="socials col-lg-12">
+    <?php
+    if ($twitterenable) {
+        ?>
+        <h4><?php echo $this->__('From Twitter'); ?></h4>
+        <div class="block-content col-lg-6">
+            <div class="twitterWidget" data-user="<?php echo $twitteruser; ?>">
+                <div class="twitterContent">
+                    <ul class="twitterList">
+                        <li>Follow us on twitter</li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var el = {
+                widget: jQuery('.twitterWidget'),
+                twitterList: jQuery('.twitterWidget').find(".twitterList")
+            },
+            utils = {
+                username: el.widget.data("user"),
+                currentIndex: 0,
+                callback: function () {
+                },
+                isReady: false,
+                height: 0,
+                text_specify: "<?php echo $this->__('You need to specify a username'); ?>",
+                text_error: "<?php echo $this->__('There was an error connecting to your Twitter account'); ?>",
+                text_follow: "<?php echo $this->__('Follow us'); ?>",
+                text_on_twitter: "<?php echo $this->__('on Twitter'); ?>"
+            }
+            getTweets(el, utils);
+        </script>
+        <?php
+    }
+    ?>
+</div>

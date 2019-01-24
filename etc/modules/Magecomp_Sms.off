@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Magecomp_Sms>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magecomp_Sms>
+    </modules>
+</config>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Mss_Rewardspoint>
+      <version>0.1.0</version>
+    </Mss_Rewardspoint>
+  </modules>
+  <frontend>
+    <routers>
+      <rewardspoint>
+        <use>standard</use>
+          <args>
+            <module>Mss_Rewardspoint</module>
+            <frontName>rewardspoint</frontName>
+          </args>
+      </rewardspoint>
+    </routers>
+<!-- 		<layout>
+		  <updates>
+			<rewardspoint>
+			  <file>rewardspoint.xml</file>
+			</rewardspoint>
+		  </updates>
+		</layout> -->
+  </frontend>
+  <global>
+    <helpers>
+      <rewardspoint>
+        <class>Mss_Rewardspoint_Helper</class>
+      </rewardspoint>
+    </helpers>
+	<blocks>
+	  <rewardspoint>
+		<class>Mss_Rewardspoint_Block</class>
+	  </rewardspoint>
+	</blocks>
+  </global>
+</config>

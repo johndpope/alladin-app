@@ -1,0 +1,127 @@
+<script type="text/javascript">
+//<![CDATA[
+var dailydealTimeCounters = new Array();
+var i = 0;
+//]]>
+</script>
+<div class="block block-subscribe block-dailydeal-new">
+        <div class="block-title">
+            <strong><span><?php echo $this->getTitle() ? $this->getTitle() : $this->__('Daily Deal'); ?></span></strong>
+        </div>
+        <div class="block-content">
+            <?php
+			$deals       = $this->getSidebarDeals();
+			$_coreHelper = $this->helper('core');
+			$_helper     = $this->helper('catalog/output');
+			$_image_helper = $this->helper('catalog/image');
+			$_themehelper = Mage::helper('hybrid');
+			$themehelper = $_themehelper;
+			$store = Mage::app()->getStore();
+			$code  = $store->getCode();
+		
+			$aspect_ratio = Mage::getStoreConfig('dailydeal/image_ratios/aspect_ratio',$code);
+			$ratio_width = Mage::getStoreConfig('dailydeal/image_ratios/ratio_width',$code);
+			$ratio_height = Mage::getStoreConfig('dailydeal/image_ratios/ratio_height',$code);
+			$display_price = $_themehelper->getConf('category_page/display_price',$code);
+			/*$display_rating = $_themehelper->getConf('category_page/display_rating',$code);*/
+			$display_actions = $_themehelper->getConf('category_page/display_actions',$code);
+			$catstyle = $_themehelper->getConf('category_page/catstyle',$code);
+			
+			if(!$ratio_width)
+				$ratio_width = 300;
+			if(!$ratio_height)
+				$ratio_height = 400;
+			if(!$display_price)
+				$display_price = 'no-price';	
+			/*if(!$display_rating)
+				$display_rating = 'no-rating';	*/
+			if(!$display_actions)
+				$display_actions = 'no-actions';	
+			?>
+			<?php if (!$deals->count()): ?>
+				<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+			<?php else: ?>
+				<div id="side-bar-deal-slider" class="category-products owl-carousel">
+				<?php $_iterator = 0; ?>
+					<?php $count = 0;
+					foreach ($deals as $_product): ?>
+						<?php $deal = $this->getDealByProduct($_product->getEntityId()); ?>
+						<?php if (!$deal->getId()) continue; ?>
+						<div class="sidebardailydeal ">
+                    <div class="item<?php if (++$_iterator == sizeof($deals)) echo 'last' ?>">
+                    <h2 class="product-name dailydeal-sidebar-product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getName() ?>"><?php echo $deal->getTitle() ?></a>
+                	</h2>
+                    <div class="deal-widget">
+						<div class="item-daily-top">
+                        <?php // Product Image ?>
+						<img src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+
+						<ul class="dailydeal-price">
+							<li class="special-price">
+								<?php
+								echo $_coreHelper->currency($deal->getDealPrice());
+								?>
+							</li>
+							<li class="old-price"><?php echo $_coreHelper->currency($_product->getPrice()) ?></li>
+						</ul>
+					</div>
+
+						<?php // Product description ?>
+
+						<div class="bottom-home-dailydeal">
+							<ul class="time-left">
+                                <?php $now_time = Mage::getModel('core/date')->timestamp(time()) ?>
+								<?php
+								$end_time = Mage::getModel('core/date')->timestamp(strtotime($deal->getCloseTime()));
+								?>
+								<div class="timeleft timeleft_<?php echo $this->getType() . $_product->getId() ?>"> </div>
+
+							</ul>
+						</div>
+</div>
+						
+				<script type="text/javascript">
+                //<![CDATA[
+                dailydealTimeCounters[i] = new DailydealTimeCounter('<?php echo $now_time ?>', '<?php echo $end_time ?>', '<?php echo $deal->getId() ?>');
+                dailydealTimeCounters[i].setTimeleft('timeleft_<?php echo $this->getType() . $_product->getId() ?>');
+                //]]>
+                </script>
+
+                    </div>
+                </div>
+					<?php endforeach; ?>
+                </div>
+			<?php endif; ?>
+        </div>
+		<script type="text/javascript">decorateGeneric($$('.block-dailydeal .sidebardailydeal'), ['odd', 'even', 'first', 'last'])</script>
+        <script type="text/javascript">
+(function($){
+    $(document).ready(function() {
+		$('#side-bar-deal-slider').owlCarousel({
+			 responsive:{
+				0:{
+					items:1
+				},
+				480:{
+					items:1
+				},
+				767:{
+					items:1
+				},
+				991:{
+					items:1
+				},
+				1024:{
+					items:1
+				}
+			},
+			nav: true,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: false,
+			autoplayHoverPause: true,
+			dots: false,
+			loop: true,
+		});
+	});})(jQuery);
+</script>
+</div>

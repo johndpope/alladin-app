@@ -1,0 +1,178 @@
+<?php
+if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customerData = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customerData = new Varien_Object();
+}
+$customFields = $this->getCustomFields();
+$customFieldsValues = unserialize($customerData->getCustomFieldsValues());
+$newCustomFieldsValues = unserialize($customerData->getNewCustomFieldsValues());
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-left"><?php echo Mage::helper('marketplace')->__('Manage Profile Info'); ?></h1>
+    <div class="">
+        <div class="text-center">
+            <?php if(Mage::helper('marketplace')->getSupplierLogo()): ?>
+                <label for="logo" class="control-label" style="float: left;">
+                    <?php echo $this->__('Logo'); ?>
+                </label>
+                <img src="<?php echo Mage::helper('marketplace')->getSupplierLogo(); ?>" alt="" class="avatar img-circle img-thumbnail" style="width: 80px"/>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="control-label">
+                <?php echo $this->__('Name'); ?><em>*</em>
+            </label>
+            <div class="input-container">
+                <?php echo $this->escapeHtml($customerData->getSupplierName()); ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label for="name" class="control-label">
+                <?php echo $this->__('Description'); ?><em>*</em>
+            </label>
+            <div class="input-container">
+                <?php echo $this->escapeHtml($customerData->getSupplierDescription()); ?>
+            </div>
+        </div>
+        <?php if($customFields): ?>
+            <?php foreach($customFields AS $field): ?>
+                <div class="form-group">
+                    <div class="label-container">
+                        <label for="<?php echo $this->escapeHtml($field->getName()); ?>" <?php echo $field->getIsRequired() ? 'class="required control-label"' : 'class="control-label"'; ?>>
+                            <?php echo $this->escapeHtml($field->getLabel()); ?>
+                            <em><?php echo $field->getIsRequired() ? '*' : ''; ?></em>
+                        </label>
+                    </div>
+                    <div class="input-container">
+                        <?php echo $this->getCustomFieldValue($field, $customFieldsValues); ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <div class="clearfix"></div>
+    </div>
+    <div>
+        <form name="settings_supplier_profile" id="settings_supplier_profile" action="<?php echo Mage::getUrl('marketplace/settings/profileSave') ?>" method="post" enctype="multipart/form-data">
+            <h1 class="page-header"><?php echo $this->__('Waiting For Review by Admin'); ?></h1>
+            <div class="col-sm-6">
+                <?php if($this->helper('marketplace')->canUploadLogos()): ?>
+                    <?php
+                    $path = Mage::helper('marketplace')->getLogosPath();
+                    $newLogoFile = $customerData->getSupplierLogoNew();
+                    if ($newLogoFile) {
+                        $path .= $newLogoFile;
+                        if (file_exists($path)) {
+                            $src = 'src="' . Mage::helper('marketplace')->getLogosUrl() . $customerData->getSupplierLogoNew() . '"';
+                        }
+                    } else {
+                        $src = '';
+                    }
+                    ?>
+                    <div class="form-group">
+                        <label for="logo" class="control-label">
+                            <?php echo $this->__('Logo'); ?>
+                        </label>
+                        <div class="text-center">
+                            <img id="uploadPreview" <?php echo $src; ?> alt="" class="avatar img-circle img-thumbnail" style="width: 80px" />
+                        </div>
+                        <input type="file" id="logo" name="logo" class="text-center center-block well well-sm" onchange="PreviewImage(this);" />
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="remove_logo" /> <?php echo $this->__('Remove logo'); ?> </label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="form-group">
+                    <?php
+                    if (!$customerData->getSupplierName() && !$customerData->getSupplierNameNew()) {
+                        $isRequired = true;
+                    } else {
+                        $isRequired = false;
+                    }
+                    ?>
+                    <label for="name" class="control-label">
+                        <?php echo $this->__('Name'); ?>
+                        <em><?php echo ($isRequired) ? '*' : ''; ?></em>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="name" name="name" class="input-text form-control validate-length maximum-length-60 <?php echo ($isRequired) ? 'required-entry' : ''; ?>" value="<?php echo $customerData->getSupplierNameNew(); ?>" />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <?php
+                    if (!$customerData->getSupplierDescription() && !$customerData->getSupplierDescriptionNew()) {
+                        $isRequired = true;
+                    } else {
+                        $isRequired = false;
+                    }
+                    ?>
+                    <label for="description" <?php echo ($isRequired) ? 'class="required control-label"' : 'class="control-label"' ?>>
+                        <?php echo $this->__('Description'); ?>
+                        <em><?php echo ($isRequired) ? '*' : ''; ?></em>
+                    </label>
+                    <div class="input-container">
+                        <textarea name="description" id="description" rows="14" class="input-text form-control wysiwyg <?php echo ($isRequired) ? 'required-entry' : ''; ?>"><?php echo $customerData->getSupplierDescriptionNew(); ?></textarea>
+                    </div>
+                </div>
+
+                <?php if($customFields): ?>
+                    <?php if(!is_array($newCustomFieldsValues)) {
+                        $newCustomFieldsValues = array();
+                    } ?>
+                    <?php foreach($customFields AS $field): ?>
+                        <?php
+                        $fieldValue = $this->getCustomFieldValue($field, $customFieldsValues);
+                        $fieldValueNew = $this->getCustomFieldValue($field, $newCustomFieldsValues);
+                        if ($field->getIsRequired() && $fieldValue == '' && $fieldValueNew == '') {
+                            $isRequired = true;
+                        } else {
+                            $isRequired = false;
+                        }
+                        ?>
+                        <div class="form-group">
+                            <div class="label-container">
+                                <label for="<?php echo $this->escapeHtml($field->getName()); ?>" <?php echo ($isRequired) ? 'class="required control-label"' : 'class="control-label"' ?>>
+                                    <?php echo $this->escapeHtml($field->getLabel()); ?>
+                                    <em><?php echo ($isRequired) ? '*' : ''; ?></em>
+                                </label>
+                            </div>
+                            <div class="input-container">
+                                <?php echo $this->getCustomField($field, $newCustomFieldsValues, $isRequired); ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <div class="clearfix"></div>
+                <div class="checkbox profile-checkbox">
+                    <label><input type="checkbox" name="profile_enabled" <?php echo $customerData->getSupplierProfileVisible() ? ' checked="checked"' : ''; ?>/> <?php echo $this->__('Profile Page Enabled'); ?> </label>
+                </div>
+                <div class="col-md-4 nopadding">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save') ?>"/>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+                <input type="submit" name="clear" class="btn btn-warning" value="<?php echo $this->__('Clear text') ?>"/>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        //< ![CDATA[
+        var customForm = new VarienForm('settings_supplier_profile');
+        //]]>
+
+        jQuery(document).ready(function(){
+            jQuery('.datepicker').datepicker();
+
+            CKEDITOR.replace( 'description' );
+        });
+        // show image preview
+        function PreviewImage(input) {
+            document.getElementById('uploadPreview').src = (window.URL ? URL : webkitURL).createObjectURL(input.files[0]);
+        };
+
+    </script>
+</div>

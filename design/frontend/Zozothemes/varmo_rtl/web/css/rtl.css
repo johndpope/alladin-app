@@ -1,0 +1,199 @@
+/*
+Zozothemes.
+
+NOTICE OF LICENSE
+
+This source file is subject to the Zozothemes.com license that is
+available through the world-wide-web at this URL:
+http://www.zozothemes.com/license-agreement.html
+
+DISCLAIMER
+
+Do not edit or add to this file if you wish to upgrade this extension to newer
+version in the future.
+
+@category   Zozothemes
+@package    Zozothemes_
+@copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+@license    http://www.zozothemes.com/LICENSE-1.0.html
+*/
+/* 
+    Created on : Oct 1, 2016, 12:56:25 PM
+    Author     : Abileweb
+*/
+
+body{direction:rtl;unicode-bidi:embed}
+body.rtl{text-align:right;}
+/* Default */
+.widget.block-categories ul{
+    list-style: none;
+}
+a{
+    color: #0CB4CE;
+}
+a:focus{
+    outline: none !important;
+}
+label{
+    font-weight: normal;
+}
+/* Form */
+.field-tooltip{
+    right: auto;
+    left: 0;
+}
+/* Alert */
+.message{
+    border-radius: 0;
+}
+.message.success{
+    padding: 12px 45px 12px 18px;
+}
+.message.success > *:first-child::before{
+    left: auto;
+    right:  0;
+}
+
+/* Layout */
+.page-layout-2columns-right .sidebar-additional {
+    clear: none;
+    float: left;
+    padding-left: 0;
+    padding-right: 2%;
+}
+.page-layout-2columns-right .column.main{
+    float: right;
+}
+
+/* Owl slider */
+.rtl .block .owl-nav, 
+.rtl .block .owl-carousel.owlnav-top-right .owl-nav,
+.rtl .owl-carousel.owlnav-top-right .owl-nav, 
+.rtl .owlnav-top-right .owl-nav{
+    left: -4px;
+    right: auto;
+}
+
+
+/* section title */
+.rtl .section-title .title::after, 
+.rtl .page-title h1::after,
+.rtl .block .block-title::after{
+    left: auto;
+    right: 0;
+}
+.rtl .side-custom-menu h2{
+    text-align: right;
+}
+.rtl .side-custom-menu h2 > em {
+    float: left;
+}
+
+/* Feature Box */
+.rtl .contact-content .contact-content-meta{
+    margin-left: 0;
+    margin-right: 50px;
+}
+.rtl .contact-content .icon-block{
+    margin-right: 0;
+    margin-left: 15px;
+    float: right;
+}
+/* Newsletter */
+.rtl .newsletter-popup{
+    background-position: inherit;
+}
+.rtl .newsletter-popup .subscribe-bottom{
+    text-align: right;
+}
+.rtl .newsletter-popup .subscribe-bottom > input{
+    margin: 3px 0 0 7px;
+    float: right;
+}
+
+/* Sidebar */
+.rtl .post-details .post-date p i{
+    float: right;
+    margin: -2px 0 0 10px;
+}
+/* Header */
+.rtl .page-header{
+    padding-bottom: 0;
+    margin-top: 0;
+}
+.rtl .page-header.type1 .minicart-wrapper{
+    right: auto;
+    left: 15px;
+}
+.rtl .minicart-wrapper .block-minicart{
+    left: 0;
+    right: auto;
+}
+.rtl .minicart-wrapper .block-minicart::before{
+    left: 10px;
+    right: auto;
+}
+.rtl .minicart-wrapper .action.close{
+   left: 0;
+   right: auto;
+}
+.rtl .header .block-search{
+    margin-right: 55px;
+    margin-left: 0;
+}
+.rtl .page-header.type1 .navigation li.level0 > .level-top:first-child {
+    padding-right: 0;
+}
+
+
+/* Footer */
+.rtl .footer-middle .block{
+    text-align: right;
+}
+.rtl .tweet_user .username a{
+    padding-right: 10px;
+    padding-left: 0;
+}
+.rtl .tags ul > li, 
+.rtl .tags-list > li, 
+.rtl .dashboard .tags li, 
+.rtl .block-tags .nav-pills > li{
+    float: right;
+}
+.rtl .tags ul > li a, 
+.rtl .tags-list > li a, 
+.rtl .dashboard .tags li a, 
+.rtl .block-tags .nav-pills > li a{
+    margin: 0 0 8px 8px;
+}
+
+/* Product Details Page */
+.rtl .product-info-main .product-reviews-summary{
+    float: right;
+}
+.rtl .product-info-main .swatch-attribute-options {
+    text-align: right;
+}
+.rtl .product-info-main .swatch-attribute-options .swatch-option{
+    float: right;
+}
+.rtl .product-social-links{
+    text-align: right;
+}
+.rtl .product.data.items > .item.title{
+    float: none;
+    display: inline-block;
+    width: auto;
+}
+.rtl .product-info-main .product-info-stock-sku{
+    padding-left: 0;
+    text-align: left;
+}
+.rtl .product-info-main .product-info-stock-sku .attribute.sku .value{
+    margin-left: 0;
+    margin-right:  10px;
+}
+.rtl .fotorama__nav__shaft{
+    left: auto;
+    right: 1px;
+}

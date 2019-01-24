@@ -1,0 +1,3777 @@
+<root>
+   <pages>
+      <cms_block>
+         <title>Varmo - Homepage Version 1</title>
+         <identifier>varmo_home_1</identifier>
+         <content><![CDATA[<div class="marketing">
+    <div class="row">
+    	<div class="featurette">
+            <div class="col-md-12">
+                <div class="home-slider hero-slider owl-carousel">
+                    <div class="slide-item">
+                       <a href="#"><img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-01.jpg"}}"></a>
+                    </div>
+                    <div class="slide-item">
+                       <a href="#"> <img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-02.jpg"}}"></a>
+                    </div>
+                     <div class="slide-item">
+                      <a href="#"><img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-03.jpg"}}"></a>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+    
+	<section class="image-box ptb-30">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-01.jpg"}}">
+                </a> 
+             </div>
+             <div class="col-md-6 mt-20-991">
+                 <a href="#" class="overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-02.jpg"}}">
+                 </a>   
+             </div>
+        </div>
+    </section>
+    
+    
+     <section class="new-products pb-30 pt-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">New Arrivals</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="carousel-wrapper new-static-home">
+					{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="image-box pt-none pb-30">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="overlay white">
+    				<span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-support.jpg"}}">
+                </a>
+            </div>    	
+            
+            <div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay white">
+    				<span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-shipping.jpg"}}">
+                </a>
+            </div>
+        
+             <div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-alerts.jpg"}}">
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="sale-products pt-none pb-30">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Sale Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-wrapper best-static-home">
+                    {{block type="zozoconcepts_featuredproductslider/bestseller" name="zozo.bestseller.slider" item_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     <section class="image-box pt-none pb-30">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#" class="overlay white medium">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/season-sale.jpg"}}">
+                </a>
+            </div>
+        </div>
+    </section>
+	<section class="brands ptb-none">
+    	<div class="row">
+        	<div class="col-md-12">
+            	<div class="section-title"><h2 class="title">Our Clients</h2></div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+            	<div class="carousel-wrapper brand-static-home">
+                	{{block type="zozoconcepts_brands/brand_list" name="zozo.brand" template="zozoconcepts/zozoconcepts_brands/brand/slider.phtml"}}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /END THE FEATURETTES -->
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	loop: true,
+});
+
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+});})(jQuery);
+
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>two_columns_left</root_template>
+         <layout_update_xml><![CDATA[<reference name="left">
+  <remove name="tags_popular"/>
+  <block type="newsletter/subscribe" template="newsletter/home_side_subscribe.phtml"/>
+  <block type="zozoconcepts_featuredproductslider/featuredproductslider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"/>
+  <block type="cms/block" name="block_testimonial_static_v1">
+    <action method="setBlockId"><block_id>block_testimonial_static_v1</block_id></action>
+  </block>
+  <block type="zozoconcepts_blog/blog_list" template="zozoconcepts/zozoconcepts_blog/blog/home-side-blog-slide.phtml"/>
+  <block type="cms/block" name="static-image-one">
+    <action method="setBlockId"><block_id>block_static_left2</block_id></action>
+  </block>
+  </reference>
+  ]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 2</title>
+         <identifier>varmo_home_2</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="row featurette">
+        <div class="col-md-12 dots-diamond">
+			<div id="home-slider" class="owl-carousel pagination-pull-bottom owl-middle-narrow">
+				<div class="slide-item">
+					<a href="#"><img alt="Banner" class=
+					"featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-01.jpg"}}"></a>
+				</div>
+				<div class="slide-item">
+					<a href="#"><img alt="Banner" class=
+					"featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-02.jpg"}}"></a>
+				</div>
+			</div>
+		</div>
+    </div>
+	<section class="home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-6 dots-diamond">
+					<div class="owl-carousel image-content-box-slider pagination-push-bottom">
+					
+						<div class="item">
+							<div class="image-content-box">
+								<div class="image-box">
+									<a href="#">
+										<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/promotion-sale-01.png"}}" />
+									</a>
+								</div>
+								<div class="content-box">
+									<h2 class="content-box-title"><a href="#">Promotion sale off 50%</a></h2>
+									<p class="content-box-desc">In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed..
+									</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="image-content-box">
+								<div class="image-box">
+									<a href="#">
+										<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/promotion-sale-02.png"}}" />
+									</a>
+								</div>
+								<div class="content-box">
+									<h2 class="content-box-title"><a href="#">The Glamour Collection Sale!</a></h2>
+									<p class="content-box-desc">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which..
+									</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="image-content-box">
+								<div class="image-box">
+									<a href="#">
+										<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/promotion-sale-03.png"}}" />
+									</a>
+								</div>
+								<div class="content-box">
+									<h2 class="content-box-title"><a href="#">Infinity Blue Jacket</a></h2>
+									<p class="content-box-desc">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque hendrerit urna id elit dapibus ultrices congue id est...
+									</p>
+								</div>
+							</div>
+						</div>
+							
+					</div>
+				 </div>
+				 
+				 <div class="col-md-4 col-sm-6">
+					<div class="promotion-modern">
+						<a href="#">
+							<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/mens-store.png"}}" />
+						</a>
+					</div>
+				 </div>
+			</div>
+		</div>
+	</section>
+    <section class="featured-products bg-light-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-center">
+						<h2 class="title">Feature Product</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container-fluid pl-30 pr-30">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper featured-static-home">
+						{{block type="zozoconcepts_featuredproductslider/featuredproductslider" name="zozo.featuredproduct" total_items="4" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+    <section class="singleblog-static-home bg-grey home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-center">
+						<h2 class="title">Lester Blog</h2>
+					</div>
+					<div class="blog-list-container dots-diamond">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo.blog-version-2"  template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('#home-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.image-content-box-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 3</title>
+         <identifier>varmo_home_3</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="row featurette">
+        <div class="col-md-12">
+			<div class="home-slider hero-slider owl-carousel owl-middle-narrow nav-dark">
+				<div class="slide-item">
+					<a href="#"><img alt="banner-one" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-03.jpg"}}"></a>
+				</div>
+				<div class="slide-item">
+					<a href="#"><img alt="banner-two" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-04.jpg"}}"></a>
+				</div>
+			</div>
+		</div>
+    </div>
+	<section class="image-box home-static-block col-space-md ptb-15">
+		<div class="container-fluid">
+	    	<div class="row">
+    	    	<div class="col-sm-3">
+                    <div class="mt-15-767">
+						 <a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+							<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-18.jpg"}}">
+                		</a>
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="mt-15-767">
+						<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+							<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/swim.jpg"}}">
+                		</a>
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="mt-15-767">
+						<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+							<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-19.jpg"}}">
+                		</a>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="mt-15-767">
+						<a href="#" class="overlay">
+							<span class="overlay-inner"></span>
+							<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/7.jpg"}}" />
+						</a>
+					</div>
+                    <div class="image-box mt-15">
+						<a href="#" class="overlay">
+							<span class="overlay-inner"></span>
+							<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/8.jpg"}}" />
+						</a>
+					</div>
+             	</div>
+			</div>
+        </div>
+	</section>
+    <section class="image-box-banner home-static-block col-space-md pb-15 pt-none">
+    	<div class="container-fluid">
+        	<div class="row">
+            	<div class="col-sm-4">
+                	<div class="">
+                    	<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+							<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-20.jpg"}}">
+                		</a>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                	<div class="mt-15-767">
+                    	<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+							<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-17.jpg"}}">
+                		</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	<section class="new-products bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">New Arrivals</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper new-static-home nav-dark">
+						{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+    
+    <section class="section multi-deal image-bg fixed-bg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-02.jpg"}}">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-5 col-sm-7">
+                	<div class="multi-deal-wrap nav-dark">
+                        {{block type="dailydeal/dailydeal" total_items="3" item_count="2" name="zozo.deals" template="zozoconcepts/dailydeal/dealwidget.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+<section class="featured-category">
+	<div class="container">
+		<div class="row">
+        	<div class="col-md-12">
+                
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#mobile">Mobile</a></li>
+                    <li><a data-toggle="tab" href="#computers">Computers</a></li>
+                    <li><a data-toggle="tab" href="#shirts">shirts</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="mobile" class="tab-pane fade in active">
+                    {{block type="zozoconcepts_featuredproductslider/featuredproductslider" category_id="8" name="tab.cat.featured" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-cat-featured.phtml"}}
+                    </div>
+                    <div id="computers" class="tab-pane fade">
+                    {{block type="zozoconcepts_featuredproductslider/featuredproductslider" category_id="15" name="tab.cat.featured"  item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-cat-featured.phtml"}}
+                    </div>
+                    <div id="shirts" class="tab-pane fade">
+                    {{block type="zozoconcepts_featuredproductslider/featuredproductslider" category_id="4" name="tab.cat.featured"  item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-cat-featured.phtml"}}
+                    </div>
+                </div>
+              </div>
+            </div>  
+		</div>
+	</section>
+    
+	<section class="section brand-section bg-color">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+	<section class="section category-block-tab image-bg fixed-bg typo-light static-overlay" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-03.jpg"}}">
+		<div class="container child-of-static-overlay">
+			<div class="row">
+            	<div class="col-md-12">
+                    <div class="section-title text-center">
+                        <h2 class="title">Shop By Categories</h2>
+                    </div>
+                 </div>
+             </div>  
+             <div class="row">
+             	<div class="col-md-4">
+                	<div class="tile-box text-center">
+                    	<div class="tile-img-wrap">
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/cat-women.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Woman Category</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-grey btn-xs" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                	<div class="tile-box text-center mt-30-991">
+                    	<div class="tile-img-wrap">
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/cat-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Man Category</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-grey btn-xs" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                	<div class="tile-box text-center mt-30-991">
+                    	<div class="tile-img-wrap">
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/cat-kid.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Kid Category</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-grey btn-xs" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</section>
+    
+    
+	 <section class="singleblog-static-home home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-center">
+						<h2 class="title">Blog Updates</h2>
+					</div>
+					<div class="blog-list-container">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo.blog-version-3" total_items="8" item_count="3" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+    
+    <section class="store-featured-section p-none col-space-none typo-light">
+    	<div class="container-fluid">
+             <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box feature-box-bg icon-title-inline bg-light-green store-featured-one">
+                        <div class="feature-icon">
+                            <i class="icon icon-Scisors"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Free Coupons</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box feature-box-bg icon-title-inline bg-yellow store-featured-two">
+                        <div class="feature-icon">
+                            <i class="icon icon-Timer"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Daily Deals</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box feature-box-bg icon-title-inline bg-light-blue store-featured-three">
+                        <div class="feature-icon">
+                            <i class="icon icon-Megaphone"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Price Alerts</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box feature-box-bg icon-title-inline bg-pink store-featured-four">
+                        <div class="feature-icon">
+                            <i class="icon icon-BigTruck"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Replace Items</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+		</div>
+	</section>         
+    
+    
+
+<script type="text/javascript">
+
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: true,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$("#brandslider").owlCarousel({
+			 items:5,
+			 responsive:{
+				0:{
+					items:2
+				},
+				480:{
+					items:3
+				},
+				767:{
+					items:3
+				},
+				991:{
+					items:4
+				},
+				1024:{
+					items:5
+				}
+			},
+			margin:30,
+			nav: false,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script> 
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[
+]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 4</title>
+         <identifier>varmo_home_4</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block">
+        <div class="featurette">
+            <div class="home-slider hero-slider owl-carousel owl-middle-narrow dots-light">
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-one" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-08.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-two" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-09.jpg"}}"></a>
+                </div>
+            </div>
+        </div>
+	</div>
+   
+   <section class="image-box home-static-block col-space-md ptb-15">
+		<div class="container-fluid">
+	    	<div class="row">
+    	    	<div class="col-sm-8">
+                	<div class="row">
+                    	<div class="col-sm-6">
+                            <div class="lifestyle-collections-box">
+                                <a href="#" class="overlay">
+                                    <span class="overlay-inner"></span>
+                                    <img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/content-static-03.jpg"}}" />
+                                </a>
+                            </div>
+                    	</div>
+                        <div class="col-sm-6 mt-15-767">
+                            <div class="shoe-collections-box">
+                                <a href="#" class="overlay">
+                                    <span class="overlay-inner"></span>
+                                     <img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/content-static-04.jpg"}}" />
+                                </a>
+                            </div>
+                    	</div>
+                	</div>
+                    <div class="row">
+                    	<div class="col-sm-12 mt-15">
+                        	<div class="women-collections-box">
+                                <a href="#" class="overlay">
+                                    <span class="overlay-inner"></span>
+                                    <img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/content-static-05.jpg"}}" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<div class="col-sm-4 mt-15-767">
+					<div class="shopnow-box">
+						<a href="#" class="overlay">
+							<span class="overlay-inner"></span>
+							<img class="featurette-image img-responsive" alt="Generic placeholder image" src="{{media url="wysiwyg/hybrid/img/content/content-static-06.jpg"}}" />
+						</a>
+					</div>
+             	</div>
+			</div>
+        </div>
+	</section>
+	<section class="newsletter-block home-static-block image-bg fixed-bg typo-light" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-04.jpg"}}">
+		<div class="container">
+			<div class="row featurette">
+				<div class="col-sm-6 col-sm-offset-6">
+					<div class="block parallax-newsletter">
+						<div class="block-title"><strong><span>Newsletter</span></strong></div>
+						<div class="block-content">
+							<p>Enjoy our newsleeter to stay updated with the latest news and special sales. Let's your email address here!</p>
+							{{block type="newsletter/subscribe" template="newsletter/parallax_subscribe.phtml"}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="new-products bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">New Arrivals</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper new-static-home nav-dark">
+						{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+	
+	<section class="section category-block-tab image-bg fixed-bg typo-light bg-semi-dark">
+		<div class="container child-of-static-overlay">
+			<div class="row">
+            	<div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <h2 class="title">Men's Categories</h2>
+                    </div>
+                 </div>
+             </div>  
+             <div class="row">
+             
+             	<div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/casual-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Casual Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/hipster-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Hipster Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/corporate-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Corporate Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn  btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+				
+			</div>
+		</div>
+	</section>
+	
+    <section class="sale-products bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">Sale Products</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper best-static-home nav-dark">
+						{{block type="zozoconcepts_featuredproductslider/bestseller" item_count="4" name="zozo.bestseller.slider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+	
+    <section class="testimonial-block home-static-block image-bg fixed-bg typo-light static-overlay pb-none overlay-lg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-05.jpg"}}">
+		<div class="container child-of-static-overlay">
+			<div class="row featurette">
+				<div class="col-sm-6">
+                	<div class="owl-carousel testimonial-static-slider owl-middle-narrow nav-dark">
+						<div class="slide-item">
+                            <blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+                            </blockquote>
+                        </div>
+                        <div class="slide-item">
+                            <blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                <footer>John Peter. Business Developer.</footer>
+                            </blockquote>
+                        </div>
+                    </div>       
+				</div>
+				<div class="col-sm-6">
+                	<div class="pulled-block-top-sm">
+						<img class="img-responsive img-center" alt="" src="{{media url="wysiwyg/hybrid/img/content/slider-men-01.png"}}" />
+					</div>
+                </div>
+			</div>
+		</div>
+	</section>
+	
+    <section class="singleblog-static-home home-static-block pb-20">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">Blog Updates</h2>
+					</div>
+					<div class="blog-list-container">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo-blog" total_items="8" item_count="3" nav="enable" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	 
+	<section class="store-featured-section p-none col-space-none typo-light">
+    	<div class="container-fluid">
+             <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-light-green store-featured-one">
+                        <div class="feature-icon">
+                            <i class="icon icon-Scisors"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Free Coupons</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-yellow store-featured-two">
+                        <div class="feature-icon">
+                            <i class="icon icon-Timer"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Daily Deals</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-light-blue store-featured-three">
+                        <div class="feature-icon">
+                            <i class="icon icon-Megaphone"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Price Alerts</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-pink store-featured-four">
+                        <div class="feature-icon">
+                            <i class="icon icon-BigTruck"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Replace Items</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+		</div>
+	</section>
+</div>
+<!-- /END THE FEATURETTES -->
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.testimonial-static-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 5</title>
+         <identifier>varmo_home_5</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="row">
+    	<div class="featurette">
+            <div class="col-md-12">
+                <div class="home-slider hero-slider owl-carousel owl-middle-narrow nav-dark">
+                    <div class="slide-item">
+                        <a href="#" class="banner-image"><img alt="banner-one" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/bg/banner-05.jpg"}}"></a>
+                    </div>
+                    <div class="slide-item">
+                        <a href="#" class="banner-image"><img alt="banner-two" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/bg/banner-06.jpg"}}"></a>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+    <section class="home-static-block pt-30 pb-none">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="overlay radius-4">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-07.jpg"}}">
+                </a> 
+             </div>
+             <div class="col-md-6 mt-20-991">
+                 <a href="#" class="overlay radius-4">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-08.jpg"}}">
+                 </a>   
+             </div>
+        </div>
+    </section>
+	
+    <section class="new-products pt-30 pb-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title text-left">
+					<h2 class="title">New Arrivals</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="carousel-wrapper new-static-home nav-dark">
+					{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="featurette pt-30 pb-none">
+    	<div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="overlay radius-4">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-11.jpg"}}">
+                </a>
+            </div>    	
+        	<div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay radius-4">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-12.jpg"}}">
+                </a>
+        	</div>
+    
+         	<div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay radius-4">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-13.jpg"}}">
+                </a>
+        	</div>
+    	</div>
+	</section>
+    
+    <section class="featured-top-sale-products pt-30 pb-none content-block-boxed-products">
+		<div class="row">
+			<div class="col-md-4">
+            	{{block type="zozoconcepts_featuredproductslider/featuredproductslider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"}}
+            </div>
+			<div class="col-md-4">
+            	{{block type="zozoconcepts_featuredproductslider/topratted" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-topratted.phtml"}}
+           	</div>
+			<div class="col-md-4">
+				{{block type="zozoconcepts_featuredproductslider/bestseller" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-bestseller.phtml"}}
+            </div>
+        </div>
+    </section>
+    
+	<section class="featurette pt-30 pb-none">
+    	<div class="row">
+			<div class="col-sm-6">
+            	<div class="block-image">
+                	<a href="#" class="overlay radius-4">
+                   		<span class="overlay-inner"></span>
+                    		<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-09.jpg"}}">
+                	</a> 
+                </div>
+			</div>
+            <div class="col-sm-6 mt-30-767">
+            	<div class="block-image">
+                	<a href="#" class="overlay radius-4">
+                   		<span class="overlay-inner"></span>
+                    		<img alt="Content Banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-10.jpg"}}">
+                	</a> 
+                </div>
+			</div>
+    	</div>
+	</section>
+    
+    <section class="category-featured pt-30 pb-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title text-left">
+					<h2 class="title">Mobile</h2>
+				</div>
+			</div>
+		</div>
+        <div class="row">
+        	<div class="col-md-12">
+				{{block type="zozoconcepts_featuredproductslider/featuredproductslider" category_id="8" name="furnitures_featured"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-cat-featured.phtml"}}
+            </div>
+     	</div>
+     </section>
+     <section class="featurette pt-30 pb-none">
+    	<div class="row">
+            <div class="col-sm-12">
+                <a href="#" class="overlay radius-4">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-16.jpg"}}">
+                </a>
+            </div>  
+    	</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>two_columns_left</root_template>
+         <layout_update_xml><![CDATA[<reference name="left">
+  <remove name="tags_popular"/>
+  <block type="newsletter/subscribe" template="newsletter/home_side_subscribe.phtml"/>
+ <block type="cms/block" name="static_left1"><action method="setBlockId"><block_id>block_static_left1</block_id></action></block>
+ <block type="cms/block" name="block_testimonial_static_v1">
+    <action method="setBlockId"><block_id>block_testimonial_static_v1</block_id></action>
+  </block>
+  <block type="zozoconcepts_blog/blog_list" template="zozoconcepts/zozoconcepts_blog/blog/home-side-blog-list.phtml"/>
+  <block type="cms/block" name="static_left3"><action method="setBlockId"><block_id>block_static_left3</block_id></action></block>
+  </reference>]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 6</title>
+         <identifier>varmo_home_6</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block">
+        <div class="featurette">
+            <div class="home-slider hero-slider owl-carousel owl-middle-narrow dots-light">
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-one" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/bg/banner-10.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-two" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/bg/banner-11.jpg"}}"></a>
+                </div>
+            </div>
+        </div>
+	</div>
+	
+    <section class="image-box home-static-block pb-none">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 ">
+                	 <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                    	<img alt="img-box" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-21.jpg"}}">
+					</a>
+				</div>
+				<div class="col-sm-4 mt-30-767">
+                	 <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+						<img alt="img-box" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-07.jpg"}}">
+                    </a>
+				</div>
+				<div class="col-sm-4 mt-30-767">
+                	 <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+						<img alt="img-box" class="img-responsive radius-4" src="{{media url="wysiwyg/hybrid/img/content/content-static-08.jpg"}}">
+                    </a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+    <section class="multideal-tab-products home-static-block pb-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+                	<div class="row">
+						<div class="multi-deal-wrap">
+							 {{block type="dailydeal/dailydeal" total_items="3" item_count="1" name="deals.6"  template="zozoconcepts/dailydeal/dealwidget.phtml"}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="block-image">
+								<a href="#" class="overlay">
+									<span class="overlay-inner"></span>
+									<img alt="img-box" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/mobile-banner.jpg"}}">
+								</a>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="col-md-8 mt-30-991">
+					<div class="category-tab home-static-block">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a data-toggle="tab" href="#featured">Featured</a></li>
+						  <li><a data-toggle="tab" href="#onsale">On Sale</a></li>
+						  <li><a data-toggle="tab" href="#toprated">Top Rated</a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="featured" class="tab-pane fade in active">
+								{{block type="zozoconcepts_featuredproductslider/featuredproductslider" style="grid" name="zozo.featuredproduct" column_count="3" total_items="6" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+						  	</div>
+						  	<div id="onsale" class="tab-pane fade">
+								{{block type="zozoconcepts_featuredproductslider/bestseller" name="zozo.bestseller.slider" style="grid" total_items="6" column_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+						  	</div>
+						  	<div id="toprated" class="tab-pane fade">
+								{{block type="zozoconcepts_featuredproductslider/topratted" name="zozo.topratted.slider" style="grid" total_items="6" column_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-toprated-products.phtml"}}
+						  	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="home-static-block pt-none">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+                	<a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/camera-banner.jpg"}}">
+                	</a>
+				</div>
+				<div class="col-sm-6 mt-30-767">
+                	<a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/watch-banner.jpg"}}">
+                	</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+    <section class="sale-products-grid home-static-block bg-grey">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="section-title text-left">
+						<h2 class="title">Best Sellers</h2>
+					</div>
+				</div>
+				<div class="col-sm-9 mt-30-767">
+					<a class="overlay mb-20" href="#" target="_blank">
+						<span class="overlay-inner"></span>
+                        <img class="img-responsive" alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/electronic-banner.jpg"}}">
+					</a>
+				</div>
+			</div>
+         </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="best-static-home">	
+						{{block type="zozoconcepts_featuredproductslider/bestseller" item_count="3" name="sale.slider" style="grid_list" total_items="20" column_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+	
+    <section class="featurette pb-none">
+    	<div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-24.jpg"}}">
+                    </a>
+                </div>  
+            </div>
+    	</div>
+	</section>
+    
+	 <section class="new-products pt-30 pb-30">
+     	<div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-left">
+                        <h2 class="title">Recently Added</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-wrapper new-static-home nav-dark">
+                            {{block type="zozoconcepts_featuredproductslider/new" item_count="4" name="zozo.newproduct.slider"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+                    </div>
+                </div>
+            </div>
+    	</div>
+	</section>
+    
+	<section class="section brand-section bg-color">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+	<section class="featured-top-sale-products content-block-boxed-products">
+		<div class="container">
+        	<div class="row">
+				<div class="col-md-4">
+					{{block type="zozoconcepts_featuredproductslider/featuredproductslider"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"}}
+				</div>
+				<div class="col-md-4">
+					{{block type="zozoconcepts_featuredproductslider/bestseller"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-bestseller.phtml"}}
+				</div>
+				<div class="col-md-4">
+					{{block type="zozoconcepts_featuredproductslider/topratted" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-topratted.phtml"}}
+				 </div>
+        	</div>
+        </div>
+    </section>
+	
+    <section class="newsletter-section home-static-block bg-color typo-light ptb-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="newsletter-title-box">
+						<h3><i class="icon icon-Plaine"></i>Sign Up to Newsletter</h3>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="newsletter-content-box"><p>...and receive $20 coupon for first shopping</p></div>
+				</div>
+				<div class="col-sm-4">
+					<div class="newsletter-form-box">{{block type="newsletter/subscribe" template="newsletter/parallax_subscribe.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$("#brandslider").owlCarousel({
+			 items:5,
+			 responsive:{
+				0:{
+					items:2
+				},
+				480:{
+					items:3
+				},
+				767:{
+					items:3
+				},
+				991:{
+					items:4
+				},
+				1024:{
+					items:5
+				}
+			},
+			margin:30,
+			nav: false,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 7</title>
+         <identifier>varmo_home_7</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block">
+        <div class="featurette">
+            <div class="home-slider hero-slider owl-carousel owl-middle-narrow dots-light">
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-one" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-08.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner-two" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-09.jpg"}}"></a>
+                </div>
+            </div>
+        </div>
+	</div>
+	
+    <section class="store-featured-section">
+    	<div class="container">
+             <div class="row">
+                <div class="col-sm-3">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Scisors"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Free Coupons</h4>
+                            <p>$5 Cash & -5% off when you spend $250 or more.</p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Timer"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Daily Deals</h4>
+                            <p>10% off on all items valid through 12th June.</p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Megaphone"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Price Alerts</h4>
+                            <p>Get SMS alerts when your stock moves up or down.</p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="feature-box icon-circle feature-box-bg mb-none-767">
+                        <div class="feature-icon">
+                            <i class="icon icon-BigTruck"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Replace and returns</h4>
+                            <p>Items replace and returns available.</p>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+             
+             <div class="row">
+				<div class="col-sm-6 mt-30">
+                    <a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-40.jpg"}}">
+                    </a>
+				</div>
+                
+                <div class="col-sm-6 mt-30">
+                    <a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-41.jpg"}}">
+                    </a>
+				</div>
+			</div>
+		</div>
+	</section>
+   
+	<section class="section category-block-tab image-bg fixed-bg typo-light bg-semi-dark">
+		<div class="container child-of-static-overlay">
+			<div class="row">
+            	<div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <h2 class="title">Men's Categories</h2>
+                    </div>
+                 </div>
+             </div>  
+             <div class="row">
+             
+             	<div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/casual-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Casual Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/hipster-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Hipster Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/hybrid/img/content/corporate-men.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Corporate Trends</a></h4>
+                            <p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</p>
+                            <a class="btn  btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+				
+			</div>
+		</div>
+	</section>
+    
+	<section class="featured-top-sale-products">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#new">New Arrivals</a></li>
+                        <li><a data-toggle="tab" href="#bestseller">On Sale</a></li>
+                        <li><a data-toggle="tab" href="#featured">Features</a></li>
+                    </ul>
+					<div class="tab-content">
+                        <div id="new" class="tab-pane fade in active">
+                            <div class="new-static-home carousel-wrapper nav-dark">
+                            	{{block type="zozoconcepts_featuredproductslider/new" item_count="4" name="zozo.tab.new"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+                            </div>
+                        </div>
+                        <div id="bestseller" class="tab-pane fade">
+                            <div class="best-static-home carousel-wrapper nav-dark">
+                            	{{block type="zozoconcepts_featuredproductslider/bestseller" item_count="4" name="zozo.tab.sale"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+                            </div>
+                        </div>
+                        <div id="featured" class="tab-pane fade">
+                            <div class="featured-static-home carousel-wrapper nav-dark">
+                            	{{block type="zozoconcepts_featuredproductslider/featuredproductslider" item_count="4" name="zozo.tab.featured"  nav="topright" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+                            </div>	
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <section class="newsletter-section image-bg fixed-bg typo-light" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-04.jpg"}}">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6">
+					<div class="section-title text-center">
+						<h2 class="title">Subscribe to our newsletter</h2>
+					</div>
+                    <div class="newsletter-form-box">
+                    	{{block type="newsletter/subscribe" template="newsletter/parallax_subscribe.phtml"}}
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+                	<a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-60.jpg"}}">
+                	</a>
+				</div>
+				<div class="col-sm-6 mt-30-767">
+                	<a class="overlay" href="#">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-61.jpg"}}">
+                	</a>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="blog-testimonial-block bg-light-grey home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="section-title text-left">
+						<h4 class="title">From the Blog</h4>
+					</div>
+					<div class="blog-list-container">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo-blog" total_items="3" item_count="1" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+                
+                <div class="col-md-8">
+                	<div class="row">
+                        <div class="col-sm-6">
+                            <div class="service-wrap">
+                                <div class="section-title">
+                                    <h4 class="title">Our Services</h4>
+                                </div>
+                                <div class="feature-box icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Scisors"></i>
+                                    </div>
+                                    <div class="feature-content">	
+                                        <h4 class="heading">Free Coupons</h4>
+                                        <p>$5 Cash & -5% off when you spend $250 or more </p>
+                                     </div>   
+                                </div>
+                                <div class="feature-box mt-30 icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Timer"></i>
+                                    </div>
+                                   <div class="feature-content">	
+                                        <h4 class="heading">Daily Deals</h4>
+                                        <p>10% off on all items valid through 12th June. Get Soon.</p>
+                                     </div>   
+                                </div>
+                                <div class="feature-box mt-30 icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Megaphone"></i>
+                                    </div>
+                                   <div class="feature-content">	
+                                        <h4 class="heading">Price Alerts</h4>
+                                        <p>Get SMS alerts when your stock moves up or down.</p>
+                                     </div>    
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="col-sm-6 mt-30-767">
+                            <div class="section-title">
+                                <h4 class="title">Reviews</h4>
+                            </div>
+                            <div class="owl-carousel testimonial-static-slider owl-middle-narrow nav-dark">
+                                <div class="slide-item">
+                                    <blockquote class="border-style">
+                                        <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                        <footer>Leslie Williamson. Business Developer.</footer>
+                                    </blockquote>
+                                </div>
+                                <div class="slide-item">
+                                    <blockquote class="border-style">
+                                        <p>Varmo is a great product. I'd recommend this theme to those, who looking to start an online shopping. This theme is straightforward and best of all. They have a great support team.  The quality of this theme was just as I imagined.</p>
+                                        <footer>John Peter. Business Developer.</footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 mt-30">
+                             <a class="overlay" href="#">
+                                <span class="overlay-inner"></span>
+                                 <img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-67.jpg"}}" />
+                            </a>
+                        </div>
+                    </div>
+                    
+				</div>    
+			</div>
+		</div>
+	</section>
+    
+	<section class="section brand-section bg-color">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.testimonial-static-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$("#brandslider").owlCarousel({
+		 items:5,
+		 responsive:{
+			0:{
+				items:2
+			},
+			480:{
+				items:3
+			},
+			767:{
+				items:3
+			},
+			991:{
+				items:4
+			},
+			1024:{
+				items:5
+			}
+		},
+		margin:30,
+		nav: false,
+		navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+		autoplay: true,
+		autoplayTimeout: 5000,
+		autoplayHoverPause: true,
+		dots: false,
+		animateIn: 'fadeIn',
+		animateOut: 'fadeOut',
+		loop: true,
+	});
+	var pageSection = $(".image-bg");
+	pageSection.each(function(indx){
+	if ($(this).attr("data-background")){
+		$(this).css("background-image", "url(" + $(this).data("background") + ")");
+	}
+});
+});})(jQuery);
+</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 8</title>
+         <identifier>varmo_home_8</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block mt-30">
+		<div class="container">
+			<div class="row featurette">
+				<div class="col-md-3">
+                	<div class="category-nav">
+                    	{{block type="megamenu/navigation" name="zozo.categorymenu" template="zozoconcepts/zozoconcepts_megamenu/categories.phtml" }}
+                    </div>
+                </div>
+				<div class="col-md-9 mt-30-991">
+					<div class="home-slider hero-slider owl-carousel owl-middle-narrow dots-light">
+                		<div class="slide-item">
+                    		<a href="#"><img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-16.jpg"}}"></a>
+                		</div>
+                		<div class="slide-item">
+                    		<a href="#"><img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-17.jpg"}}"></a>
+                		</div>
+            		</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <section class="store-featured-section ptb-30">
+    	<div class="container">
+             <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Scisors"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Free Coupons</h4>
+                            <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet 
+                            	<a href="#">[...]</a>
+                            </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-4 mt-30-991">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Timer"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Daily Deals</h4>
+                            <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet 
+                            	<a href="#">[...]</a>
+                            </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-4 mt-30-991">
+                    <div class="feature-box icon-circle feature-box-bg">
+                        <div class="feature-icon">
+                            <i class="icon icon-Megaphone"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Price Alerts</h4>
+                            <p>Lectus dolor et quam Pellentesque consequat luctus purus Lorem ipsum dolor sit amet 
+                            	<a href="#">[...]</a>
+                            </p>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+		</div>
+	</section>
+	
+	<section class="new-products bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">New Arrivals</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper new-static-home nav-dark">
+						{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+    
+	<section class="section category-block-tab image-bg fixed-bg typo-light bg-semi-dark">
+		<div class="container child-of-static-overlay">
+			<div class="row">
+            	<div class="col-sm-12">
+                    <div class="section-title text-center">
+                        <h2 class="title">Men's Categories</h2>
+                    </div>
+                 </div>
+             </div>  
+             <div class="row">
+             
+             	<div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-48.jpg"}}"></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h2 class="title"><a href="#">Featured</a></h2>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4 mt-30-767">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-49.jpg"}}"></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h2 class="title"><a href="#">On sale</a></h2>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4 mt-30-767">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-50.jpg"}}"></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h2 class="title"><a href="#">Top rated</a></h2>
+                            <a class="btn  btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="featurette bg-light-grey">
+    	<div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-32.jpg"}}">
+                    </a>
+                </div>  
+            </div>
+    	</div>
+	</section>
+	
+	<section class="featured-top-sale-products pt-30 content-block-boxed-products">
+    	<div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    {{block type="zozoconcepts_featuredproductslider/featuredproductslider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"}}
+                </div>
+                <div class="col-sm-4">
+                    {{block type="zozoconcepts_featuredproductslider/topratted" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-topratted.phtml"}}
+                </div>
+                <div class="col-sm-4">
+                    {{block type="zozoconcepts_featuredproductslider/bestseller" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-bestseller.phtml"}}
+                </div>
+        	</div>
+        </div>
+    </section>
+
+	<section class="home-static-block bg-grey">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<a href="#" class="overlay">
+						<span class="overlay-inner"></span>
+                    	<img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-51.jpg"}}">
+                     </a>
+				</div>
+                
+                <div class="col-md-3 col-sm-6 mt-30-767">
+					<a href="#" class="overlay">
+						<span class="overlay-inner"></span>
+                    	<img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-52.jpg"}}">
+                     </a>
+				</div>
+                
+                <div class="col-md-3 col-sm-6 mt-30-991">
+					<a href="#" class="overlay">
+						<span class="overlay-inner"></span>
+                    	<img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-53.jpg"}}">
+                     </a>
+				</div>
+                
+                <div class="col-md-3 col-sm-6 mt-30-991">
+					<a href="#" class="overlay">
+						<span class="overlay-inner"></span>
+                    	<img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-54.jpg"}}">
+                     </a>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+    
+	<section class="blog-testimonial-block home-static-block pb-20">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="section-title">
+						<h3 class="title">Reviews</h3>
+					</div>
+					<div class="owl-carousel testimonial-static-slider nav-mini owlnav-top-right nav-dark">
+						<div class="slide-item">
+							<blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+							</blockquote>
+						</div>
+						<div class="slide-item">
+							<blockquote class="border-style">
+								<p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+								<footer>John Peter. Business Developer.</footer>
+							</blockquote>
+						</div>
+					</div>
+					<div class="block-image mt-20">
+						<a href="#" class="overlay">
+							<span class="overlay-inner"></span>
+							<img alt="img-box" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/shoes-spring.jpg"}}">
+						</a>
+					</div>
+				</div>
+				<div class="col-md-8 mt-30-991">
+					<div class="section-title text-left">
+						<h3 class="title">From the Blog</h3>
+					</div>
+					<div class="blog-list-container nav-mini owlnav-top-right nav-dark">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo-blog" total_items="8" item_count="2" nav="enable" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+            	</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.testimonial-static-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: true,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+
+	var pageSection = $(".image-bg");
+	pageSection.each(function(indx){
+	if ($(this).attr("data-background")){
+		$(this).css("background-image", "url(" + $(this).data("background") + ")");
+	}
+});
+});})(jQuery);
+</script>
+	]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 9</title>
+         <identifier>varmo_home_9</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block">
+        <div class="featurette dots-diamond">
+            <div class="hero-slider owl-carousel owl-middle-narrow">
+				<div class="slide-item">
+                    <a href="#"><img alt="banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-18-1.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-18.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-19.jpg"}}"></a>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<section class="home-static-block p-none col-space-none">
+    	<div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-57.jpg"}}">
+                     </a>
+                 </div>
+                <div class="col-sm-6 mt-30-767">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-58.jpg"}}">
+                     </a>
+                </div>
+                <div class="col-sm-3 mt-30-767">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-59.jpg"}}">
+                     </a>
+                </div>
+            </div>
+		</div>	
+	</section>
+
+	<section class="new-products bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">New Arrivals</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper new-static-home nav-dark">
+						{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+    
+	<section class="home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                        <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-60.jpg"}}">
+                     </a>
+                </div>
+				<div class="col-sm-6 mt-30-767">
+                    <a href="#" class="overlay">
+                        <span class="overlay-inner"></span>
+                       <img alt="img-banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-61.jpg"}}">
+                     </a>
+                </div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="testimonial-block home-static-block image-bg fixed-bg typo-light static-overlay" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-06-1.jpg"}}">
+        <div class="container child-of-static-overlay">
+            <div class="row featurette">
+                <div class="col-sm-12">
+                    <div class="owl-carousel testimonial-static-slider owl-middle-narrow nav-dark">
+                        <div class="slide-item">
+                            <blockquote class="transparent-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+								<img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-01.jpg"}}" alt=""/>
+                            </blockquote>
+                        </div>
+                        <div class="slide-item">
+                            <blockquote class="transparent-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                <footer>John Peter. Business Developer.</footer>
+								<img class="author-image" src="{{media url="wysiwyg/hybrid/img/testimonial/avator-02.jpg"}}" alt=""/> 
+                            </blockquote>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+        </div>
+	</section>
+    
+	<section class="singleblog-static-home home-static-block bg-grey pb-20">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title text-left">
+						<h2 class="title">From Our Blog</h2>
+					</div>
+					<div class="blog-list-container">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo-blog" total_items="8" item_count="3" nav="enable" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="store-featured-section p-none col-space-none typo-light">
+    	<div class="container-fluid">
+             <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-light-green store-featured-one">
+                        <div class="feature-icon">
+                            <i class="icon icon-Scisors"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Free Coupons</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-yellow store-featured-two">
+                        <div class="feature-icon">
+                            <i class="icon icon-Timer"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Daily Deals</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-light-blue store-featured-three">
+                        <div class="feature-icon">
+                            <i class="icon icon-Megaphone"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Price Alerts</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="feature-box icon-circle hover-shadow-icon feature-box-bg icon-title-inline bg-pink store-featured-four">
+                        <div class="feature-icon">
+                            <i class="icon icon-BigTruck"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading">Replace Items</h4>
+                            <p>$5 off when you spend $40 or more </p>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.testimonial-static-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 10</title>
+         <identifier>varmo_home_10</identifier>
+         <content><![CDATA[<div class="marketing">
+	<section class="banner-block pt-none pb-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 pt-30">
+					<div class="home-slider hero-slider owl-carousel owl-middle-narrow nav-dark">
+                        <div class="slide-item">
+                            <a href="#" class="banner-image"><img alt="banner-box" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-14.jpg"}}"></a>
+                        </div>
+                        <div class="slide-item">
+                            <a href="#" class="banner-image"><img alt="banner-box" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-15.jpg"}}"></a>
+                        </div>
+						<div class="slide-item">
+                            <a href="#" class="banner-image"><img alt="banner-box" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-15-1.jpg"}}"></a>
+                        </div>
+                	</div>
+				</div>
+				<div class="col-md-3">
+                	<div class="row">
+                    	<div class="col-md-12 col-xs-12 pt-30">
+                            <div class="image-box home-static-block">
+                                <div class="block-image">
+                                   <a href="#" class="overlay"> 
+                                   	<span class="overlay-inner"></span>
+                                    <img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-33.jpg"}}" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12 pt-30">
+                            <div class="image-box home-static-block">
+                                <div class="block-image">
+                                   <a href="#" class="overlay"> 
+                                   	<span class="overlay-inner"></span>
+                                    <img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-34.jpg"}}" /></a>
+                                </div>
+                            </div>
+                    	</div>
+                	</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+   <section class="featured-products bg-light-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Featured Product</h2>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="carousel-wrapper featured-static-home">
+						{{block type="zozoconcepts_featuredproductslider/featuredproductslider" name="zozo.featuredproduct" total_items="4" item_count="4" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+					</div>
+				</div>
+			</div>
+         </div>   
+	</section>
+    
+	<section class="section category-block-tab image-bg fixed-bg typo-light bg-semi-dark">
+		<div class="container child-of-static-overlay">
+			<div class="row">
+            	<div class="col-sm-12">
+                    <div class="section-title">
+                        <h2 class="title">Shop By Trends</h2>
+                    </div>
+                 </div>
+             </div>  
+             <div class="row">
+             	<div class="col-sm-4">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-64.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">London Trends</a></h4>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4 mt-30-767">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-65.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">New York Trends</a></h4>
+                            <a class="btn btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4 mt-30-767">
+                	<div class="tile-box text-center tile-dark overlay">
+                    	<div class="tile-img-wrap">
+							<span class="overlay-inner"></span>
+                        	<a href="#"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-66.jpg"}}" /></a>
+                        </div>
+                        <div class="tile-content-wrap">
+                        	<h4 class="title"><a href="#">Sydney Trends</a></h4>
+                            <a class="btn  btn-sm" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="newsletter-block home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="block parallax-newsletter">
+						<div class="block-title"><strong><span>JOIN OUR NEWSLETTER</span></strong></div>
+						<div class="block-content">
+							<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 mt-20-767">
+					{{block type="newsletter/subscribe" template="newsletter/parallax_subscribe.phtml"}}
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="blog-testimonial-block bg-light-grey home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="section-title text-left">
+						<h4 class="title">From the Blog</h4>
+					</div>
+					<div class="blog-list-container">
+						{{block type="zozoconcepts_blog/blog_list" name="zozo-blog" total_items="3" item_count="1" template="zozoconcepts/zozoconcepts_blog/blog/home-blog-singleslide.phtml"}}
+					</div>
+				</div>
+                
+                <div class="col-md-8">
+                	<div class="row">
+                        <div class="col-sm-6">
+                            <div class="service-wrap">
+                                <div class="section-title">
+                                    <h4 class="title">Our Services</h4>
+                                </div>
+                                <div class="feature-box icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Scisors"></i>
+                                    </div>
+                                    <div class="feature-content">	
+                                        <h4 class="heading">Free Coupons</h4>
+                                        <p>$5 Cash & -5% off when you spend $250 or more </p>
+                                     </div>   
+                                </div>
+                                <div class="feature-box mt-30 icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Timer"></i>
+                                    </div>
+                                    <div class="feature-content">	
+                                        <h4 class="heading">Daily Deals</h4>
+                                        <p>10% off on all items valid through 12th June. Get Soon.</p>
+                                     </div>   
+                                </div>
+                                <div class="feature-box mt-30 icon-title-inline">
+                                    <div class="feature-icon">
+                                        <i class="icon icon-Megaphone"></i>
+                                    </div>
+                                    <div class="feature-content">	
+                                        <h4 class="heading">Price Alerts</h4>
+                                        <p>Get SMS alerts when your stock moves up or down.</p>
+                                     </div>   
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="col-sm-6 mt-30-767">
+                            <div class="section-title">
+                                <h4 class="title">Reviews</h4>
+                            </div>
+                            <div class="owl-carousel testimonial-static-slider owl-middle-narrow nav-dark">
+                                <div class="slide-item">
+                                    <blockquote class="border-style">
+                                        <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful. The quality of this theme was just as I imagined.</p>
+                                        <footer>Leslie Williamson. Business Developer.</footer>
+                                    </blockquote>
+                                </div>
+                                <div class="slide-item">
+                                    <blockquote class="border-style">
+                                        <p>Varmo is a great product. I'd recommend this theme to those, who looking to start an online shopping. This theme is straightforward and best of all. They have a great support team.  The quality of this theme was just as I imagined.</p>
+                                        <footer>John Peter. Business Developer.</footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 mt-30">
+                             <a class="overlay" href="#">
+                                <span class="overlay-inner"></span>
+                                <img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-67.jpg"}}" />
+                            </a>
+                        </div>
+                    </div>
+                    
+				</div>    
+			</div>
+		</div>
+	</section>
+    
+	<section class="section brand-section bg-color">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$('.testimonial-static-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: false,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+$("#brandslider").owlCarousel({
+		 items:5,
+		 responsive:{
+			0:{
+				items:2
+			},
+			480:{
+				items:3
+			},
+			767:{
+				items:3
+			},
+			991:{
+				items:4
+			},
+			1024:{
+				items:5
+			}
+		},
+		margin:30,
+		nav: false,
+		navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+		autoplay: true,
+		autoplayTimeout: 5000,
+		autoplayHoverPause: true,
+		dots: false,
+		animateIn: 'fadeIn',
+		animateOut: 'fadeOut',
+		loop: true,
+	});
+	var pageSection = $(".image-bg");
+	pageSection.each(function(indx){
+	if ($(this).attr("data-background")){
+		$(this).css("background-image", "url(" + $(this).data("background") + ")");
+	}
+});
+});})(jQuery);
+</script>
+	]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 11</title>
+         <identifier>varmo_home_11</identifier>
+         <content><![CDATA[<div class="marketing">
+	<div class="banner-block">
+        <div class="featurette">
+            <div class="hero-slider owl-carousel owl-middle-narrow dots-light">
+                <div class="slide-item">
+                    <a href="#"><img alt="banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-20.jpg"}}"></a>
+                </div>
+                <div class="slide-item">
+                    <a href="#"><img alt="banner" class="img-responsive" src="{{media url="wysiwyg/hybrid/img/bg/banner-21.jpg"}}"></a>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<section class="featured-products bg-light-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+                    	<div class="col-md-12">
+                        	<div class="section-title">
+								<h4 class="title">Featured Product</h4>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-md-12">
+                            <div class="carousel-wrapper featured-static-home nav-dark nav-mini">
+                                {{block type="zozoconcepts_featuredproductslider/featuredproductslider" name="zozo.featuredproduct" total_items="8" item_count="2" nav="topright" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+                            </div>
+                        </div>
+                    </div>
+         		</div>   
+                <div class="col-md-6 mt-30-991">
+                    <div class="image-box">
+                    	<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+                        	<img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-68.jpg"}}" />
+                    	</a>
+                    </div>
+                </div>
+    		</div>
+        </div>
+	</section>
+    
+	<section class="new-products">
+    	<div class="container">
+			<div class="row">
+                <div class="col-md-6 mb-30-991">
+                    <div class="image-box">
+                    	<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+                        	<img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-69.jpg"}}" />
+                    	</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+					<div class="row">
+                    	<div class="col-md-12">
+                        	<div class="section-title">
+								<h4 class="title">New Arrivals</h4>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-md-12">
+                            <div class="carousel-wrapper featured-static-home nav-dark nav-mini">
+                               {{block type="zozoconcepts_featuredproductslider/new" item_count="2" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+                            </div>
+                        </div>
+                    </div>
+         		</div>
+    		</div>
+        </div>
+	</section>
+    
+	<section class="category-block-image-box bg-grey">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+                    	<div class="col-sm-12">
+                        	<div class="section-title">
+                        		<h4 class="title">Men's Categories</h4>
+                    		</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="tile-box text-center">
+                                <div class="tile-img-wrap">
+                                    <a href="#"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-71.jpg"}}" /></a>
+                                </div>
+                                <div class="tile-content-wrap">
+                                    <h4 class="title"><a href="#">Otto Blazer</a></h4>
+                                    <p>$ 960</p>
+                                    <a class="btn btn-grey btn-xs" href="#">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="tile-box text-center mt-30-991">
+                                <div class="tile-img-wrap">
+                                    <a href="#"><img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-72.jpg"}}" /></a>
+                                </div>
+                                <div class="tile-content-wrap">
+                                    <h4 class="title"><a href="#">Varmo Fancy</a></h4>
+                                    <p>$ 960</p>
+                                    <a class="btn btn-grey btn-xs" href="#">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+         		</div>  
+                 
+                <div class="col-md-6 mt-30-991">
+                    <div class="image-box">
+                    	<a href="#" class="overlay">
+    						<span class="overlay-inner"></span>
+                        	<img alt="image-box" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/content-static-70.jpg"}}" />
+                    	</a>
+                    </div>
+                </div>
+    		</div>
+        </div>
+	</section>
+    
+	<section class="store-featured-section p-none col-space-none typo-light">
+    	<div class="container-fluid">
+             <div class="row">
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-youtube text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-youtube"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Youtube</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-skype text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-skype"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Skype</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-fb text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-facebook"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Facebook</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+                
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-dribbble text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-youtube"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Dribbble</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-spotify text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-spotify"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Spotify</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <div class="feature-box feature-box-bg bg-twitter text-center icon-transparent mb-none">
+                        <div class="feature-icon">
+                            <i class="icons icon-social-twitter"></i>
+                        </div>
+                        <div class="feature-content">	
+                            <h4 class="heading"><a href="#">Twitter</a></h4>
+                         </div>   
+                    </div>	
+                </div>
+             </div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+	animateIn: 'fadeIn',
+	animateOut: 'fadeOut',
+	loop: true,
+});
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+
+});})(jQuery);
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 12</title>
+         <identifier>varmo_home_12</identifier>
+         <content><![CDATA[<div class="marketing">
+	<section class="new-products ptb-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title text-left">
+					<h2 class="title">New Arrivals</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="carousel-wrapper new-static-home nav-dark">
+					{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="featurette pt-30 pb-none">
+    	<div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="overlay">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-36.jpg"}}">
+                </a>
+            </div>    	
+        	<div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-37.jpg"}}">
+                </a>
+        	</div>
+    
+         	<div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-38.jpg"}}">
+                </a>
+        	</div>
+    	</div>
+	</section>
+    
+	<section class="featured-top-sale-products pt-30 pb-none content-block-boxed-products">
+		<div class="row">
+			<div class="col-sm-4">
+            	{{block type="zozoconcepts_featuredproductslider/featuredproductslider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"}}
+            </div>
+			<div class="col-sm-4">
+            	{{block type="zozoconcepts_featuredproductslider/topratted" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-topratted.phtml"}}
+           	</div>
+			<div class="col-sm-4">
+				{{block type="zozoconcepts_featuredproductslider/bestseller" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-bestseller.phtml"}}
+            </div>
+        </div>
+    </section>
+    
+	 <section class="featurette pt-30 pb-none">
+    	<div class="row">
+            <div class="col-sm-12">
+                <a href="#" class="overlay">
+    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-39.jpg"}}">
+                </a>
+            </div>  
+    	</div>
+	</section>
+    
+	<section class="category-featured pt-30 pb-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title text-left">
+					<h2 class="title">Home Decors</h2>
+				</div>
+			</div>
+		</div>
+        <div class="row">
+        	<div class="col-md-12">
+				{{block type="zozoconcepts_featuredproductslider/featuredproductslider" category_id="225" name="furnitures_featured"  template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-cat-featured.phtml"}}
+            </div>
+     	</div>
+     </section>
+</div>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function() {
+		
+	});})(jQuery);
+
+</script>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>two_columns_left</root_template>
+         <layout_update_xml><![CDATA[<reference name="left">
+		 <remove name="tags_popular"/>
+  <block type="newsletter/subscribe" template="newsletter/home_side_subscribe.phtml"/>
+  <block type="cms/block" name="static_left4"><action method="setBlockId"><block_id>block_static_left4</block_id></action></block>
+ <block type="cms/block" name="block_testimonial_static_v1">
+    <action method="setBlockId"><block_id>block_testimonial_static_v1</block_id></action>
+  </block>
+  </reference>
+  <reference name="top.container">
+  	<block type="cms/block" name="block_static_v12">
+    	<action method="setBlockId"><block_id>block_static_banner</block_id></action>
+  </block>
+  </reference>
+  ]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 13</title>
+         <identifier>varmo_home_13</identifier>
+         <content><![CDATA[<div class="marketing">
+		<div class="container">
+			<div class="row featurette">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="home-static-block">
+						<div class="block-image">
+							<img alt="Generic placeholder image" class=
+							"featurette-image img-responsive" data-src="holder.js/590x350/auto"
+							src="data:image/png;base64,">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3"><div class="block-image"><img alt="Generic placeholder image" class="featurette-image img-responsive" data-src="holder.js/295x350/auto" src="data:image/png;base64,"></div>
+				</div>
+			</div>
+		</div>
+	<hr class="featurette-divider">
+	<div class="various-product home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="block-image">
+						<img alt="Generic placeholder image" class="featurette-image img-responsive" data-src="holder.js/295x624/auto" src="data:image/png;base64,">
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="category-tab home-static-block">
+						<ul class="nav nav-tabs">
+						  <li class="active"><a data-toggle="tab" href="#bestseller">Bestseller</a></li>
+						  <li><a data-toggle="tab" href="#newproducts">New Products</a></li>
+						  <li><a data-toggle="tab" href="#featured">Featured</a></li>
+						</ul>
+						<div class="tab-content">
+						  <div id="bestseller" class="tab-pane fade in active">
+							{{block type="zozoconcepts_featuredproductslider/bestseller" item_count="3" name="zozo.bestseller.slider"  total_items="20" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+						  </div>
+						  <div id="newproducts" class="tab-pane fade">
+							{{block type="zozoconcepts_featuredproductslider/new" item_count="3" name="zozo.newproduct.slider"  total_items="20" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+						  </div>
+						  <div id="featured" class="tab-pane fade">
+							{{block type="zozoconcepts_featuredproductslider/featuredproductslider"  name="zozo.featuredproduct"  total_items="20" item_count="3" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-featured-product.phtml"}}
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+	<div class="home-static-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="block-image"><img alt="Generic placeholder image" class=
+							"featurette-image img-responsive" data-src="holder.js/1180x150/auto"
+							src="data:image/png;base64,"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+	
+</div>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function() {
+		$('.home-slider').owlCarousel({
+			pagination : true,
+			navigation : false,
+			autoPlay: true,
+			slideSpeed: 500,
+			singleItem:true,
+			responsive :true
+		});
+	});})(jQuery);
+
+</script>
+	]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage 14</title>
+         <identifier>varmo_home_14</identifier>
+         <content><![CDATA[blank!!!]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - 404 Page</title>
+         <identifier>no-route-1</identifier>
+         <content><![CDATA[<div class="page404-content">
+	<div class="page404-section">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                	<div class="section-title text-center">
+						<h2 class="title">404</h2>
+                        <p class="description">Sorry! The page you're looking for cannot be found</p>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Customer Service</title>
+         <identifier>customer-service-varmo</identifier>
+         <content><![CDATA[]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Privacy Policy</title>
+         <identifier>privacy-policy-varmo</identifier>
+         <content><![CDATA[<div class="aboutus-content">
+	<!-- Features section -->
+    <section class="section features-section">
+		<div class="container">
+        	<div class="row">
+                <div class="col-md-12">
+                	<div class="section-title">
+                    	<h2 class="title">Privacy Policy</h2>
+                    </div>
+                </div>
+            </div>
+        
+			<div class="row">
+				<div class="col-md-12">
+					<p>Easily import any of our professionally designed demos with a click of a button. No xml files, it’s a beautiful thing.printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including version.</p>
+
+					<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+
+					<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of “de Finibus Bonorum et Malorum” (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, “Lorem ipsum dolor sit amet..”, comes from a line in section 1.10.32. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+					<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English.</p>
+
+					<p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of “de Finibus Bonorum et Malorum” (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, “Lorem ipsum dolor sit amet..”, comes from a line in section 1.10.32.</p>
+				</div>
+			</div>
+		</div>
+	</section><!-- Features section -->
+    
+    <section class="section calltoaction-section bg-color">
+    	{{block type="cms/block" block_id="block_contact_static"}}
+    </section>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml><![CDATA[]]></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>About Us</title>
+         <identifier>about-us-varmo</identifier>
+         <content><![CDATA[<div class="aboutus-content">
+	<!-- Features section -->
+    <section class="section features-section">
+		<div class="container">
+        	<div class="row">
+                <div class="col-md-12 ">
+                	<div class="section-title">
+                    	<h2 class="title">Some About Us</h2>
+                    </div>
+                </div>
+            </div>
+        
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-BatteryLow"></i>
+						</div>	
+						<h4 class="heading">One Click Demo Importer</h4>
+						<p>Easily import any of our professionally designed demos with a click of a button. No xml files, it’s a beautiful thing.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-Corkscrew"></i>
+						</div>	
+						<h4 class="heading">Theme Options</h4>
+						<p>Plethora of options neatly organized into sections that allow you to build websites without any coding knowledge.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-DesktopMonitor"></i>
+						</div>	
+						<h4 class="heading">Responsive Framework</h4>
+						<p>Varmo is fully responsive and adapts to every screen size. We obsessively test it all so your content looks beautiful.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-Web"></i>
+						</div>	
+						<h4 class="heading">Page Layouts</h4>
+						<p>Varmo offers numerous page layouts and options to fit every situation, making it easy to complete your design vision.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo'}}">Learn more</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section><!-- Features section -->
+    
+    <section class="section services-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+				<!-- Column -->
+            	<div class="col-sm-6">
+                	<div class="lookbook-wrap">
+                    	<div class="look-content">
+                            <blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div><!-- Column -->
+				
+            </div>
+        </div>
+    </section>
+    
+    <section class="section brand-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section calltoaction-section bg-color">
+    	{{block type="cms/block" block_id="block_contact_static"}}
+    </section>
+</div>
+
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+	
+	var pageSection = $(".image-bg");
+	pageSection.each(function(indx){
+	if ($(this).attr("data-background")){
+		$(this).css("background-image", "url(" + $(this).data("background") + ")");
+	}
+	});
+    $("#brandslider").owlCarousel({
+			 items:5,
+			 responsive:{
+				0:{
+					items:2
+				},
+				480:{
+					items:3
+				},
+				767:{
+					items:3
+				},
+				991:{
+					items:4
+				},
+				1024:{
+					items:5
+				}
+			},
+			margin:30,
+			nav: false,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+		});
+
+});})(jQuery);
+
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>About Us (RTL)</title>
+         <identifier>about-us-varmo-rtl</identifier>
+         <content><![CDATA[<div class="aboutus-content">
+	<!-- Features section -->
+    <section class="section features-section">
+		<div class="container">
+        	<div class="row">
+                <div class="col-md-3">
+                	<div class="section-title">
+                    	<h2 class="title">Some About Us</h2>
+                    </div>
+                </div>
+            </div>
+        
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-BatteryLow"></i>
+						</div>	
+						<h4 class="heading">One Click Demo Importer</h4>
+						<p>Easily import any of our professionally designed demos with a click of a button. No xml files, it’s a beautiful thing.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo-rtl'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-Corkscrew"></i>
+						</div>	
+						<h4 class="heading">Theme Options</h4>
+						<p>Plethora of options neatly organized into sections that allow you to build websites without any coding knowledge.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo-rtl'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-DesktopMonitor"></i>
+						</div>	
+						<h4 class="heading">Responsive Framework</h4>
+						<p>Varmo is fully responsive and adapts to every screen size. We obsessively test it all so your content looks beautiful.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo-rtl'}}">Learn more</a>
+					</div>	
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<i class="icon icon-Web"></i>
+						</div>	
+						<h4 class="heading">Page Layouts</h4>
+						<p>Varmo offers numerous page layouts and options to fit every situation, making it easy to complete your design vision.</p>
+						<a class="btn-link" href="{{store url='about-us-varmo-rtl'}}">Learn more</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section><!-- Features section -->
+    
+    <section class="section services-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+				<!-- Column -->
+            	<div class="col-sm-6">
+                	<div class="lookbook-wrap">
+                    	<div class="look-content">
+                            <blockquote class="border-style">
+                                <p>Absolutely perfect theme. First time ever I achieved 98/100 in GTMetrix. I've been able to optimise this theme to load below 500ms with plenty of images! Incredible. Support is very helpful.</p>
+                                <footer>Leslie Williamson. Business Developer.</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div><!-- Column -->
+				
+            </div>
+        </div>
+    </section>
+    
+    <section class="section brand-section typo-light image-bg fixed-bg" data-background="{{media url="wysiwyg/hybrid/img/bg/bg-01.jpg"}}">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-12">
+                    <div class="home-brand-block home-static-block">
+        				<div class="carousel-wrapper">
+							<div id="brandslider" class="owl-carousel">
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_1.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_2.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_3.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_4.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_5.png"}}" />
+									</a>
+								</div>
+								<div class="item">
+									<a href="#"><img alt="brand" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/client_6.png"}}" />
+									</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section calltoaction-section bg-color">
+    	{{block type="cms/block" block_id="block_contact_static"}}
+    </section>
+</div>
+
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+	
+	var pageSection = $(".image-bg");
+	pageSection.each(function(indx){
+	if ($(this).attr("data-background")){
+		$(this).css("background-image", "url(" + $(this).data("background") + ")");
+	}
+	});
+    $("#brandslider").owlCarousel({
+			 items:5,
+			 rtl:true,
+			 responsive:{
+				0:{
+					items:2
+				},
+				480:{
+					items:3
+				},
+				767:{
+					items:3
+				},
+				991:{
+					items:4
+				},
+				1024:{
+					items:5
+				}
+			},
+			margin:30,
+			nav: false,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+		});
+
+});})(jQuery);
+
+</script>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>one_column</root_template>
+         <layout_update_xml></layout_update_xml>
+      </cms_block>
+	  <cms_block>
+         <title>Varmo - Homepage Version 1 (Rtl)</title>
+         <identifier>varmo_home_1_rtl</identifier>
+         <content><![CDATA[<div class="marketing">
+    <div class="row">
+    	<div class="featurette">
+            <div class="col-md-12">
+                <div class="home-slider hero-slider owl-carousel">
+                    <div class="slide-item">
+                       <a href="#"><img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-01.jpg"}}"></a>
+                    </div>
+                    <div class="slide-item">
+                       <a href="#"> <img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-02.jpg"}}"></a>
+                    </div>
+                     <div class="slide-item">
+                      <a href="#"><img alt="Banner" class="featurette-image img-responsive" src="{{media url="wysiwyg/hybrid/img/content/block-static-03.jpg"}}"></a>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </div>
+    
+	<section class="image-box ptb-30">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-01.jpg"}}">
+                </a> 
+             </div>
+             <div class="col-md-6 mt-20-991">
+                 <a href="#" class="overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-02.jpg"}}">
+                 </a>   
+             </div>
+        </div>
+    </section>
+    
+    
+     <section class="new-products pb-30 pt-none">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title text-left">
+					<h2 class="title">New Arrivals</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="carousel-wrapper new-static-home">
+					{{block type="zozoconcepts_featuredproductslider/new" name="zozo.newproduct.slider" item_count="3" rtl="true" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-new-product.phtml"}}
+				</div>
+			</div>
+		</div>
+	</section>
+    
+	<section class="image-box pt-none pb-30">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="overlay white">
+    				<span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-support.jpg"}}">
+                </a>
+            </div>    	
+            
+            <div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay white">
+    				<span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-shipping.jpg"}}">
+                </a>
+            </div>
+        
+             <div class="col-sm-4">
+                <a href="#" class="mt-20-767 overlay white">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/content-static-alerts.jpg"}}">
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="sale-products pt-none pb-30">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-left">
+                    <h2 class="title">Sale Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-wrapper best-static-home">
+                    {{block type="zozoconcepts_featuredproductslider/bestseller" name="zozo.bestseller.slider" item_count="3" rtl="true" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-bestseller-product.phtml"}}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     <section class="image-box pt-none pb-30">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#" class="overlay white medium">
+                    <span class="overlay-inner"></span>
+                    <img alt="Content Banner" class="featurette-image img-responsive" 
+                    src="{{media url="wysiwyg/hybrid/img/content/season-sale.jpg"}}">
+                </a>
+            </div>
+        </div>
+    </section>
+	<section class="brands ptb-none">
+    	<div class="row">
+        	<div class="col-md-12">
+            	<div class="section-title text-left"><h2 class="title">Our Clients</h2></div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+            	<div class="carousel-wrapper brand-static-home">
+                	{{block type="zozoconcepts_brands/brand_list" name="zozo.brand" rtl="true"  template="zozoconcepts/zozoconcepts_brands/brand/slider.phtml"}}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /END THE FEATURETTES -->
+<script type="text/javascript">
+(function($){
+$(document).ready(function() {
+$('.hero-slider').owlCarousel({
+    rtl:true,
+	items:1,
+	autoplay: true,
+	autoplayTimeout: 5000,
+	autoplayHoverPause: true,
+	dots: true,
+	nav: false,
+	loop: true,
+});
+
+var pageSection = $(".image-bg");
+pageSection.each(function(indx){
+if ($(this).attr("data-background")){
+    $(this).css("background-image", "url(" + $(this).data("background") + ")");
+}
+});
+
+});})(jQuery);
+
+</script>
+
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+         <root_template>two_columns_left</root_template>
+         <layout_update_xml><![CDATA[<reference name="left">
+  <remove name="tags_popular"/>
+  <block type="newsletter/subscribe" template="newsletter/home_side_subscribe.phtml"/>
+  <block type="zozoconcepts_featuredproductslider/featuredproductslider" template="zozoconcepts/zozoconcepts_featuredproductslider/static/home-side-featured.phtml"/>
+  <block type="cms/block" name="block_testimonial_static_v1_rtl">
+    <action method="setBlockId"><block_id>block_testimonial_static_v1_rtl</block_id></action>
+  </block>
+  <block type="cms/block" name="static-image-one">
+    <action method="setBlockId"><block_id>block_static_left2_rtl</block_id></action>
+  </block>
+  </reference>
+  ]]></layout_update_xml>
+      </cms_block>
+   </pages>
+</root>

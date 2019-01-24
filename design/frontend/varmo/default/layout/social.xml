@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+	<default>
+		<reference name="header">
+			<block type="core/template" name="zozo.sociallinks" template="zozoconcepts/zozoconcepts_socio/social-links.phtml" />
+    	</reference>
+		<reference name="top.links">
+			<block type="core/template" name="zozo.social" template="zozoconcepts/zozoconcepts_socio/social-links.phtml" />
+    	</reference>
+	</default>
+</layout>

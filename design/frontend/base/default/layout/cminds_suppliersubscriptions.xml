@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_supplierfrontendproductuploader_index_index>
+        <reference name="content">
+            <reference name="supplierfrontendproductuploader_dashboard">
+                <action method="setTemplate" ifconfig="suppliersubscriptions_catalog/general/module_enabled">
+                    <template>suppliersubscriptions/dashboard.phtml</template>
+                </action>
+            </reference>
+        </reference>
+    </cminds_supplierfrontendproductuploader_index_index>
+
+    <cminds_supplierfrontendproductuploader_plan_list>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="suppliersubscriptions/plan_list" name="suppliersubscriptions_plan_list"
+                   template="suppliersubscriptions/plan/list.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_plan_list>
+
+    <cminds_supplierfrontendproductuploader_plan_renew>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="suppliersubscriptions/plan_renew" name="suppliersubscriptions_plan_renew"
+                   template="suppliersubscriptions/plan/renew.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_plan_renew>
+</layout>

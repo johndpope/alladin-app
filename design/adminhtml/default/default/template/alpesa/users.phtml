@@ -1,0 +1,162 @@
+<h1>In users</h1>
+<div class="columns">
+    <div class="side-col">
+        <?php echo $this->getChildHtml('alpesaconfigurationleft'); ?>
+    </div>
+    <?php
+    $paymentsData = Mage::helper('Boonagel_Alpesa')->alpesaPayments();
+    $unvalidated = $paymentsData['unvalidated'];
+    $validated = $paymentsData['validated'];
+    ?>
+    <div class="main-col" id="content">
+        <div class="main-col-inner">
+            <div id="messages"></div>
+            <!--configuration content heading-->
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3>Alpesa user(s) payment(s) and invoicing section.</h3>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--payments operations-->
+
+            <table width="100%" cellspacing="25">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div   class=" alpesa-payments-table-holder">
+                            <div class="entry-edit">
+                                <div class="entry-edit-head"><h4>Alpesa Pending Payments For Confirmation</h4></div>
+                                <fieldset>
+                                    <h5>Below find all logged unvalidated payments.</h5>
+                                </fieldset>
+                            </div>
+
+                            <?php if (count($unvalidated) > 0): ?>
+                                <?php foreach ($unvalidated as $keyAsOrder => $unvalidatedItem): ?>
+                                    <div class="entry-edit">
+                                        <div class="entry-edit-head"><h4>Invoice #<?php echo $unvalidatedItem[2]; ?></h4></div>
+                                        <?php
+                                        //Zend_Debug::dump($unvalidatedItem);
+                                        if ((count($unvalidatedItem) - 4) > 0):
+                                            ?>
+                                            <fieldset class="np">
+
+                                                <?php if ($unvalidatedItem[3]): ?>
+                                                    <form action="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/alpesa/confirm_payment"); ?>" method="POST">
+                                                        <input type="hidden" name="orderid" value="<?php echo $keyAsOrder; ?>" />
+                                                        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>">
+                                                    <?php endif; ?>
+                                                    <div class="grid np">
+                                                        <table cellspacing="0" style="border:0;">
+                                                            <thead>
+                                                                <tr class="headings">
+                                                                    <th>Payment Type</th>
+                                                                    <th>Payment Date</th>
+                                                                    <th>Amount</th>
+                                                                </tr> 
+                                                            </thead>
+                                                            <tbody>
+
+                                                                <?php
+                                                                $counted = count($unvalidatedItem);
+                                                                for ($i = 4; $i < $counted; $i++) {
+                                                                    ?>
+                                                                    <tr class="even pointer">
+                                                                        <td>
+                                                                            <?php if ($unvalidatedItem[$i]->amount_type == 'points'): ?>
+                                                                                <p class="button-secondary">Wallet</p>
+                                                                            <?php else: ?>
+                                                                                <p class="button-secondary">Voucher</p>
+                                                                            <?php endif; ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?php if ($unvalidatedItem[$i]->amount_type == 'points'): ?>
+                                                                                <p><?php echo $unvalidatedItem[$i]->used_date; ?></p>
+                                                                            <?php else: ?>
+                                                                                <p><?php echo $unvalidatedItem[$i]->voucher_date; ?></p>
+                                                                            <?php endif; ?>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <?php if ($unvalidatedItem[$i]->amount_type == 'points'): ?>
+                                                                                <p><?php echo $unvalidatedItem[$i]->used_amount; ?></p>
+                                                                            <?php else: ?>
+                                                                                <p><?php echo $unvalidatedItem[$i]->voucher_used_amount; ?></p>
+                                                                            <?php endif; ?>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php } ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <?php if ($unvalidatedItem[3]): ?>
+                                                        <button type="submit" class="alpesa-button">Confirm Payment</button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </fieldset>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <h4 style="color:red;">Unavailable unvalidated orders</h4>
+                            <?php endif; ?>
+                                </div>
+                        </td>
+                        <td>
+
+
+
+
+                            <div class="entry-edit ">
+                                <div class="entry-edit-head"><h4>Alpesa Completed Transactions</h4></div>
+                                <fieldset>
+                                    <?php if (count($validated) > 0): ?>
+                                    <div class="grid np alpesa-payments-table-holder">
+                                        <table cellspacing="0" style="border:0;">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Invoice</th>
+                                                    <th></th>
+                                                </tr> 
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($validated as $keyAsOrder => $validatedItem): ?>
+                                                    <tr>
+                                                        <td>
+                                                            #<?php echo $validatedItem[2]; ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo Mage::helper("adminhtml")->getUrl("adminhtml/sales_order/view/order_id/" . $validatedItem[4]->order_id); ?>">
+                                                                <button type="submit" class="alpesa-button">View</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <?php else: ?>
+                                        <h4 style="color:red;">Unavailable validated orders</h4>
+                                    <?php endif; ?>
+
+                                </fieldset>
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

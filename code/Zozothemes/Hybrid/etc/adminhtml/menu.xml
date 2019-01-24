@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Zozothemes_Hybrid::zozothemes" title="Zozothemes" module="Zozothemes_Hybrid" sortOrder="0" resource="Zozothemes_Hybrid::zozothemes"/>
+    </menu>
+</config>

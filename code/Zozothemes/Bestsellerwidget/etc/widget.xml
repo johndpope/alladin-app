@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Bestsellerwidget
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+	<widget id="zozothemes_bestsellerwidget" class="Zozothemes\Bestsellerwidget\Block\Widget\Bestsellerdproduct">
+		<label translate="true">Bestseller Product Widget</label>
+		<description>Zozothemes Bestseller Product Widget</description>
+		<parameters>
+			<parameter name="productcount" xsi:type="text"  visible="true" sort_order="1" >
+				<label translate="true">Product Count</label>
+			</parameter>
+			<parameter name="imagewidth" xsi:type="text"  visible="true" sort_order="2" >
+				<label translate="true">Image Width</label>
+			</parameter>
+			<parameter name="imageheight" xsi:type="text"  visible="true" sort_order="3" >
+				<label translate="true">Image Height</label>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>
+ 

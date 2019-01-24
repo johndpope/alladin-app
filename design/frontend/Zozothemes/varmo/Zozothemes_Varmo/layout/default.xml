@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Zozothemes\Varmo\Block\Template" name="varmo_custom_head" template="html/head.phtml" before="-"/>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper" htmlClass="page-wrapper page">
+            <block class="Zozothemes\Varmo\Block\Template" name="varmo_header" template="html/header.phtml" before="main.content">
+                <block class="Magento\Store\Block\Switcher" name="header.store_switcher" template="switch/stores.phtml"/>
+                <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">header links</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml" />
+                <block class="Zozothemes\Varmo\Block\Template" name="custom_block" template="html/header_custom_block.phtml" ifconfig="varmo_settings/header/static_block" after="-"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="varmo_header">
+            <block class="Magento\Checkout\Block\Cart\Sidebar" name="minicart.footer" as="minicart.sticky" template="cart/minicart-sticky.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="types" xsi:type="array"/>
+                        <item name="components" xsi:type="array">
+                            <item name="minicart_content" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Checkout/js/view/minicart</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Magento_Checkout/minicart/content</item>
+                                </item>
+                                <item name="children" xsi:type="array">
+                                    <item name="subtotal.container" xsi:type="array">
+                                        <item name="component" xsi:type="string">uiComponent</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">subtotalContainer</item>
+                                        </item>
+                                        <item name="children" xsi:type="array">
+                                            <item name="subtotal" xsi:type="array">
+                                                <item name="component" xsi:type="string">uiComponent</item>
+                                                <item name="config" xsi:type="array">
+                                                    <item name="template" xsi:type="string">Magento_Checkout/minicart/subtotal</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                    <item name="extra_info" xsi:type="array">
+                                        <item name="component" xsi:type="string">uiComponent</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">extraInfo</item>
+                                        </item>
+                                    </item>
+                                    <item name="promotion" xsi:type="array">
+                                        <item name="component" xsi:type="string">uiComponent</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">promotion</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="navigation.sections" destination="varmo_header"/>
+        
+        <move element="top.search" destination="varmo_header"/>
+        <move element="minicart" destination="varmo_header"/>
+        <move element="store_language" destination="varmo_header"/>
+        <move element="currency" destination="varmo_header"/>
+        <move element="logo" destination="varmo_header"/>
+        <move element="skip_to_content" destination="varmo_header"/>
+
+        <move element="page.top" destination="page.wrapper" after="varmo_header"/>
+
+        <referenceContainer name="header.container" remove="1"/>
+        <referenceContainer name="header.panel" remove="1"/>
+        <referenceContainer name="header-wrapper" remove="1"/>
+        
+        
+        <referenceContainer name="footer-container">           
+            <block class="Zozothemes\Varmo\Block\Template" name="footer_block" template="html/footer.phtml">                
+                <block class="Magento\Newsletter\Block\Subscribe" name="footer.newsletter" template="subscribe_footer.phtml"/>
+                <block class="Zozothemes\Varmo\Block\Tweets" name="twitter-feeds" template="varmo/tweets/twitter-footer.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Newsletter\Block\Subscribe" name="zozo.popup" template="subscribe_popup.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

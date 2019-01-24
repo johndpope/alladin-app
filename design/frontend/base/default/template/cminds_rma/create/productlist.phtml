@@ -1,0 +1,19 @@
+<?php $collection = $this->getProductCollection(); ?>
+<table class="data-table product-list" id="my-rma-list">
+    <thead>
+    <tr class="first last">
+        <th><?php echo $this->__('Product Name'); ?></th>
+        <th><?php echo $this->__('SKU'); ?></th>
+        <th><?php echo $this->__('Qty'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($collection AS $entry): ?>
+        <tr class="">
+            <td class="name"><?php echo $entry->getName(); ?></td>
+            <td class="sku"><?php echo $entry->getSku() ?></td>
+            <td class="qty"><input type="text" name="qty[<?php echo $entry->getId() ?>]" value="<?php echo $entry->getQtyOrdered() ?>"/></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

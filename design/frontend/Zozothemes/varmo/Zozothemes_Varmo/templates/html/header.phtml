@@ -1,0 +1,145 @@
+<?php
+    $header_type = $this->getConfig('varmo_settings/header/header_type');
+    $sticky_head = $this->getConfig('varmo_settings/header/sticky_head');
+?>
+<header class="page-header type<?php if($header_type == 7 && $this->_request->getFullActionName() != 'cms_index_index'): echo '1'; else: echo $header_type; endif;?>">
+<?php if($header_type == 3 || $header_type == 4 ): ?>
+    <div class="header content">
+    <?php echo $this->getChildHtml("logo"); ?>
+    <?php echo $this->getChildHtml("navigation.sections"); ?>
+        <div class="panel header">
+            <div class="top-panel">
+                <?php echo $this->getChildHtml("skip_to_content"); ?>
+                <?php echo $this->getChildHtml("header.links"); ?>
+                
+            </div>
+            <div class="bottom-panel">
+                <?php echo $this->getChildHtml("currency"); ?>
+                <?php echo $this->getChildHtml("store_language"); ?>
+                <div class="search-area hidden-xs">
+                    <a href="javascript:void(0)" class="search-toggle-icon"><i class="varmo-icon-search"></i></a>
+                    <?php echo $this->getChildHtml("top.search"); ?>
+                </div>
+                <?php echo $this->getChildHtml("minicart"); ?>
+            </div>
+        </div>
+    </div>
+<?php elseif($header_type == 5 ): ?>
+    <div class="panel wrapper">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("skip_to_content"); ?>
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+            <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+    </div>
+    <div class="header content">
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("minicart"); ?>
+        <div class="search-area">
+            <a href="javascript:void(0)" class="search-toggle-icon"><i class="varmo-icon-search"></i></a>
+            <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+    </div>
+<?php elseif($header_type == 6 ): ?>
+    <div class="panel wrapper">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("skip_to_content"); ?>
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+            <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+    </div>
+    <div class="header content">
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("minicart"); ?>
+        <?php echo $this->getChildHtml("custom_block"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+    </div>
+<?php elseif($header_type == 7 && $this->_request->getFullActionName() == 'cms_index_index'): ?>
+    <div class="header content">
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("minicart"); ?>
+        <div class="search-area hidden-xs">
+            <a href="javascript:void(0)" class="search-toggle-icon"><i class="varmo-icon-search"></i></a>
+            <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+    </div>
+<?php elseif($header_type == 2 ): ?>
+    <div class="panel wrapper">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("skip_to_content"); ?>
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+            <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+    </div>
+    <div class="header content">
+    <?php echo $this->getChildHtml("logo"); ?>  
+    <?php echo $this->getChildHtml("minicart"); ?>
+    <?php echo $this->getChildHtml("top.search"); ?>
+    <?php echo $this->getChildHtml("custom_block"); ?>
+    </div>
+    
+    <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php else: ?>
+    <div class="panel wrapper">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("skip_to_content"); ?>
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+            <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+    </div>
+    <div class="header content">
+    <?php echo $this->getChildHtml("logo"); ?>
+    <?php echo $this->getChildHtml("minicart"); ?>
+    <?php echo $this->getChildHtml("top.search"); ?>
+    <?php echo $this->getChildHtml("custom_block"); ?>
+    </div>
+    
+    <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php endif; ?>
+</header>
+<?php if ($sticky_head): ?>
+<div class="sticky-header" style="display:none;">
+        <header class="page-header type5">
+            <div class="header content">
+                <?php echo $this->getChildHtml("logo"); ?>
+                <div class="sticky-cart">
+                    <?php echo $this->getChildHtml("minicart.sticky"); ?>
+                </div>
+                <div class="search-area">
+                    <a href="javascript:void(0)" class="search-toggle-icon"><i class="varmo-icon-search"></i></a>
+                    <?php echo $this->getChildHtml("top.search"); ?>
+                </div>
+                <?php echo $this->getLayout()->createBlock("Zozothemes\Megamenu\Block\Topmenu")->setTemplate("Zozothemes_Megamenu::stickynav.phtml")->toHtml();; ?>
+            </div>
+        </header>
+</div>
+
+<script type="text/javascript">
+    require([ 'jquery', 'stickyhead'], function(){
+(function($){
+    $(document).ready(function() {
+ 	sticky();
+	//stickyAft();
+	/* -------------------------------	
+			STICKY
+	/* ----------------------------- */
+	function sticky() {
+		if ($('.sticky-header').length) {
+			$(".sticky-header").sticky({
+				topSpacing:0
+			});
+                        $(".sticky-header").show();
+		 }
+	}
+	
+
+});})(jQuery);
+ });
+</script>
+<?php endif; ?>

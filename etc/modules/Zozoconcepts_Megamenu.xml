@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Megamenu extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Megamenu
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Zozoconcepts_Megamenu>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Zozoconcepts_Megamenu>
+    </modules>
+</config> 

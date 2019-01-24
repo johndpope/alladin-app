@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Zozoconcepts_Ajaxcatalog>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Zozoconcepts_Ajaxcatalog>
+    </modules>
+</config> 

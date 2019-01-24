@@ -1,0 +1,29 @@
+<h1 class="text-left"><?php echo $this->__('Import Shipments') ?></h1>
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead"><a class="download_csv" id="download" onclick="download_csv()" href="<?php echo Mage::getUrl('marketplace/order/downloadShipmentCsv') ?>"><?php echo $this->__('Download');?> </a><?php echo $this->__('CSV schema for shipment importing.')?></p>
+    </div>
+</div>
+<div class="row">
+    <form action="<?php echo Mage::getUrl('*/*/importShipment') ?>" method="post" enctype="multipart/form-data">
+        <div class="col-md-3">
+            <input type="file" name="import_shipment" class="form-control" />
+        </div>
+        <div class="col-md-1">
+            <input type="submit" class="btn btn-sm" value="<?php echo $this->__("Import"); ?>"/>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    //]]>
+    jQuery(document).ready(function($){
+        jQuery('.export-to-csv').click(function(e){
+            var actionExport = '<?php echo $this->getUrl('*/*/exportCsv') ?>';
+            var form = jQuery('#report_filter');
+            form.attr('action', actionExport);
+            form.submit();
+        });
+    });
+</script>

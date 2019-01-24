@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_supplierfrontendproductuploader_amount_view>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="supplierfrontendproductuploader/navbar" name="supplierfrontendproductuploader_nav"  template="/supplierfrontendproductuploader/nav.phtml"/>
+            <block type="marketplaceamount/supplier_amount_view" name="marketplaceamount_supplier_amount_view"
+                   template="cminds_marketplaceamount/supplier/amount/view.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_amount_view>
+</layout>

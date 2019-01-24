@@ -1,0 +1,34 @@
+<!--@subject Price proposal for your product on {{var store.getFrontendName()}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"var store.getFrontendName()":"Store Name",
+@-->
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="email-heading">
+                        <p>You have a price proposal of ${{var trade.price}} from {{var customer.name}} {{var customer.email}} to the following product.</p>
+                        <a href="{{var product.product_url}}">{{var product.name}}</a>
+                        <br/><br/>
+                        <p>
+                            <a href="{{store url="suppliertrading/trade/accept"}}?trade_id={{var trade.id}}">Accept price proposal</a> <br/>
+                            <a href="{{store url="suppliertrading/trade/reject"}}?trade_id={{var trade.id}}">Reject price proposal</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

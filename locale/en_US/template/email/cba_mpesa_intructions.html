@@ -1,0 +1,22 @@
+<!--@subject Alladin Mpesa Payment Instructions@-->
+
+
+<h1 style="text-align:center;">
+    <img src="{{var logoSource}}" alt="Alladin" class="large" />
+</h1>
+
+<h2>Hello, {{var custFirstName}}</h2>
+<h4>Thank you for shopping with Alladin.Kindly follow the instructions below to "Lipa na Mpesa".</h4>
+<ol>
+    <li><h5>Go to Safaricom menu and select Mpesa option.</h5></li>
+    <li><h5>Select "Lipa na Mpesa" option.</h5></li>
+    <li><h5>Select "Pay Bill" option.</h5></li>
+    <li><h5>Enter business number as : <opt>{{var payBill}}</opt>.</h5></li>
+    <li><h5>Enter account number as :  <opt>{{var orderIncrementId}}</opt>.</h5></li>
+    <li><h5>Enter amount: {{var currencyCode}}
+            <opt>{{var grandTotal}}</opt>.</h5></li>
+    <li><h5>Enter your Mpesa pin</h5></li>
+    <li><h5>Confirm and press Ok to complete payment.</h5></li>
+</ol>
+<h5>You will receive notification from us upon successful payment.</h5>
+

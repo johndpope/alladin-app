@@ -1,0 +1,52 @@
+<?php
+$helper = Mage::helper('marketplaceamount');
+$customer = $this->getRequest()->getParam('id');
+$customer = Mage::getModel('customer/customer')->load($customer);
+$options = Mage::getModel('marketplaceamount/source_minimumAmount')->toOptionArray();
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $helper->__('Order Restrictions') ?></h4>
+    </div>
+    <fieldset>
+        <table cellspacing="0" class="form-list">
+            <tr>
+                <td class="label"><label
+                        for="supplier_min_order_amount"><?php echo $helper->__('Minimum Order Amount'); ?></label>
+                </td>
+                <td class="value">
+                    <input
+                        class="input-text" name="supplier_min_order_amount" id="supplier_min_order_amount"
+                        value="<?php echo round($customer->getData('supplier_min_order_amount'), 2); ?>"
+                    />
+                    <p class="nm">
+                        <small><?php echo $this->escapeHtml($this->getComment()); ?></small>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label
+                        for="supplier_min_order_amount"><?php echo $helper->__('Minimum Order Product Qty'); ?></label></td>
+                <td class="value">
+                    <input
+                        class="input-text" name="supplier_min_order_qty" id="supplier_min_order_qty"
+                        value="<?php echo round($customer->getData('supplier_min_order_qty')); ?>"
+                    />
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label
+                        for="supplier_min_order_amount_per"><?php echo $helper->__('Restrictions per'); ?></label>
+                </td>
+                <td class="value">
+                    <select class="input-text" name="supplier_min_order_amount_per" id="supplier_min_order_amount_per">
+                        <?php foreach ($options as $option): ?>
+                            <option <?php echo $this->isSelected($option['value']) ? 'selected' : ''; ?>
+                                value="<?php echo $this->escapeHtml($option['value']); ?>"><?php echo $this->escapeHtml($option['label']); ?> </option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "zozothemes/varmo",
+  "description": "theme module (Includes twitter feeds module)",
+  "version": "0.2.0",
+  "license": "OSL-3.0",
+  "authors": [
+    {
+      "name": "Zozoconcepts",
+      "email": "support@zozothemes.com"
+    }
+  ],
+  "require": {
+    "abraham/twitteroauth": "*"
+  },
+  "type": "magento2-module",
+  
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Zozothemes\\Varmo\\": ""
+    }
+  }
+}

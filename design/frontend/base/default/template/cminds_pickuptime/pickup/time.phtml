@@ -1,0 +1,229 @@
+<?php
+$currentPickupTimes = $this->getCurrentVendorPickupTimes();
+$excludedDates = $this->getCurrentVendorExcludedDates();
+?>
+<div class="container main-container vendor-container">
+    <h1 class="page-header  "><?php echo $this->__('Define Your Pickup Times'); ?></h1>
+    <div class="row">
+        <div class="col-md-12 container form-container">
+            <form name="settings_pickup_times" id="settings_pickup_times" action="<?php echo Mage::getUrl('*/*/save') ?>" method="post" class="form-horizontal">
+                <input type="hidden" name="removed_excluded_days" class="removed_excluded_days" value="" />
+                <fieldset>
+                    <legend><?php echo $this->__("Global"); ?></legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="days_ahead"><?php echo $this->__("Lead time/turn around time"); ?></label>
+                        <div class="col-md-8">
+                            <input id="days_ahead" name="days_ahead" type="text" placeholder="" value="<?php echo $currentPickupTimes->getDaysAhead(); ?>" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="monday"><?php echo $this->__("Monday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="monday_time_start" data-format="hh:mm" data-compare="monday_time_end" type="text" value="<?php echo $currentPickupTimes->getMondayTimeStart(); ?>" class="form-control validate-date-lower input-md pickup_time">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="monday_time_end" data-format="hh:mm" data-compare="monday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getMondayTimeEnd(); ?>" class="form-control required-entry input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="tuesday"><?php echo $this->__("Tuesday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="tuesday_time_start" data-format="hh:mm" type="text" data-compare="tuesday_time_end" placeholder="" value="<?php echo $currentPickupTimes->getTuesdayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="tuesday_time_end" data-format="hh:mm" type="text" data-compare="tuesday_time_start" placeholder="" value="<?php echo $currentPickupTimes->getTuesdayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="wednesday"><?php echo $this->__("Wednesday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="wednesday_time_start" data-format="hh:mm" data-compare="wednesday_time_end" type="text" placeholder="" value="<?php echo $currentPickupTimes->getWednesdayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="wednesday_time_end" data-format="hh:mm" data-compare="wednesday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getWednesdayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="thursday"><?php echo $this->__("Thursday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="thursday_time_start" data-format="hh:mm" data-compare="thursday_time_end" type="text" placeholder="" value="<?php echo $currentPickupTimes->getThursdayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="thursday_time_end" data-format="hh:mm" data-compare="thursday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getThursdayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="friday"><?php echo $this->__("Friday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="friday_time_start" data-format="hh:mm" data-compare="friday_time_end" type="text" placeholder="" value="<?php echo $currentPickupTimes->getFridayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="friday_time_end" data-format="hh:mm"  data-compare="friday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getFridayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="saturday"><?php echo $this->__("Saturday"); ?></label>
+                        <div class="col-md-4">
+                            <input name="saturday_time_start" data-format="hh:mm" data-compare="saturday_time_end" type="text" placeholder="" value="<?php echo $currentPickupTimes->getSaturdayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="saturday_time_end" data-format="hh:mm" data-compare="saturday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getSaturdayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="sunday"><?php echo $this->__("Sunday"); ?></label>
+                            <div class="col-md-4">
+                                <input name="sunday_time_start" data-format="hh:mm" data-compare="sunday_time_end" type="text" placeholder="" value="<?php echo $currentPickupTimes->getSundayTimeStart(); ?>" class="form-control input-md pickup_time validate-date-lower">
+                            </div>
+                            <div class="col-md-4">
+                                <input name="sunday_time_end" data-format="hh:mm" data-compare="sunday_time_start" type="text" placeholder="" value="<?php echo $currentPickupTimes->getSundayTimeEnd(); ?>" class="form-control input-md pickup_time validate-date-higher">
+                            </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend><?php echo $this->__("Exclude days"); ?></legend>
+                    <?php if($excludedDates->count() > 0) :?>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Date</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Options</th>
+                        </tr>
+                        <?php foreach($excludedDates AS $date) :?>
+                            <tr id="excluded-day-id-<?php echo $date->getId(); ?>">
+                                <td><?php echo $date->getDate(); ?></td>
+                                <td><?php echo $date->getStartDate(); ?></td>
+                                <td><?php echo $date->getEndDate(); ?></td>
+                                <td><span class="default"><i class="glyphicon glyphicon-remove text-danger"></i></span></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                    <?php endif; ?>
+                    <h5><?php echo $this->__('Exclude new date'); ?></h5>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input type="text" name="exclude_date" class="form-control input-md datepicker" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn-primary btn all-day-btn"><?php echo $this->__("All Day"); ?></button>
+                        </div>
+                        <div class="col-md-4">
+                            <input name="exclude_day_start" data-format="hh:mm" type="text" placeholder="" class="form-control input-md pickup_time">
+                        </div>
+                        <div class="col-md-4">
+                            <input name="exclude_day_end" data-format="hh:mm" type="text" placeholder="" class="form-control input-md pickup_time">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save Settings') ?>" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('settings_pickup_times');
+
+    Validation.add('validate-date-higher', 'End Date needs to be higher than Start Date', function(v, elm) {
+        var m = /\bdate-higher-(\w+)-(\w+)\b/.exec(elm.className);
+        var oppositeElement = $$('input[name="'+elm.readAttribute('data-compare')+'"]');
+        if((v.length > 0 || v.length == 1) && oppositeElement.length <= 0) {
+            return false;
+        }
+
+        if(oppositeElement[0] == undefined) {
+            return false;
+        }
+        if((v.length > 0 || v.length == 1) && Validation.get('IsEmpty').test(oppositeElement[0].getValue(), elm)) {
+            return false;
+        }
+
+        var normalizedTime = function(v) {
+            v = v.split(':');
+
+            var dateObject = new Date();
+            dateObject.setHours(v[0]);
+            dateObject.setMinutes(v[1]);
+            dateObject.setSeconds(v[2] ? v[2] : 0);
+            return dateObject;
+        };
+        try {
+            var start = normalizedTime(v);
+            var end = normalizedTime(oppositeElement[0].getValue());
+            if ( isNaN(start.getTime()) || isNaN(end.getTime()) ) {
+                return true;
+            } else {
+                return start >= end;
+            }
+        }catch(e) {
+            console.log(e);
+        }
+    });
+    Validation.add('validate-date-lower', 'Start Date needs to be lower than End Date', function(v, elm) {
+        var m = /\bdate-higher-(\w+)-(\w+)\b/.exec(elm.className);
+        var oppositeElement = $$('input[name="'+elm.readAttribute('data-compare')+'"]');
+        if((v.length > 0 || v.length == 1) && oppositeElement.length <= 0) {
+            return false;
+        }
+
+        if(oppositeElement[0] == undefined) {
+            return false;
+        }
+        if((v.length > 0 || v.length == 1) && Validation.get('IsEmpty').test(oppositeElement[0].getValue(), elm)) {
+            return false;
+        }
+
+        var normalizedTime = function(v) {
+            v = v.split(':');
+
+            var dateObject = new Date();
+            dateObject.setHours(v[0]);
+            dateObject.setMinutes(v[1]);
+            dateObject.setSeconds(v[2] ? v[2] : 0);
+            return dateObject;
+        };
+        try {
+            var start = normalizedTime(v);
+            var end = normalizedTime(oppositeElement[0].getValue());
+            if ( isNaN(start.getTime()) || isNaN(end.getTime()) ) {
+                return true;
+            } else {
+                return start <= end;
+            }
+        }catch(e) {
+            console.log(e);
+        }
+    });
+    //]]>
+
+
+    jQuery(document).ready(function () {
+        jQuery('.datepicker').datepicker();
+        jQuery('.pickup_time').datetimepicker({
+            pickDate: false,
+            pickSeconds: false,
+            maskInput: false,
+            collapse : true,
+            language: 'en',
+            pick12HourFormat: true
+        });
+        jQuery('.all-day-btn').on('click', function(e){
+            e.preventDefault();
+            jQuery(this).parent().next().find('input').val("00:00");
+            jQuery(this).parent().next().next().find('input').val("23:59");
+        });
+        jQuery('.glyphicon-remove').on('click', function(){
+            var excludedDateId  = jQuery(this).parent().parent().parent().attr('id');
+            var excludeDates    = excludedDateId.split("-");
+            var id = excludeDates[excludeDates.length-1];
+            var currentValues = jQuery('.removed_excluded_days').val().split(',');
+            currentValues.push(id);
+            jQuery('.removed_excluded_days').val(currentValues.join(','));
+            jQuery(this).parent().parent().parent().remove();
+        });
+    });
+</script>

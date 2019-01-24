@@ -1,0 +1,50 @@
+
+<?php
+// Retrieve order
+$order = new Mage_Sales_Model_Order();
+$orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+$order->loadByIncrementId($orderId);
+$orderDetails = $order->getData();
+?>
+
+<style>
+    .al-mpesa li h6{
+        color:#35437e;
+    }
+    .al-mpesa ol li h6 opt{
+        color:#ffffff;
+        background:#eb6625;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+    .al-mpesa h2{
+        color:#eb6625;
+    }
+</style>
+
+ <?php if($orderDetails != null): ?>
+ <div class="container">
+<div class="row-fluid al-mpesa">
+    <?php //echo Mage::log(var_dump($orderDetails)); ?>
+
+    <h2>Hello, <?php echo $orderDetails['customer_firstname']; ?></h2>
+    <h4>Thank you for shopping with us.Kindly follow the instructions below to "Lipa na Mpesa".</h4>
+    <ol>
+        <li><h6>1. Go to Safaricom menu and select Mpesa option.</h6></li>
+        <li><h6>2. Select "Lipa na Mpesa" option.</h6></li>
+        <li><h6>3. Select "Pay Bill" option.</h6></li>
+        <li><h6>4. Enter business number as : <opt><?php echo Mage::helper('Boonagel_Cba')->payBill();?></opt>.</h6></li>
+        <li><h6>5. Enter account number as :  <opt><?php echo $orderId; ?></opt>.</h6></li>
+        <li><h6>6. Enter amount: <?php echo Mage::helper('Boonagel_Cba')->getCurrentCurrency().' ';?>
+                <opt><?php echo Mage::helper('Boonagel_Cba')->formatNumber($orderDetails['grand_total'],2); ?></opt>.</h6></li>
+        <li><h6>7.Enter your Mpesa pin</h6></li>
+        <li><h6>8.Confirm and press Ok to complete payment.</h6></li>
+    </ol>
+    <h5>You will receive notification from us upon successful payment.</h5>
+
+</div>
+</div>
+<?php else: ?>
+<h2>Invalid Request !</h2>
+ <?php endif; ?>
+

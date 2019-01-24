@@ -1,0 +1,22 @@
+<?php
+/**
+ * Author zozo@zozothemes.com
+ *  
+ *
+ *  
+ */
+?>
+<?php
+/**
+ * Blog post list toolbar template
+ *
+ * @var $block \Zozothemes\Blog\Block\Post\PostList\Toolbar
+ */
+?>
+<?php if ($block->getCollection()->getSize()) { ?>
+	<?php if ($woj = $block->getWidgetOptionsJson()) { ?>
+    <div class="toolbar toolbar-blog-posts" data-mage-init='<?php echo $woj; ?>'>
+        <?php echo $block->getPagerHtml() ?>
+    </div>
+    <?php } ?>
+<?php } ?>

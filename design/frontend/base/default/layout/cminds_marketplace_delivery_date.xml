@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/marketplacedeliverydate/calendar-setup-cminds.js</name></action>
+        </reference>
+
+    </checkout_onepage_index>
+
+    <checkout_multishipping_addresses>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+        </reference>
+    </checkout_multishipping_addresses>
+
+    <checkout_onepage_shippingmethod>
+
+        <remove name="right"/>
+        <remove name="left"/>
+
+        <reference name="cminds_marketplace.checkout_onepage_shipping_method_addon">
+            <block type="marketplace_delivery_date/checkout_onepage_shipping_method_addon_deliveryDate"
+                   name="cminds_marketplace.checkout_onepage_shipping_method_addon_delivery"
+                   template="marketplace_delivery_date/checkout/onepage/shipping_method/delivery_input.phtml">
+                <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+            </block>
+        </reference>
+    </checkout_onepage_shippingmethod>
+    <checkout_multishipping_addresses translate="label">
+        <!-- Mage_Checkout -->
+        <reference name="checkout_addresses">
+
+            <action method="setTemplate"
+            ><template>marketplace_delivery_date/checkout/multishipping/addresses.phtml</template>
+            </action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+
+        </reference>
+    </checkout_multishipping_addresses>
+    <checkout_multishipping_shipping translate="label">
+        <reference name="checkout_shipping">
+            <action method="setTemplate">
+                <template>marketplace_delivery_date/checkout/multishipping/shipping.phtml</template>
+            </action>
+        </reference>
+    </checkout_multishipping_shipping>
+    <checkout_multishipping_overview translate="label">
+        <reference name="checkout_overview">
+                <action method="addItemRender">
+                    <type>default</type>
+                    <block>checkout/cart_item_renderer</block>
+                    <template>marketplace_delivery_date/checkout/multishipping/item/default.phtml</template>
+                </action>
+        </reference>
+    </checkout_multishipping_overview>
+    <checkout_onepage_review translate="label">
+        <reference name="root">
+                <action method="addItemRender">
+                    <type>default</type>
+                    <block>checkout/cart_item_renderer</block>
+                    <template>marketplace_delivery_date/checkout/onepage/review/item.phtml</template>
+                </action>
+        </reference>
+    </checkout_onepage_review>
+    <sales_email_order_items translate="label">
+        <reference name="items">
+                <action method="addItemRender">
+                    <type>default</type>
+                    <block>sales/order_email_items_order_default</block>
+                    <template>marketplace_delivery_date/checkout/onepage/review/item.phtml</template>
+                </action>
+        </reference>
+    </sales_email_order_items>
+    <sales_order_view translate="label">
+        <reference name="order_items">
+                <action method="addItemRender">
+                    <type>default</type>
+                    <block>sales/order_item_renderer_default</block>
+                    <template>marketplace_delivery_date/sales/order/items/renderer/default.phtml</template>
+                </action>
+        </reference>
+    </sales_order_view>
+    <cminds_marketplace_order_view>
+        <reference name="marketplace_order_view">
+            <block type="page/html"
+                   name="order_view_order"
+                   as="view_order"
+                   template="marketplace_delivery_date/order/view/order.phtml" />
+        </reference>
+    </cminds_marketplace_order_view>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink">
+                <name>delivery report</name><path>deliverydate/Report</path><label>Delivery Report</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <marketplace_delivery_date_instruction_index>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="marketplace_delivery_date/customer_delivery_info" name="marketplace_delivery_date_customer_view"
+                   template="marketplace_delivery_date/customer/delivery/info.phtml"/>
+        </reference>
+    </marketplace_delivery_date_instruction_index>
+
+    <marketplace_delivery_date_report_index>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="marketplace_delivery_date/customer_delivery_report" name="marketplace_delivery_date_customer_view"
+                   template="marketplace_delivery_date/customer/delivery/orders.phtml"/>
+        </reference>
+    </marketplace_delivery_date_report_index>
+
+    <delivery_email_order_items>
+        <block type="sales/order_email_items" name="items" template="marketplace_delivery_date/email/delivery/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_email_items_order_default</block><template>email/order/items/order/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>email/order/items/order/default.phtml</template></action>
+        </block>
+        <block type="core/text_list" name="additional.product.info" />
+    </delivery_email_order_items>
+
+    <marketplace_delivery_date_settings_settings>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="marketplace_delivery_date/settings_settings" name="marketplace_delivery_date_settings_settings"
+                   template="marketplace_delivery_date/settings/settings.phtml"/>
+        </reference>
+    </marketplace_delivery_date_settings_settings>
+</layout>

@@ -1,0 +1,35 @@
+<?php $rma = $this->getRma(); ?>
+<?php $memoCollection = $rma->getMemoCollection(); ?>
+<div class="container">
+    <h2 class="sub-header"><?php echo $this->__("Credit Memo"); ?></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?php echo $this->__('Credit Memo #'); ?></th>
+                <th><?php echo $this->__('Bill to Name'); ?></th>
+                <th><?php echo $this->__('Created At'); ?></th>
+                <th><?php echo $this->__('Status'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if($memoCollection->count() > 0) : ?>
+                <?php foreach($memoCollection AS $_item) : ?>
+                    <tr>
+                        <td><?php echo $this->escapeHtml($_item->getIncrementId()); ?></td>
+                        <td><?php echo $_item->getOrder()->getCustomerName(); ?></td>
+                        <td><?php echo $_item->getCreatedAt(); ?></td>
+                        <td><?php echo $_item->getCreditmemoStatus(); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <?php if($rma->getOrder()->canCreditmemo()): ?>
+                        <td colspan="5"><a href="<?php echo Mage::getUrl("marketplace/rma_supplier/createCreditMemo", array("id" => $rma->getId())); ?>" class="btn btn-primary"><?php echo $this->__("Create Credit Memo"); ?></a></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

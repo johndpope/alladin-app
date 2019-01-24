@@ -1,0 +1,40 @@
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_blog/blog');
+$_width = 80;
+$_height = 48;
+$_blogs = $this->getBlogs(); 
+?>
+
+<div class="block product-block">
+        <div class="block-title">
+            <strong>
+                <span>
+                    <?php echo Mage::helper('hybrid')->__('Recent Post') ?>
+                </span>
+            </strong>
+        </div>
+		<div class="block-content">
+        <?php if ($_blogs->getSize() > 0) :?>
+				<?php $i=0; foreach ($_blogs as $_blog) : ?>
+                    <div class="item features-item">
+                        <div class="thumbnail">
+                            <div class="thumbnail-image">
+                                <img src="<?php echo Mage::helper('zozoconcepts_blog/blog_image')->init($_blog, 'featured_image')->resize($_width,$_height);?>" alt="<?php echo $_blog->getTitle();?>" class="img-thumbnail" width="80px" height="102px"/>
+                        	</div>
+                            <div class="caption">
+                                <h3 class="blog-title"><a href="<?php echo $_blog->getBlogUrl()?>" title="<?php echo $_blog->getTitle();?>"><?php echo $_blog->getTitle();?></a></h3>
+                                <div class="post-date"><p><?php echo $date = date('F j, Y', strtotime($_blog->getCreatedAt()));?></p></div>
+                            </div>
+                    
+                        </div>
+                    </div>
+            <?php $total_items = ($this->getData('total_items'))?$this->getData('total_items'):'3' ?>
+			<?php if (++$i == $total_items) break; ?>
+                <?php endforeach; ?>
+            </div> 
+			<?php else : ?>
+                <?php echo Mage::helper('zozoconcepts_blog')->__('There are no posts at this moment');?>
+            <?php endif;?>
+
+    	</div>

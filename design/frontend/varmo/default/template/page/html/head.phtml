@@ -1,0 +1,86 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+$store = Mage::app()->getStore();
+$storeCode  = $store->getCode();
+?>
+<?php $theme = Mage::helper('hybrid'); ?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<?php //Include Google Fonts
+	$amp = '&amp;';
+	$charSubset = '';
+	if ($subsets = $theme->getConfDesign('font/primary_char_subset',$storeCode))
+	{
+		$charSubset = "{$amp}subset={$subsets}";
+	}
+	$charBodySubset ='';
+	if ($bodysubsets = $theme->getConfDesign('font/primary_bodyfont_char_subset',$storeCode))
+	{
+		$charBodySubset = "{$amp}subset={$bodysubsets}";
+	}
+
+	$fontWeight = '';
+	if ($weight = $theme->getConfDesign('font/primary_font_weight',$storeCode))
+	{
+		$fontWeight = ':' . $weight;
+	}
+	
+	$BodyfontWeight = '';
+	if ($bfweight = $theme->getConfDesign('font/primary_bodyfont_weight',$storeCode))
+	{
+		$BodyfontWeight = ':' . $bfweight;
+	}
+?>
+<?php if ($theme->getConfDesign('font/primary_bodyfont_family_group',$storeCode) == 'google'): ?>
+<link href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $theme->getConfDesign('font/primary_bodyfont_family',$storeCode)); 
+		echo $BodyfontWeight; echo $charSubset; ?>' rel='stylesheet' type='text/css' />
+<?php endif;?>
+<?php if ($theme->getConfDesign('font/heading_primary_bodyfont_family_group',$storeCode) == 'google'): ?>
+<link href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $theme->getConfDesign('font/heading_primary_bodyfont_family',$storeCode)); 
+		echo $fontWeight; echo $charBodySubset; ?>' rel='stylesheet' type='text/css' />
+<?php endif;?>
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>

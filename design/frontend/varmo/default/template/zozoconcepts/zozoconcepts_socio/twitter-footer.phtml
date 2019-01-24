@@ -1,0 +1,69 @@
+<?php
+/**
+ * Zozoconcepts_Socio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Socio
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Twitter block
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Socio
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_socio'); ?>
+<?php //if($helper->isEnabled()): ?>
+	<?php if($helper->isEnabledWidgets()): ?>
+		<?php echo $helper->getWidgetScript(); ?>
+	<?php else: 
+	
+	 $tweets = $this->getTweetsByUsername($helper->getUsername()); 
+	 //var_dump($tweets);
+	 ?>
+	<div id="static-tweet" class="block block-twitter">
+        <div class="block-title">
+            <strong><span>
+                <?php echo $themehelper->__('Recent Tweets')?>
+			</span></strong>
+        </div>
+        <div class="block-content">
+        	<?php if($tweeterror = $tweets["errors"]):?>
+            <p class="alert alert-danger"><?php echo $tweeterror[0]["message"] ?></p>
+            <?php else:?>
+			<?php $i=0; foreach($tweets as $tweet): ?>
+                <div class="list-item">
+                    <div class="tweet_user">
+                        <span class="icon-twitter"><i class="fa fa-twitter"></i></span>
+                        <span class="username">
+                            <a href="http://twitter.com/<?php echo $helper->getUsername()?>"><?php echo '@'.$helper->getUsername()?></a>
+                        </span>
+                    </div>
+                    <div class="tweet_text">
+                        <?php echo (string) trim($tweet["text"]); ?>
+                    </div>
+                    <?php if($helper->isDisplayPostedTime()): ?>
+                    <div class="tweet_time">
+                        <?php echo (string) trim($tweet["created_at"]); ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            <?php if (++$i == 2) break; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </div>  
+	</div>
+	<?php endif; ?>
+<?php //endif; ?>

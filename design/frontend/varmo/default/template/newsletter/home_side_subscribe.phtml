@@ -1,0 +1,20 @@
+<?php $themehelper = Mage::helper('hybrid');?>
+<div class="home-side-newsletter block subscribe-form">
+    <div class="block-title"><strong><span><?php echo Mage::helper('hybrid')->__('Subscribe Us') ?></span></strong></div>
+    <div class="block-content">
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_home_side_newsletter')->toHtml();?>
+        <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="home-sidebar-newsletter-validate-detail" onsubmit="setNewsletterCookie()" >
+            <div class="input-group">
+                <input type="text" name="email" id="newsletter" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="form-control input-text required-entry validate-email" placeholder="<?php echo $this->__('Email Address')?>" />
+                <span class="input-group-btn">
+                    <button type="submit" title="<?php echo $this->__('Go!') ?>" class="btn btn-default"><span><span><i class="icon icon-Plaine"></i></span></span></button>
+                </span>
+            </div>
+        </form>
+        <script type="text/javascript">
+        //<![CDATA[
+            var homeSidebarNewsletterValidateDetail = new VarienForm('home-sidebar-newsletter-validate-detail');
+        //]]>
+        </script>
+    </div>
+</div>

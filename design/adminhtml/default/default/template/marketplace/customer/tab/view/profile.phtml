@@ -1,0 +1,162 @@
+<?php /** @var Cminds_Marketplace_Block_Adminhtml_Customer_Edit_Tab_Profile_Edit_Form $this */ ?>
+<script type="text/javascript">
+    //< ![CDATA[
+    if ($('button_add_remark')) {
+        $('button_add_remark').observe('click', function (e) {
+            e.preventDefault();
+            $('remark').show();
+        });
+    }
+    if ($('button_activate')) {
+        $('button_activate').observe('click', function (e) {
+            e.preventDefault();
+            $('form_action').setValue('approve');
+            saveAndContinueEdit("<?php echo $this->getSaveAndContinueUrl(); ?>");
+        });
+    }
+    $('button_approve_changes').observe('click', function (e) {
+        e.preventDefault();
+        $('form_action').setValue('approve_changes');
+        saveAndContinueEdit("<?php echo $this->getSaveAndContinueUrl(); ?>");
+    });
+    if ($('button_add_remark_save')) {
+        $('button_add_remark_save').observe('click', function (e) {
+            e.preventDefault();
+            $('form_action').setValue('save_remark');
+            saveAndContinueEdit("<?php echo $this->getSaveAndContinueUrl(); ?>");
+        });
+    }
+
+    if ($('button_disapprove')) {
+        $('button_disapprove').observe('click', function (e) {
+            e.preventDefault();
+            $('form_action').setValue('disapprove');
+            saveAndContinueEdit("<?php echo $this->getSaveAndContinueUrl(); ?>");
+        });
+    }
+
+    tinymce.init({
+        selector: 'textarea',
+        height: 200,
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        content_css: '//www.tinymce.com/css/codepen.min.css'
+    });
+    //]]>
+</script>
+<?php $vendor = Mage::registry( 'current_customer' ); ?>
+<?php $customFields = $this->getCustomFieldsCollection(); ?>
+<div class="entry-edit">
+    <div id="messages">
+        <ul class="messages">
+            <?php if ( $vendor->getSupplierProfileApproved() ): ?>
+                <li class="success-msg">
+                    <ul>
+                        <li>
+                            <span><?php echo $this->__( "This profile is approved and activated." ); ?></span>
+                            <button type="button" id="button_disapprove"
+                                    class="scalable delete"
+                                    style="float:right;">
+                                <span><span><span><?php echo $this->__( "Disapprove" ); ?></span></span></span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            <?php else : ?>
+                <li class="warning-msg">
+                    <ul>
+                        <li>
+                            <span><?php echo $this->__( "This profile is not approved" ); ?></span>
+                            <button type="button" id="button_activate"
+                                    class="scalable save" style="float:right;">
+                                <span><span><span><?php echo $this->__( "Approve" ); ?></span></span></span>
+                            </button>
+                            <button type="button" id="button_add_remark"
+                                    class="scalable"
+                                    style="float:right; margin-right: 5px;">
+                                <span><span><span><?php echo $this->__( "Add Remark" ); ?></span></span></span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <div id="remark" style="display: none;">
+                    <p>
+                        <h4><?php echo $this->__( "Add Remark to This Vendor Profile" ); ?></h4>
+                    </p>
+                    <p><textarea name="remark" id="remark" cols="30"
+                                 rows="10"></textarea></p>
+                    <p>
+                        <button type="button" id="button_add_remark_save"
+                                class="scalable save" style="">
+                            <span><span><span><?php echo $this->__( "Save Remark" ); ?></span></span></span>
+                        </button>
+                    </p>
+                    <hr>
+                </div>
+            <?php endif; ?>
+
+        </ul>
+    </div>
+    <input type="hidden" name="action" id="form_action" value="">
+    <?php if ( $vendor->getSupplierName() ): ?>
+        <p>
+            <strong><?php echo $this->escapeHtml( $vendor->getSupplierName() ); ?></strong>
+            <small>[<a href="javascript:void();"
+                       title="<?php echo $this->__( 'Current Supplier Name' ); ?>">?</a>]
+            </small>
+        </p>
+    <?php endif; ?>
+    <p>
+        <a href="<?php echo Mage::helper( "marketplace" )->getSupplierRawPageUrl( $vendor->getId() ); ?>"
+           target="_blank"><?php echo Mage::helper( "marketplace" )->getSupplierRawPageUrl( $vendor->getId() ); ?></a>
+    </p>
+
+    <?php if ( $vendor->getSupplierLogo() ): ?>
+        <div class="checkbox">
+            <label><input type="checkbox" name="remove_logo"/> <?php echo $this->__( 'Remove logo' ); ?>
+            </label>
+        </div>
+        <p><img style="width: 100px"
+                src="<?php echo $this->helper( 'marketplace' )->getSupplierLogo( $vendor->getId() ); ?>"
+                alt="<?php echo $this->escapeHtml( $vendor->getSupplierName() ); ?>"/>
+        </p>
+    <?php else : ?>
+        <div style="clear:both"></div>
+        <?php if ( $this->helper( 'marketplace' )->canUploadLogos() ): ?>
+            <div>
+                <?php if ( Mage::helper( 'marketplace' )->getSupplierLogo() ): ?>
+                    <img src="<?php echo Mage::helper( 'marketplace' )->getSupplierLogo(); ?>" alt="" style="width: 80px"/>
+                <?php endif; ?>
+                <input type="file" id="logo" name="logo"/>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if ( $vendor->getSupplierDescription() ): ?>
+        <p><?php echo $this->escapeHtml( $vendor->getSupplierDescription() ); ?>
+            <small>[<a href="javascript:void();"
+                       title="<?php echo $this->__( 'Current Supplier Description' ); ?>">?</a>]
+            </small>
+        </p>
+    <?php endif; ?>
+
+    <?php foreach ($customFields as $customField) : ?>
+        <p>
+            <strong><?php echo $this->escapeHtml($customField->getLabel() ); ?></strong>
+        </p>
+        <p>
+            <div class="input-container">
+                <?php echo $this->getCustomFieldValue($customField); ?>
+            </div>
+        </p>
+    <?php endforeach; ?>
+</div>
+<div class="entry-edit">
+    <h3 style="margin-top: 40px;"><?php echo $this->__( "Data Waiting For Approval" ); ?>
+        <button type="button" class="scalable save" id="button_approve_changes"
+                style="float:right;">
+            <span><span><span><?php echo $this->__( "Approve Changes" ); ?></span></span></span>
+        </button>
+    </h3>
+    <?php echo $this->getFormHtml(); ?>
+</div>
+<?php echo $this->getChildHtml( 'form_after' ); ?>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_blog_blog_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/blog</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_blog" name="blog" />
+
+        </reference>
+    </adminhtml_blog_blog_index>
+    <adminhtml_blog_blog_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_blog/adminhtml_blog_grid" name="blog_grid"/>
+        </block>
+    </adminhtml_blog_blog_grid>
+    <!-- Blog add/edit action -->
+    <adminhtml_blog_blog_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/blog</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_blog_edit" name="blog_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="zozoconcepts_blog/adminhtml_blog_edit_tabs" name="blog_tabs"></block>
+        </reference>
+    </adminhtml_blog_blog_edit>
+
+    <adminhtml_blog_category_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/category</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_category" name="category" />
+
+        </reference>
+    </adminhtml_blog_category_index>
+    <adminhtml_blog_category_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_blog/adminhtml_category_grid" name="category_grid"/>
+        </block>
+    </adminhtml_blog_category_grid>
+    <!-- Category add/edit action -->
+    <adminhtml_blog_category_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/category</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_category_edit" name="category_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="zozoconcepts_blog/adminhtml_category_edit_tabs" name="category_tabs"></block>
+        </reference>
+    </adminhtml_blog_category_edit>
+
+    <adminhtml_blog_blog_comment_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/blog_comment</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_blog_comment" name="blog_comment_grid"/>
+        </reference>
+    </adminhtml_blog_blog_comment_index>
+    <adminhtml_blog_blog_comment_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="zozoconcepts_blog/adminhtml_blog_comment_grid" name="blog_comment_grid"/>
+        </block>
+    </adminhtml_blog_blog_comment_grid>
+    <adminhtml_blog_blog_comment_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>zozoconcepts_blog/blog_comment</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="zozoconcepts_blog/adminhtml_blog_comment_edit" name="blog_comment_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="zozoconcepts_blog/adminhtml_blog_comment_edit_tabs" name="blog_comment_tabs"></block>
+        </reference>
+    </adminhtml_blog_blog_comment_edit>
+</layout>

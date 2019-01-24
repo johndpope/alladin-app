@@ -1,0 +1,61 @@
+<?php
+/**
+ * Zozoconcepts_Socio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Socio
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Twitter block
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Socio
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_socio'); ?>
+<?php if($helper->isEnabled()): ?>
+	<?php if($helper->isEnabledWidgets()): ?>
+		<?php echo $helper->getWidgetScript(); ?>
+	<?php else: 
+	
+	 $tweets = $this->getTweetsByUsername($helper->getUsername()); 
+	 
+	 ?>
+	<div class="block <?php if($themehelper->getConfDesign('effects/structural_elements_transition')):?>animated<?php endif; ?>" data-animation="fadeInUp" data-animation-delay="900">
+	<div class="block-title"><strong><span><?php echo $this->__('Recent Tweets') ?></span></strong></div>
+	<div id="tweet" class="owl-carousel owl-theme block-content">
+		<!-- Twitter Slider -->                   
+		<?php foreach($tweets as $tweet): ?>
+		<div class="item">
+			<div class="tweet_user">
+				<span class="icon-twitter"><i class="fa fa-twitter"></i></span>
+				<span class="username">
+					<a href="http://twitter.com/<?php echo $helper->getUsername()?>"><?php echo $helper->getUsername()?></a>
+				</span>
+			</div>
+			<div class="tweet_text">
+				<?php echo (string) trim($tweet["text"]); ?>
+			</div>
+			<?php if($helper->isDisplayPostedTime()): ?>
+			<div class="tweet_time">
+				<?php echo (string) trim($tweet["created_at"]); ?>
+			</div>
+			<?php endif; ?>
+		</div>
+		<?php endforeach; ?>  
+	</div>
+	</div>	
+	<?php endif; ?>
+<?php endif; ?>

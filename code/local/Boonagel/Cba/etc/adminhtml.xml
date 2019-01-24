@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <menu>
+
+        <cbatab module="Boonagel_Cba" translate="title">
+
+            <title>Cba</title>
+            <sort_order>100</sort_order>
+
+            <children>
+
+                <index module="Boonagel_Cba" translate="title">
+                    <title>Cba Config</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/cba/config</action>
+                </index>
+
+                <cbalogs module="Boonagel_Cba" translate="title">
+                    <title>Cba Logs Advanced</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/cba/logs</action>
+                </cbalogs>
+                
+                <cbadvancedlogs module="Boonagel_Cba" translate="title">
+                    <title>Cba Logs Pre-Advanced</title>
+                    <sort_order>3</sort_order>
+                    <action>adminhtml/cba/advanced</action>
+                </cbadvancedlogs>
+
+            </children>
+
+        </cbatab>
+
+    </menu>
+
+    <acl>
+
+        <resources>
+
+            <admin>
+         
+                <children>
+                    <cba translate="title" module="Boonagel_Cba">
+                        <title>Cba</title>
+                        <sort_order>100</sort_order>
+                        <children>
+
+                            <index module="Boonagel_Cba" translate="title">
+                                <title>Cba Config</title>
+                                <sort_order>1</sort_order>
+                            </index>
+
+                            <cbalogs module="Boonagel_Cba" translate="title">
+                                <title>Cba Logs Advanced</title>
+                                <sort_order>2</sort_order>
+                            </cbalogs>
+
+                            <cbadvancedlogs module="Boonagel_Cba" translate="title">
+                                <title>Cba Logs Pre-Advanced</title>
+                                <sort_order>3</sort_order>
+                            </cbadvancedlogs>
+
+                        </children>
+                    </cba>
+                </children>
+
+            </admin>
+      
+        </resources>
+
+    </acl>
+
+</config>

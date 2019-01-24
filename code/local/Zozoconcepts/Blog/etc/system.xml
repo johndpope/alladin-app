@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <zozoconcepts_blog translate="label" module="zozoconcepts_blog">
+            <class>separator-top</class>
+            <label>Blog</label>
+            <tab>zozoconcepts_ext</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <blog translate="label" module="zozoconcepts_blog">
+                    <label>Blog</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<!--<heading_blog translate="label">
+							<label>Home page blog listing</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</heading_blog>
+                        <showonhomepage translate="label">
+                            <label>Show on Home page section</label>
+							<comment>Shows three latest posts from your blog</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showonhomepage>
+						<listing_title translate="label comment">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<showonhomepage>1</showonhomepage>
+							</depends>
+                        </listing_title>
+						<listing_desc translate="label comment">
+                            <label>Description</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<showonhomepage>1</showonhomepage>
+							</depends>
+                        </listing_desc>
+                        <img_width translate="label comment">
+                            <label>Image Thumbnail Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<showonhomepage>1</showonhomepage>
+							</depends>
+                        </img_width>
+                        <img_height translate="label comment">
+                            <label>Image Thumbnail Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<showonhomepage>1</showonhomepage>
+							</depends>
+                        </img_height>
+						<excerpt_limit translate="label comment">
+                            <label>Excerpt Limit</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<showonhomepage>1</showonhomepage>
+							</depends>
+                        </excerpt_limit>-->
+						<heading_blogview translate="label">
+							<label>Blog Section Configurations</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>31</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</heading_blogview>
+						<breadcrumbs translate="label">
+                            <label>Show Breadcrumbs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbs>
+                        <allow_comment translate="label">
+                            <label>Allow comments</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_comment>
+                        <allow_guest_comment translate="label">
+                            <label>Allow guest comments</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <allow_comment>1</allow_comment>
+                            </depends>
+                        </allow_guest_comment>
+                       <!-- <rss translate="label">
+                            <label>Enable rss</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rss>-->
+						<heading_blog_seo translate="label">
+							<label>Seo Configurations</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</heading_blog_seo>
+                        <meta_title translate="label">
+                            <label>Meta title for blogs list page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_title>
+                        <meta_description translate="label">
+                            <label>Meta description for blogs list page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_description>
+                        <meta_keywords translate="label">
+                            <label>Meta keywords for blogs list page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_keywords>
+                    </fields>
+                </blog>
+                <category translate="label" module="zozoconcepts_blog">
+                    <label>Category</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <breadcrumbs translate="label">
+                            <label>Use Breadcrumbs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </breadcrumbs>
+                        <url_prefix translate="label comment">
+                            <label>URL prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Leave empty for no prefix</comment>
+                        </url_prefix>
+                        <url_suffix translate="label comment">
+                            <label>Url suffix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>What goes after the dot. Leave empty for no suffix.</comment>
+                        </url_suffix>
+                        <rss translate="label">
+                            <label>Enable rss</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rss>
+						<heading_cat_seo translate="label">
+							<label>Seo Configurations</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</heading_cat_seo>
+                        <meta_title translate="label">
+                            <label>Meta title for categories list page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_title>
+                        <meta_description translate="label">
+                            <label>Meta description for categories list page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_description>
+                        <meta_keywords translate="label">
+                            <label>Meta keywords for categories list page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_keywords>
+                    </fields>
+                </category>
+            </groups>
+        </zozoconcepts_blog>
+    </sections>
+</config>

@@ -1,0 +1,424 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); 
+	  $_product = $this->getProduct(); 
+      $store = Mage::app()->getStore();
+	  $code  = $store->getCode();
+?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->setEscapeMessageFlag(true)->toHtml() ?></div>
+<!-- container"-->
+<div class="product-view">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $this->getBlockHtml('formkey') ?>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <div class="product-essential row">
+			 <?php
+                if (Mage::getStoreConfig("hybrid/product_view/prev_next",$code)){
+            ?>
+                <div class="prev-next-products">
+                    <?php $_prev = Mage::helper('hybrid')->getPreviousProduct(); ?>
+                    <?php $_next = Mage::helper('hybrid')->getNextProduct(); ?>
+                     
+                    <?php if($_prev): ?>
+                    <div class="product-nav product-prev">
+                        <a href="<?php echo $_prev->getProductUrl();?>" title="<?php echo $this->__("Previous Product"); ?>">
+                            <?php echo Mage::getStoreConfig("hybrid/product_view/prev_text",$code); ?>
+                        </a>
+                        <div class="product-pop theme-border-color">
+                            <?php
+                            $image_src = $this->helper('catalog/image')->init($_prev, 'image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(80);
+                            ?>
+                            <img class="product-image" src="<?php echo $image_src; ?>" alt="<?php echo $this->__('Previous');?>"/>
+                            <h3 class="product-name"><?php echo $_helper->productAttribute($_prev, $_prev->getName(), 'name') ?></h3>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($_next): ?>
+                    <div class="product-nav product-next">
+                        <a class="product-next" href="<?php echo $_next->getProductUrl();?>" title="<?php echo $this->__("Next Product"); ?>"><?php echo Mage::getStoreConfig("hybrid/product_view/next_text",$code); ?></a>
+                        <div class="product-pop theme-border-color">
+                            <?php
+                            $image_src = $this->helper('catalog/image')->init($_next, 'image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(80);
+                            ?>
+                            <img class="product-image" src="<?php echo $image_src; ?>" alt="<?php echo $this->__('Previous');?>"/>
+                            <h3 class="product-name"><?php echo $_helper->productAttribute($_next, $_next->getName(), 'name') ?></h3>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            <?php
+                }
+            ?>
+            <div class="product-img-box col-xs-12 col-sm-6 col-md-6">
+                <?php echo $this->getChildHtml('media') ?>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                
+                <div class="product-main-info">
+                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    
+                    <!--<p class="product-ids"><?php //echo $this->__('SKU# %s', $this->escapeHtml($_product->getSku())); ?></p>-->
+                    <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+
+                    <?php if ($_product->getShortDescription()):?>
+                        <div class="short-description std">
+                            <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                        </div>
+                    <?php endif;?>
+                   
+                    <?php if ($this->canEmailToFriend()): ?>
+                    <div class="email-to-friend">
+                        <a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" class="emailto" title="<?php echo $this->__('Email to a Friend') ?>"><?php echo $this->__('Email to a Friend') ?></a>
+                    </div>
+					<?php endif; ?>
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                </div>
+                <?php echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
+                <?php echo $this->getChildHtml('extrahint') ?>
+
+                <?php if (!$this->hasOptions()):?>
+                    <div class="add-to-box">
+                        <?php if($_product->isSaleable()): ?>
+                            <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                <?php else:?>
+                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
+                        <div class="options-container-small">
+                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                        </div>
+                    <?php else: ?>
+                        <?php //echo $this->getChildHtml('addto') ?>
+                    <?php endif;?>
+                <?php endif; ?>
+
+                <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
+                    <div class="options-container-big">
+                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                    </div>
+                <?php endif;?>
+
+                <?php echo $this->getChildHtml('other');?>
+            </div>
+
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="product-desc-tab-section">
+					<div role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                        <?php
+						 $tab_content ="";
+                         $tab_content .= "<div class='tab-content'>";
+                        ?>
+                        <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html){
+                            if($alias == 'description')
+							{
+								$active_class = 'active in';
+							}else{
+								$active_class ='';
+							}
+                            $tab_content .= "<div id=\"tab-{$alias}\" class=\"tab-pane fade {$active_class} box-{$alias}\" role=\"tabpanel\">";
+                            $tab_content .= $html;
+                            $tab_content .= "</div>";
+                            if ($title = $this->getChildData($alias, 'title')){ ?>
+                                <li role="tabs" class="<?php echo $active_class?>"><a href="#tab-<?php echo $alias ?>" aria-controls="tab-<?php echo $alias ?>" role="tab" data-toggle="tab"><?php echo $this->escapeHtml($title)?></a></li>
+                            <?php }else{ ?>
+                                <li role="tabs" class="<?php echo $active_class?>"><a href="#tab-<?php echo $alias ?>" aria-controls="tab-<?php echo $alias ?>" role="tab" data-toggle="tab"><?php echo $this->escapeHtml(ucfirst($alias))?></a></li>
+                            <?php }
+                         };?>
+                        
+                        <?php
+                         $tab_content .= "</div>";
+                        ?>
+                        </ul>
+						<?php echo $tab_content; ?>
+            	</div>
+			</div>
+        <div class="clearfix">&nbsp;</div>
+        
+    </form>
+        <?php echo $this->getChildHtml('relatedProducts') ?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('productTagList') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+</div>
+
+
+<?php if(Mage::getStoreConfig('ajaxcart/addtocart/enableproduct') && (Mage::app()->getFrontController()->getRequest()->getModuleName() == "catalog") || (Mage::app()->getFrontController()->getRequest()->getModuleName() == "quickview")): ?>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                if (!url) {
+                    url = jQuery('#product_addtocart_form').attr('action');
+                }
+                if(url.indexOf("wishlist/index/cart") != -1){
+                    url = url.replace("wishlist/index/cart","ajaxcart/index/add"); // New Code
+                } else {
+                    url = url.replace("checkout/cart","ajaxcart/index"); // New Code
+                }
+                url = url.replace("http://", "//");
+                url = url.replace("https://", "//");
+                var data = jQuery('#product_addtocart_form').serialize();
+                data += '&isAjax=1';
+                var is_quickview = false;
+                if(jQuery("body").hasClass("quickview-index-view")){
+                    is_quickview = true;
+                }
+                if(is_quickview)
+                    window.parent.jQuery("#loading-mask").show();
+                else
+                    jQuery('#loading-mask').show();
+                try {
+                    jQuery.ajax({
+                        url : url,
+                        dataType : 'json',
+                        type : 'post',
+                        data : data,
+                        success : function(data) {
+                            if(is_quickview)
+                                window.parent.jQuery('#loading-mask').hide();
+                            else
+                                jQuery('#loading-mask').hide();
+                            if(data.status == 'ERROR'){
+                                if(is_quickview)
+                                    window.parent.alert(data.message.replace("<br/>",""));
+                                else
+                                    alert(data.message.replace("<br/>",""));
+                            }else{
+                                if(is_quickview){
+									if(window.parent.jQuery('.mini-cart')){
+										window.parent.jQuery('.mini-cart').replaceWith(data.toplink);
+									}
+									if(window.parent.jQuery('.mini-cart-drop')){
+										window.parent.jQuery('.mini-cart-drop').replaceWith(data.minicartdrop);
+									}
+                                    if(window.parent.jQuery('.header-container .mini-cart')){
+                                        window.parent.jQuery('.header-container .mini-cart').replaceWith(data.toplink);
+                                    }
+                                    if(window.parent.jQuery('.fixed-header .mini-cart')){
+                                        window.parent.jQuery('.fixed-header .mini-cart').replaceWith(data.toplink);
+                                    }
+									if(window.parent.jQuery('.sticky-header .mini-cart')){
+										window.parent.jQuery('.sticky-header .mini-cart').replaceWith(data.toplink);
+									}
+                                    if(window.parent.jQuery('.col-right .block.block-cart')){
+                                        window.parent.jQuery('.col-right .block.block-cart').replaceWith(data.cart_sidebar);
+                                    }
+                                    window.parent.jQuery('#after-loading-success-message #success-message-container .msg-box').html(data.message);
+                                    <?php $autoclose = Mage::getStoreConfig('ajaxcart/addtocart/autoclose', $code);?>
+                                    ajaxcart_sec = <?php echo ($autoclose && is_numeric($autoclose))?$autoclose:5; ?>;
+                                    timer_sec = ajaxcart_sec;
+                                    window.parent.jQuery('#after-loading-success-message').fadeIn(200);
+                                    ajaxcart_timer = setInterval(function(){
+                                        timer_sec --;
+                                        window.parent.jQuery('#after-loading-success-message .timer').html(timer_sec);
+                                    },1000)
+                                    setTimeout(function(){
+                                        window.parent.jQuery('#after-loading-success-message').fadeOut(200);
+                                        clearTimeout(ajaxcart_timer);
+                                        setTimeout(function(){
+                                            window.parent.jQuery('#after-loading-success-message .timer').html(ajaxcart_sec);
+                                        }, 1000);
+                                    },ajaxcart_sec*1000);
+                                }
+                                else {
+									if(jQuery('.mini-cart')){
+                                        jQuery('.mini-cart').replaceWith(data.toplink);
+                                    }
+									if(jQuery('.mini-cart-drop')){
+                                        jQuery('.mini-cart-drop').replaceWith(data.minicartdrop);
+                                    }
+									
+                                    if(jQuery('.header-container .mini-cart')){
+                                        jQuery('.header-container .mini-cart').replaceWith(data.toplink);
+                                    }
+                                    if(jQuery('.fixed-header .mini-cart')){
+                                        jQuery('.fixed-header .mini-cart').replaceWith(data.toplink);
+                                    }
+									if(jQuery('.sticky-header .mini-cart')){
+										jQuery('.sticky-header .mini-cart').replaceWith(data.toplink);
+									}
+                                    if(jQuery('.col-right .block.block-cart')){
+                                        jQuery('.col-right .block.block-cart').replaceWith(data.cart_sidebar);
+                                    }
+                                    jQuery('#after-loading-success-message #success-message-container .msg-box').html(data.message);
+                                    <?php $autoclose = Mage::getStoreConfig('ajaxcart/addtocart/autoclose', $code);?>
+                                    ajaxcart_sec = <?php echo ($autoclose && is_numeric($autoclose))?$autoclose:5; ?>;
+                                    timer_sec = ajaxcart_sec;
+                                    jQuery('#after-loading-success-message').fadeIn(200);
+                                    ajaxcart_timer = setInterval(function(){
+                                        timer_sec --;
+                                        jQuery('#after-loading-success-message .timer').html(timer_sec);
+                                    },1000)
+                                    setTimeout(function(){
+                                        jQuery('#after-loading-success-message').fadeOut(200);
+                                        clearTimeout(ajaxcart_timer);
+                                        setTimeout(function(){
+                                            jQuery('#after-loading-success-message .timer').html(ajaxcart_sec);
+                                        }, 1000);
+                                    },ajaxcart_sec*1000);
+                                }
+                            }
+                        }
+                    });
+                } catch (e) {
+                }                
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+            } else {
+                if(jQuery('#product-options-wrapper'))
+                    jQuery('#product-options-wrapper').scrollToMe();
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+<?php else : ?>
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            } else {
+                if(jQuery('#product-options-wrapper'))
+                    jQuery('#product-options-wrapper').scrollToMe();
+            }
+        }.bind(productAddToCartForm);
+        //]]>
+        </script>
+        <?php endif; ?>
+<script type="text/javascript">
+//<![CDATA[
+    productAddToCartForm.submitLight = function(button, url){
+        if(this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+	
+
+(function() {
+	//add custom class to product options
+	jQuery('.product-custom-option').addClass('form-control');
+
+})();
+//]]>
+</script>
+<script type="text/javascript">
+    jQuery(function($){
+        $("body.quickview-index-view .no-rating a, body.quickview-index-view .ratings a").off('click').on("click",function(e){
+            window.parent.location.href = $(this).attr("href");
+            window.parent.jQuery.fancybox.close();
+        });
+    <?php
+    //if($enable_addtocart_sticky){
+    ?>
+        /*p_scrolled = false;
+        $(window).scroll(function(){
+            if(400<$(window).scrollTop() && !p_scrolled){
+                $('.sticky-product').removeClass("hide");
+                p_scrolled = true;
+            }
+            if(400>=$(window).scrollTop() && p_scrolled){
+                $('.sticky-product').addClass("hide");
+                p_scrolled = false;
+            }
+        });*/
+    <?php
+    //}
+    ?>
+    <?php
+    //if($move_product_tab){
+    ?>
+        //$(".product-info").before($(".product-tabs"));
+    <?php
+    //}
+    ?>
+    });
+</script>

@@ -1,0 +1,164 @@
+<?php 
+/*
+ * header type 1
+ */?>
+<?php 
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+$themehelper = Mage::helper('hybrid');
+?>
+
+<header class="header-section type-header-1">
+<div class="header-panel navbar navbar-default header-nav-type1">
+    <div class="container">
+        <div class="row">
+            <div class="header-panel-left hidden-sm col-md-4 a-left">
+				<ul class="tab-bar-left">
+					<?php if($this->getChildHtml('store_currency')){?>
+                    	<?php echo '<li>'.$this->getChildHtml('store_currency').'</li>'; }?>
+                    <?php if($this->getChildHtml('store_language')){?>
+                    	<?php echo '<li>'.$this->getChildHtml('store_language').'</li>';} ?>
+                    <?php if($this->getChildHtml('welcome')){?>
+                    	<?php echo '<li class="welcome-msg"><p>'.$this->getChildHtml('welcome').'</p></li>';} ?>
+                    <?php if($this->getAdditionalHtml()){?>
+                    	<?php echo '<li>'.$this->getAdditionalHtml().'</li>';} ?>
+            	</ul>
+            </div>
+
+            <div class="header-panel-right switches col-xs-12 col-md-8 a-right font12">
+                <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header header-type1">
+    <div class="container">
+    	<div class="row">
+            	<div class="col-md-8">
+                	<div class="row">
+                        <div class="searchbox col-md-6 ">
+                        <?php echo $this->getChildHtml('topSearch') ?>
+                        </div>
+                        
+                        <div class="branding col-md-6">
+                        <?php if ($this->getIsHomePage()):?>
+                        <h1 class="text-center no-margin no-padding"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="text-center img-responsive"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                        <?php else:?>
+                        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="text-center no-margin no-padding img-responsive"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+                        <?php endif?>
+                        </div>
+					</div>
+                </div>   
+            
+            <!--minicart and minicompare-->
+            <div class="col-md-4 logobar-right-icons">
+            	<ul class="icons-wrapper">	
+					<!--Mobile search for device-->
+                    <li class="mobile-search">
+                        <div class="search-drop">
+                                <i class="icon icon-Search" aria-hidden="true"></i>
+                                <div class="search-panel">	
+                                    <?php echo $this->getChildHtml('topSearch') ?>
+                                </div>
+                       	</div>
+						<script type="text/javascript">
+							jQuery(".search-panel").hide();
+								jQuery(".icon-Search").click(function(){
+                                    jQuery(".search-panel").toggle();
+                                });
+						</script>
+                    </li>
+                    <li class="minicart-column"><?php echo $this->getChildHtml('minicartdrop') ?></li>
+                    <?php if($this->getChildHtml('compare_link')):?>
+                    <li class="compare-column"><?php echo $this->getChildHtml('compare_link'); ?></li><?php endif;?>
+            	</ul>
+            </div>
+        </div>
+        <?php if($themehelper->getConf('header/staticheaderblock',$code)):?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php echo $themehelper->getConf('header/staticheaderblock',$code)?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<?php if($themehelper->getConf('header/sticky',$code)):?>
+<div class="sticky-header">
+	<div class="sticky-container">
+			    <div class="branding">
+    <?php if ($this->getIsHomePage()):?>
+    <h1 class="logo"><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+    <?php else:?>
+    <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+    <?php endif?>
+    </div>
+<?php endif;?>
+			    <nav id="navigation-section" class="nav-type1">			
+                <!-- Navigation Menu Begins -->
+                    <div class="container">
+                     <div class="row">
+                        <div id="navigation" class="col-md-12 no-padding no-margin navbar top-navbar">	
+                            <!-- Menu Begins -->
+                            <?php echo $this->getChildHtml('topMenu') ?>
+                            <!-- Menu Ends -->						
+                        </div>
+                     </div>
+                    </div>
+                <!-- Navigation Menu Ends -->
+            	</nav>
+<?php if($themehelper->getConf('header/sticky',$code)):?>
+                <!--cart-->
+                <?php if(Mage::getStoreConfig("hybrid/header/cart_type", $code) === 'drop'):?>
+                <div class="logobar-right-icons"> 
+                    <ul class="icons-wrapper">
+                        <li class="minicart-column"> <?php echo $this->getChildHtml('minicartdrop') ?></li>
+                    </ul>
+                </div>
+                <?php endif; ?>
+                <!--cart-->
+    </div>
+</div>
+
+<script type="text/javascript">
+(function($){
+	$(window).resize(function(){
+		if ($(window).width() > 991){
+			sticky();	
+			/* -------------------------------	
+					STICKY
+			/* ----------------------------- */
+			function sticky() {
+				if ($('.sticky-header').length) {
+					$(".sticky-header").sticky({
+						topSpacing:0
+					});
+				 }
+			}		
+		}	
+
+	});
+	
+    $(document).ready(function(){
+		
+	if ($(window).width() > 991){	
+		sticky();
+		/* -------------------------------	
+				STICKY
+		/* ----------------------------- */
+		function sticky() {
+			if ($('.sticky-header').length) {
+				$(".sticky-header").sticky({
+					topSpacing:0
+				});
+			 }
+		}	
+	}
+
+
+});})(jQuery);
+</script>
+<?php endif;?>
+</header>
+
+<?php echo $this->getChildHtml('topContainer') ?>

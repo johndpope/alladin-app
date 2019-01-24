@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Ajaxscroll
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <script src="Zozothemes_Ajaxscroll::js/ajaxscroll/jquery-1.7.2.min.js"/> 
+    <script src="Zozothemes_Ajaxscroll::js/ajaxscroll/jquery.ajaxscroll.min.js"/>
+    <script src="Zozothemes_Ajaxscroll::js/ajaxscroll/easing.js"/>
+    <script src="Zozothemes_Ajaxscroll::js/ajaxscroll/jquery.ui.totop.js"/>
+    <css src="Zozothemes_Ajaxscroll::css/ajaxscroll/ajaxscroll.css" />
+    
+  </head>
+  <body>
+    <referenceContainer name="content">
+      <block class="Magento\Framework\View\Element\Template" template="Zozothemes_Ajaxscroll::ajaxscroll/ajaxscroll.phtml" name="ajaxscroll_js"/>
+    </referenceContainer>
+  </body>
+</page>

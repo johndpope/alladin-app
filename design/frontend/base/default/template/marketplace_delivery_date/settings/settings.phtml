@@ -1,0 +1,174 @@
+<?php
+    $customerData = $this->getCustomer();
+    $allowedWeekDays = json_decode($customerData->getAllowedWeekDays(), true);
+    $excludedDates = $this->getCurrentVendorExcludedDates();
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-left"><?php echo Mage::helper('marketplace')->__('Delivery Date Settings'); ?></h1>
+    <form name="settings_delivery_date" id="settings_delivery_date"
+          action="<?php echo Mage::getUrl('deliverydate/settings/settingsSave') ?>"
+          method="post" >
+        <input type="hidden" name="removed_excluded_days" class="removed_excluded_days" value="" />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="name" class="required control-label">
+                        <?php echo $this->__('Order cut-off time finish (format HH:MM)'); ?>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="order_cutoff_time_finish" name="order_cutoff_time_finish"
+                               class="input-text form-control pickup_time" data-format="hh:mm"
+                               value="<?php echo $customerData->getCutoffTimeFinish(); ?>" />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="name" class="required control-label">
+                        <?php echo $this->__('Order lead time (number of days)'); ?>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="order_lead_time" name="order_lead_time"
+                               class="input-text form-control"
+                               value="<?php echo $customerData->getOrderLeadTime(); ?>" />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="name" class="required control-label">
+                        <?php echo $this->__('Allowed week days'); ?>
+                    </label>
+                    <div class="input-container">
+                        <select multiple="multiple" name="weekdays[]" style="height: 130px;">
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(0, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="0"><?php echo $this->__('Sunday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(1, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="1"><?php echo $this->__('Monday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(2, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="2"><?php echo $this->__('Tuesday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(3, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="3"><?php echo $this->__('Wednesday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(4, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="4"><?php echo $this->__('Thursday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(5, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="5"><?php echo $this->__('Friday') ?></option>
+                            <option
+                                <?php
+                                if (isset($allowedWeekDays) &&
+                                    is_array($allowedWeekDays) &&
+                                    in_array(6, $allowedWeekDays)) {
+                                    echo ' selected ';
+                                }
+                                ?>
+                                    value="6"><?php echo $this->__('Saturday') ?></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div>
+                    <h2><?php echo $this->__("Exclude days"); ?></h2>
+                    <?php if ($excludedDates->count() > 0) :?>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Date</th>
+                                <th>Options</th>
+                            </tr>
+                            <?php foreach ($excludedDates as $date) :?>
+                                <tr id="excluded-day-id-<?php echo $date->getId(); ?>">
+                                    <td><?php echo $date->getDate(); ?></td>
+                                    <td>
+                                        <span class="default">
+                                            <i class="glyphicon glyphicon-remove text-danger"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    <?php endif; ?>
+                    <div class="form-group">
+                        <label for="exclude_date" class="required control-label">
+                            <?php echo $this->__('Exclude new date'); ?>
+                        </label>
+                        <div class="input-container">
+                            <input type="text" id="exclude_date" name="exclude_date"
+                                   class="input-text form-control datepicker" />
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-4 nopadding">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save') ?>"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('settings_delivery_date');
+    //]]>
+    jQuery('.datepicker').datepicker();
+    jQuery(document).ready(function () {
+        jQuery('.pickup_time').datetimepicker({
+            pickDate: false,
+            pickSeconds: false,
+            maskInput: false,
+            collapse: true,
+            language: 'en',
+            pick12HourFormat: true
+        });
+    });
+
+    jQuery('.glyphicon-remove').on('click', function(){
+        var excludedDateId  = jQuery(this).parent().parent().parent().attr('id');
+        var excludeDates    = excludedDateId.split("-");
+        var id = excludeDates[excludeDates.length-1];
+        var currentValues = jQuery('.removed_excluded_days').val().split(',');
+        currentValues.push(id);
+        jQuery('.removed_excluded_days').val(currentValues.join(','));
+        jQuery(this).parent().parent().parent().remove();
+    });
+
+</script>

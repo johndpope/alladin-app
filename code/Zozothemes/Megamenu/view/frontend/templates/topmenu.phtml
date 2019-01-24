@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © 2016 ZOZOTHEMES. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Zozothemes\Megamenu\Block\Topmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Zozothemes\Megamenu\Helper\Data');
+    $_config = $_helper->getConfig('zozo_megamenu');
+    $columnsLimit = 0;
+    if($_config['general']['enable'] && $_config['general']['nav_style'] ==='default') {
+?>
+<?php $_menu = $block->getMegamenuHtml(); ?>
+
+<nav class="navigation zozo-megamenu" role="navigation">
+    <ul>
+        <?php echo $_menu; ?>
+    </ul>
+</nav>
+<script type="text/javascript">
+//    require([
+//        'jquery',
+//        'zozomegamenu'
+//    ], function () {
+//        jQuery(document).ready(function () {
+//        var topmenu = jQuery(".zozo-megamenu").zozoMegamenu();
+//        });
+//    });
+require([ 'jquery', 'zozomegamenu'], function(){
+   jQuery(document).ready(function () {
+      jQuery(".zozo-megamenu").zozoMegamenu();
+   });
+});
+</script>
+<script type="text/javascript">
+//    require([
+//        'jquery',
+//        'zozomegamenu'
+//    ], function ($) {
+//        var topmenu = $(".zozo-megamenu").zozoMegamenu();
+//    });
+</script>
+<?php
+    } else {
+?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit); ?>
+
+<nav class="navigation zozo-megamenu" role="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":false, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?php /* @escapeNotVerified */ echo $_menu; ?>
+    </ul>
+</nav>
+
+<?php
+    }
+?>

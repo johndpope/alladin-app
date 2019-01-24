@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<zozoconcepts_socio translate="label" module="zozoconcepts_socio">
+			<label>Social Config</label>
+			<tab>zozoconcepts</tab>
+			<sort_order>300</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<social_blocks translate="label">
+					<label>Social Blocks</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>430</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+					<heading_social translate="label">
+							<label>Social Icons</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>230</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</heading_social>
+					<enable_social translate="label">
+							<label>Show Social Icons</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>240</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</enable_social>
+					<facebook translate="label">
+							<label>Facebook :</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>250</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_social>1</enable_social>
+							</depends>
+					</facebook>
+					<googleplus translate="label">
+							<label>GooglePlus :</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>260</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_social>1</enable_social>
+							</depends>
+					</googleplus>
+					<twitter translate="label">
+							<label>Twitter :</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>270</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_social>1</enable_social>
+							</depends>
+					</twitter>
+					<youtube translate="label">
+							<label>Youtube :</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>280</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_social>1</enable_social>
+							</depends>
+					</youtube>
+					<dribbble translate="label">
+							<label>Dribbble :</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>290</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_social>1</enable_social>
+							</depends>
+					</dribbble>
+
+					<heading_twitterfeeds translate="label">
+							<label>Twitter Feeds Blocks</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>315</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</heading_twitterfeeds>
+					<enable_twitterfeeds translate="label">
+							<label>Show Twitter Feeds</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>320</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+					</enable_twitterfeeds>
+					<tw_title translate="label">
+							<label>Title:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>330</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+							</depends>
+					</tw_title>
+					<tw_widgets translate="label">
+                            <label>By using Twitter Widgets</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>335</sort_order>
+							<comment>Enable widget to avoid further fields</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+							</depends>
+					</tw_widgets>
+					<tw_widgets_script translate="label">
+                            <label>Twitter Widgets Script</label>
+							<frontend_type>textarea</frontend_type>
+                            <sort_order>336</sort_order>
+                            <comment>Enter Twitter Widgets Script if you need to use widgets</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>1</tw_widgets>
+							</depends>
+					</tw_widgets_script>
+					<tw_username translate="label">
+							<label>Twitter Username:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>340</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_username>
+					<tw_ckey translate="label">
+							<label>Consumer Key:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>341</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_ckey>
+					<tw_cskey translate="label">
+							<label>Consumer Secret:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>342</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_cskey>
+					<tw_actoken translate="label">
+							<label>Access Token:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>343</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_actoken>
+					<tw_actokensec translate="label">
+							<label>Access Token Secret:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>344</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_actokensec>
+					<tw_notweete translate="label">
+							<label>Number of Tweets:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>345</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_notweete>
+					<tw_time translate="label">
+							<label>Display Posted Time:</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>346</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<enable_twitterfeeds>1</enable_twitterfeeds>
+								<tw_widgets>0</tw_widgets>
+							</depends>
+					</tw_time>
+				</fields>
+			</social_blocks>
+			</groups>
+			</zozoconcepts_socio>
+	</sections>
+</config>

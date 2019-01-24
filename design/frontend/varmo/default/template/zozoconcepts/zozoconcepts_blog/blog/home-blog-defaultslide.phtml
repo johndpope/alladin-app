@@ -1,0 +1,71 @@
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = Mage::helper('zozoconcepts_blog/blog');
+$_width = 363;
+$_height = 212;
+?>
+<?php $_blogs = $this->getBlogs(); ?>
+	<?php if ($_blogs->getSize() > 0) :?>
+		<div id="blog-slider-version-3" class="owl-carousel">
+            <?php $i=0; foreach ($_blogs as $_blog) : ?>
+            <?php $post_desc =  $this->stripTags($_blog->getExcerpt())?>
+            	<div class="blog-item">
+                    <img src="<?php echo Mage::helper('zozoconcepts_blog/blog_image')->init($_blog, 'featured_image')->resize($_width,$_height);?>" alt="<?php echo $_blog->getTitle();?>" class="img-responsive"  width="<?php echo $_width?>" height="<?php echo $_height?>" />
+                        <?php $date = date('F j, Y', strtotime($_blog->getCreatedAt()));?>
+					<div class="post-details">
+						<div class="post-date"><p><i class="icon icon-Time"></i><?php echo $date?></p></div>
+                            <div class="post-meta">
+                            	<h3 class="blog-title"><?php echo $_blog->getTitle();?></h3>
+                             <?php if(!$helper->getExcerptLimit()){?>
+                             <?php echo "<p>".$post_desc."</p>" ?>
+                             <?php } else {?>
+                             <?php echo "<p>".$this->cut_string($post_desc,$helper->getExcerptLimit())."</p>" ?>
+                             <?php }?>
+                            <a href="<?php echo $_blog->getBlogUrl()?>" class="btn-link"><?php echo $this->__('Read More') ?><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                     </div>
+                 </div>
+            <?php $total_items = ($this->getData('total_items'))?$this->getData('total_items'):'6' ?>
+			<?php if (++$i == $total_items) break; ?>
+        	<?php endforeach;?>
+        </div>
+        <script type="text/javascript">
+		(function($){
+			$(document).ready(function() {
+				$('#blog-slider-version-3').owlCarousel({
+			items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'3' ?>,
+			 margin:30,
+			 responsive:{
+				0:{
+					items:1
+				},
+				480:{
+					items:1
+				},
+				767:{
+					items:2
+				},
+				991:{
+					items:2
+				},
+				1024:{
+					items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'3' ?>
+				}
+			},
+			nav: true,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			nav: true,
+			navRewind: true,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+		});
+			});})(jQuery);
+        </script>
+    <?php else : ?>
+        <?php echo Mage::helper('zozoconcepts_blog')->__('There are no posts at this moment');?>
+    <?php endif;?>

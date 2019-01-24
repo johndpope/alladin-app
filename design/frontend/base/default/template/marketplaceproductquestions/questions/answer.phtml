@@ -1,0 +1,68 @@
+<?php
+$answer = $this->getAnswer();
+$question = $this->getQuestion();
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-left"><?php echo Mage::helper('marketplace')->__('Manage Your Answer'); ?></h1>
+    <form name="settings_supplier_profile" id="settings_supplier_profile" action="<?php echo Mage::getUrl('supplier/questions/save'); ?>" method="post">
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="hidden" id="question_id" name="question_id" value="<?php echo Mage::app()->getRequest()->getParam('id') ?>" />
+                <div class="form-group">
+                    <label for="author_name" class="required control-label">
+                        <?php echo $this->__('Author Name'); ?> <em>*</em>
+                    </label>
+                    <div class="input-container">
+                        <input type="text" id="author_name" name="author_name" class="input-text required-entry form-control validate-length maximum-length-60" value="<?php echo $question->getAuthorName(); ?>" />
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="question_body" class="required control-label">
+                        <?php echo $this->__('Question'); ?> <em>*</em>
+                    </label>
+                    <div class="input-container">
+                        <textarea name="question_body" id="question_body" rows="14" class="input-text form-control wysiwyg"><?php echo $question->getQuestionBody(); ?></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <label for="answer_body" class="required control-label">
+                        <?php echo $this->__('Answer'); ?> <em>*</em>
+                    </label>
+                    <div class="input-container">
+                        <textarea name="answer_body" id="answer_body" rows="14" class="input-text form-control wysiwyg"><?php echo $answer->getAnswerBody(); ?></textarea>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="visibility" <?php echo $question->getVisibility() ? ' checked="checked"' : ''; ?>/> <?php echo $this->__('Visibility on Frontend'); ?> </label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="notify_customer" /> <?php echo $this->__('Notify Customer'); ?> </label>
+                </div>
+                <div class="col-md-4 nopadding">
+                    <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save') ?>"/>
+                </div>
+                <div class="col-md-4 nopadding col-md-offset-1">
+
+                <a href="<?php echo Mage::getUrl('supplier/questions/list'); ?>" class="btn btn-warning"><?php echo $this->__('Back'); ?></a>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('settings_supplier_profile');
+    //]]>
+
+    jQuery(document).ready(function(){
+        jQuery('.wysiwyg').wysihtml5({
+            color: true,
+            html: true,
+            image: false
+        });
+    });
+</script>

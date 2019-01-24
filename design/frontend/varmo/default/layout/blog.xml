@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Blog extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Blog
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+	<cms_index_index>
+		<reference name="root">
+			<block type="zozoconcepts_blog/blog_list" name="blog_home_list" template="zozoconcepts/zozoconcepts_blog/blog/list-home.phtml" />
+		</reference>
+	</cms_index_index>
+    <default>
+        <reference name="footer_links">
+            <action method="addLink" ifconfig="zozoconcepts_blog/blog/showonhomepage" translate="label title" module="zozoconcepts_blog">
+                <label>Blogs</label>
+                <url helper="zozoconcepts_blog/blog/getBlogsUrl" />
+                <title>Blogs</title>
+                <prepare />
+                <urlParams/>
+                <position>120</position>
+            </action>
+        </reference>
+    </default>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="zozoconcepts_blog"><name>blog_comments</name><path>zozoconcepts_blog/blog_customer_comment</path><label>Blogs Comments</label></action>
+        </reference>
+    </customer_account>
+    <zozoconcepts_blog_blog_index translate="label" module="zozoconcepts_blog">
+        <label>Blogs list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_blog/blog_list" name="blog_list" template="zozoconcepts/zozoconcepts_blog/blog/list.phtml" />
+        </reference>
+		<reference name="left">
+			<block type="zozoconcepts_blog/category_list" name="category_list" template="zozoconcepts/zozoconcepts_blog/category/sidebar.phtml" />
+		</reference>
+    </zozoconcepts_blog_blog_index>
+	
+    <zozoconcepts_blog_category_index translate="label" module="zozoconcepts_blog">
+        <label>Categories list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_blog/category_list" name="category_list" template="zozoconcepts/zozoconcepts_blog/category/list.phtml" />
+        </reference>
+		<reference name="left">
+			<block type="zozoconcepts_blog/category_list" name="category_list" template="zozoconcepts/zozoconcepts_blog/category/sidebar.phtml" />
+		</reference>
+    </zozoconcepts_blog_category_index>
+	
+    <zozoconcepts_blog_blog_view translate="label" module="zozoconcepts_blog">
+        <label>Blog view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_blog/blog_view" name="blog_view" template="zozoconcepts/zozoconcepts_blog/blog/view.phtml" />
+            <block type="zozoconcepts_blog/blog_comment_list" name="blog.comments_list" as="blog_comment_list" template="zozoconcepts/zozoconcepts_blog/blog/comment/list.phtml">
+                <block type="zozoconcepts_blog/blog_comment_form" name="comment_form" as="comment_form" template="zozoconcepts/zozoconcepts_blog/blog/comment/form.phtml" />
+            </block>
+        </reference>
+		<reference name="left">
+			<block type="zozoconcepts_blog/category_list" name="category_list" template="zozoconcepts/zozoconcepts_blog/category/sidebar.phtml" />
+		</reference>
+    </zozoconcepts_blog_blog_view>
+	
+    <zozoconcepts_blog_category_view translate="label" module="zozoconcepts_blog">
+        <label>Category view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_blog/category_view" name="category_view" template="zozoconcepts/zozoconcepts_blog/category/view.phtml" />
+            <block type="zozoconcepts_blog/category_blog_list" name="category.blog_list" as="category_categories" template="zozoconcepts/zozoconcepts_blog/category/blog/list.phtml" />
+        </reference>
+		<reference name="left">
+			<block type="zozoconcepts_blog/category_list" name="category_list" template="zozoconcepts/zozoconcepts_blog/category/sidebar.phtml" />
+		</reference>
+    </zozoconcepts_blog_category_view>
+	
+    <zozoconcepts_blog_blog_rss translate="label" module="zozoconcepts_blog">
+        <label>Blogs rss feed</label>
+        <block type="zozoconcepts_blog/blog_rss" output="toHtml" name="zozoconcepts_blog.blog.rss" />
+    </zozoconcepts_blog_blog_rss>
+    <zozoconcepts_blog_category_rss translate="label" module="zozoconcepts_blog">
+        <label>Categories rss feed</label>
+        <block type="zozoconcepts_blog/category_rss" output="toHtml" name="zozoconcepts_blog.category.rss" />
+    </zozoconcepts_blog_category_rss>
+    <rss_index_index>
+        <reference name="content">
+            <block type="zozoconcepts_blog/rss" name="blog.rss" template="zozoconcepts/zozoconcepts_blog/rss.phtml">
+                <action method="addFeed" ifconfig="zozoconcepts_blog/blog/rss" translate="label" module="zozoconcepts_blog">
+                    <label>Blogs</label>
+                    <url helper="zozoconcepts_blog/blog/getRssUrl" />
+                </action>
+                <action method="addFeed" ifconfig="zozoconcepts_blog/category/rss" translate="label" module="zozoconcepts_blog">
+                    <label>Categories</label>
+                    <url helper="zozoconcepts_blog/category/getRssUrl" />
+                </action>
+            </block>
+        </reference>
+    </rss_index_index>
+    <zozoconcepts_blog_blog_customer_comment_index translate="label" module="zozoconcepts_blog">
+        <label>My Blogs comments</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="zozoconcepts_blog/blog_customer_comment_list" name="customer_blog_comments" template="zozoconcepts/zozoconcepts_blog/blog/customer/comment/list.phtml"/>
+        </reference>
+    </zozoconcepts_blog_blog_customer_comment_index>
+    <zozoconcepts_blog_blog_customer_comment_view translate="label" module="zozoconcepts_blog">
+        <label>My Blogs comment view</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="zozoconcepts_blog/blog_customer_comment_view" name="customer_blog_comment" template="zozoconcepts/zozoconcepts_blog/blog/customer/comment/view.phtml"/>
+        </reference>
+    </zozoconcepts_blog_blog_customer_comment_view>
+</layout>

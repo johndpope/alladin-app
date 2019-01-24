@@ -1,0 +1,106 @@
+<?php /* @var $this Cminds_SupplierRegistrationExtended_Block_Dashboard */?>
+<?php $bussinessData = Mage::getModel('supplierregistrationextended/eav_entity_attribute_source_business')->getOptionArray(); ?>
+<?php $hasActivePlan = Mage::helper('supplierregistrationextended')->isSupplierPlanActive(); ?>
+<div class="container main-container vendor-container">
+    <div class="row">
+        <div class="col-md-12 container form-container">
+                <div class="row">
+                    <?php $supplierLogo = $this->helper('marketplace')->getSupplierLogo($this->helper('supplierfrontendproductuploader')->getSupplierId()); ?>
+                    <div class="col-md-6"><img src="<?php echo $supplierLogo ? $supplierLogo : "http://placehold.it/250x250"; ?>"/></div>
+                    <div class="col-md-6"><img style="width: 250px" src="<?php echo Mage::helper('supplierregistrationextended')->getSupplierQrCode(); ?>" alt=""></div>
+                </div>
+            </div>
+<!--            --><?php //if($this->getVendorPlan()->getBanner()): ?>
+        <h3 class="text-center">Uploaded Banner</h3>
+        <div class="panel panel-default" style="border: 0;">
+            <div class="panel-body text-center">
+                <div class="col-md-7 col-md-offset-3">
+                    <?php $banner = $this->getVendorsBanner(); ?>
+                    <img src="<?php echo $banner ? $banner : "http://placehold.it/500x250"; ?>" class="banner">
+                    <?php if (Mage::helper('supplierregistrationextended')->getSupplierPlanHasBanner() && $hasActivePlan) : ?>
+                        <span
+                            class="file_upload_span btn btn-primary"><?php echo $this->__('Upload Image') ?></span>
+                        <input type="file" name="file_upload" id="file_upload" multiupload style="right: 8px; bottom: 44%;"/>
+                    <?php else: ?>
+                        <p><?php echo $this->__('You can\'t upload banner. Please upgrade plan.') ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+<!--            --><?php //endif; ?>
+            <div class="clearfix"></div>
+            <div class="col-md-6">
+                <h5 class="text-center">Merchant Supplier</h5>
+                <dl>
+                    <dt>Name</dt>
+                    <dd><?php echo $this->getVendor()->getSupplierName(); ?></dd>
+                    <dt>Address</dt>
+                    <dd><?php echo ($this->getVendor()->getDefaultBillingAddress()) ? join('', $this->getVendor()->getDefaultBillingAddress()->getStreet()) : ''; ?></dd>
+                    <dt>City</dt>
+                    <dd><?php echo ($this->getVendor()->getDefaultBillingAddress()) ? $this->checkCity($this->getVendor()->getDefaultBillingAddress()->getCity()) : ''; ?></dd>
+                    <dt>Zip</dt>
+                    <dd><?php echo ($this->getVendor()->getDefaultBillingAddress()) ? $this->getVendor()->getDefaultBillingAddress()->getPostcode() : ''; ?></dd>
+                    <dt>Email</dt>
+                    <dd><?php echo $this->getVendor()->getEmail(); ?></dd>
+                    <dt>Mob</dt>
+                    <dd><?php echo ($this->getVendor()->getDefaultBillingAddress()) ? $this->getVendor()->getDefaultBillingAddress()->getTelephone() : ''; ?></dd>
+                    <dt>Primary Category</dt>
+<?php Zend_Debug::dump($bussinessData); ?>
+                    <dd><?php echo isset($bussinessData[$this->getVendor()->getBusinessPrimary()+1]) ? $bussinessData[$this->getVendor()->getBusinessPrimary()+1] : ''; ?></dd>
+                </dl>
+                <button class="btn btn-primary" onclick="setLocation('<?php echo $this->getUrl('*/edit', array('id' => $this->getVendor()->getDefaultBillingAddress()->getId())) ?>')"><?php echo $this->__('Edit') ?></button>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center"><?php echo $this->__('Active Subscription'); ?></h3>
+                    </div>
+                    <div class="panel-body text-center">
+                        <ul class="list-unstyled">
+                            <li><?php echo (!is_null($this->getVendorPlan())) ? $this->getVendorPlan()->getName() : $this->__('You don\'t have any plan yet.'); ?></li>
+                            <li <?php echo (!$hasActivePlan) ? 'class="text-danger"' : '' ?>><?php echo $this->getVendor()->getPlanToDate(); ?></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                            <h3 class="panel-title text-center"><?php echo $this->__('Shelf Space'); ?></h3>
+                    </div>
+                    <div class="panel-body text-center">
+						<p>Total :<?php echo Mage::helper('supplierregistrationextended')->getSupplierPlanProducts(); ?></p>
+						<p>Used :<?php echo Mage::helper('supplierregistrationextended')->getSupplierProductsCount(); ?></p>
+						<p>Remaining :<?php echo Mage::helper('supplierregistrationextended')->getSupplierPlanProducts() - Mage::helper('supplierregistrationextended')->getSupplierProductsCount(); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#file_upload').fileupload({
+            url: '<?php echo Mage::getUrl('supplier/index/uploadBanner') ?>',
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.success) {
+                    jQuery('.banner').attr('src', data.result.url);
+                    console.log(data.result.url);
+                } else {
+                    alert(data.result.message);
+                }
+            }
+        })
+            .prop('disabled', !jQuery.support.fileInput)
+            .parent().addClass(jQuery.support.fileInput ? undefined : 'disabled')
+            .on('fileuploadadd', function (e, data) {
+                var limit = 1;
+
+                if ($j('.thumbnail:visible').length >= limit) {
+                    alert('The upload limit has been reached');
+                    return false;
+                }
+            });
+    });
+</script>

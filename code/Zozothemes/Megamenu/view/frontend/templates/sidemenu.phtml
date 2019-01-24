@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © 2016 ZOZOTHEMES. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Zozothemes\Megamenu\Block\Topmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Zozothemes\Megamenu\Helper\Data');
+    $_config = $_helper->getConfig('zozo_megamenu');
+    $columnsLimit = 0;
+    if($_config['general']['enable']) {
+?>
+<?php $_menu = $block->getMegamenuHtml(); ?>
+
+<nav class="navigation zozo-megamenu side-megamenu" role="navigation">
+    <ul>
+        <?php echo $_menu; ?>
+    </ul>
+</nav>
+<script type="text/javascript">
+// removed this as conflict duplicating template
+//    require([
+//        'jquery',
+//        'zozomegamenu'
+//    ], function ($) {
+//        var sidemenu = $(".zozo-megamenu").zozoMegamenu();
+//    });
+</script>
+<?php
+    }
+?>

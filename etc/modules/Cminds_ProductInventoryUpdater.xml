@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cminds Product Inventory Updater
+ *
+ * @category Cminds
+ * @package  Cminds_ProductInventoryUpdater
+ * @author   Wojtek Kaminski <wojtek.kaminski@gmail.com>
+ */
+-->
+<config>
+    <modules>
+        <Cminds_ProductInventoryUpdater>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Cminds_Supplierfrontendproductuploader />
+            </depends>
+        </Cminds_ProductInventoryUpdater>
+    </modules>
+</config>

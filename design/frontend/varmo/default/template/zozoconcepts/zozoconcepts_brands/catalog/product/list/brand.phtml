@@ -1,0 +1,37 @@
+<?php
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Brand list template on product page
+ *
+ * @category    Zozoconcepts
+ * @package     Zozoconcepts_Brands
+ * @author      Zozoconcepts Hybrid
+ */
+?>
+<?php $brands = $this->getBrandCollection();?>
+<?php if ($brands && $brands->count() > 0) :?>
+<div class="box-collateral box-brands box-up-sell">
+	<h3><?php echo Mage::helper('zozoconcepts_brands')->__('Brands') ?></h3>
+    <?php foreach ($brands as $_brand) : ?>
+        <div class="item">
+            <a href="<?php echo $_brand->getBrandUrl()?>">
+				<img src="<?php echo Mage::helper('zozoconcepts_brands/brand_image')->init($_brand, 'brand_icon')->backgroundColor(array(255, 255, 255))->resize(150);?>" alt="<?php echo $this->htmlEscape($_brand->getTitle());?>" class="img-responsive" />
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php endif;?>

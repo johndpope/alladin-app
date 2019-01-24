@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout version="0.1.0">
+	 <default>
+			<reference name="head">
+			    <action method="addCss">
+					<stylesheet>css/sms.css</stylesheet>
+				</action>
+				<action method="addItem">
+					<type>skin_css</type>
+					<name>countryflag/css/intlTelInput.css</name>
+					<params/>
+				</action>
+				<action method="addItem">
+					<type>skin_js</type>
+					<name>countryflag/js/intlTelInput.js</name>
+				</action>
+			</reference>
+	</default>
+	<customer_account_create translate="label">
+		<reference name="head">	
+			<block type="core/text" name="external js file">
+			  <action method="setText"><text><![CDATA[<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>]]></text></action>
+			</block>
+		</reference>
+		<reference name="customer_form_register">
+            <action method="setTemplate"><template>sms/customer/form/register.phtml</template></action>
+        </reference>
+     </customer_account_create>
+    
+	<checkout_onepage_index>
+        <reference name="checkout.onepage.login">
+            <action method="setTemplate"><template>sms/checkout/onepage/login.phtml</template></action>
+        </reference>
+		 <reference name="checkout.onepage.billing">
+            <action method="setTemplate"><template>sms/checkout/onepage/billing.phtml</template></action>
+        </reference>
+    </checkout_onepage_index>
+	
+	<customer_account_index translate="label">
+        <reference name="customer_account_dashboard">
+            <action method="setTemplate"><template>sms/account/dashboard.phtml</template></action>
+        </reference>
+	</customer_account_index>
+	
+	<customer_account>
+        <reference name="customer_account_navigation" >
+            <action method="addLink" translate="label"><name>mobile_update</name><path>sms/index/mobileupdate</path><label>Mobile Number Update</label></action>
+        </reference>
+    </customer_account>
+	
+	<sms_index_mobileupdate>
+	   <update handle="customer_account"/> 
+	   <reference name="my.account.wrapper"> 
+		   <block type="sms/mobileupdate" name="pret_to_inspire" template="sms/customer/mobileupdate.phtml"/>
+	   </reference>
+	</sms_index_mobileupdate>
+</layout>

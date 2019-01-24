@@ -1,0 +1,149 @@
+<?php $_order = $this->getOrder(); ?>
+<?php $_items = $this->getItems(); ?>
+<?php $_shippingAddress = $this->getOrder()->getShippingAddress(); ?>
+<?php $_billingAddress = $this->getOrder()->getBillingAddress(); ?>
+<?php $_giftModel = Mage::getModel('giftmessage/message')->getCollection()->getData();?>
+
+<div class="col-md-12 row">
+    <div class="col-md-5">
+        <h3><?php echo $this->__("Billing Address"); ?></h3>
+        <?php echo $_billingAddress->format("html"); ?>
+
+    </div>
+    <?php if ($_shippingAddress) : ?>
+    <div class="col-md-5">
+        <h3><?php echo $this->__("Shipping Address"); ?></h3>
+        <?php echo $_shippingAddress->format("html"); ?>
+    </div>
+    <?php endif ;?>
+</div>
+
+<?php if (
+$this->getParentBlock()->canShowPaymentInfo()
+|| $this->getParentBlock()->canShowShippingInfo()
+) : ?>
+    <?php if ($this->getParentBlock()->canShowPaymentInfo()) : ?>
+        <div class="col-md-5">
+            <h3><?php echo $this->__("Payment Information"); ?></h3>
+            <?php echo $this->getChildHtml("order_payment"); ?>
+        </div>
+    <?php endif; ?>
+    <?php if (
+    $this->getParentBlock()->canShowShippingInfo()
+        && !$_order->getIsVirtual()
+    ) : ?>
+        <div class="col-md-5 row">
+            <h3><?php echo $this->__("Shipping Information"); ?></h3>
+
+            <?php if ($supplierShipping = $this->getParentBlock()->getSupplierShippingCosts()) : ?>
+                <span>
+                    <strong><?php echo $this->escapeHtml($this->getParentBlock()->getSupplierShippingName()) ?></strong>
+                    (<?php echo Mage::helper('core')->currency($supplierShipping, true, false); ?>)
+                </span>
+            <?php elseif ($_order->getShippingDescription()) : ?>
+                <strong><?php echo $this->escapeHtml($_order->getShippingDescription()) ?></strong>
+                <?php $_excl = $_order->getShippingAmount(); ?>
+                <?php echo Mage::helper('core')->currency($_excl); ?>
+            <?php else : ?>
+                <?php echo $this->helper('sales')->__('No shipping information available'); ?>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+<div class=''>
+    <div class='col-md-12'>
+        <h2 class="sub-header"><?php echo $this->__("Ordered Items"); ?></h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><?php echo $this->__('Product'); ?></th>
+                    <th><?php echo $this->__('Item Status'); ?></th>
+                    <th><?php echo $this->__('Price'); ?></th>
+                    <th><?php echo $this->__('Qty'); ?></th>
+                    <th><?php echo $this->__('Row Total'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $sumPrice = 0; $sumQty = 0; $sumRowTotal = 0; ?>
+                <?php foreach ($_items as $_item) : ?>
+                    <?php if ($_item->getData('parent_item_id')) continue; ?>
+                    <tr>
+                        <td>
+                            <a
+                                href="<?php echo Mage::getUrl(
+                                    'supplierfrontendproductuploader/product/edit',
+                                    array(
+                                        'id' => $_item->getProductId(),
+                                        'type' => $_item->getTypeId()
+                                    )
+                                ); ?>"
+                            >
+                                <?php echo $this->escapeHtml($_item->getName()); ?>
+                            </a>
+                            <?php $data = unserialize($_item->getData('product_options')); ?>
+                            <?php if (isset($data['attributes_info'])) : ?>
+                                <dl>
+                                    <?php foreach ($data['attributes_info'] as $attribute) : ?>
+                                        <dt><?php echo $attribute['label']; ?></dt>
+                                        <dd><?php echo $attribute['value']; ?></dd>
+                                    <?php endforeach; ?>
+
+                                </dl>
+                            <?php endif;?>
+                            <?php if ($_item->getData('gift_message_id') !== null) : ?>
+                                <dl>
+                                <?php foreach ($_giftModel as $giftData) : ?>
+                                    <?php if ($giftData['gift_message_id'] == $_item->getData('gift_message_id')) : ?>
+                                        <dt><?php echo $this->__("Item Gift Details:"); ?></dt>
+                                        <dd>
+                                            <strong>Sender: </strong>
+                                            <?php echo $this->escapeHtml($giftData['sender']); ?>
+                                        </dd>
+                                        <dd>
+                                            <strong>Recipient: </strong>
+                                            <?php echo $this->escapeHtml($giftData['recipient']); ?>
+                                        </dd>
+                                        <dd>
+                                            <strong>Gift Message: </strong>
+                                            <?php echo $this->escapeHtml($giftData['message']); ?>
+                                        </dd>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
+                                </dl>
+                            <?php endif;?>
+                        </td>
+                        <td><?php echo $_item->getStatus(); ?></td>
+                        <td>
+                            <?php
+                            $sumPrice = $sumPrice + $_item->getPrice();
+                            echo  Mage::helper('core')->currency($_item->getPrice());
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $sumQty = $sumQty + $_item->getQtyOrdered();
+                            echo number_format($_item->getQtyOrdered());
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $sumRowTotal = $sumRowTotal + $_item->getRowTotal();
+                            echo Mage::helper('core')->currency($_item->getRowTotal());
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><?php echo number_format($sumQty); ?></td>
+                        <td><?php echo Mage::helper('core')->currency($sumRowTotal); ?></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

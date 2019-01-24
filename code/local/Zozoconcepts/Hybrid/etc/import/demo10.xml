@@ -1,0 +1,325 @@
+<root>
+<config>
+    <web>
+        <default>
+            <cms_home_page>varmo_home_10</cms_home_page>
+            <cms_no_route>no-route-2</cms_no_route>
+        </default>
+    </web>
+    <design>
+        <package>
+            <name>varmo</name>
+        </package>
+        <theme>
+            <default>default</default>
+        </theme>
+    </design>
+    <cms>
+        <wysiwyg>
+            <enabled>hidden</enabled>
+        </wysiwyg>
+    </cms>
+	<hybrid>
+		<header>
+			<type>page/html/header_type4.phtml</type>
+			<sticky>1</sticky>
+			<layout>wide</layout>
+			<rtl>0</rtl>
+			<show_compare>1</show_compare>
+			<search_block_type>2</search_block_type>
+		</header>
+		<category_page>
+			<aspect_ratio>0</aspect_ratio>
+			<ratio_width>300</ratio_width>
+			<ratio_height>400</ratio_height>
+			<column_count>4</column_count>
+			<display_price>1</display_price>
+			<display_rating>1</display_rating>
+			<display_actions>1</display_actions>
+			<catstyle>default</catstyle>
+		</category_page>
+		<product_view>
+			<aspect_ratio>0</aspect_ratio>
+			<ratio_width>795</ratio_width>
+			<ratio_height>1059</ratio_height>
+			<prev_next>1</prev_next>
+			<prev_text><![CDATA[<i class="icon-arrow-left icons"></i>]]></prev_text>
+			<next_text><![CDATA[<i class="icon-arrow-right icons"></i>]]></next_text>
+			<disable_product_zoom>0</disable_product_zoom>
+			<zoom_type>0</zoom_type>
+			<thumbnail_image_type>selected</thumbnail_image_type>
+			<hide_single_smallthumb>0</hide_single_smallthumb>		  
+		</product_view>
+		<product_label>
+			<new>1</new>
+			<new_label_text>New</new_label_text>
+			<sale>1</sale>
+			<sale_label_type>1</sale_label_type>
+			<sale_label_text>Sale</sale_label_text>
+		</product_label>
+		<footer>
+			<staticfooterblock>
+				<![CDATA[<footer><div class="footer footer-dark"><div class="container"><div class="row"><div class="col-md-3 col-sm-6">{{block type="cms/block" block_id="block_about_company"}}<div class="block social-icons-block"><div class="block-title"><strong><span>Follow Us</span></strong></div><div class="block-content"> <ul class="social-icons social-icons-bg icon-bg-dark"><li><a href="#" class="twitter"><i class="icon-social-twitter icons"></i></a></li><li><a href="#" class="facebook"><i class="icon-social-facebook icons"></i></a></li><li><a href="#" class="youtube"><i class="icon-social-youtube icons"></i></a></li><li><a href="#" class="tumblr"><i class="icon-social-tumblr icons"></i></a></li><li><a href="#" class="instagram"><i class="icon-social-instagram icons"></i></a></li></ul></div></div></div><div class="col-md-3 col-sm-6">{{block type="cms/block" block_id="block_contact"}}</div><div class="col-md-3 col-sm-6">{{block type="tag/popular" name="tags_popular" template="tag/popular-footer.phtml"}}</div><div class="col-md-3 col-sm-6">{{block type="zozoconcepts_socio/tweets" name="zozo.footersocio.tweets" template="zozoconcepts/zozoconcepts_socio/twitter-footer.phtml"}}</div></div></div></div></footer>]]>
+			</staticfooterblock>
+			<staticcopyright><![CDATA[<section class="copyright copyright-dark"><div class="container">
+        	<div class="row"><div class="col-sm-6">{{block type="cms/block" block_id="block_copyright"}}</div><div class="col-sm-6">{{block type="cms/block" block_id="block_paymentscards"}}</div></div></div></section>]]>
+			</staticcopyright>
+		</footer>
+		<newsletter_popup>
+				<enabled>1</enabled>
+				<delay>3000</delay>
+				<show_logo>images/logo-dark.png</show_logo>
+				<newsletter_content><![CDATA[<h6 class="newsletter-title">Subscribe to Newsletter</h6><p>Subscribe to the Varmo eCommerce newsletter to receive timely updates from your favorite products.</p>]]></newsletter_content>
+				<newsletter_width>700px</newsletter_width>
+				<newsletter_height></newsletter_height>
+				<newsletter_bg_color>#ffffff</newsletter_bg_color>
+				<newsletter_bg_image>default/newsletter.jpg</newsletter_bg_image>
+				<newsletter_custom_style></newsletter_custom_style>
+			</newsletter_popup>
+		<contacts>
+			<enable>1</enable>
+			<address>United States of America</address>
+			<latitude>40.748440</latitude>
+			<longitude>-73.985655</longitude>
+			<zoom>7</zoom>
+			<infoblock>350 Fifth Avenue, 34th floor. New York.</infoblock>
+			<customblock>block_contact_static</customblock>
+		</contacts>
+	</hybrid>
+	<hybrid_design>
+		<basic>
+			<theme_color></theme_color>
+			<dark_light>light</dark_light>
+		</basic>
+		<colors>
+			<color></color>
+			<link_color></link_color>
+			<link_hover_color></link_hover_color>
+			<button_bg_color></button_bg_color>
+			<button_txt_color></button_txt_color>
+			<button_hover_bg_color></button_hover_bg_color>
+			<button_hover_txt_color></button_hover_txt_color>
+			<addtowishlist_color></addtowishlist_color>
+			<addtowishlist_hover_color></addtowishlist_hover_color>
+			<addtocompare_color></addtocompare_color>
+			<addtocompare_hover_color></addtocompare_hover_color>
+			<quickview_color></quickview_color>
+			<quickview_hover_color></quickview_hover_color>
+			<new_label_bg_color></new_label_bg_color>
+			<new_label_text_color></new_label_text_color>
+			<sale_label_bg_color></sale_label_bg_color>
+			<sale_label_text_color></sale_label_text_color>
+			<cat_label1_bg_color></cat_label1_bg_color>
+			<cat_label1_text_color></cat_label1_text_color>
+			<cat_label2_bg_color></cat_label2_bg_color>
+			<cat_label2_text_color></cat_label2_text_color>
+			<breadcrumbs_bg_color></breadcrumbs_bg_color>
+			<breadcrumbs_color></breadcrumbs_color>
+			<breadcrumbs_links_color></breadcrumbs_links_color>
+			<breadcrumbs_links_hover_color></breadcrumbs_links_hover_color>
+		</colors>
+		<font>
+			<font_size>0</font_size>
+			<primary_bodyfont_family_group>google</primary_bodyfont_family_group>
+			<primary_bodyfont_family>Poppins</primary_bodyfont_family>
+			<primary_bodyfont_char_subset></primary_bodyfont_char_subset>
+			<primary_bodyfont_weight></primary_bodyfont_weight>
+			<heading_font_size>0</heading_font_size>
+			<heading_primary_bodyfont_family_group>google</heading_primary_bodyfont_family_group>
+			<heading_primary_bodyfont_family>Poppins</heading_primary_bodyfont_family>
+			<heading_primary_bodyfont_char_subset></heading_primary_bodyfont_char_subset>
+			<heading_primary_bodyfont_weight></heading_primary_bodyfont_weight>
+		</font>
+		<header>
+			<top_border_color></top_border_color>
+			<color></color>
+			<link_color></link_color>
+			<link_hover_color></link_hover_color>
+			<bg_color></bg_color>
+		</header>
+		<navigation>
+			<top_margin></top_margin>
+			<nav_bg_color>#171717</nav_bg_color>
+			<color>#ffffff</color>
+			<hover_color>#0cb4ce</hover_color>
+			<active_color>#0cb4ce</active_color>
+			<level1_font_size></level1_font_size>
+			<level1_font_uppercase>0</level1_font_uppercase>
+			<mega_lev1_font_size></mega_lev1_font_size>
+			<mega_lev1_font_uppercase>0</mega_lev1_font_uppercase>
+			<classic_hoverbg_color>#3b3b3b</classic_hoverbg_color>
+			<dropdown_bg_color>#ffffff</dropdown_bg_color>
+			<dropdown_color>#000000</dropdown_color>
+			<dropdown_link_color>#000000</dropdown_link_color>
+			<dropdown_link_hover_color>#3b3b3b</dropdown_link_hover_color>
+			<label_bg_color>#00ff00</label_bg_color>
+			<label_color>#072c00</label_color>
+			<label_bg_color2>#ef0026</label_bg_color2>
+			<label_color2>#ffe8ed</label_color2>
+		</navigation>
+		<page>
+			<bg_color></bg_color>
+		</page>
+		<footer_color>
+			<color></color>
+			<link_color></link_color>
+			<link_hover_color></link_hover_color>
+			<bg_color1></bg_color1>
+			<bg_color></bg_color>
+			<bg_color3></bg_color3>
+		</footer_color>
+		<custom_css>
+			<customcss_codes><![CDATA[.dailydeal-index-index .view-mode {
+    display: none;
+}
+.products-items .label-group, .products-list .label-group {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    line-height: 1;
+}
+.accordion-style1 li.last a {
+    border: none;
+}
+@media only screen and (min-width: 767px) {
+.header-section .branding a img {
+    max-width: 100%;
+    width: 190px;
+    margin: -4px 0;
+}
+}]]></customcss_codes>
+		</custom_css>
+	</hybrid_design>
+	<fullajax>
+        <general>
+            <enabled>0</enabled>
+            <except>a.fancybox,a.quickview-icon,.toolbar a,.block-layered-nav a,a.fancy-images</except>
+            <except_form>search_mini_form</except_form>
+        </general>
+    </fullajax>
+    <ajax_catalog>
+		<price_slider_settings>
+			<price_slider_en>1</price_slider_en>
+			<layered>1</layered>
+			<slider>1</slider>
+			<toolbar>1</toolbar>
+			<infinitescroll>1</infinitescroll>
+		</price_slider_settings>
+        <price_slider_conf>
+			<timeout>0</timeout>
+			<use_image>0</use_image>
+            <handle_color>#3b3b3b</handle_color>
+            <background_color>#eeeeee</background_color>
+            <range_color>#555555</range_color>
+			<handle_width>13</handle_width>
+			<handle_height>18</handle_height>
+			<slider_width></slider_width>
+			<slider_height>7</slider_height>
+			<amount_style></amount_style>
+			<textbox>1</textbox>
+			<textBoxCss>border:solid 1px #eee; color: #a3a2a2; padding: 2px 5px; font-size: 14px; margin: 0 2px; width: 50px;</textBoxCss>
+			<goBtnText>FILTER</goBtnText>
+			<goBtnCss></goBtnCss>
+			<onSlide></onSlide>
+        </price_slider_conf>
+		<ajax_conf>        
+			<overlay_color>#ffffff</overlay_color>
+			<overlay_opacity>0.5</overlay_opacity>
+			<loading_image>loading.gif</loading_image>
+			<loading_text></loading_text>
+			<loading_text_color>#ffffff</loading_text_color>
+			<afterAjax></afterAjax>
+     	</ajax_conf>
+    </ajax_catalog>
+	<ajaxcart>
+		<general>
+			<loader_image>loading.gif</loader_image>
+		</general>
+		<addtocart>
+			<autoclose>5</autoclose>
+			<enablecategory>1</enablecategory>
+			<enableproduct>1</enableproduct>
+			<gotocarttext></gotocarttext>
+			<continueshoppingtext></continueshoppingtext>
+		</addtocart>
+		<addtolinks>
+			<enablecategory>1</enablecategory>
+			<enableproduct>1</enableproduct>
+		</addtolinks>
+	</ajaxcart>
+	<quickview>
+		<general>
+			<enableview>1</enableview>
+			<dialog_width>1000</dialog_width>
+			<dialog_height>730</dialog_height>
+		</general>
+	</quickview>
+	<zozoconcepts_brands>
+		<brand>
+			<enable>1</enable>
+		</brand>
+	</zozoconcepts_brands>
+	<megamenu>
+		<general>
+			<enable>1</enable>
+			<mode>0</mode>
+			<categories>side</categories>
+			<side_menu>0</side_menu>
+		</general>
+		<mainmenu>
+			<home>1</home>
+			<home_img>0</home_img>
+			<home_link_icon>0</home_link_icon>
+			<custom_block_floating>0</custom_block_floating>
+			<custom_block_1><![CDATA[
+			<li class="nav-item level0 nav-3 level-top last nav-item--parent classic nav-item--only-subcategories parent ">
+				<a class="level-top" title="aboutus" href="{{store direct_url='about-us-varmo'}}"><span>About Us</span><span class="caret">&nbsp;</span></a>
+			</li>
+			<li class="nav-item level0 nav-3 level-top last nav-item--parent classic nav-item--only-subcategories parent ">
+				<a class="level-top" title="contactus" href="{{store direct_url='blog/blog'}}"><span>Blog</span><span class="caret">&nbsp;</span></a>
+			</li>
+			<li class="nav-item level0 nav-3 level-top last nav-item--parent classic nav-item--only-subcategories parent ">
+				<a class="level-top" title="service" href="#"><span>Portfolio</span><span class="caret">&nbsp;</span></a>
+			</li>
+			<li class="nav-item level0 nav-3 level-top last nav-item--parent classic nav-item--only-subcategories parent ">
+				<a class="level-top" title="privacy" href="{{store direct_url='contacts'}}"><span>Contact US</span><span class="caret">&nbsp;</span></a>
+			</li>
+]]></custom_block_1>
+		</mainmenu>
+		<mobilemenu>
+			<threshold>960</threshold>
+			<collapsed>1</collapsed>
+			<show_blocks>0</show_blocks>
+			<hide_blocks_below>1</hide_blocks_below>
+		</mobilemenu>
+		<sidemenu>
+			<enable_category_left>1</enable_category_left>
+			<enable_category_right>0</enable_category_right>
+			<enable_home_left>1</enable_home_left>
+			<enable_home_right>0</enable_home_right>
+			<enable_cms_left>1</enable_cms_left>
+			<enable_cms_right>0</enable_cms_right>
+			<enable_product_left>1</enable_product_left>
+			<enable_product_right>0</enable_product_right>
+			<block_name>All Categories</block_name>
+			<parent>parent</parent>
+			<depth>0</depth>
+			<fallback>1</fallback>
+			<block_name_fallback>All Categories</block_name_fallback>
+			<num_of_products>0</num_of_products>
+			<hide_on_mobile>1</hide_on_mobile>
+			<hide_laynav_categories>1</hide_laynav_categories>
+		</sidemenu>
+		<category_labels>
+			<label1>New</label1>
+			<label2>Hot!</label2>
+		</category_labels>
+	</megamenu>
+    <catalogcategorysearch>
+        <general>
+            <enabled>1</enabled>
+        </general>
+    </catalogcategorysearch>
+</config>
+</root>

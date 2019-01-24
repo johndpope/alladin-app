@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_ShopByBrand
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         <!--<referenceContainer name="content">
+            <block class="Zozothemes\ShopByBrand\Block\Index" name="brand_slider" as="brandslider" template="Zozothemes_ShopByBrand::zozo_brand/brandslider.phtml" after="-"/>
+        </referenceContainer>
+       <referenceContainer name="sidebar.additional">
+            <block class="Zozothemes\ShopByBrand\Block\Sidebar" name="brand_sidebar" as="brandsidebar" template="Zozothemes_ShopByBrand::zozo_brand/sidebar.phtml" after="-"/>
+        </referenceContainer>-->       
+    </body>
+</page>

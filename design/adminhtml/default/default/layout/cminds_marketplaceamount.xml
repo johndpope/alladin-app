@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>adminhtml_customer_edit_tab_minimumAmount</name>
+                <block>marketplaceamount/adminhtml_customer_edit_tab_minimumAmount</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_Blog
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Zozothemes_Blog::elements" title="Blog" module="Zozothemes_Blog" parent="Zozothemes_Hybrid::zozothemes" sortOrder="40"  resource="Zozothemes_Blog::elements"/>
+
+        <add id="Zozothemes_Blog::post" title="Posts" module="Zozothemes_Blog" parent="Zozothemes_Blog::elements" sortOrder="50" action="blog/post/" resource="Zozothemes_Blog::post"/>
+
+        <add id="Zozothemes_Blog::category" title="Categories" module="Zozothemes_Blog" parent="Zozothemes_Blog::elements" sortOrder="60" action="blog/category/" resource="Zozothemes_Blog::category"/>
+
+        <!--<add id="Zozothemes_Blog::import" title="Import" module="Zozothemes_Blog" parent="Zozothemes_Blog::elements" sortOrder="70" action="blog/import/" resource="Zozothemes_Blog::import"/>-->
+    </menu>
+</config>

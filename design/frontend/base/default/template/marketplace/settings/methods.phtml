@@ -1,0 +1,335 @@
+<?php $methods = $this->getSavedMethods(); ?>
+<h1 class="text-left"><?php echo Mage::helper('marketplace')->__('Manage Shipping Methods'); ?></h1>
+
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <div class="col-md-6">
+                <div class="row">
+                    <button
+                        class="btn btn-small btn-primary add-new-shipping-method"><?php echo $this->__("Add New"); ?></button>
+                </div>
+            </div>
+            <form name="settings_shipping_methods"
+                  id="settings_shipping_methods"
+                  action="<?php echo Mage::getUrl('marketplace/settings/shippingSave') ?>"
+                  method="post"
+                  enctype="multipart/form-data">
+                <input type="hidden" name="removedItems" class="removedItems"
+                       value="">
+                <div class="clearfix"></div>
+                <div class="shipping-method hidden"
+                     id="<?php echo substr(str_shuffle(implode(array_merge(range(0,
+                         9), range('A', 'Z'), range('a', 'z')))), 0, 25); ?>">
+                    <div>
+                        <div class="clearfix"></div>
+                        <h3 class="shipping-name"><?php echo $this->__("New Shipping Method"); ?>
+                        </h3>
+                        <hr>
+
+                        <div class="col-md-6 nopadding">
+                            <label for="shipping_name" class="control-label">
+                                <?php echo $this->__('Method Name'); ?>
+                            </label>
+                            <input disabled type="hidden" name="id[]" class=""
+                                   value=""/>
+                            <input type="text" id="shipping_name"
+                                   name="shipping_name[]"
+                                   class="input-text form-control"
+                                   value=""
+                                   placeholder="<?php echo $this->__("Method Name"); ?>"
+                                   disabled/>
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio"
+                                               name="shipping_method[][randomstring]"
+                                               value="flat_rate"> <?php echo $this->__('Flat Rate'); ?>
+                                    </label>
+                                </div>
+                            </div>
+                            <div
+                                class="cont" style="display:none;">
+                                <div class="col-md-6 label-container nopadding">
+                                    <label for="flat_rate_fee">
+                                        <?php echo $this->__('Shipping Rate'); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container nopadding">
+                                    <input type="text" id="flat_rate_fee"
+                                           name="flat_rate_fee[]"
+                                           class="input-text required-entry form-control validate-number"
+                                           value="" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 nopadding">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio"
+                                               name="shipping_method[][randomstring]"
+                                               value="table_rate"> <?php echo $this->__('Table Rate'); ?>
+                                    </label>
+                                </div>
+                            </div>
+                            <div
+                                class="cont" style="display:none;">
+                                <div class="col-md-6 label-container nopadding">
+                                    <label for="table_rate_fee">
+                                        <?php echo $this->__('Default Handling Fee'); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container nopadding">
+                                    <input disabled type="text"
+                                           id="table_rate_fee"
+                                           name="table_rate_fee[]"
+                                           class="input-text required-entry form-control validate-number"
+                                           value=""/>
+                                </div>
+                                <div class="col-md-6 label-container nopadding">
+                                    <label for="table_rate_condition">
+                                        <?php echo $this->__('Condition'); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container nopadding">
+                                    <select disabled
+                                            name="table_rate_condition[]"
+                                            id="table_rate_condition">
+                                        <option
+                                            value="1"><?php echo $this->__("Weight vs. Destination"); ?></option>
+                                        <option
+                                            value="2"><?php echo $this->__("Price vs. Destination"); ?></option>
+                                        <option
+                                            value="3"><?php echo $this->__("# of Items vs. Destination"); ?></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 label-container nopadding">
+                                    <label disabled for="table_rate_file">
+                                        <?php echo $this->__('Upload your file'); ?>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 input-container nopadding">
+                                    <input disabled type="file"
+                                           id="table_rate_file"
+                                           name="table_rate_file[]"
+                                           class="input-text form-control"
+                                           value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 nopadding">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input disabled type="radio"
+                                               name="shipping_method[][randomstring]"
+                                               value="free_shipping"> <?php echo $this->__('Free Shipping'); ?>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $random = new Varien_Object(array("id" => "randomstring")); ?>
+
+                        <?php echo $this
+                            ->getChild('marketplace_before_shipping_method_end')
+                            ->setMethod($random)
+                            ->toHtml(); ?>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <?php foreach ($methods AS $method): ?>
+                    <div class="shipping-method"
+                         data-id="<?php echo $method->getId(); ?>">
+                        <h3 class="shipping-name"><?php echo $method->getName(); ?>
+                            <small class='remove text-danger'>
+                                <p><?php echo $this->__("Remove"); ?></p>
+                            </small>
+                            <small class='expand'>
+                                <p><?php echo $this->__("Show Details"); ?></p>
+                            </small>
+                        </h3>
+                        <hr>
+                        <div style="display:none;">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <label for="shipping_name"
+                                           class="control-label">
+                                        <?php echo $this->__('Method Name'); ?>
+                                    </label>
+                                    <input type="hidden" name="id[]" class=""
+                                           value="<?php echo $method->getId(); ?>"/>
+                                    <input type="text" id="shipping_name"
+                                           name="shipping_name[]"
+                                           class="input-text required-entry form-control"
+                                           value="<?php echo $method->getName(); ?>"
+                                           placeholder="<?php echo $this->__("Method Name"); ?>"/>
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio"
+                                                       name="shipping_method[][<?php echo $method->getId(); ?>]"
+                                                       value="flat_rate"<?php echo $method->getFlatRateAvailable() == 1 ? ' checked="checked"' : '' ?>> <?php echo $this->__('Flat Rate'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="cont"<?php echo $method->getFlatRateAvailable() != 1 ? ' style="display:none;"' : '' ?>>
+                                        <div
+                                            class="col-md-6 label-container nopadding">
+                                            <label for="flat_rate_fee">
+                                                <?php echo $this->__('Shipping Rate'); ?>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="col-md-6 input-container nopadding">
+                                            <input type="text"
+                                                   id="flat_rate_fee"
+                                                   name="flat_rate_fee[]"
+                                                   class="input-text required-entry form-control validate-number"
+                                                   value="<?php echo $method->getFlatRateFee(); ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio"
+                                                       name="shipping_method[][<?php echo $method->getId(); ?>]"
+                                                       value="table_rate"<?php echo $method->getTableRateAvailable() == 1 ? ' checked="checked"' : '' ?>> <?php echo $this->__('Table Rate'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="cont"<?php echo $method->getTableRateAvailable() != 1 ? ' style="display:none;"' : '' ?>>
+                                        <div
+                                            class="col-md-6 label-container nopadding">
+                                            <label for="table_rate_fee">
+                                                <?php echo $this->__('Default Handling Fee'); ?>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="col-md-6 input-container nopadding">
+                                            <input type="text"
+                                                   id="table_rate_fee"
+                                                   name="table_rate_fee[][<?php echo $method->getId(); ?>]"
+                                                   class="input-text required-entry form-control validate-number"
+                                                   value="<?php echo $method->getTableRateFee(); ?>"/>
+                                        </div>
+                                        <div
+                                            class="col-md-6 label-container nopadding">
+                                            <label for="table_rate_condition">
+                                                <?php echo $this->__('Condition'); ?>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="col-md-6 input-container nopadding">
+                                            <select
+                                                name="table_rate_condition[]"
+                                                id="table_rate_condition">
+                                                <option
+                                                    value="1"<?php echo $method->getTableRateCondition() == 1 ? ' selected="selected"' : '' ?>><?php echo $this->__("Weight vs. Destination"); ?></option>
+                                                <option
+                                                    value="2"<?php echo $method->getTableRateCondition() == 2 ? ' selected="selected"' : '' ?>><?php echo $this->__("Price vs. Destination"); ?></option>
+                                                <option
+                                                    value="3"<?php echo $method->getTableRateCondition() == 3 ? ' selected="selected"' : '' ?>><?php echo $this->__("# of Items vs. Destination"); ?></option>
+                                            </select>
+                                        </div>
+                                        <div
+                                            class="col-md-6 label-container nopadding">
+                                            <label for="table_rate_file">
+                                                <?php echo $this->__('Upload your file'); ?>
+                                            </label>
+                                        </div>
+                                        <div
+                                            class="col-md-6 input-container nopadding">
+                                            <input type="file"
+                                                   id="table_rate_file"
+                                                   name="table_rate_file[]"
+                                                   class="input-text form-control"
+                                                   value="<?php echo $method->getTableRateFee(); ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio"
+                                                       name="shipping_method[][<?php echo $method->getId(); ?>]"
+                                                       value="free_shipping"<?php echo $method->getFreeShipping() == 1 ? ' checked="checked"' : '' ?>> <?php echo $this->__('Free Shipping'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php echo $this
+                                    ->getChild('marketplace_before_shipping_method_end')
+                                    ->setMethod($method)
+                                    ->toHtml(); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                <?php endforeach; ?>
+                <div class="col-md-2  col-sm-4" style="padding-left: 0px;">
+                    <input type="submit" name="submit" class="btn btn-primary"
+                           value="<?php echo $this->__('Save Settings') ?>"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('settings_shipping_methods');
+    //]]>
+
+    jQuery(document).on('click', 'input[type="radio"]', function (e) {
+        e.stopPropagation();
+        var me = this;
+        jQuery(this).parent().parent().parent().parent().parent().find('.cont').hide(250, function () {
+            jQuery(me).parent().parent().parent().next().show(250);
+        });
+    });
+
+    jQuery(document).on('click', 'h3.shipping-name small.expand', function (e) {
+        var me = jQuery(this);
+        var next = me.parent().next().next();
+        if (next.is(":hidden")) {
+            me.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        } else {
+            me.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+        }
+        next.slideToggle();
+
+    });
+    jQuery(document).on('click', 'h3.shipping-name small.remove', function (e) {
+        var me = jQuery(this);
+        var id = me.parent().parent().attr('data-id');
+        var currentRemoved = jQuery('.removedItems').val();
+        var currentRemovedArray = currentRemoved.split(',');
+        currentRemovedArray.push(id);
+        jQuery('.removedItems').val(currentRemovedArray.join(','));
+
+        me.parent().parent().fadeOut().remove();
+
+    });
+    jQuery(document).on('click', '.add-new-shipping-method', function (e) {
+        $c = jQuery('.shipping-method.hidden').clone();
+        $c.removeClass('hidden').hide();
+        var randomString = Math.random().toString(36).substring(7);
+        $c.attr('id', randomString);
+        $c.find('input').removeAttr('disabled');
+        $c.find('select').removeAttr('disabled');
+        $c.find('input').each(function(){
+            jQuery(this).attr('name', jQuery(this).attr('name').replace('randomstring', randomString));
+        })
+        jQuery('#settings_shipping_methods').prepend($c);
+        $c.toggle();
+    });
+</script>

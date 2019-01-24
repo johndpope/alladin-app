@@ -1,0 +1,89 @@
+
+<?php if (\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->isSetFlag('ajaxscroll/general/enabled')): ?>
+<?php
+        $mediaObj = $block->getLayout()->createBlock('Zozothemes\Varmo\Block\Template')->getImageMediaPath();
+	$urlImg = $mediaObj.'varmo/ajaxscroll/'.\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('ajaxscroll/general/topb_icon');	
+	$loading_bar = $mediaObj.'varmo/ajaxscroll/'.\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('ajaxscroll/general/loading_icon');
+	$loading_img = $mediaObj.'varmo/ajaxscroll/'.\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('ajaxscroll/general/loading_img');
+?>
+<style>
+#toTop {
+ 
+	background:url(<?php echo $urlImg ?>) no-repeat left top;
+}
+
+#toTopHover {
+	background:url(<?php echo $urlImg ?>) no-repeat left -51px;
+}
+</style>
+<?php 
+// Get the default setting for grid or list mode 
+$productListMode = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('catalog/frontend/list_mode');
+$grid_per_page = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('catalog/frontend/grid_per_page');
+$list_per_page = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('catalog/frontend/list_per_page');
+if ($productListMode == 'grid-list'){
+	$productListMode = 'grid';
+	$per_page = $grid_per_page;
+}elseif($productListMode == 'list-grid'){
+	$productListMode = 'list';
+	$per_page = $list_per_page;
+}	
+// Check if this setting is overwritten by the user
+if ($this->getRequest()->getParam('mode')) {
+	if($this->getRequest()->getParam('mode') == 'grid'){
+		$productListMode = 'grid';
+		$per_page = $grid_per_page;
+	}else{
+		$productListMode = 'list';
+		$per_page = $list_per_page;
+	}
+}
+?>
+<?php //if (\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('ajaxscroll/general/enabled_top')){ ?>
+<!--<script type="text/javascript">
+sh.noConflict();
+sh(document).ready(function() {
+	sh().UItoTop({ easingType: 'easeOutQuart' });
+	
+});
+</script>-->
+<?php //}?>
+<script type="text/javascript">
+var img='<img style="padding: 51px;" class="scroll_loading" src="<?php echo $loading_img; ?>" />';
+var ft = '0';
+sh(document).ready(function() {
+	sh.ajaxscroll({
+		container : '.column',
+		<?php if ($productListMode == 'grid'): ?>
+		item: '.product-item',
+		<?php else: ?>
+		item: '.product-item',
+		<?php endif; ?>
+		pagination: '.pages .item',
+		next: '.next',
+		loader: '<img style="padding: 10px;" class="scroll_loading" src="<?php echo $loading_bar; ?>" />'
+	});
+        //On page scroll determine the list element
+        sh(window).scroll(function(){
+
+                sh('.main .products.grid .product-items li.product-item:nth-child(2n)').addClass('nth-child-2n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(2n+1)').addClass('nth-child-2np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(3n)').addClass('nth-child-3n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(3n+1)').addClass('nth-child-3np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(4n)').addClass('nth-child-4n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(4n+1)').addClass('nth-child-4np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(5n)').addClass('nth-child-5n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(5n+1)').addClass('nth-child-5np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(6n)').addClass('nth-child-6n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(6n+1)').addClass('nth-child-6np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(7n)').addClass('nth-child-7n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(7n+1)').addClass('nth-child-7np1');
+                sh('.main .products.grid .product-items li.product-item:nth-child(8n)').addClass('nth-child-8n');
+                sh('.main .products.grid .product-items li.product-item:nth-child(8n+1)').addClass('nth-child-8np1');
+           
+});
+});
+
+</script>
+<?php endif; ?>
+

@@ -1,0 +1,82 @@
+<?php /* @var $this Cminds_SupplierRegistrationExtended_Block_Plan_Renew */ ?>
+<?php $currentPlan = $this->getCurrentPlan() ?>
+<?php $availableMonths = $this->getAvailableMonths() ?>
+<div class="container main-container  vendor-container">
+    <form action="<?php echo $this->getActionUrl() ?>" method="post">
+        <input name="plan" type="hidden" value="<?php echo $currentPlan->getProduct()->getId() ?>" id="cm-plan-id" />
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <?php echo $this->__('You Are Currently in <b>%s</b> Rs.%.2f/Month', $currentPlan->getName(), $currentPlan->getProduct()->getFinalPrice()) ?>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class='table-responsive'>
+                    <table class="table table-striped cm-current-plan-table">
+                        <thead>
+                        <th><?php echo $this->__('Active Subscription') ?></th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><?php echo $currentPlan->getProduct()->getName() ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $this->__('Renewal Date: %s', $this->getPlanToDate()) ?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class='table-responsive'>
+                    <input name="plan" type="hidden" value="<?php echo $currentPlan->getProduct()->getId() ?>" id="cm-plan-id" />
+                    <input name="price" type="hidden" value="<?php echo $currentPlan->getProduct()->getFinalPrice() ?>" id="cm-plan-price" />
+                    <table class="table table-striped cm-renew-table">
+                        <thead>
+                        <th><?php echo $this->__('Item') ?></th>
+                        <th><?php echo $this->__('Rate') ?></th>
+                        <th><?php echo $this->__('Number Of Months') ?></th>
+                        <th><?php echo $this->__('Total') ?></th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><?php echo $currentPlan->getProduct()->getName() ?></td>
+                            <td><?php echo Mage::helper('core')->currency($currentPlan->getProduct()->getFinalPrice(),true,false); ?></td>
+                            <td id="cm-cell-qty">
+                                <select name="qty" id="qty">
+                                    <?php foreach ($availableMonths as $month) : ?>
+                                        <option value="<?php echo $month ?>"><?php echo $this->__('%d month', $month) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td id="cm-row-total"><?php echo $currentPlan->getProduct()->getFinalPrice() ?></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <th colspan="2"></th>
+                        <th><?php echo $this->__('Total') ?></th>
+                        <th id="cm-total"><?php echo $currentPlan->getProduct()->getFinalPrice() ?></th>
+                        </tfoot>
+                    </table>
+                    <input type="submit" name="submit" class="btn btn-primary"
+                           value="<?php echo $this->__('Check Out') ?>"/>
+
+                    <script>
+                        //<![CDATA[
+                        (function($){
+                            $('#qty').on('change', function(){
+                                var val = $(this).val(),
+                                    price = $('#cm-plan-price').val();
+                                $('#cm-row-total, #cm-total').html(Math.round((val*price)*100)/100);
+                            });
+                        })(jQuery);
+                        //]]>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

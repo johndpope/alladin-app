@@ -1,0 +1,18 @@
+<script type="text/javascript">
+
+    function check()
+	{
+		alert("Test");
+		new Ajax.Request('".$this->getAjaxCheckUrl()."?mytab=sms&mysection=testapi' , {
+						method: 'get',
+            			onSuccess: function(transport)
+						{
+ 							alert('Congratulation, Your text message has been sent, you will get Sms in short time');
+			 			}
+        				});
+	}
+
+	
+</script>
+ 
+<?php echo $this->getButtonHtml() ?>

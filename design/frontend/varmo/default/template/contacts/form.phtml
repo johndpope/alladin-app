@@ -1,0 +1,65 @@
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+	$helper = Mage::helper('hybrid');
+    $_infoblock = $helper->getConf('contacts/infoblock', $code);
+?>
+<section class="contact-section pb-20">
+    <div class="container">
+        <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+        <div class="row">
+            <div class="col-md-9">
+            <div class="contact-form form-list">
+            <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+            <div class="section-title"><h3 class="title"><?php echo Mage::helper('contacts')->__('Leave a Message') ?></h3></div> 
+                <div class="row">
+                    <div class="col-md-4 form-item">
+                        <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+                        <div class="input-box">
+                            <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-item">
+                        <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+                        <div class="input-box">
+                            <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-item">
+                        <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+                        <div class="input-box">
+                            <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="form-item col-md-12">
+                	<label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
+                    	<div class="input-box input-textarea">
+                            <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" rows="5" placeholder="<?php echo Mage::helper('contacts')->__('Comment') ?>"></textarea>
+                        </div>
+                    
+                    <div class="form-item form-action">
+                        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                        <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+                    </div>
+                  </div>
+                 </div>
+                </form>
+            </div>
+        
+        <script type="text/javascript">
+        //<![CDATA[
+            var contactForm = new VarienForm('contactForm', true);
+        //]]>
+        </script>
+            </div>
+            <div class="col-md-3 contact-info">
+                <div class="section-title"><h3 class="title"><?php echo Mage::helper('contacts')->__('Contact Details') ?></h3></div> 
+                <?php
+                    echo $_infoblock;
+                ?>
+            </div>
+        </div>
+    </div>
+</section>

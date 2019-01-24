@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <adminhtml_customer_edit>
+        <reference name="head">
+            <action method="addJs"><script>marketplace/shippingmethods.js</script></action>
+        </reference>
+
+        <reference name="left">
+            <reference name="customer_edit_tab_view">
+                <block type="marketplace/adminhtml_customer_edit_tab_view_sales" name="products" template="marketplace/customer/tab/view/products.phtml" before="-" />
+            </reference>
+        </reference>
+    </adminhtml_customer_edit>
+
+    <adminhtml_suppliers_soldproducts>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketplace/adminhtml_customer_edit_tab_solditems" name="admin.customer.view.edit.solditems" />
+        </block>
+    </adminhtml_suppliers_soldproducts>
+    <adminhtml_suppliers_assignedcategories>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketplace/adminhtml_customer_edit_tab_assignedcategories" name="admin.customer.view.edit.assignedcategories" />
+        </block>
+    </adminhtml_suppliers_assignedcategories>
+    <adminhtml_suppliers_shippingcosts>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketplace/adminhtml_customer_edit_tab_shippingfees" name="admin.customer.view.edit.shippingfees" />
+        </block>
+    </adminhtml_suppliers_shippingcosts>
+
+
+    <adminhtml_suppliers_rates>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="marketplace/adminhtml_customer_edit_tab_rates" name="admin.customer.view.edit.rates" />
+        </block>
+    </adminhtml_suppliers_rates>
+</layout>

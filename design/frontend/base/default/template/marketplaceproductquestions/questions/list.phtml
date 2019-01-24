@@ -1,0 +1,81 @@
+<?php $_items = $this->getItems(); ?>
+<?php $frontedEnable = Mage::getStoreConfig('marketplace_productquestions/general/module_enabled_on_frontend'); ?>
+<div class="container-fluid main-container  vendor-container">
+    <h1><?php echo $this->__('List of All Questions') ?></h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <th><?php echo $this->__('ID') ?></th>
+            <th><?php echo $this->__('Product Id') ?></th>
+            <th><?php echo $this->__('Author Name') ?></th>
+            <th><?php echo $this->__('Question') ?></th>
+            <th><?php echo $this->__('Answer') ?></th>
+            <?php if($frontedEnable): ?>
+                <th><?php echo $this->__('Visibility on Frontend') ?></th>
+            <?php endif; ?>
+            <?php if(Mage::helper('marketplaceproductquestions')->adminApprovalRequired()): ?>
+                <th><?php echo $this->__('Admin Approved') ?></th>
+            <?php endif; ?>
+            <th colspan="<?php echo Mage::helper('supplierfrontendproductuploader')->canEditProducts() ? '3' : '2' ?>"><?php echo $this->__('Actions') ?></th>
+            </thead>
+            <tbody>
+            <?php if($_items->count()): ?>
+                <?php foreach($_items AS $_item): ?>
+                    <tr>
+                        <td><?php echo $_item->getId(); ?></td>
+                        <td><a href="<?php echo $this->getProductUrl($_item->getProductId()) ?>" target="_blank"><?php echo $_item->getProductId(); ?></a></td>
+                        <td><?php echo $_item->getAuthorName(); ?></td>
+                        <td><?php echo $_item->getQuestionBody(); ?></td>
+                        <td><?php echo ($answer = $this->getAnswer($_item->getId())->getAnswerBody()) ? $answer: $this->__('There is no Answer'); ?></td>
+                        <?php if($frontedEnable): ?>
+                            <td><?php echo ($_item->getVisibility() == 1) ? "Yes" : "No"; ?></td>
+                        <?php endif; ?>
+                        <?php if(Mage::helper('marketplaceproductquestions')->adminApprovalRequired()): ?>
+                            <td><?php echo ($this->getAnswer($_item->getId())->getAdminApproval() == 1) ? "Yes" : "No"; ?></td>
+                        <?php endif; ?>
+                        <td>
+                            <?php if($this->hasAnswer($_item->getId())):?>
+                                <a href="<?php echo Mage::getUrl('supplier/questions/answer', array('id' => $_item->getId())); ?>" class="btn btn-warning"><?php echo $this->__('Add Answer'); ?></a>
+                            <?php else : ?>
+                                <a href="<?php echo Mage::getUrl('supplier/questions/answer', array('id' => $_item->getId())); ?>" class="btn btn-warning"><?php echo $this->__('Edit Answer'); ?></a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <td colspan="7"><?php echo $this->__("No results"); ?></td>
+            <?php endif; ?>
+            </tbody>
+            <tfoot>
+            <th><?php echo $this->__('ID') ?></th>
+            <th><?php echo $this->__('Product Id') ?></th>
+            <th><?php echo $this->__('Author Name') ?></th>
+            <th><?php echo $this->__('Question') ?></th>
+            <th><?php echo $this->__('Answer') ?></th>
+            <?php if($frontedEnable): ?>
+                <th><?php echo $this->__('Visibility on Frontend') ?></th>
+            <?php endif; ?>
+            <?php if(Mage::helper('marketplaceproductquestions')->adminApprovalRequired()): ?>
+                <th><?php echo $this->__('Admin Approved') ?></th>
+            <?php endif; ?>
+            <th colspan="<?php echo Mage::helper('supplierfrontendproductuploader')->canEditProducts() ? '3' : '2' ?>"><?php echo $this->__('Actions') ?></th>
+            </tfoot>
+        </table>
+        <?php
+        echo $this->getLayout()->createBlock('core/template')
+            ->setTemplate('marketplaceproductquestions/questions/pagination.phtml')
+            ->setCollection($_items)
+            ->toHtml() ?>
+    </div>
+</div>
+</div>
+<div class="slideshow-container"><div class="slideshow"></div></div>
+<script>
+    jQuery(document).ready(function () {
+        if(jQuery("[data-toggle=tooltip]").length) {
+            jQuery("[data-toggle=tooltip]").tooltip().on('hidden.bs.popover', function(){
+                jQuery(this).show();
+            });
+        }
+    });
+</script>

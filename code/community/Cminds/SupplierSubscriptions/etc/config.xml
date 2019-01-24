@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Cminds_SupplierSubscriptions>
+            <version>0.0.9</version>
+        </Cminds_SupplierSubscriptions>
+    </modules>
+
+    <global>
+        <helpers>
+            <suppliersubscriptions>
+                <class>Cminds_SupplierSubscriptions_Helper</class>
+            </suppliersubscriptions>
+        </helpers>
+
+        <blocks>
+            <suppliersubscriptions>
+                <class>Cminds_SupplierSubscriptions_Block</class>
+            </suppliersubscriptions>
+
+            <marketplace>
+                <rewrite>
+                    <!--<navbar>Cminds_SupplierRegistrationExtended_Block_Navbar</navbar>-->
+                    <adminhtml_supplier_list_grid>Cminds_SupplierSubscriptions_block_Marketplace_Adminhtml_Supplier_List_Grid</adminhtml_supplier_list_grid>
+                </rewrite>
+            </marketplace>
+
+            <supplierfrontendproductuploader>
+                <rewrite>
+                    <!--<navbar>Cminds_SupplierSubscriptions_Block_Navbar</navbar>-->
+                    <dashboard>Cminds_SupplierSubscriptions_Block_Dashboard</dashboard>
+                </rewrite>
+            </supplierfrontendproductuploader>
+
+        </blocks>
+
+        <models>
+            <suppliersubscriptions>
+                <class>Cminds_SupplierSubscriptions_Model</class>
+                <resourceModel>suppliersubscriptions_mysql4</resourceModel>
+            </suppliersubscriptions>
+            <suppliersubscriptions_mysql4>
+                <class>Cminds_SupplierSubscriptions_Model_Mysql4</class>
+                <entities>
+                    <plans>
+                        <table>suppliersubscriptions_plans</table>
+                    </plans>
+                    <business>
+                        <table>suppliersubscriptions_business</table>
+                    </business>
+                    <pushmessage>
+                        <table>suppliersubscriptions_push_message</table>
+                    </pushmessage>
+                    <pushmessage_sent>
+                        <table>suppliersubscriptions_sent_push_message</table>
+                    </pushmessage_sent>
+                    <vendor_banner>
+                        <table>suppliersubscriptions_vendor_banner</table>
+                    </vendor_banner>
+                </entities>
+            </suppliersubscriptions_mysql4>
+        </models>
+
+        <resources>
+            <cminds_suppliersubscriptions>
+                <setup>
+                    <module>Cminds_SupplierSubscriptions</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+            </cminds_suppliersubscriptions>
+        </resources>
+
+        <events>
+            <customer_login>
+                <observers>
+                    <customer_login_set_default_plan>
+                        <type>model</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>onCustomerLogin</method>
+                    </customer_login_set_default_plan>
+                </observers>
+            </customer_login>
+            <sales_order_invoice_register>
+                <observers>
+                    <sales_order_invoice_register_set_supplier_plan>
+                        <type>model</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>onOrderPlaceAfter</method>
+                    </sales_order_invoice_register_set_supplier_plan>
+                </observers>
+            </sales_order_invoice_register>
+            <supplierfrontendproductuploader_nav_load>
+                <observers>
+                    <subscription_nav_load>
+                        <type>singleton</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>navLoad</method>
+                    </subscription_nav_load>
+                </observers>
+            </supplierfrontendproductuploader_nav_load>
+            <marketplace_handleUpload>
+                <observers>
+                    <subscription_handleUpload>
+                        <type>singleton</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>handleUpload</method>
+                    </subscription_handleUpload>
+                </observers>
+            </marketplace_handleUpload>
+        </events>
+
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <cminds_suppliersubscriptions before="Mage_Adminhtml">Cminds_SupplierSubscriptions_Adminhtml</cminds_suppliersubscriptions>
+                        <cminds_suppliersubscriptions before="Cminds_Supplierfrontendproductuploader_Adminhtml">Cminds_SupplierSubscriptions_Adminhtml</cminds_suppliersubscriptions>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <cminds_suppliersubscriptions>
+                    <files>
+                        <default>Cminds_SupplierSubscriptions.csv</default>
+                    </files>
+                </cminds_suppliersubscriptions>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <cminds_suppliersubscriptions>
+                    <file>cminds_suppliersubscriptions.xml</file>
+                </cminds_suppliersubscriptions>
+            </updates>
+        </layout>
+
+        <events>
+            <customer_save_before>
+                <observers>
+                    <set_current_plan>
+                        <type>model</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>onCustomerSaveBefore</method>
+                    </set_current_plan>
+                </observers>
+            </customer_save_before>
+            <catalog_product_save_before>
+                <observers>
+                    <set_current_plan>
+                        <type>model</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Adminhtml_Observer</class>
+                        <method>onProductSaveBefore</method>
+                    </set_current_plan>
+                </observers>
+            </catalog_product_save_before>
+        </events>
+    </adminhtml>
+
+    <frontend>
+        <translate>
+            <modules>
+                <cminds_suppliersubscriptions>
+                    <files>
+                        <default>Cminds_SupplierSubscriptions.csv</default>
+                    </files>
+                </cminds_suppliersubscriptions>
+            </modules>
+        </translate>
+        <routers>
+            <cminds_supplierfrontendproductuploader>
+                <args>
+                    <modules>
+                        <cminds_suppliersubscriptions before="Cminds_Supplierfrontendproductuploader">Cminds_SupplierSubscriptions</cminds_suppliersubscriptions>
+                    </modules>
+                </args>
+            </cminds_supplierfrontendproductuploader>
+            <cminds_marketplace>
+                <args>
+                    <modules>
+                        <cminds_suppliersubscriptions before="Cminds_Marketplace">Cminds_SupplierSubscriptions</cminds_suppliersubscriptions>
+                    </modules>
+                </args>
+            </cminds_marketplace>
+        </routers>
+
+        <layout>
+            <updates>
+                <cminds_suppliersubscriptions>
+                    <file>cminds_suppliersubscriptions.xml</file>
+                </cminds_suppliersubscriptions>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <supplier_subscription_validate_event>
+                        <type>singleton</type>
+                        <class>Cminds_SupplierSubscriptions_Model_Observer</class>
+                        <method>validateSubscriptionPlan</method>
+                    </supplier_subscription_validate_event>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </frontend>
+</config>

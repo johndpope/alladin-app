@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+   <modules>
+      <Boonagel_Alpesa>
+         <active>true</active>
+         <codePool>local</codePool>
+      </Boonagel_Alpesa>
+   </modules>
+</config>

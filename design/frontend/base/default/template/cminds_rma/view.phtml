@@ -1,0 +1,111 @@
+<?php $rma = $this->getRma(); ?>
+<div class="my-account">
+    <div class="page-title title-buttons">
+        <h1><?php $this->__('RMA') ?> #<?php echo $rma->getAutoincrementId() ?>
+            - <?php echo $rma->getStatusLabel() ?></h1>
+        <?php if(!$rma->isClosed()): ?>
+        <a href="<?php echo Mage::getUrl('*/*/cancel', array('rma_id' => $rma->getId())); ?>" class="link-print"><?php echo $this->__('Cancel'); ?></a>
+        <?php endif; ?>
+    </div>
+    <div class="info rma">
+        <h2 class="table-caption"><?php echo $this->__("General Information"); ?></h2>
+        <p class="order-date"><?php echo $this->__("Initiated At: %s", $rma->getCreatedAt()) ?></p>
+        <div class="col2-set order-info-box">
+            <div class="col-1">
+                <div class="box">
+                    <div class="box-title">
+                        <h2><?php echo $this->__("RMA Info"); ?></h2>
+                    </div>
+                    <div class="box-content">
+                        <br>
+                        <strong><?php echo $this->__("Status") ?></strong> <?php echo $rma->getStatusLabel(); ?>
+                        <br>
+                        <strong><?php echo $this->__("Type") ?></strong> <?php echo $rma->getTypeLabel(); ?> <br>
+                        <strong><?php echo $this->__("Order ID") ?></strong> <?php echo $rma->getOrderId(); ?><br>
+                        <strong><?php echo $this->__("Reason") ?></strong> <?php echo $rma->getReasonLabel(); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="box box-payment">
+                    <div class="box-title">
+                        <h2><?php echo $this->__("Additional Information") ?></h2>
+                    </div>
+                    <div class="box-content">
+                        <p class="subtitle"><?php echo $rma->getAdditionalInformation(); ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-items order-details  order-info-box">
+        <h2 class="table-caption"><?php echo $this->__("Items") ?></h2>
+
+        <table class="data-table linearize-table-large" id="my-orders-table" summary="Items Ordered">
+            <colgroup>
+                <col>
+                <col width="1">
+                <col width="1">
+                <col width="1">
+                <col width="1">
+            </colgroup>
+            <thead>
+            <tr class="first last">
+                <th><?php echo $this->__("Product"); ?></th>
+                <th><?php echo $this->__("SKU"); ?></th>
+                <th class="a-right"><?php echo $this->__("Price"); ?></th>
+                <th class="a-center"><?php echo $this->__("Qty"); ?></th>
+                <th class="a-right"><?php echo $this->__("Subtotal"); ?></th>
+            </tr>
+            </thead>
+            <tbody class="odd">
+            <?php foreach($rma->getAllItems() AS $item):  ?>
+                <?php $orderItem = $item->getOrderItem(); ?>
+            <tr class="border" id="order-item-row-597">
+                <td><h3 class="product-name"><?php echo $orderItem->getName(); ?></h3>
+                </td>
+                <td data-rwd-label="SKU"><?php echo $orderItem->getSku(); ?></td>
+                <td class="a-right" data-rwd-label="Price">
+                    <span class="price-excl-tax">
+                        <span class="cart-price">
+                            <span class="price"><?php echo Mage::helper('core')->currency($orderItem->getPrice(), true, false); ?></span>
+                        </span>
+                    </span>
+                    <br>
+                </td>
+                <td class="a-right" data-rwd-label="Qty">
+                    <span class="nobr"><?php echo $this->__("Ordered"); ?>: <strong><?php echo number_format($orderItem->getQtyOrdered()); ?></strong><br></span>
+                    <span class="nobr"><?php echo $this->__("Refunding"); ?>: <strong><?php echo number_format($item->getQty()); ?></strong><br></span>
+                </td>
+                <td class="a-right last" data-rwd-label="Subtotal">
+                    <span class="price-excl-tax">
+                        <span class="cart-price">
+                            <span class="price"><?php echo Mage::helper('core')->currency($orderItem->getRowTotal(), true, false); ?></span>
+                        </span>
+                    </span>
+                    <br>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php $comments = $rma->getAllStatusHistory(); ?>
+    <?php if($comments->count()): ?>
+        <div class="comments rma">
+            <h2 class="table-caption"><?php echo $this->__("Comments"); ?></h2>
+            <ul>
+                <?php foreach($comments AS $comment): ?>
+                    <?php if(!$comment->getIsCustomerNotified()) continue; ?>
+
+                    <li>
+                        <dl class="ratings-description">
+                            <dt><?php echo $this->__('Added %s', Mage::helper('core')->formatDate($comment->getCreatedAt(), 'full', false)); ?></dt>
+                            <dd><?php echo $this->escapeHtml($comment->getCommentBody()); ?></dd>
+                        </dl>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+</div>

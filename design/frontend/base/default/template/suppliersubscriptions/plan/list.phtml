@@ -1,0 +1,96 @@
+<?php /* @var $this Cminds_SupplierRegistrationExtended_Block_Plan_List */ ?>
+<?php $productCollection = $this->getProductPlanCollection() ?>
+<?php $plansFeatures = $this->getPlansFeatures() ?>
+<?php $priorityOptions = Mage::getModel('suppliersubscriptions/config_plan_priority')->toArray() ?>
+
+<div class="container main-container  vendor-container">
+    <h1 class="text-center"><?php echo $this->__('Please choose your plan to upgrade?') ?></h1>
+    <form action="<?php echo $this->getActionUrl() ?>" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <div class='table-responsive'>
+                    <table class="table table-striped cm-upgrade-table">
+                        <thead>
+                        <th></th>
+                        <?php foreach ($productCollection as $product) : ?>
+                            <th class="text-center plan-<?php echo $this->getHash($product) ?>" data-plan="<?php echo $this->getHash($product) ?>">
+                                <?php echo $product->getPlan()->getName() ?>
+                            </th>
+                        <?php endforeach; ?>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><?php echo $this->__('Features') ?></th>
+                            <?php foreach ($productCollection as $product) : ?>
+                                <td class="text-center plan-input plan-<?php echo $this->getHash($product) ?>" data-plan="<?php echo $this->getHash($product) ?>">
+                                    <input name="plan" type="radio" value="<?php echo $product->getId() ?>" class="cm-plan-radio" />
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                        <?php foreach ($plansFeatures as $planCode => $planLabel) : ?>
+                            <tr>
+                                <th><?php echo $planLabel ?></th>
+                                <?php foreach ($productCollection as $product) : ?>
+                                    <td class="text-center plan-<?php echo $this->getHash($product) ?>" data-plan="<?php echo $this->getHash($product) ?>">
+                                        <?php if ($planCode == 'banner'): ?>
+                                            <?php if ($product->getPlan()->getData($planCode)) : ?>
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            <?php else: ?>
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            <?php endif; ?>
+<!--                                        --><?php //elseif ($planCode == 'listing_priority'): ?>
+<!--                                            --><?php //echo $priorityOptions[$product->getPlan()->getData($planCode)]; ?>
+                                        <?php elseif ($planCode == 'price'): ?>
+                                            <?php echo Mage::helper('core')->currency($product->getFinalPrice(),true,false); ?>
+                                        <?php else: ?>
+                                            <?php echo $product->getPlan()->getData($planCode); ?>
+                                        <?php endif; ?>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                    <input type="submit" name="submit" class="btn btn-primary"
+                           value="<?php echo $this->__('Check Out') ?>"/>
+
+                    <script>
+                        //<![CDATA[
+                        (function($){
+                            /**
+                             * Add col selection.
+                             */
+                            $('.cm-upgrade-table').on('mouseenter', 'td,th', function(){
+                                var hoverClass = 'cm-cell-hover';
+                                $('.cm-upgrade-table').find('td,th').removeClass(hoverClass);
+                                $('.cm-upgrade-table').find('td,th').filter('.plan-' + $(this).attr('data-plan')).addClass(hoverClass);
+                            });
+                            /**
+                             * Remove col selection.
+                             */
+                            $('.cm-upgrade-table .cm-cell-hover').on('mouseout', function(){
+                                var hoverClass = 'cm-cell-hover';
+                                $('.cm-upgrade-table').find('td,th').removeClass(hoverClass);
+                            });
+                            /**
+                             * Add click event.
+                             */
+                            $('.cm-upgrade-table').on('click', 'td,th', function(){
+                                var planCols = $('.cm-upgrade-table').find('td,th').filter('.plan-' + $(this).attr('data-plan'));
+                                var planInputWrapper = planCols.filter('.plan-input');
+                                if (planInputWrapper.length && !$(this).attr('class').match(/plan-input/g)) {
+                                    $('.cm-upgrade-table').find('td,th').removeClass('cm-plan-selected');
+                                    planInputWrapper.first().find('input.cm-plan-radio').click();
+                                    planCols.addClass('cm-plan-selected');
+                                }
+                            });
+                        })(jQuery);
+                        //]]>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

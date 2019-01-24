@@ -1,0 +1,66 @@
+<?php 
+$themehelper = Mage::helper('hybrid');
+$helper = $this->helper('zozoconcepts_brands');
+$w_thumbnail = $helper->getConfig('brand/width_thumbnail')?$helper->getConfig('brand/width_thumbnail'):"150";
+$h_thumbnail = $helper->getConfig('brand/height_thumbnail')?$helper->getConfig('brand/height_thumbnail'):"77";
+$_brands = $this->getBrands(); 
+$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'brand/image';
+$speed = $helper->getConfig('brand/speed')?$helper->getConfig('brand/speed'):"300";
+$nav = $helper->getConfig('brand/nav_ctrl')?$helper->getConfig('brand/nav_ctrl'):"true"; 
+$_title = $this->helper('zozoconcepts_brands')->__("Our Clients");
+?>
+<?php if ($_brands->getSize() > 0 && $helper->getConfig('brand/enable')) :?>
+		<div class="brand-home-static carousel-wrapper">
+			<div id="brands" class="owl-carousel <?php if($this->getData('rtl')==='true'):?>owlnav-top-left<?php else:?>owlnav-top-right<?php endif;?>">
+				<?php foreach ($_brands as $_brand) : ?>
+					<?php if($_brand->getFeaturedBrands()): ?>
+						<div class="item">
+							<a href="<?php echo $_brand->getBrandUrl()?>" >
+								<img src="<?php echo Mage::helper('zozoconcepts_brands/brand_image')->init($_brand, 'brand_icon');?>" alt="<?php echo $this->htmlEscape($_brand->getTitle());?>" class="img-responsive" width="<?php echo $w_thumbnail?>" height="<?php echo $h_thumbnail?>" />
+							</a>
+						</div>
+					<?php endif; ?>  
+                    
+				<?php endforeach;?>
+			</div>
+		</div>
+<?php endif;?>
+<script type="text/javascript">
+(function($){
+    $(document).ready(function() {
+     
+    $("#brands").owlCarousel({
+			 items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'5' ?>,
+			 <?php if($this->getData('rtl')==='true'):?>rtl:true,<?php endif;?>
+			 responsive:{
+				0:{
+					items:2
+				},
+				480:{
+					items:3
+				},
+				767:{
+					items:3
+				},
+				991:{
+					items:4
+				},
+				1024:{
+					items:<?php echo ($this->getData('item_count'))?$this->getData('item_count'):'5' ?>
+				}
+			},
+			margin:30,
+			nav: true,
+			navText: ["<i class='icon-arrow-left icons'></i>","<i class='icon-arrow-right icons'></i>"],
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			dots: false,
+			animateIn: 'fadeIn',
+			animateOut: 'fadeOut',
+			loop: true,
+		});
+
+	
+    });})(jQuery);
+</script>	

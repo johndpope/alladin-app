@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <tabs>
+        <zozoconcepts_ext translate="label" module="extensia">
+            <label>Zozoconcepts Extension</label>
+            <sort_order>10</sort_order>
+        </zozoconcepts_ext>
+    </tabs>
+</config>

@@ -1,0 +1,6 @@
+<?php $questionId = $this->getData('questionId') ; ?>
+<?php $question = Mage::getModel('marketplaceproductquestions/questions')->load($questionId);?>
+
+<div class="questions">
+    <?php echo $question->getData('question_body'); ?>
+</div>

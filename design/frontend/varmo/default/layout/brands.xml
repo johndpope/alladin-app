@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Zozoconcepts_Brands extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Zozoconcepts
+ * @package        Zozoconcepts_Brands
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+	
+    <zozoconcepts_brands_brand_index translate="label" module="zozoconcepts_brands">
+        <label>Brands list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_brands/brand_list" name="brand_list" template="zozoconcepts/zozoconcepts_brands/brand/list.phtml" />
+        </reference>
+    </zozoconcepts_brands_brand_index>
+    <zozoconcepts_brands_brand_view translate="label" module="zozoconcepts_brands">
+        <label>Brand view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="zozoconcepts_brands/brand_view" name="brand_view" template="zozoconcepts/zozoconcepts_brands/brand/view.phtml" />
+            <block type="zozoconcepts_brands/brand_catalog_product_list" name="brand.info.products" as="brand_products" template="zozoconcepts/zozoconcepts_brands/brand/catalog/product/list.phtml" />
+        </reference>
+    </zozoconcepts_brands_brand_view>
+    <catalog_product_view>
+        <reference name="product.info">
+            <block type="zozoconcepts_brands/catalog_product_list_brand" name="product.info.brands" as="product_brands" template="zozoconcepts/zozoconcepts_brands/catalog/product/list/brand.phtml">
+                <action method="addToParentGroup"><group>detailed_info</group></action>
+                <action method="setTitle" translate="value" module="zozoconcepts_brands"><value>Brands</value></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+</layout>

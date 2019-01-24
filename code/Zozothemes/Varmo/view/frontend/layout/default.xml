@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    
+    <head>
+        <!--<script src="Zozothemes_Varmo::js/jquery.cookie.js"/>
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.fancybox.js"/> 
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.fancybox.pack.js"/>
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.fancybox-buttons.js"/>
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.fancybox-media.js"/>
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.fancybox-thumbs.js"/>
+        <script src="Zozothemes_Varmo::js/fancybox/jquery.mousewheel-3.0.6.pack.js"/>-->
+        <css src="Zozothemes_Varmo::css/fancybox/jquery.fancybox.css" />
+        <css src="Zozothemes_Varmo::css/fancybox/jquery.fancybox-buttons.css" />
+        <css src="Zozothemes_Varmo::css/fancybox/jquery.fancybox-thumbs.css" />
+    </head>
+</page>

@@ -1,0 +1,23 @@
+<?php
+$childCats = $this->getChildCategories(1);
+?>
+<ul class="category-list">
+<?php echo $this->listCategory($childCats); ?>
+</ul>
+<script type="text/javascript">
+
+    $$('ul.category-list').each(function(category) {
+        category.select('i').each(function(i) {
+            i.observe('click', function(el) {
+                var category = el.element();
+                if(category.innerHTML == '-') {
+                    category.update('+');
+                } else {
+                    category.update('-');
+                }
+                category.innerHTML;
+                category.next('ul').toggle();
+            });
+        });
+    });
+</script>

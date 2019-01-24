@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * Zozothemes
+  * 
+  * NOTICE OF LICENSE
+  * 
+  * This source file is subject to the Zozothemes.com license that is
+  * available through the world-wide-web at this URL:
+  * http://www.zozothemes.com/license-agreement.html
+  * 
+  * DISCLAIMER
+  * 
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *  
+  * @category   Zozothemes
+  * @package    Zozothemes_ShopByBrand
+  * @copyright  Copyright (c) 2014 Zozothemes (http://www.zozothemes.com/)
+  * @license    http://www.zozothemes.com/LICENSE-1.0.html
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Zozothemes\ShopByBrand\Block\Adminhtml\Items\Edit\Tabs" name="zozothemes_shopbybrand_items_edit_tabs">
+                <block class="Zozothemes\ShopByBrand\Block\Adminhtml\Items\Edit\Tab\Main" name="zozothemes_shopbybrand_items_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">zozothemes_shopbybrand_items_edit_tab_main</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Zozothemes\ShopByBrand\Block\Adminhtml\Items\Edit" name="shopbybrand_items_edit"/>
+        </referenceContainer>
+    </body>
+</page>

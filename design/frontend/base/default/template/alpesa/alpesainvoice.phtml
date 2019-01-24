@@ -1,0 +1,89 @@
+<div class="alpesa-holder alpesa-reedem-holder">
+    <h2 class="alpesa-section-title">
+        <ul>
+            <li>
+                <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-icon-4.png'); ?>" alt=""/>-->
+                <?php echo $this->getChildHtml('alpesatopnav');?>
+            </li>
+            <li>
+                <span>alpesa pay for goods</span>
+            </li>
+        </ul>
+
+    </h2>
+    <div class="row">
+
+        <?php
+        $invoiceData = $this->getInvoices();
+        $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+        $currentData = $this->walletData();
+    $walletData = $currentData[0]->getFirstItem();
+        ?>
+        <div class="col-md-12">
+
+
+            <?php if (count($invoiceData['pendingInvoices']) > 0): ?>
+
+                <h4>Select Order(s) To Pay</h4>
+                <h5>Current Total Amount - <?php echo Mage::app()->getStore()->getCurrentCurrencyCode().' '. Mage::helper('Boonagel_Alpesa')->formatNumber((count($walletData) == 1 ? $walletData->wallet : 0), 2); ?></h5>
+
+                <form method="POST" action="<?php echo Mage::getUrl('alpesa/customer/pay');?>">
+                    <input type="hidden" name='payment_type' value="<?php echo $invoiceData['alpesapaymenttype']; ?>">
+                    <?php if (array_key_exists('alpesacardid', $invoiceData)): ?>
+                        <input type="hidden" name='card_id' value="<?php echo $invoiceData['alpesacardid']; ?>">
+                    <?php endif; ?>
+                        <?php $invoiceids = ''; $counter =0; $countedInvoices = count($invoiceData['pendingInvoices']);?>
+
+                    <div class="alpesa-table-container">
+
+                        <table class="alpesa-table alpesa-table-border">
+                            <thead>
+                            <th></th>
+                            <th>ORDER #</th>
+                            <th>DATE</th>
+                            <th><span class="nobr">ORDER TOTAL</span></th>
+                            <th><span class="nobr">TOTAL DUE</span></th>
+                            <th></th>
+                            <th>CHECK TO PAY</th>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($invoiceData['pendingInvoices'] as $singleInvoiceData):?>
+                                <?php if($singleInvoiceData->getTotalPaid() < $singleInvoiceData->getGrandTotal()): $counter++; ?>
+                                    <tr>
+                                        <td><?php echo $counter;?></td>
+                                        <td>
+                                            <?php echo $singleInvoiceData->getRealOrderId() ?>
+                                        </td>
+                                        <td>
+                                            <span class="nobr"><?php echo $this->formatDate($singleInvoiceData->getCreatedAtStoreDate()) ?></span>
+                                        </td>
+                                        <td><?php echo $singleInvoiceData->formatPrice($singleInvoiceData->getGrandTotal()) ?></td>
+                                        <td><?php echo $singleInvoiceData->formatPrice($singleInvoiceData->getTotalDue()) ?></td>
+                                        <td>
+                                            <a href="<?php echo Mage::getUrl('sales/order/view/order_id/' . $singleInvoiceData->getId()); ?>">View Order</a>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="<?php echo $singleInvoiceData->getId(); ?>" value="<?php echo $singleInvoiceData->getId(); ?>"/>
+                                        </td>
+                                    </tr>
+                                    <?php $invoiceids .= $counter == $countedInvoices ? $singleInvoiceData->getId() :$singleInvoiceData->getId().',';?>
+                                    <?php endif;?>
+                                    
+                                    
+                                    
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                        <input type="hidden" name='invoice_ids' value="<?php echo $invoiceids;?>">
+                        <button type='submit' class="alpesa-button">Proceed to pay</button>
+                </form>
+            <?php else: ?>
+                <h3>Sorry you have 0 pending payments.</h3>
+            <?php endif; ?>
+        </div>
+
+
+    </div>
+</div>

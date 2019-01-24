@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+		<cms_index_index>
+			<reference name="root">
+				<block type="zozoconcepts_featuredproductslider/featuredproductslider" name="featuredproductslider_home_list"  template="zozoconcepts/zozoconcepts_featuredproductslider/featuredproductslider.phtml" />
+				<block type="zozoconcepts_featuredproductslider/new"  name="new_home_list" template="zozoconcepts/zozoconcepts_featuredproductslider/new.phtml"><action method="setCacheLifetime"><s>0</s></action></block>
+			</reference>
+		</cms_index_index>
+</layout> 

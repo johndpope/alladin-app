@@ -1,0 +1,41 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head"><?php echo $this->__('CBA PAYMENTS LOG') ?></h4>
+    </div>
+    <?php $orderCbaLogData = $this->getPaymentLogs(); $orderCbaLogs = $orderCbaLogData[0];?>
+    <fieldset>
+        <?php if($orderCbaLogs->count() > 0):?>
+        
+        <div class="grid np">
+            <table cellspacing="0" style="border:0;">
+                <thead>
+                    <tr class="headings">
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <?php $cbaTotal = 0; foreach ($orderCbaLogs as $orderCbaLog): $cbaTotal +=$orderCbaLog->getTransAmount(); ?>
+                        <tr>
+                            <td style="color:#eb6625;"><?php echo Mage::helper('Boonagel_Cba')->formatNumber($orderCbaLog->getTransAmount(),2);?></td>
+                            <td><?php echo date('d-m-Y h:i:s',strtotime($orderCbaLog->getTransTime()));?></td>
+                            <td><?php echo $orderCbaLog->getCustomerName(); ?></td>
+                            <td>+<?php echo $orderCbaLog->getPhoneNr(); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <h3>Total Amount: <b><?php echo Mage::helper('Boonagel_Cba')->formatNumber($cbaTotal,2);?></b> ; Extra Amount:
+                <b><?php $extraAmt  = $cbaTotal-$orderCbaLogData[1]->getGrandTotal();echo Mage::helper('Boonagel_Cba')->formatNumber($extraAmt,2);?></b>
+            </h3>
+        </div>
+        
+        <?php else:?>
+        <h4 style="color:#ff0000;">0 cba logs for this order.</h4>
+        <?php endif;?>
+        
+    </fieldset>
+</div>
+<div class="clear"></div>

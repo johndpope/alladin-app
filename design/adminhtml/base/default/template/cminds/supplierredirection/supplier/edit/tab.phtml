@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var Cminds_SupplierRedirection_Block_Adminhtml_Customer_Tab $this
+ */
+?>
+<p>
+    <?php echo $this->helper("marketplace")->__("This domain will be used on profile page and for product links."); ?>
+    <br>
+    <?php echo $this->helper("marketplace")->__("Provided link should be placed without following http:// and ending /"); ?>
+</p>
+<?php echo $this->getForm()->toHtml(); ?>

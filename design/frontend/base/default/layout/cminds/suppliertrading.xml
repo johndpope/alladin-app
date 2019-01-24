@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_suppliertrading_trade_reject>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="core/template" name="suppliertrading.reject"
+                   template="cminds/suppliertrading/reject.phtml"/>
+        </reference>
+    </cminds_suppliertrading_trade_reject>
+    <cminds_suppliertrading_trade_trades>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="suppliertrading/trades" name="suppliertrading.trades"
+                   template="cminds/suppliertrading/trades.phtml"/>
+        </reference>
+    </cminds_suppliertrading_trade_trades>
+</layout>

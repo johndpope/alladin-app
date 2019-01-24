@@ -1,0 +1,96 @@
+<div class="alpesa-holder alpesa-reedem-holder">
+    <h2 class="alpesa-section-title">
+        <ul>
+            <li>
+                <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-icon-4.png'); ?>" alt=""/>-->
+                <?php echo $this->getChildHtml('alpesatopnav');?>
+            </li>
+            <li>
+                <span>Alpesa Log section</span>
+            </li>
+        </ul>
+
+    </h2>
+    <div class="row">
+        <?php
+        $allCustLogs = $this->getCustomerLogs(); 
+         $usedAmounts = $allCustLogs['walletUsedAmt'];
+         $vouchersUsed = $allCustLogs['voucherUsedAmt'];
+         $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+        ?>
+        <div class="col-md-6">
+        
+            <h4>Wallet Used Amounts Logs</h4>
+            <div class="alpesa-table-container">
+                <?php if ($usedAmounts->count() > 0): ?>
+                    <table class="alpesa-table alpesa-table-border">
+                        <thead>
+                        <th>Wallet <br>Amount <br>Used</th>
+                        <th>Order</th>
+                         <th>Date</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($usedAmounts as $usedAmount): ?>
+                                <tr>
+                                    <td>
+                                        <?php
+                                        echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($usedAmount->used_amount,2);
+                                        ?>
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="<?php echo Mage::getUrl('sales/order/view/order_id/'.$usedAmount->order_id);?>">
+                                           View Order
+                                        </a>
+                                    </td>
+                                    <td><?php echo date_format(date_create($usedAmount->created_at), "Y-m-d"); ?></td>
+                                    
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <h5>No Logs For Wallet Used Amounts.</h5>
+                <?php endif; ?>
+            </div>
+    </div>
+        
+         <div class="col-md-6">
+        
+            <h4>Wallet Voucher Used Logs</h4>
+            <div class="alpesa-table-container">
+                <?php if ($vouchersUsed->count() > 0): ?>
+                    <table class="alpesa-table alpesa-table-border">
+                        <thead>
+                        <th>Voucher <br>Amount <br>Used</th>
+                        <th>Order</th>
+                         <th>Date</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($vouchersUsed as $voucherUsed): ?>
+                                <tr>
+                                    <td>
+                                        <?php
+                                        echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($voucherUsed->order_amount,2);
+                                        ?>
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="<?php echo Mage::getUrl('sales/order/view/order_id/'.$voucherUsed->order_id);?>">
+                                           View Order
+                                        </a>
+                                    </td>
+                                    <td><?php echo date_format(date_create($voucherUsed->created_at), "Y-m-d"); ?></td>
+                                    
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <h5>No Logs For Voucher Used Amounts.</h5>
+                <?php endif; ?>
+            </div>
+    </div>
+
+</div>
+</div>

@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+
+    <catalog_product_view>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/marketplaceproductquestions/productquestions.css</stylesheet></action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/marketplaceproductquestions/popup.js</name>
+            </action>
+            <action method="addJs">
+                <script>prototype/window.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="marketplaceproductquestions/product_form" name="marketplaceproductquestions_form" template="marketplaceproductquestions/product/ask/form.phtml" />
+            <block type="marketplaceproductquestions/product_view" name="marketplaceproductquestions_view" template="marketplaceproductquestions/product/ask/view.phtml" >
+                <block type="marketplaceproductquestions/product_answers" name="marketplaceproductquestions_answers" template="marketplaceproductquestions/product/ask/answers.phtml" />
+                <block type="marketplaceproductquestions/product_answers" name="marketplaceproductquestions_questions" template="marketplaceproductquestions/product/ask/questions.phtml" />
+            </block>
+        </reference>
+    </catalog_product_view>
+
+    <cminds_supplierfrontendproductuploader_questions_list>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="supplierfrontendproductuploader/navbar" name="supplierfrontendproductuploader_nav" template="supplierfrontendproductuploader/nav.phtml"/>
+            <block type="marketplaceproductquestions/questions_list" name="marketplaceproductquestions_questions_list"
+                   template="marketplaceproductquestions/questions/list.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_questions_list>
+
+    <cminds_supplierfrontendproductuploader_questions_answer>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="supplierfrontendproductuploader/navbar" name="supplierfrontendproductuploader_nav" template="supplierfrontendproductuploader/nav.phtml"/>
+            <block type="marketplaceproductquestions/questions_answer" name="marketplaceproductquestions_questions_answer"
+                   template="marketplaceproductquestions/questions/answer.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_questions_answer>
+
+
+</layout>

@@ -1,0 +1,132 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Varmo theme variables
+//  _____________________________________________
+
+@screen__xxs: 320px;
+@screen__xs: 480px;
+@screen__s: 640px;
+@screen__m: 768px;
+@screen__l: 992px;
+@screen__ml: 1100px;
+@screen__xl: 1200px;
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+@font-family-name__base: 'Poppins';
+@font-family__base: @font-family-name__base, @font-family__sans-serif;
+
+//  Colors nesting
+@page__background-color: @color-white;
+@copyright__background-color: @color-gray56;
+
+//
+//  Icons
+//  ---------------------------------------------
+@icon-font-family: 'varmo-icons';
+@icon-up: '\e708';
+@icon-down: '\e711';
+@icon-up-dir: '\e726';
+@icon-down-dir: '\e729';
+@icon-left-dir: '\e728';
+@icon-right-dir: '\e727';
+@icon-cart: '\e720';
+@icon-mini-cart: '\e720';
+@icon-search: '\e723';
+@icon-up-open: '\e700';
+@icon-right-open: '\e701';
+@icon-left-open: '\e702';
+@icon-down-open: '\e703';
+@icon-remove: '\e762';
+@icon-edit: '\e732'; 
+@icon-trash: '\e724'; // not included
+@icon-menu: '\e733';
+@icon-right-open: '\e701';
+@breadcrumbs-icon__font-content: '\e705'; // used  varmo-icon-small-right-open ~ check this
+@icon-grid: '\e751';
+@icon-list: '\e752';
+@icon-next: '\e709';
+@icon-prev: '\e710';
+@icon-wishlist-full: '\e722';
+@icon-wishlist-empty: '\e754';
+@icon-compare-full: '\e753'; // not included
+@icon-compare-empty: '\e753'; // not included
+@icon-envelope: '\e735';
+@icon-arrow-up: '\e716';
+@icon-arrow-down: '\e719';
+@icon-star: '\e759';
+@icon-star-empty: '\e760';
+@icon-warning: '\e764';
+@icon-success: '\e761';
+@icon-error: '\e762';
+
+@icon-checkmark: '\e737'; // not included
+@icon-help: '\e763';
+
+@icon-print: '\e784';
+
+@icon-download: '\e946'; // 
+@icon-private: '\e945'; //
+@icon-present: '\e943'; //
+@icon-gift-registry: '\e978'; //
+
+@icon-calendar__font-size: 23px;
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+@sidebar__background-color: @color-white-smoke;  // Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+
+
+//
+//  Theme Custom
+//  ---------------------------------------------
+@border-color: #e1e1e1;
+@color-theme-dark: #171717;
+@color-dark2: #171717;
+@color-white: #fff;
+@color-theme-semidark: #303030;
+@color-grey7: #777;
+.border-color() {
+  border-color: @border-color;
+}
+// Transition radius
+.transition (@transition){
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+// Border radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+      -ms-border-radius: @radius;
+       -o-border-radius: @radius;
+          border-radius: @radius;
+}
+// Border radius
+.box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+     -ms-box-shadow: @shadow;
+      -o-box-shadow: @shadow;
+         box-shadow: @shadow;
+}
+.shadow-none(@shadow-none) {
+    -webkit-box-shadow: @shadow-none;
+    -moz-box-shadow: @shadow-none;
+     -ms-box-shadow: @shadow-none;
+      -o-box-shadow: @shadow-none;
+         box-shadow: @shadow-none;
+}

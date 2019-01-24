@@ -1,0 +1,42 @@
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php $_orders = $this->getOrders(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__('Delivery Report') ?></h1>
+</div>
+<?php echo $this->getPagerHtml(); ?>
+<?php if ($_orders->getSize()): ?>
+    <table class="data-table" id="my-orders-table">
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Order #'); ?></th>
+            <th><?php echo $this->__('Product Name'); ?></th>
+            <th><?php echo $this->__('Price'); ?></th>
+            <th><?php echo $this->__('Sku'); ?></th>
+            <th><?php echo $this->__('Vendor'); ?></th>
+            <th><?php echo $this->__('Delivery Date'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($_orders as $_order): ?>
+            <?php if($_order->getParentItemId()) continue; ?>
+            <tr>
+                <td>
+                    <a target="_blank" href="<?php echo $this->getOrderViewUrl($_order->getOrderId());?>">
+                        <?php echo $_order->getIncrementId(); ?>
+                    </a>
+                </td>
+                <td><?php echo $_order->getName(); ?></td>
+                <td><?php echo Mage::helper('core')->currency($_order->getPrice(), true, false) ?></td>
+                <td><?php echo $_order->getSku() ?></td>
+                <td><?php echo $this->getVendorName($_order, $_orders); ?></td>
+                <td><?php echo $_order->getDeliveryDate(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-orders-table');</script>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('There are no deliveries scheduled for next 7 days.'); ?></p>
+<?php endif ?>

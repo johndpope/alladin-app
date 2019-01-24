@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<layout>
+	<customer_logged_out>
+        <reference name="top.links">
+        	<action method="removeLinkByUrl"><url helper="customer/getAccountUrl" /></action>
+			<action method="removeLinkByUrl"><url helper="customer/getLoginUrl"/></action>
+
+            <action method="addLink" translate="label title" module="customer">
+                <label><![CDATA[<i class="icon icon-User user-account" aria-hidden="true"></i><span>My Account</span>]]></label>
+                <url>javascript:void(0)</url>
+                <title>My Account</title>
+                <prepare/>
+                <urlParams/>
+                <position>1</position>
+				<liParams></liParams>
+				<!--class="fa fa-user"<beforeText><![CDATA[<span>]]></beforeText>
+				<afterText><![CDATA[</span>]]></afterText>-->
+            </action>
+            <block type="core/template" name="customer_form_mini_login" before="-" template="customer/form/mini.login.phtml"/>
+			
+        </reference>
+    </customer_logged_out>
+	<customer_logged_in>
+        <reference name="top.links">
+			<action method="removeLinkByUrl"><url helper="customer/getAccountUrl" /></action>
+			<action method="removeLinkByUrl"><url helper="customer/getLogoutUrl"/></action>
+
+            <action method="addLink" translate="label title" module="customer">
+                <label><![CDATA[<i class="icon icon-User user-account" aria-hidden="true"></i><span>My Account</span>]]></label>
+                <url helper="customer/getAccountUrl"/>
+                <title>My Account</title>
+                <prepare/>
+                <urlParams/>
+                <position>1</position>
+				<liParams></liParams>
+				<!--class="fa fa-user"<beforeText><![CDATA[<span>]]></beforeText>
+				<afterText><![CDATA[</span>]]></afterText>-->
+            </action>
+            <action method="addLink" translate="label title" module="customer"><label><![CDATA[<i class="icon  icon-PowerOff" aria-hidden="true"></i><span>Log Out</span>]]></label><url helper="customer/getLogoutUrl"/><title>Log Out</title><prepare/><urlParams/><position>100</position></action>
+        </reference>
+    </customer_logged_in>
+	<default>
+		<reference name="top.links">
+        	<remove name="checkout_cart_link"/>
+				<!--<block type="checkout/links" name="checkout_cart_link_custom">
+					<action method="addCheckoutLink"></action>
+            	</block>-->
+    	</reference>
+		<remove name="wishlist_link"/>
+		<reference name="top.links">
+  			<action method="addLink" translate="label title" module="hybrid">
+                <label><![CDATA[<i class="icon icon-Heart user-wishlist" aria-hidden="true"></i><span>My Wishlist</span>]]></label>
+                <url helper="hybrid/getWishlistUrl"></url>
+                <title>My Wishlist</title>
+                <prepare/>
+                <urlParams/>
+                <position>2</position>
+				<liParams></liParams>
+            </action>
+		</reference>		
+			<!--<reference name="wishlist_link"> 
+			<action method="__set">
+				<name>a_params</name><value>class="fa fa-heart-o"</value>
+			</action> 
+		</reference>-->
+	</default>
+</layout>

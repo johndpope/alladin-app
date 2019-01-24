@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_marketplace_rma_supplier_list>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="marketplacerma/supplier_rma_list" name="marketplacerma_supplier_rma_list"
+                   template="marketplacerma/supplier/rma/list.phtml"/>
+        </reference>
+    </cminds_marketplace_rma_supplier_list>
+    <cminds_marketplace_rma_supplier_view>
+        <update handle="cminds_supplierfrontendproductuploader"/>
+        <reference name="content">
+            <block type="marketplacerma/supplier_rma_view" name="marketplacerma_supplier_rma_view" template="marketplacerma/supplier/rma/view.phtml">
+                <block type="page/html" name="rma_view_products" as="rma_products" template="marketplacerma/supplier/rma/view/products.phtml" />
+                <block type="page/html" name="rma_view_history" as="rma_history" template="marketplacerma/supplier/rma/view/history.phtml" />
+                <block type="page/html" name="rma_view_memo" as="rma_memo" template="marketplacerma/supplier/rma/view/memo.phtml" />
+            </block>
+        </reference>
+    </cminds_marketplace_rma_supplier_view>
+</layout>

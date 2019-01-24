@@ -1,0 +1,110 @@
+<div class="alpesa-holder alpesa-reedem-holder">
+    <h2 class="alpesa-section-title">
+        <ul>
+            <li>
+                <!--<img src="<?php echo $this->getSkinUrl('alpesa/images/alpesa-icon-4.png'); ?>" alt=""/>-->
+                <?php echo $this->getChildHtml('alpesatopnav');?>
+            </li>
+            <li>
+                <span>reedem section</span>
+            </li>
+        </ul>
+
+    </h2>
+    <div class="row">
+    <!--<ul class="alpesa-ul-section alpesa-ul-section-2-cols">-->
+        <?php $allReedemData = $this->reedemData(); ?>
+    <div class="col-md-6">
+        <!--<li>-->
+            <h4>The percentage and amount to be reedemable.</h4>
+            <p class="alpesa-reedem-info">
+                Note : You can only reedem <?php echo $allReedemData[0]->percentage_reedemable ?>% 
+                of the actual total points balance and the minimum points balance is <?php echo $allReedemData[0]->minimum_points ?> points.
+
+            </p>
+
+            <div class="alpesa-form-holder">
+                <div class="wallet-current-balance">
+                    Wallet current balance is 
+                    <span>
+                        <?php
+                        $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+                        $allReedemData[1] = $allReedemData[1]->getFirstItem();
+
+                        $walletAmount = Mage::helper('Boonagel_Alpesa')->formatNumber((count($allReedemData[1]) == 1 ? $allReedemData[1]->wallet : 0),2);
+                        echo $currency_code . ' ' . $walletAmount;
+                        ?>
+                    </span>
+                    
+                </div>
+                
+                <div id="currency-holder" style="display:none;" value="<?php echo $currency_code; ?>"></div>
+                <div id="point-curr-converter" style="display:none;" value="<?php $pntCurrArr = explode(",",$allReedemData[0]->point_currency); echo $pntCurrArr[1];?>"></div>
+                
+                <div class="wallet-current-balance">
+                    Wallet actual points balance is <span><?php echo Mage::helper('Boonagel_Alpesa')->formatNumber((count($allReedemData[1]) == 1 ? $allReedemData[1]->actual_points : 0)); ?></span>
+                </div>
+
+                <?php if (count($allReedemData[1]) == 1): ?>
+                <?php if($allReedemData[1]->actual_points > 0 && Mage::helper('Boonagel_Alpesa')->canReedem()):?>
+                    <form method="post" action="<?php echo Mage::getUrl('alpesa/customer/reedemprocess'); ?>">
+                        <div class="alpesa-perfom-reedem">
+                            <h3>Now Reedem</h3>
+                            <div class="alpesa-form-group">
+                                <label>Enter points to reedem</label>
+                                <input name="reedemable_points" type="number" title="Points" required class="alpesa-input number" onkeyup="calculateActions(this)"/>
+                            </div>
+                            <div class="alpesa-form-group">
+                                <p id="total-amount-reedemed"> <mecurr id="actual-calculation">KES 0</mecurr> <span>::: Available amount after reedeming</span></p>
+                            </div>
+
+                            <div class="alpesa-form-group">
+                                <button type="submit" class="alpesa-button">Proceed to reedem</button>
+                            </div>
+                        </div>
+                    </form>
+                <?php endif;?>
+                <?php endif; ?>
+
+            </div>
+
+        <!--</li>-->
+    </div>
+
+        <div class="col-md-6">
+        <!--<li>-->
+            <h4>Reedem history log</h4>
+            <div class="alpesa-table-container">
+                <?php if ($allReedemData[2]->count() > 0): ?>
+                    <table class="alpesa-table alpesa-table-border">
+                        <thead>
+                        <th>points</th>
+                        <th>amount</th>
+                        <th>date</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($allReedemData[2] as $reedemLogData): ?>
+                                <tr>
+                                    <td>
+                                        <?php echo Mage::helper('Boonagel_Alpesa')->formatNumber($reedemLogData->points); ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $currency_code . ' ' . Mage::helper('Boonagel_Alpesa')->formatNumber($reedemLogData->amount,2);
+                                        ?>
+                                    </td>
+                                    <td><?php echo date_format(date_create($reedemLogData->created_at), "Y-m-d"); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <h5>No reedem has been perfomed before.</h5>
+                <?php endif; ?>
+            </div>
+        <!--</li>-->
+    </div>
+
+    <!--</ul>-->
+</div>
+</div>
